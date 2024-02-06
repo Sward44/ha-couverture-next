@@ -1,0 +1,24 @@
+{
+  "short_name": "Ha Couverture",
+  "name": "Ha Couverture - Entrepreneur",
+  "icons": [
+    {
+      "src": "ha-couverture-favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "ha-couverture-favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "ha-couverture-favicon.svg",
+      "type": "image/svg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
