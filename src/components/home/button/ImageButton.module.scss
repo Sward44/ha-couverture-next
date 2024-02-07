@@ -1,0 +1,55 @@
+@import "../../style/media-queries.scss";
+
+.shining {
+  background-color: var(--shining);
+}
+
+.buttonDroite,
+.buttonGauche {
+  position: absolute;
+  top: 50%;
+  opacity: 0.3;
+  z-index: 10;
+  transition: opacity 0.3s;
+  @include xl {
+    top: 90%;
+  }
+  @include xs {
+    height: 90svh;
+    top: 72px;
+    width: 50%;
+    opacity: 0;
+  }
+}
+.buttonDroite {
+  right: 5%;
+  @include xl {
+    right: 20%;
+  }
+  @include xs {
+    right: 0%;
+  }
+}
+.buttonGauche {
+  left: 5%;
+  @include xl {
+    left: 20%;
+  }
+  @include xs {
+    left: 0%;
+  }
+}
+
+.containeurButtonIcon {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  @include xs {
+    opacity: 0.9;
+    top: 93%;
+  }
+}

@@ -1,0 +1,102 @@
+@import "../../components/style/media-queries.scss";
+
+.containeur {
+  @include xl {
+    margin: 2.5vw;
+  }
+  @include xs {
+    margin: 0;
+    min-width: 100vw;
+    min-height: 100svh;
+  }
+  .containeurTexte {
+    z-index: 1000;
+    background-color: var(--primary);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    @include xl {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.8;
+      top: 25%;
+      left: 5%;
+      max-width: 400px;
+      min-height: 300px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    @include xs {
+      position: absolute;
+      border-radius: 10px !important;
+      opacity: 0.8;
+      z-index: 1;
+      bottom: 20vw;
+      margin: 1.5vw;
+      border-radius: 0;
+      box-shadow: 5px 8px 18px 4px var(--shadow);
+    }
+  }
+}
+
+.shadowScale {
+  box-shadow: 5px 5px 10px 1px var(--shadow);
+  transition: 0.3s;
+  @include xs {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  &:hover {
+    scale: 1.005;
+    box-shadow: 5px 8px 18px 4px var(--shadow);
+    @include xs {
+      scale: unset;
+    }
+  }
+  @include xs {
+    margin: 0;
+  }
+}
+
+.containeurImage {
+  position: relative;
+  background-color: transparent;
+
+  &:hover {
+    .buttonDroite,
+    .buttonGauche,
+    .containeurButtonIcon {
+      opacity: 0.8;
+    }
+  }
+  @include xl {
+    min-width: 920px;
+    max-width: 1299px;
+    width: unset;
+    height: unset;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+  }
+  @include xs {
+    position: absolute;
+    top: 0px;
+    min-width: unset;
+    width: 100%;
+    height: 100svh;
+    border-radius: 0;
+  }
+  .image {
+    @include xl {
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+    }
+    @include xs {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+    }
+  }
+}

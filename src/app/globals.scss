@@ -1,1 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+:root {
+  --light: #c6e6f1;
+  --primary: #2071e7;
+  --dark: #2980b9;
+  --text: #333;
+  --background: #fafafa;
+  --hint: #999;
+  --border: #ddd;
+  --shining: #fff600;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--text);
+  font-size: 1.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5rem 0;
+}
+
+ul {
+  list-style: none;
+}
+
+hr {
+  margin-bottom: 2rem;
+}
