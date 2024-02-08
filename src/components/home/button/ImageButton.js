@@ -1,3 +1,5 @@
+"use client";
+import { useViewport } from "@/hooks/viewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
@@ -10,16 +12,19 @@ function ImageButton({
   handlePrev,
   handleEveryImage,
 }) {
+  const { isMobile } = useViewport();
   return (
     <>
-      <>
-        <button onClick={handleNext} className={styles.buttonGauche}>
-          <FontAwesomeIcon icon={faAngleLeft} size="2xl" />
-        </button>
-        <button onClick={handlePrev} className={styles.buttonDroite}>
-          <FontAwesomeIcon icon={faAngleRight} size="2xl" />
-        </button>
-      </>
+      {!isMobile && (
+        <>
+          <button onClick={handleNext} className={styles.buttonGauche}>
+            <FontAwesomeIcon icon={faAngleLeft} size="2xl" />
+          </button>
+          <button onClick={handlePrev} className={styles.buttonDroite}>
+            <FontAwesomeIcon icon={faAngleRight} size="2xl" />
+          </button>
+        </>
+      )}
 
       <div className={styles.containeurButtonIcon}>
         {itemData.map((i, indexButton) => (
