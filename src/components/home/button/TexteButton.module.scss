@@ -1,5 +1,9 @@
 .enSavoirPlus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: color 0.3s;
+  padding: 1rem;
   &:hover {
     color: var(--shining);
     cursor: pointer;

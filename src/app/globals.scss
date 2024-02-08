@@ -1,3 +1,6 @@
+@import "../components/style/animation.scss";
+@import "../components/style/media-queries.scss";
+@import "../components/style/utils.scss";
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +12,7 @@
   --primary: #2071e7;
   --dark: #2980b9;
   --text: #333;
+  --background-transparent: rgba(255, 255, 255, 0.8);
   --background: #fafafa;
   --hint: #999;
   --border: #ddd;
@@ -45,4 +49,29 @@ ul {
 
 hr {
   margin-bottom: 2rem;
+}
+
+button {
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  background-color: var(--background);
+  border: 0 solid var(--background);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  @include xs {
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+  }
+  &:hover {
+    scale: 105%;
+    background-color: var(--shining);
+    @include xs {
+      scale: unset;
+    }
+  }
+  i {
+    font-size: 3rem;
+    color: var(--text-dark);
+  }
 }

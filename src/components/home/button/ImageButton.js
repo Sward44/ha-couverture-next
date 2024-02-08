@@ -21,12 +21,12 @@ function ImageButton({
         </button>
       </>
 
-      <div className={`${styles.containeurButtonIcon} dFlex justify-around`}>
+      <div className={styles.containeurButtonIcon}>
         {itemData.map((i, indexButton) => (
           <button
             key={indexButton}
             onClick={() => handleEveryImage(indexButton)}
-            className={`mx-10 ${index === indexButton && styles.shining}`}
+            className={`mr-10 ${index === indexButton && styles.shining}`}
           >
             <Image src={require(`../../${i.urlSvg}`)} />
           </button>

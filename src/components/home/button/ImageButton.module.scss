@@ -9,11 +9,8 @@
   position: absolute;
   top: 50%;
   opacity: 0.3;
-  z-index: 10;
+  z-index: 1;
   transition: opacity 0.3s;
-  @include xl {
-    top: 90%;
-  }
   @include xs {
     height: 90svh;
     top: 72px;
@@ -23,18 +20,12 @@
 }
 .buttonDroite {
   right: 5%;
-  @include xl {
-    right: 20%;
-  }
   @include xs {
     right: 0%;
   }
 }
 .buttonGauche {
   left: 5%;
-  @include xl {
-    left: 20%;
-  }
   @include xs {
     left: 0%;
   }
@@ -42,6 +33,7 @@
 
 .containeurButtonIcon {
   position: absolute;
+  display: flex;
   top: 90%;
   left: 50%;
   transform: translateX(-50%);

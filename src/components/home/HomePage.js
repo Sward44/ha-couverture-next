@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ImageDiaporama from "./image/ImageDiaporama";
 import Texte from "./texte/Texte";
-import TexteButton from "./button/TexteButton";
 import ImageButton from "./button/ImageButton";
 
 function HomePage({ itemData }) {
@@ -47,7 +46,7 @@ function HomePage({ itemData }) {
 
   return (
     <>
-      <Texte itemData={itemData} index={index} />
+      <Texte itemData={itemData} index={index} handleForm={handleForm} />
       <ImageButton
         itemData={itemData}
         index={index}
@@ -55,7 +54,7 @@ function HomePage({ itemData }) {
         handlePrev={handlePrev}
         handleEveryImage={handleEveryImage}
       />
-      <TexteButton handleEveryImage={handleEveryImage} />
+
       <TransitionGroup childFactory={childFactory(direction)}>
         <CSSTransition
           in={false}

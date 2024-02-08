@@ -1,43 +1,5 @@
 @import "../../components/style/media-queries.scss";
 
-.containeur {
-  @include xl {
-    margin: 2.5vw;
-  }
-  @include xs {
-    margin: 0;
-    min-width: 100vw;
-    min-height: 100svh;
-  }
-  .containeurTexte {
-    z-index: 1000;
-    background-color: var(--primary);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    @include xl {
-      position: absolute;
-      z-index: 1;
-      opacity: 0.8;
-      top: 25%;
-      left: 5%;
-      max-width: 400px;
-      min-height: 300px;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-    @include xs {
-      position: absolute;
-      border-radius: 10px !important;
-      opacity: 0.8;
-      z-index: 1;
-      bottom: 20vw;
-      margin: 1.5vw;
-      border-radius: 0;
-      box-shadow: 5px 8px 18px 4px var(--shadow);
-    }
-  }
-}
-
 .shadowScale {
   box-shadow: 5px 5px 10px 1px var(--shadow);
   transition: 0.3s;

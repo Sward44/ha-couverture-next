@@ -5,13 +5,15 @@ import styles from "./TexteButton.module.scss";
 function TexteButton({ handleForm }) {
   return (
     <>
-      <div
-        className={`dFlex justifyContentCenter alignItemsCenter mb-20 ${styles.enSavoirPlus}`}
-      >
-        <FontAwesomeIcon icon={faCirclePlus} className="mr-10" />
+      <div className={styles.enSavoirPlus}>
+        <FontAwesomeIcon
+          icon={faCirclePlus}
+          size="lg"
+          style={{ marginRight: "1rem" }}
+        />
         <p>En savoir plus...</p>
       </div>
-      <button onClick={handleForm}>
+      <button onClick={handleForm} style={{ "margin-bottom": "1.5rem" }}>
         <h3>Demande de devis</h3>
       </button>
     </>

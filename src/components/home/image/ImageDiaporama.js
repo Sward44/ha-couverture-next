@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const ImageDiaporama = ({ itemData, index }) => {
-  console.log(itemData);
   return (
     <>
       <Image
@@ -9,7 +8,10 @@ const ImageDiaporama = ({ itemData, index }) => {
         src={require(`../../${itemData[index].urlWebp}`).default}
         fill
         alt={itemData[index].altWebp}
-        style={{ objectFit: "cover" }}
+        style={{
+          objectFit: "cover",
+          objectPosition: `${itemData[index].position}`,
+        }}
       />
     </>
   );
