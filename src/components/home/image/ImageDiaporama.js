@@ -12,6 +12,7 @@ const ImageDiaporama = ({ itemData, index }) => {
           objectFit: "cover",
           objectPosition: `${itemData[index].position}`,
         }}
+        priority
       />
     </>
   );

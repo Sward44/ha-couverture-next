@@ -9,39 +9,39 @@ function Nav() {
   const { isMobile } = useViewport();
   return (
     <>
-      <ul
-        className={`dFlex flexRow ${isMobile ? "" : "m-20"} alignItemsCenter`}
-      >
-        <div className={`${styles.displayFlex} flexRow nav-link`}>
-          <Link to="/" className={`mr-20 `}>
-            <h3>Blogs</h3>
+      <div className={` ${isMobile ? "" : "m-20"} ${styles.header}`}>
+        <div className={`${styles.linkNav}`}>
+          <Link href="/" className={`mr-20 ${styles.link}`}>
+            Activités
           </Link>
-          <Link to="/" className="mr-20">
-            <h3>Avis clients</h3>
+          <Link href="/" className={`mr-20 ${styles.link}`}>
+            Avis clients
           </Link>
-          <Link to="/" className="mr-85">
-            <h3>Nous rejoindre</h3>
+          <Link href="/" className={`mr-85 ${styles.link}`}>
+            Blogs
           </Link>
         </div>
         <a href="tel:+33634266400" target="_blank " rel="noopener noreferrer">
           <div
             // onMouseLeave={handleOut}
             // onMouseEnter={() => setPhone(false)}
-            className={`dFlex flexRow no-wrap mr-20 alignItemsCenter justifyContentCenter ${styles.paragraphe}`}
+            className={styles.paragraphe}
           >
-            <FontAwesomeIcon icon={faPhone} className={styles.taillePhone} />
-            {isMobile ? "" : <p className={`mr-10 `}>06 34 26 64 00</p>}
+            <FontAwesomeIcon icon={faPhone} className={styles.tailleIcon} />
+            {isMobile ? "" : <p className={`mr-10`}>06 34 26 64 00</p>}
           </div>
         </a>
-        <Link to="/">
-          <button className={isMobile && styles.displayButton}>
+
+        <Link href="/" className={styles.link}>
+          <button>
             <FontAwesomeIcon
               icon={faLocationDot}
-              className={styles.tailleLocation}
+              className={styles.tailleIcon}
+              style={{ padding: "0" }}
             />
           </button>
         </Link>
-      </ul>
+      </div>
     </>
   );
 }

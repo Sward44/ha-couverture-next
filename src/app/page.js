@@ -6,9 +6,11 @@ import Header from "@/components/header/Header";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Header />
-      <HomePage itemData={itemData} />
-    </div>
+      <div className={styles.container}>
+        <HomePage itemData={itemData} />
+      </div>
+    </>
   );
 }

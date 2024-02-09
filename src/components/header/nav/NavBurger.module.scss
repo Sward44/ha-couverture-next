@@ -12,11 +12,11 @@
       span {
         background-color: transparent !important;
         &::before {
-          background-color: var(--light) !important;
+          background-color: var(--background) !important;
           transform: translateY(0) rotateZ(45deg) !important;
         }
         &::after {
-          background-color: var(--light) !important;
+          background-color: var(--background) !important;
           transform: translateY(0) rotateZ(-45deg) !important;
         }
       }
@@ -27,7 +27,7 @@
       display: block;
       width: 3.6rem;
       height: 0.4rem;
-      background-color: var(--background);
+      background-color: var(--text-dark);
       border-radius: 0.2rem;
       position: absolute;
       top: 32%;
@@ -44,11 +44,11 @@
       }
       &::before {
         transform: translateY(-12px);
-        background-color: var(--background);
+        background-color: var(--text-dark);
       }
       &::after {
         transform: translateY(12px);
-        background-color: var(--background);
+        background-color: var(--text-dark);
       }
     }
   }

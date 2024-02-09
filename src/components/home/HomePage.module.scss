@@ -1,6 +1,7 @@
 @import "../../components/style/media-queries.scss";
 
 .shadowScale {
+  font-family: var(--font-mulish);
   box-shadow: 5px 5px 10px 1px var(--shadow);
   transition: 0.3s;
   @include xs {

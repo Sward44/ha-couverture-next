@@ -14,11 +14,17 @@ function Texte({ itemData, index, handleForm }) {
             alt={itemData[index].altSvg}
             className={styles.apparitionImage}
           />{" "}
-          <h2 className={`${styles.apparitionTitre}`}>
+          <h2
+            className={`${styles.apparitionTitre}`}
+            style={{ fontSize: "2.8rem" }}
+          >
             {itemData[index].title}
           </h2>
         </div>
-        <p className={`${styles.apparitionTexte}`}>
+        <p
+          className={`${styles.apparitionTexte}`}
+          style={{ fontSize: "1.8rem" }}
+        >
           {itemData[index].description}
         </p>
         <TexteButton handleForm={handleForm} />

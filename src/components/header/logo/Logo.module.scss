@@ -1,0 +1,30 @@
+.logo {
+  .cls {
+    fill: var(--background);
+  }
+  .cls1 {
+    fill: var(--text);
+    transition: fill 0.3s;
+  }
+  .cls2 {
+    fill: var(--color-roof);
+  }
+
+  .cls3 {
+    fill: var(--text-dark);
+  }
+
+  .cls4 {
+    fill: var(--shining);
+  }
+
+  transition: scale 0.3s, fill 0.3s;
+
+  &:hover {
+    scale: 102%;
+    .cls1 {
+      transition: fill 0.3s;
+      fill: var(--shining);
+    }
+  }
+}

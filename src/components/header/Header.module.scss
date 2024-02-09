@@ -1,29 +1,31 @@
 @import "../../components/style/media-queries";
 
-.headerBox {
-  background-color: var(--fond-header);
-  box-shadow: 0px 2px 10px 1px var(--shadow);
+.header {
+  position: absolute;
+  display: flex;
   z-index: 2;
-  @include xs {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0 1vw;
-    opacity: 0.9;
+  width: 100%;
+  align-items: center;
+  padding: 0.5rem 5rem;
+  font-family: var(--font-mulish);
+  background-color: var(--background-transparent);
+  box-shadow: var(--shadow);
+  @include sm {
+    padding: 0.5rem 1rem;
   }
-}
-
-.largeurHeader {
-  max-width: 1360px;
-  margin: auto;
-  padding: 0rem 3rem;
-  position: relative;
   @include xs {
-    padding: 0;
     margin: 0;
-    h2 {
-      font-family: var(--font-family-logo);
-    }
+    padding: 0;
+  }
+  .logo {
+    flex: 1 1 auto;
+  }
+  .entete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.4rem 1.2rem;
   }
 }

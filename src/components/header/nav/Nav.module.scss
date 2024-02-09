@@ -1,22 +1,44 @@
 @import "../../style/media-queries.scss";
 
-.displayFlex {
+.header {
   display: flex;
-  h3 {
+  .linkNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0 1rem 3rem;
+    @include xs {
+      padding: 1rem 0;
+    }
+  }
+  .link {
+    font-size: 22px;
+    color: var(--text-dark);
     text-decoration: none;
   }
 }
+.tailleIcon {
+  font-size: 3rem;
+  color: var(--text-dark);
+  padding-right: 1rem;
+}
+
 .paragraphe {
   position: absolute;
+  display: flex;
+  flex-direction: row nowrap;
   justify-content: flex-start;
+  align-items: center;
   overflow-x: hidden;
-  right: 105px;
-  top: 30px;
+  right: 130px;
+  top: 25px;
   padding-left: 8px;
   min-height: 4.5rem;
   width: 45px;
-  border: 1px solid var(--text-light);
-  background-color: var(--text-light);
+  border: 1px solid var(--border);
+  background-color: var(--border);
   border-radius: 5px;
   transition: 0.8s ease;
   @include xs {
@@ -25,11 +47,6 @@
     left: 87%;
     transition: none;
     height: 4.5rem;
-  }
-  .taillePhone {
-    font-size: 3rem;
-    color: var(--text-dark);
-    padding-right: 1rem;
   }
   .positionPhone {
     position: fixed;
@@ -50,11 +67,4 @@
     z-index: 1;
     text-overflow: ellipsis;
   }
-}
-.tailleLocation {
-  font-size: 3rem;
-  color: var(--text-dark);
-}
-.displayButton {
-  display: none;
 }
