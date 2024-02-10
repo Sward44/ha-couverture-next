@@ -2,6 +2,7 @@ import connect from "../../Mongoose";
 import Meta from "../../models/Meta";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
+import Header from "@/components/header/Header";
 
 export async function generateMetadata() {
   await connect();
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={`${mulish.variable} ${chonburi.variable}`}>
+        <Header />
         {children}
       </body>
     </html>

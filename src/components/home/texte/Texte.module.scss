@@ -13,7 +13,7 @@
 .containerTexte {
   display: flex;
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: calc(50% - 250px);
   z-index: 1;
   max-width: 500px;
@@ -22,17 +22,19 @@
   @include md {
     max-width: none;
     left: 0;
+    top: 24%;
     margin: 0 20%;
   }
   @include sm {
     max-width: none;
     left: 0;
-    top: 30%;
+    top: 25%;
     margin: 0 15%;
   }
   @include xs {
     max-width: none;
     left: 0;
+    top: 30%;
     margin: 0 5%;
   }
 }
