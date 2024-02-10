@@ -17,6 +17,17 @@
     font-size: 22px;
     color: var(--text-dark);
     text-decoration: none;
+    transition: color 0.3s;
+    &:hover {
+      color: var(--shining);
+      .menu {
+        position: absolute;
+        top: 65px;
+        right: 325px;
+        border-radius: 10px;
+        background: var(--background-transparent);
+      }
+    }
   }
 }
 .tailleIcon {

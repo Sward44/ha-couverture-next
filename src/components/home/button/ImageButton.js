@@ -33,7 +33,7 @@ function ImageButton({
             onClick={() => handleEveryImage(indexButton)}
             className={`mr-10 ${index === indexButton && styles.shining}`}
           >
-            <Image src={require(`../../${i.urlSvg}`)} />
+            <Image src={require(`../../${i.urlSvg}`)} alt={i.altSvg} />
           </button>
         ))}
       </div>

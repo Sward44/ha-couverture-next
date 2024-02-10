@@ -13,7 +13,7 @@ function TexteButton({ handleForm }) {
         />
         <p>En savoir plus...</p>
       </div>
-      <button onClick={handleForm} style={{ "margin-bottom": "1.5rem" }}>
+      <button onClick={handleForm} style={{ marginBottom: "1.5rem" }}>
         <h3>Demande de devis</h3>
       </button>
     </>
