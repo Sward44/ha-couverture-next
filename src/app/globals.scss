@@ -60,6 +60,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  @include md {
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+    height: 3.5rem;
+  }
   @include xs {
     min-width: 3.5rem;
     min-height: 3.5rem;

@@ -1,8 +1,9 @@
 import Image from "next/image";
+import styles from "./ImageDiaporama.module.scss";
 
 const ImageDiaporama = ({ itemData, index }) => {
   return (
-    <>
+    <div className={styles.format}>
       <Image
         index={index}
         src={require(`../../${itemData[index].urlWebp}`).default}
@@ -13,8 +14,9 @@ const ImageDiaporama = ({ itemData, index }) => {
           objectPosition: `${itemData[index].position}`,
         }}
         priority
+        quality={60}
       />
-    </>
+    </div>
   );
 };
 

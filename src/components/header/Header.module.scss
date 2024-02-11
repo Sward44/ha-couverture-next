@@ -1,4 +1,4 @@
-@import "../../components/style/media-queries";
+@import "../../components/style/media-queries.scss";
 
 .header {
   position: absolute;
@@ -13,6 +13,8 @@
   transition: transform 0.3s ease;
   &.hidden {
     transform: translateY(-100%);
+  }
+  @include md {
   }
   @include sm {
     padding: 0.5rem 1rem;

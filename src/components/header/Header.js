@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <header className={`${styles.header} ${!visible ? styles.hidden : ""}`}>
-      {isMobile | isTablet ? (
+      {isMobile || isTablet ? (
         <div className={styles.entete}>
           <Link href="/">
             <LogoMobile />
