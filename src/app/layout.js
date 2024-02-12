@@ -1,12 +1,13 @@
 import connect from "../../Mongoose";
-import Meta from "../../models/Meta";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
+import Meta from "../../models/Meta";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 export async function generateMetadata() {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID }).exec();
+  const data = await Meta.findOne({ _id: process.env.META_ID_HOME }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -19,10 +20,10 @@ export async function generateMetadata() {
     openGraph: {
       title: data.openGraph.title,
       description: data.openGraph.description,
-      url: `${process.env.HOST}`,
+      url: process.env.NEXT_PUBLIC_HOST,
       type: data.openGraph.type,
       images: {
-        url: `${process.env.HOST}${data.openGraph.images.url}`,
+        url: `${process.env.NEXT_PUBLIC_HOST}${data.openGraph.images.url}`,
         alt: data.openGraph.images.alt,
         width: data.openGraph.images.width,
         height: data.openGraph.images.height,
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
       <body className={`${mulish.variable} ${chonburi.variable}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,27 @@
 @import "../../style/media-queries.scss";
 
+.enter {
+  opacity: 0;
+}
+.enterActive {
+  transition: opacity 0.4s, transform 0.4s;
+}
+.enterActive,
+.enterDone {
+  opacity: 1;
+}
+
+.exit {
+  opacity: 1;
+}
+.exitActive {
+  transition: opacity 0.4s, transform 0.4s;
+}
+.exitActive,
+.exitDone {
+  opacity: 0;
+}
+
 .header {
   display: flex;
   .linkNav {
@@ -22,12 +44,16 @@
     }
     &:hover {
       color: var(--shining);
-      .menu {
-        position: absolute;
-        top: 65px;
-        right: 325px;
-        border-radius: 10px;
-        background: var(--background-transparent);
+      transition: color 0.3s;
+    }
+    .menu {
+      position: absolute;
+      top: 63px;
+      right: 325px;
+      border-radius: 10px;
+      background: var(--background-transparent);
+      @include md {
+        top: 58px;
       }
     }
   }

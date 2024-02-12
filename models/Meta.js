@@ -7,24 +7,24 @@ const metaSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     icons: {
-      icon: { type: String, required: true },
-      shortcut: { type: String, required: true },
-      android: { type: String, required: true },
-      apple: { type: String, required: true },
+      icon: { type: String },
+      shortcut: { type: String },
+      android: { type: String },
+      apple: { type: String },
     },
     openGraph: {
       title: { type: String, required: true },
       description: { type: String, required: true },
       url: { type: String },
-      type: { type: String, required: true },
+      type: { type: String },
       images: {
         url: { type: String },
-        alt: { type: String, required: true },
-        width: { type: Number, required: true },
-        height: { type: Number, required: true },
+        alt: { type: String },
+        width: { type: Number },
+        height: { type: Number },
       },
     },
-    manifest: { type: String, required: true },
+    manifest: { type: String },
   },
   { timestamps: true }
 );

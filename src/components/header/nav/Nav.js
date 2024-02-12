@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 import Link from "next/link";
 import { useViewport } from "@/hooks/viewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +10,7 @@ import styles from "./Nav.module.scss";
 function Nav() {
   const { isMobile } = useViewport();
   const [showMenu, setShowMenu] = useState(false);
+  const ref = useRef(null);
 
   return (
     <div className={` ${isMobile ? "" : "m-20"} ${styles.header}`}>
@@ -19,8 +21,21 @@ function Nav() {
           onMouseLeave={() => setShowMenu(false)}
         >
           Activités
-          {showMenu && (
-            <div className={styles.menu}>
+          <CSSTransition
+            nodeRef={ref}
+            in={showMenu}
+            timeout={{ enter: 400, exit: 400 }}
+            unmountOnExit
+            classNames={{
+              enter: styles["enter"],
+              enterActive: styles["enterActive"],
+              enterDone: styles["enterDone"],
+              exit: styles["exit"],
+              exitActive: styles["exitActive"],
+              exitDone: styles["exitDone"],
+            }}
+          >
+            <div ref={ref} className={styles.menu}>
               <ul>
                 <li style={{ padding: "10px 20px" }}>
                   <Link href="/couverture" className={styles.link}>
@@ -54,7 +69,7 @@ function Nav() {
                 </li>
               </ul>
             </div>
-          )}
+          </CSSTransition>
         </div>
         <Link href="/" className={`mr-20 ${styles.link}`}>
           Avis clients
