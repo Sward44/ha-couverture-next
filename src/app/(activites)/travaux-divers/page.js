@@ -13,7 +13,7 @@ export async function generateMetadata() {
       description: data.openGraph.description,
       url: `${process.env.NEXT_PUBLIC_HOST}/travaux-divers`,
       images: {
-        url: `${data.openGraph.images.url}`,
+        url: `${process.env.NEXT_PUBLIC_HOST}${data.openGraph.images.url}`,
         alt: data.openGraph.images.alt,
         width: data.openGraph.images.width,
         height: data.openGraph.images.height,
