@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import LogoFooter from "../logo/LogoFooter";
 import styles from "./Footer.module.scss";
@@ -15,15 +16,16 @@ function Footer() {
             <Link href="/">
               <LogoFooter />
             </Link>
-            <p>Notre histoire bla bla</p>
+            <p>Notre histoire de Ha-couverture...</p>
           </div>
           <div className={styles.item}>
-            <h3> Notre support</h3>
+            <h3>Notre support</h3>
           </div>
           <div className={styles.item}>
             <h3>Inscrivez-vous</h3>
             <p>
-              Inscrivez-vous à nos emails d'informations liéés au batiments.
+              Inscrivez-vous à nos emails d&apos;informations liéés au
+              batiments.
             </p>
             <input
               type="text"
@@ -34,7 +36,6 @@ function Footer() {
               icon={faPaperPlane}
               color={`var(--text-dark)`}
               className={styles.icon}
-              onClick={() => console.log("click")}
             />
           </div>
           <div className={styles.item}>
@@ -54,7 +55,7 @@ function Footer() {
           target="_blank "
           rel="noopener noreferrer"
         >
-          David Launay
+          David
         </a>
       </p>
     </footer>
