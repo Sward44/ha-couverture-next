@@ -1,6 +1,7 @@
 import styles from "../layout.module.scss";
 import connect from "../../../../Mongoose";
 import Meta from "../../../../models/Meta";
+import PageAnnexes from "@/components/main/PageAnnexes";
 
 export async function generateMetadata() {
   await connect();
@@ -23,7 +24,11 @@ export async function generateMetadata() {
 }
 
 function travauxDiversPage() {
-  return <div className={styles.container}></div>;
+  return (
+    <div className={styles.container}>
+      <PageAnnexes indexActivites={5} />
+    </div>
+  );
 }
 
 export default travauxDiversPage;

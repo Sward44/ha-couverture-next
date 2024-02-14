@@ -27,7 +27,11 @@ function Texte({ itemData, index, handleForm }) {
         >
           {itemData[index].description}
         </p>
-        <TexteButton handleForm={handleForm} />
+        <TexteButton
+          handleForm={handleForm}
+          itemData={itemData}
+          index={index}
+        />
       </div>
     </div>
   );

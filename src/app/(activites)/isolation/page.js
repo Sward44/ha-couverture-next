@@ -1,6 +1,7 @@
 import styles from "../layout.module.scss";
 import connect from "../../../../Mongoose";
 import Meta from "../../../../models/Meta";
+import PageAnnexes from "@/components/main/PageAnnexes";
 
 export const generateMetadata = async () => {
   await connect();
@@ -23,7 +24,11 @@ export const generateMetadata = async () => {
 };
 
 function isolationPage() {
-  return <div className={styles.container}></div>;
+  return (
+    <div className={styles.container}>
+      <PageAnnexes indexActivites={3} />
+    </div>
+  );
 }
 
 export default isolationPage;

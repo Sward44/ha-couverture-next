@@ -1,6 +1,7 @@
 import connect from "../../../../Mongoose";
 import Meta from "../../../../models/Meta";
 import styles from "../layout.module.scss";
+import PageAnnexes from "@/components/main/PageAnnexes";
 
 export async function generateMetadata() {
   await connect();
@@ -23,7 +24,11 @@ export async function generateMetadata() {
 }
 
 function charpentePage() {
-  return <div className={styles.container}></div>;
+  return (
+    <div className={styles.container}>
+      <PageAnnexes indexActivites={4} />
+    </div>
+  );
 }
 
 export default charpentePage;
