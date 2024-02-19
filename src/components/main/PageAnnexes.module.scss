@@ -64,10 +64,10 @@
     gap: unset;
     grid-template-areas:
       "text1"
-      "img1"
-      "text2"
       "img2"
       "text3"
+      "img1"
+      "text2"
       "img3";
   }
   @include xs {
@@ -77,10 +77,10 @@
     gap: unset;
     grid-template-areas:
       "text1"
-      "img1"
-      "text2"
       "img2"
       "text3"
+      "img1"
+      "text2"
       "img3";
   }
 

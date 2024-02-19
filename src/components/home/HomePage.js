@@ -4,6 +4,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ImageDiaporama from "./image/ImageDiaporama";
 import Texte from "./texte/Texte";
 import ImageButton from "./button/ImageButton";
+import FormAdd from "../form/FormAdd";
 
 function HomePage({ itemData }) {
   const [direction, setDirection] = useState("imageGauche");
@@ -66,6 +67,7 @@ function HomePage({ itemData }) {
           <ImageDiaporama itemData={itemData} index={index} />
         </CSSTransition>
       </TransitionGroup>
+      {addForm && <FormAdd handleForm={handleForm} />}
     </>
   );
 }

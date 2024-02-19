@@ -44,6 +44,7 @@ function PageCouverture({ indexActivites }) {
                 fill={item.position}
                 style={{
                   objectFit: "cover",
+                  objectPosition: `${item.position}`,
                 }}
               />
             </div>

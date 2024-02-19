@@ -16,7 +16,6 @@
     width: 3.6rem;
     height: 2.4rem;
     cursor: pointer;
-    position: relative;
     &Active {
       span {
         background-color: transparent !important;
@@ -60,66 +59,65 @@
       }
     }
   }
+}
+.navigation {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background-color: rgba(0, 0, 0, 0.9);
 
-  .navigation {
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-
-    &.enter {
-      transform: translateX(100%);
-      &Active,
-      &Done {
-        transform: translateX(0%);
-        transition: transform 0.8s;
-      }
-    }
-    &.exit {
+  &.enter {
+    transform: translateX(100%);
+    &Active,
+    &Done {
       transform: translateX(0%);
-      &Active,
-      &Done {
-        transform: translateX(100%);
-        transition: transform 0.8s;
-      }
+      transition: transform 0.8s;
     }
-    .marginAround {
-      margin: 28% 1% 1% 35%;
-      .positionLink {
-        display: flex;
-        h3 {
-          margin: 2rem 0;
-          color: white;
-          text-decoration: none;
-        }
-        .rotate180 {
-          transform: rotate(180deg);
-          padding: 1.9rem 1rem 2.1rem 0;
-          transition: 0.3s;
-        }
-        .rotate {
-          transform: rotate(0deg);
-          padding: 2.1rem 0 1.9rem 1rem;
-          transition: 0.3s;
-        }
-      }
-      .accordion {
-        position: relative;
-        height: 0;
-        overflow: hidden;
-        transition: 0.3s;
-      }
-      .active {
-        height: 380px;
-        transition: 0.3s;
-      }
-      li {
-        padding-left: 2rem;
+  }
+  &.exit {
+    transform: translateX(0%);
+    &Active,
+    &Done {
+      transform: translateX(100%);
+      transition: transform 0.8s;
+    }
+  }
+  .marginAround {
+    margin: 28% 1% 1% 35%;
+    .positionLink {
+      display: flex;
+      h3 {
+        margin: 2rem 0;
+        color: white;
         text-decoration: none;
       }
+      .rotate180 {
+        transform: rotate(180deg);
+        padding: 1.9rem 1rem 2.1rem 0;
+        transition: 0.3s;
+      }
+      .rotate {
+        transform: rotate(0deg);
+        padding: 2.1rem 0 1.9rem 1rem;
+        transition: 0.3s;
+      }
+    }
+    .accordion {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .active {
+      height: 380px;
+      transition: 0.3s;
+    }
+    li {
+      padding-left: 2rem;
+      text-decoration: none;
     }
   }
 }

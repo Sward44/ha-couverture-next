@@ -16,6 +16,7 @@ function TexteButton({ handleForm, itemData, index }) {
           <p>En savoir plus...</p>
         </div>
       </Link>
+
       <button onClick={handleForm} style={{ marginBottom: "1.5rem" }}>
         <h3 style={{ padding: "0.5rem 1rem" }}>Demande de devis</h3>
       </button>

@@ -1,0 +1,216 @@
+@import "../style/media-queries";
+@import "../style/utils";
+
+@keyframes popup {
+  0% {
+    scale: 0.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes opac {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.formulaire {
+  position: fixed;
+  font-family: var(--font-mulish);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 4;
+  animation: opac 0.6s;
+
+  .loadingSpin {
+    position: absolute;
+    z-index: 4;
+    font-size: 200px;
+    color: var(--dark);
+    @include sm {
+      font-size: 153px;
+    }
+    @include xs {
+      font-size: 120px;
+    }
+  }
+  .containerFormulaire {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--hint);
+    border-radius: 2rem;
+    animation: popup 0.4s 0.2s backwards;
+    background-color: whitesmoke;
+    @include sm {
+      font-size: 1.6rem;
+    }
+    @include xs {
+      border-radius: 1rem;
+      font-size: 1.5rem;
+    }
+    // h2 {
+    //   font-size: 3rem;
+    // }
+    .form {
+      display: grid;
+      height: 80vh;
+      grid-template-rows: auto auto auto 1fr auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas:
+        "start start start start"
+        "nom nom prenom prenom"
+        "email email phone phone"
+        "demande demande demande demande"
+        "envoie envoie envoie envoie";
+      @include sm {
+        height: 80dvh;
+        min-width: 80dvw;
+        grid-template-rows: auto auto auto auto auto 1fr auto;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "start"
+          "nom"
+          "prenom"
+          "email"
+          "phone"
+          "demande"
+          "envoie";
+      }
+      @include xs {
+        height: 90svh;
+        min-width: 80svw;
+        grid-template-rows: auto auto auto auto auto 1fr auto;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "start"
+          "nom"
+          "prenom"
+          "email"
+          "phone"
+          "demande"
+          "envoie";
+      }
+    }
+    .positionEnTete {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 2rem 1rem;
+      @include xs {
+        margin: 0 0.5rem 1rem;
+      }
+    }
+    .positionPiedPage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 2rem 1rem;
+      @include xs {
+        margin: 0 0.5rem 1rem;
+      }
+      .formatButton {
+        padding: 0 4rem;
+        .positionButton {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .position {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      margin: 0 2rem 1rem;
+      @include xs {
+        margin: 0 0.5rem 1rem;
+      }
+      .errors {
+        position: absolute;
+        top: 66px;
+        font-size: 12px;
+        color: red;
+        @include sm {
+          top: 56px;
+        }
+        @include xs {
+          top: 56px;
+        }
+      }
+    }
+    .start {
+      grid-area: start;
+    }
+    .email {
+      grid-area: email;
+    }
+    .nom {
+      grid-area: nom;
+    }
+    .prenom {
+      grid-area: prenom;
+    }
+    .phone {
+      grid-area: phone;
+    }
+    .demande {
+      grid-area: demande;
+    }
+    .envoie {
+      grid-area: envoie;
+      align-items: center;
+    }
+    .margeAuto {
+      grid-area: margeAuto;
+    }
+    label {
+      font-size: 1.8rem;
+      @include sm {
+        font-size: 1.6rem;
+      }
+      @include xs {
+        font-size: 1.5rem;
+      }
+    }
+
+    input {
+      padding: 10px 15px;
+      border: 2px solid var(--hint);
+      border-radius: 6px;
+      font-size: 1.8rem;
+      @include sm {
+        font-size: 1.6rem;
+      }
+      @include xs {
+        font-size: 1.5rem;
+      }
+    }
+    textarea {
+      display: flex;
+      flex: 1 1;
+      padding: 10px 15px;
+      font-size: 1.8rem;
+      border: 2px solid var(--hint);
+      border-radius: 6px;
+      resize: none;
+      @include sm {
+        font-size: 1.6rem;
+      }
+      @include xs {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

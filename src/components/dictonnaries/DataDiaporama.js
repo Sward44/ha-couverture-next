@@ -214,7 +214,7 @@ export const itemDataCouverture = [
         urlWebp: "img/main/projet-isolation.webp",
         altWebp:
           "Vue d'une maison de l'exterieur avec sur une maquette symbolisant la norme RT2020",
-        position: "center",
+        position: "left",
       },
       {
         index: 1,
@@ -233,7 +233,7 @@ export const itemDataCouverture = [
           "À la livraison, nous vous garantissons des résultats impeccables et une maison parfaitement isolée, prête à vous offrir un confort optimal tout au long de l'année. Vous pourrez profiter d'une température agréable en toutes saisons, tout en réalisant des économies substantielles sur vos factures énergétiques. Ha-Couverture est votre partenaire de confiance pour tous vos projets d'isolation dans le sud de la Loire, près de Nantes. Faites-nous confiance pour transformer votre rêve de maison confortable et économe en énergie en réalité.",
         urlWebp: "img/main/management-femme.webp",
         altWebp: "Appel d'une femme souriante",
-        position: "center",
+        position: "right",
       },
     ],
     urlWebp: "img/home/isolation.webp",

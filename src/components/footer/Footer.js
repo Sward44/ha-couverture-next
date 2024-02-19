@@ -27,6 +27,7 @@ function Footer() {
               Inscrivez-vous à nos emails d&apos;informations liéés au
               batiments.
             </p>
+            
             <input
               type="text"
               placeholder="Votre email"

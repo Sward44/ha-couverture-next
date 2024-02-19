@@ -1,7 +1,7 @@
-import styles from "../layout.module.scss";
 import connect from "../../../../Mongoose";
 import Meta from "../../../../models/Meta";
 import PageCouverture from "@/components/main/PageAnnexes";
+import styles from "../activites.module.scss";
 
 export const generateMetadata = async () => {
   await connect();

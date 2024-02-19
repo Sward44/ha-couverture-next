@@ -1,7 +1,7 @@
 import connect from "../../../../Mongoose";
 import Meta from "../../../../models/Meta";
-import styles from "../layout.module.scss";
 import PageAnnexes from "@/components/main/PageAnnexes";
+import styles from "../activites.module.scss";
 
 export async function generateMetadata() {
   await connect();
