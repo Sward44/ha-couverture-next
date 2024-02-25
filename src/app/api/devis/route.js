@@ -6,7 +6,6 @@ import email from "@/email/devis/email";
 
 export const POST = async (request) => {
   const body = await request.json();
-
   try {
     await connect();
     let existingUser = await User.findOne({ email: body.email }).exec();
@@ -17,13 +16,17 @@ export const POST = async (request) => {
         name: body.name,
         email: body.email,
         phone: body.number,
-      }).exec();
-      await existingUser.save();
+      });
+      await existingUser.save().then((doc) => {
+        console.log("Utilisateur enregistré : ", doc);
+      });
       newDevis = new Devis({
         user: existingUser._id,
         body: body.comments,
-      }).exec();
-      await newDevis.save();
+      });
+      await newDevis.save().then((doc) => {
+        console.log("Devis enregistré : ", doc);
+      });
       await await email.getTemplate("ha-couverture", {
         subject: "[ha-couverture.com] Nouveau devis reçu, nouveau client",
         to: "Abraham Hognon <ha.couverture44@gmail.com>",
