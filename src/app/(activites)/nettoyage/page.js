@@ -1,5 +1,5 @@
 import connect from "../../../../Mongoose";
-import Meta from "../../../../models/Meta";
+import Meta from "../../../../models/meta";
 import PageAnnexes from "@/components/main/PageAnnexes";
 import styles from "../activites.module.scss";
 

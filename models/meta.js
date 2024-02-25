@@ -29,4 +29,4 @@ const metaSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Meta || mongoose.model("Meta", metaSchema);
+export default mongoose.models.meta || mongoose.model("meta", metaSchema);

@@ -10,4 +10,4 @@ const devisSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Devis || mongoose.model("Devis", userSchema);
+export default mongoose.models.devis || mongoose.model("devis", devisSchema);

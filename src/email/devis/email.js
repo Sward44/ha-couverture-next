@@ -1,6 +1,6 @@
+"server only";
 import nodemailer from "nodemailer";
 import pug from "pug";
-import fs from "fs";
 
 class Email {
   constructor() {
@@ -23,12 +23,12 @@ class Email {
   async getTemplate(templateName, options) {
     try {
       const template = pug.renderFile(
-        `src/utils/email-template/${templateName}.pug`,
+        `src/email/devis/template/${templateName}.pug`,
         options.metadata
       );
 
       const data = await this.transporter.sendMail({
-        from: options.to,
+        from: "Buzz Ready <no-reply@buzz-ready.com>",
         to: options.to,
         subject: options.subject,
         html: template,

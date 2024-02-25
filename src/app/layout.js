@@ -1,7 +1,7 @@
 import connect from "../../Mongoose";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
-import Meta from "../../models/Meta";
+import Meta from "../../models/meta";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 

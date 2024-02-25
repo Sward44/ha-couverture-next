@@ -1,90 +1,100 @@
 import { NextResponse } from "next/server";
 import connect from "../../../../Mongoose";
-import User from "../../../../models/User";
-import Devis from "../../../../models/Devis";
-import email from "@/utils/email";
+import User from "../../../../models/user";
+import Devis from "../../../../models/devis";
+import email from "@/email/devis/email";
 
-export const POST = async (req) => {
-  const body = await req.json();
+export const POST = async (request) => {
+  const body = await request.json();
+
   try {
     await connect();
-    const existingUser = await User.findOne({ _id: body._id }).exec();
+    let existingUser = await User.findOne({ email: body.email }).exec();
+    let newDevis;
     if (!existingUser) {
-      const newUser = new User({
+      existingUser = new User({
         surname: body.surname,
         name: body.name,
         email: body.email,
-        phone: body.phone,
-      });
-      await newUser.save();
-      const newDevis = new Devis({
-        user: newUser._id,
+        phone: body.number,
+      }).exec();
+      await existingUser.save();
+      newDevis = new Devis({
+        user: existingUser._id,
         body: body.comments,
-      });
+      }).exec();
       await newDevis.save();
-      await email.getTemplate("ha-couverture", {
-        subject: "[ha-couverture.com] Nouveau devis reçu",
-        to: "ha.couverture44@gmail.com",
+      await await email.getTemplate("ha-couverture", {
+        subject: "[ha-couverture.com] Nouveau devis reçu, nouveau client",
+        to: "Abraham Hognon <ha.couverture44@gmail.com>",
         metadata: {
-          bienvenue: "Nouveau devis reçu d'un client existant",
+          bienvenue: "Nouveau devis reçu d'un nouveau client",
           email: "davidlaunay567@gmail.com",
-          ownerEmail: newUser.email,
-          ownerSurname: newUser.surname,
-          ownerName: newUser.name,
-          ownerPhone: newUser.phone,
-          ownerComments: newDevis.body,
+          ownerEmail: body.email,
+          ownerSurname: body.surname,
+          ownerName: body.name,
+          ownerPhone: body.number,
+          ownerComments: body.comments,
           siteUrl: "https://buzz-ready.com",
         },
       });
     } else {
       if (
-        body.email &&
-        body.name.length !== 0 &&
-        existingUser.email !== body.email
-      ) {
-        existingUser.email = body.email;
-      }
-      if (
         body.name &&
         body.name.length !== 0 &&
         existingUser.name !== body.name
       ) {
-        existingUser.name = body.name;
+        await User.updateOne(
+          { email: body.email },
+          { $set: { name: body.name } }
+        );
       }
       if (
         body.surname &&
         body.surname.length !== 0 &&
         existingUser.surname !== body.surname
       ) {
-        existingUser.surname = body.surname;
+        await User.updateOne(
+          { email: body.email },
+          { $set: { surname: body.surname } }
+        );
       }
       if (
-        body.phone &&
-        body.phone.length !== 0 &&
-        existingUser.phone !== body.phone
+        body.number &&
+        body.number.length !== 0 &&
+        existingUser.phone !== body.number
       ) {
-        existingUser.phone = body.phone;
+        await User.updateOne(
+          { email: body.email },
+          { $set: { phone: body.number } }
+        );
       }
+
+      await existingUser.save().then((doc) => {
+        console.log("Utilisateur enregistré : ", doc);
+      });
+      newDevis = new Devis({
+        user: existingUser._id,
+        body: body.comments,
+      });
+      await newDevis.save().then((doc) => {
+        console.log("Devis enregistré : ", doc);
+      });
+      await email.getTemplate("ha-couverture", {
+        subject: "[ha-couverture.com] Nouveau devis reçu, client existant",
+        to: "Abraham Hognon <ha.couverture44@gmail.com>",
+        metadata: {
+          bienvenue: "Nouveau devis reçu d'un client existant",
+          email: "davidlaunay567@gmail.com",
+          ownerEmail: body.email,
+          ownerSurname: body.surname,
+          ownerName: body.name,
+          ownerPhone: body.number,
+          ownerComments: body.comments,
+          siteUrl: "https://buzz-ready.com",
+        },
+      });
     }
-    await existingUser.save();
-    const newDevis = new Devis({
-      user: existingUser._id,
-      body: body.comments,
-    });
-    await newDevis.save();
-    await email.getTemplate("ha-couverture", {
-      subject: "[ha-couverture.com] Nouveau devis reçu",
-      to: "ha.couverture44@gmail.com",
-      metadata: {
-        bienvenue: "Nouveau devis reçu d'un nouveau client",
-        email: "ha.couverture44@gmail.com",
-        ownerEmail: existingUser.email,
-        ownerSurname: existingUser.surname,
-        ownerName: existingUser.name,
-        ownerPhone: existingUser.phone,
-        ownerComments: newDevis.body,
-      },
-    });
     return NextResponse.json(existingUser.toObject(), {
       status: 200,
       headers: {

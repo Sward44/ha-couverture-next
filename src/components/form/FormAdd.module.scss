@@ -35,7 +35,7 @@
 
   .loadingSpin {
     position: absolute;
-    z-index: 4;
+    z-index: 5;
     font-size: 200px;
     color: var(--dark);
     @include sm {
@@ -43,6 +43,60 @@
     }
     @include xs {
       font-size: 120px;
+    }
+  }
+  .containerFormulaireAfter {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--hint);
+    border-radius: 2rem;
+    animation: popup 0.4s 0.2s backwards;
+    background-color: whitesmoke;
+    @include md {
+      margin: 0 5rem;
+    }
+    @include sm {
+      font-size: 1.6rem;
+      margin: 0 5rem;
+    }
+    @include xs {
+      margin: 0 2rem;
+      border-radius: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .formAfter {
+      display: grid;
+      grid-template-rows: auto auto;
+      grid-template-columns: auto;
+      grid-template-areas:
+        "start"
+        "envoie";
+      .positionEnTeteAfter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 2rem 1rem;
+        @include xs {
+          margin: 0 0.5rem 1rem;
+        }
+      }
+      .positionPiedPageAfter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 2rem 1rem;
+        @include xs {
+          margin: 0 0.5rem 1rem;
+        }
+        .formatButtonAfter {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 4rem;
+        }
+      }
     }
   }
   .containerFormulaire {
@@ -60,9 +114,6 @@
       border-radius: 1rem;
       font-size: 1.5rem;
     }
-    // h2 {
-    //   font-size: 3rem;
-    // }
     .form {
       display: grid;
       height: 80vh;
@@ -70,7 +121,7 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-areas:
         "start start start start"
-        "nom nom prenom prenom"
+        "prenom prenom nom nom"
         "email email phone phone"
         "demande demande demande demande"
         "envoie envoie envoie envoie";
