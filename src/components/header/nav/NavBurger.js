@@ -14,15 +14,20 @@ function NavBurger() {
   return (
     <div className={styles.navBurger}>
       {burger ? (
-        <div
-          onClick={() => setBurger(!burger)}
-          className={` ${styles.burger} ${styles.burgerActive}`}
-        >
-          <span></span>
-        </div>
+        <>
+          <div className={`${styles.burger}`}>
+            <span className={styles.spanAfter}></span>
+          </div>
+          <div
+            onClick={() => setBurger(!burger)}
+            className={`${styles.burgerActive} ${styles.burgerActiveTransform}`}
+          >
+            <span></span>
+          </div>
+        </>
       ) : (
-        <div onClick={() => setBurger(!burger)} className={`${styles.burger}`}>
-          <span></span>
+        <div onClick={() => setBurger(!burger)} className={styles.burger}>
+          <span className={styles.spanBefore}></span>
         </div>
       )}
       <CSSTransition

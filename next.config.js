@@ -10,7 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  // middlewares: [require("./src/middleware")],
 };
 
 module.exports = nextConfig;

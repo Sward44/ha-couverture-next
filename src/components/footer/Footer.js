@@ -20,6 +20,7 @@ function Footer() {
           </div>
           <div className={styles.item}>
             <h3>Notre support</h3>
+            <Link href="/mentions-legales">Politique de confidentialité</Link>
           </div>
           <div className={styles.item}>
             <h3>Inscrivez-vous</h3>
@@ -27,7 +28,7 @@ function Footer() {
               Inscrivez-vous à nos emails d&apos;informations liéés au
               batiments.
             </p>
-            
+
             <input
               type="text"
               placeholder="Votre email"

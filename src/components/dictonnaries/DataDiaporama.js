@@ -16,10 +16,10 @@ export const itemData = [
   {
     title: "Zinguerie",
     description:
-      "Évitez les problèmes d'infiltration d'eau et valorisez votre maison à Nantes avec notre service de récupération de toit dans des gouttières de haute qualité. Contactez-nous pour un devis gratuit et découvrez comment notre expertise en gouttières durables et éco-responsables fait toute la différence.",
+      "Évitez les problèmes d'infiltration d'#39;#39;eau et valorisez votre maison à Nantes avec notre service de récupération de toit dans des gouttières de haute qualité. Contactez-nous pour un devis gratuit et découvrez comment notre expertise en gouttières durables et éco-responsables fait toute la différence.",
     urlWebp: "img/home/zinguerie.webp",
     position: "left",
-    altWebp: "Vue d'une goutière en zinc dans le sud loire de Nantes",
+    altWebp: "Vue d'#39;une goutière en zinc dans le sud loire de Nantes",
     urlSvg: "img/home/zinguerie.svg",
     altSvg: "Illustration d'une goutière imagée",
     height: 44,
@@ -325,5 +325,69 @@ export const itemDataCouverture = [
     altSvg: "Illustration de travaux divers imagée",
     width: "30",
     height: "65",
+  },
+];
+
+export const itemDataMentionsLegales = [
+  {
+    title: "Politique de Confidentialité",
+    introduction:
+      "La protection de vos données personnelles est une priorité pour nous. Cette Politique de Confidentialité décrit comment nous recueillons, utilisons et protégeons les informations que vous nous fournissez lorsque vous utilisez nos services de couverture, charpente, isolation, nettoyage, zinguerie, travaux-divers dans la région de Nantes. Cette politique est conforme au Règlement Général sur la Protection des Données (RGPD).",
+    article: [
+      {
+        title: "1. Collecte des Informations Personnelles",
+        description: [
+          "Nous collectons les informations personnelles suivantes lorsque vous utilisez nos services :",
+        ],
+        intitule: ["Nom", "Adresse", "Numéro de téléphone", "Adresse e-mail"],
+      },
+      {
+        title: "2. Utilisation des Informations",
+        description: [
+          "Nous utilisons les informations collectées dans le but de :",
+        ],
+        intitule: [
+          "Fournir nos services et répondre à vos demandes",
+          "Améliorer nos services et personnaliser votre expérience",
+          "Communiquer avec vous, notamment pour vous informer sur les mises à jour, les promotions ou les événements",
+          "Collecter des avis clients afin d'améliorer la qualité de nos services",
+        ],
+      },
+      {
+        title: "3. Protection des Informations",
+        description: [
+          "Nous nous engageons à protéger vos informations personnelles contre toute utilisation non autorisée, accès ou divulgation. Nous prenons des mesures de sécurité appropriées pour protéger vos données contre les risques de perte, d'abus, d'accès non autorisé, de divulgation, d'altération ou de destruction.",
+        ],
+        intitule: [],
+      },
+      {
+        title: "4. Partage des Informations",
+        description: [
+          "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire pour fournir nos services ou si nous y sommes légalement obligés.",
+        ],
+        intitule: [],
+      },
+      {
+        title: "5. Vos Droits",
+        description: ["Vous avez le droit de :"],
+        intitule: [
+          "Accéder à vos informations personnelles et les corriger si elles sont inexactes",
+          "Demander la suppression de vos informations personnelles",
+          "Vous opposer au traitement de vos informations personnelles",
+          "Demander la limitation du traitement de vos informations personnelles",
+        ],
+      },
+      {
+        title: "6. Contactez-nous",
+        description: [
+          "Si vous avez des questions concernant notre Politique de Confidentialité ou si vous souhaitez exercer vos droits en matière de protection des données, veuillez nous contacter à l'adresse suivante :",
+          `<div style='text-align:center;padding-bottom:1rem;cursor: pointer;'><a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer'style='color:var(--text-dark);text-decoration: none'>ha.couverture44@gmail.com</a></div>`,
+          "Nous nous engageons à traiter toutes les demandes dans les meilleurs délais et dans le respect de la réglementation applicable en matière de protection des données.",
+          "En utilisant nos services, vous consentez à la collecte et à l'utilisation de vos informations personnelles conformément à cette Politique de Confidentialité. Cette politique est sujette à modification, veuillez donc la consulter régulièrement pour vous tenir informé des mises à jour.",
+          "Dernière mise à jour : le 03 mars 2024",
+        ],
+        intitule: [],
+      },
+    ],
   },
 ];

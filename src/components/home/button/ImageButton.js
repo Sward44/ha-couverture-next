@@ -12,10 +12,11 @@ function ImageButton({
   handlePrev,
   handleEveryImage,
 }) {
-  const { isMobile } = useViewport();
+  const { isMobile, isTablet } = useViewport();
+
   return (
     <>
-      {!isMobile && (
+      {isMobile || isTablet ? null : (
         <>
           <button onClick={handleNext} className={styles.buttonGauche}>
             <FontAwesomeIcon icon={faAngleLeft} size="2xl" />
