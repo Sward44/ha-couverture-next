@@ -6,15 +6,6 @@ import Meta from "../../models/meta";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-      <GoogleAnalytics gaId="G-S1PS75LLG4" />
-    </html>
-  )
-}
-
 export async function generateMetadata() {
   await connect();
   const data = await Meta.findOne({ _id: process.env.META_ID_HOME }).exec();
@@ -51,6 +42,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-S1PS75LLG4" />
     </html>
   );
 }
