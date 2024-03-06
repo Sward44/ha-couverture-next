@@ -1,9 +1,19 @@
 import connect from "../../Mongoose";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Meta from "../../models/meta";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+      <GoogleAnalytics gaId="G-S1PS75LLG4" />
+    </html>
+  )
+}
 
 export async function generateMetadata() {
   await connect();

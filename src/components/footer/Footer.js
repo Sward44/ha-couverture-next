@@ -42,11 +42,18 @@ function Footer() {
           </div>
           <div className={styles.item}>
             <h3>Rejoignez-nous</h3>
-            <FontAwesomeIcon
-              icon={faSquareFacebook}
-              size="2xl"
-              style={{ paddingTop: "1rem" }}
-            />
+            <a
+              href="https://facebook.com/ha.couverture"
+              target="_blank "
+              rel="noopener noreferrer"
+              alt="Lien vers Facebook"
+            >
+              <FontAwesomeIcon
+                icon={faSquareFacebook}
+                size="2xl"
+                style={{ paddingTop: "1rem" }}
+              />
+            </a>
           </div>
         </div>
       </div>

@@ -52,9 +52,9 @@
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas:
-    "text1 img2"
-    "img1 text3"
-    "text2 img3";
+    "text1 img1"
+    "img2 text2"
+    "text3 img3";
   margin: 10rem auto;
   gap: 2rem;
   @include sm {
@@ -64,10 +64,10 @@
     gap: unset;
     grid-template-areas:
       "text1"
-      "img2"
-      "text3"
       "img1"
       "text2"
+      "img2"
+      "text3"
       "img3";
   }
   @include xs {
@@ -77,10 +77,10 @@
     gap: unset;
     grid-template-areas:
       "text1"
-      "img2"
-      "text3"
       "img1"
       "text2"
+      "img2"
+      "text3"
       "img3";
   }
 
@@ -120,19 +120,19 @@
   .item:nth-child(1) {
     grid-area: text1;
   }
-  .item:nth-child(2) {
-    grid-area: text2;
-  }
-  .item:nth-child(3) {
-    grid-area: text3;
-  }
-  .image:nth-child(1) {
+  .image:nth-child(2) {
     grid-area: img1;
   }
-  .image:nth-child(2) {
+  .item:nth-child(3) {
+    grid-area: text2;
+  }
+  .image:nth-child(4) {
     grid-area: img2;
   }
-  .image:nth-child(3) {
+  .item:nth-child(5) {
+    grid-area: text3;
+  }
+  .image:nth-child(6) {
     grid-area: img3;
   }
 }
