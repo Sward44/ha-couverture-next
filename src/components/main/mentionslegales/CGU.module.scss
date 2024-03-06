@@ -1,0 +1,115 @@
+@import "../../style/media-queries";
+
+.overlay {
+  position: relative;
+  top: 98px;
+  width: 100%;
+  height: 15rem;
+  @include md {
+    top: 93px;
+  }
+  @include sm {
+    top: 72px;
+  }
+  @include xs {
+    top: 62px;
+  }
+}
+.description {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-weight: 700;
+  z-index: 1;
+  @include sm {
+    position: relative;
+    top: 72px;
+    height: 15rem;
+    text-align: center;
+  }
+  @include xs {
+    position: relative;
+    top: 62px;
+    height: 15rem;
+    text-align: center;
+  }
+  .fontH1 {
+    font-size: 4.2rem;
+    @include xs {
+      font-size: 3.2rem;
+      margin: 1rem 0;
+    }
+  }
+}
+.grid {
+  display: grid;
+  max-width: 940px;
+  margin: 10rem auto;
+  grid-template-rows: repeat(9, auto);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "introduction"
+    "article1"
+    "article2"
+    "article3"
+    "article4"
+    "article5"
+    "article6"
+    "article7"
+    "article8";
+  @include md {
+    margin: 10rem 2rem;
+  }
+  @include sm {
+    margin: 6rem 2rem 2rem;
+  }
+
+  @include xs {
+    margin: 6rem 2rem 2rem;
+  }
+
+  .introduction {
+    grid-area: introduction;
+  }
+  .item:nth-child(2) {
+    grid-area: article1;
+  }
+  .item:nth-child(3) {
+    grid-area: article2;
+  }
+  .item:nth-child(4) {
+    grid-area: article3;
+  }
+  .item:nth-child(5) {
+    grid-area: article4;
+  }
+  .item:nth-child(6) {
+    grid-area: article5;
+  }
+  .item:nth-child(7) {
+    grid-area: article6;
+  }
+  .item:nth-child(8) {
+    grid-area: article7;
+  }
+  .item:nth-child(9) {
+    grid-area: article8;
+  }
+  .item {
+    .fontP {
+      padding: 0 1rem;
+      .centeredLink {
+        text-align: center;
+      }
+    }
+    .fontLi {
+      padding: 0 2rem 0.5rem;
+      list-style: disc;
+      list-style-position: inside;
+    }
+  }
+}

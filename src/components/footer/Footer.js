@@ -20,7 +20,14 @@ function Footer() {
           </div>
           <div className={styles.item}>
             <h3>Notre support</h3>
-            <Link href="/mentions-legales">Politique de confidentialité</Link>
+            <p>
+              <Link href="/politique-confidentialite">
+                Politique de confidentialité
+              </Link>
+            </p>
+            <p>
+              <Link href="/politique-generale-utilisateur">CGU</Link>
+            </p>
           </div>
           <div className={styles.item}>
             <h3>Inscrivez-vous</h3>
