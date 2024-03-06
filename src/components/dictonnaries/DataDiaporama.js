@@ -16,10 +16,10 @@ export const itemData = [
   {
     title: "Zinguerie",
     description:
-      "Évitez les problèmes d'infiltration d'#39;#39;eau et valorisez votre maison à Nantes avec notre service de récupération de toit dans des gouttières de haute qualité. Contactez-nous pour un devis gratuit et découvrez comment notre expertise en gouttières durables et éco-responsables fait toute la différence.",
+      "Évitez les problèmes d'infiltration d'eau et valorisez votre maison à Nantes avec notre service de récupération de toit dans des gouttières de haute qualité. Contactez-nous pour un devis gratuit et découvrez comment notre expertise en gouttières durables et éco-responsables fait toute la différence.",
     urlWebp: "img/home/zinguerie.webp",
     position: "left",
-    altWebp: "Vue d'#39;une goutière en zinc dans le sud loire de Nantes",
+    altWebp: "Vue d'une goutière en zinc dans le sud loire de Nantes",
     urlSvg: "img/home/zinguerie.svg",
     altSvg: "Illustration d'une goutière imagée",
     height: 44,
