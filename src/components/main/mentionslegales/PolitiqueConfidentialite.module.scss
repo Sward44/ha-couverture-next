@@ -41,7 +41,7 @@
     font-size: 4.2rem;
     @include xs {
       font-size: 3.2rem;
-      margin: 1rem 0;
+      margin: 1rem 1rem;
     }
   }
 }
@@ -58,7 +58,8 @@
     "article3"
     "article4"
     "article5"
-    "article6";
+    "article6"
+    "conclusion";
   @include md {
     margin: 10rem 2rem;
   }
@@ -91,12 +92,14 @@
   .item:nth-child(7) {
     grid-area: article6;
   }
+  .conclusion {
+    grid-area: conclusion;
+    text-align: right;
+    padding-top: 2rem;
+  }
   .item {
     .fontP {
-      padding: 0 1rem;
-      .centeredLink {
-        text-align: center;
-      }
+      padding: 0 1rem 0.5rem;
     }
     .fontLi {
       padding: 0 2rem 0.5rem;

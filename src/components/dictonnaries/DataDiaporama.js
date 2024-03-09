@@ -405,7 +405,7 @@ export const itemDataConditionGenerales = [
           "L’édition et la direction de la publication du site buzz-ready.com est assurée par David LAUNAY, domicilié 2 impasse de la tonnelle 44640 Le Pellerin.",
         ],
         intitule: [
-          "Numéro de téléphone : <a href='telto:+33636946970' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>+33 (0)6 36 94 69 70</a>",
+          "Numéro de téléphone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>06 36 94 69 70</a>",
           "Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' style='color:var(--text-dark);text-decoration: none'>davidlaunay567@gmail.com</a>",
         ],
       },
@@ -415,7 +415,7 @@ export const itemDataConditionGenerales = [
           "L'hébergeur du site buzz-ready.com est la société OVH SAS, dont le siège social est situé au 2 rue Kellerman 59100 Roubaix",
         ],
         intitule: [
-          "Numéro de téléphone : <a href='telto:+33972101007' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>+33 (0)9 72 10 10 07</a>",
+          "Numéro de téléphone : <a href='tel:+33972101007' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>09 72 10 10 07</a>",
         ],
       },
       {
@@ -437,7 +437,7 @@ export const itemDataConditionGenerales = [
         intitule: [
           "par e-mail a cette adresse : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>ha.couverture44@gmail.com</a>",
           "par voie postale à cette adresse : Impasse de Pontrigne 44860 Saint-Aignan-de-Grandlieu",
-          "par téléphone au : <a href='telto:+33634266400' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>+33 (0)6 34 26 64 00</a>",
+          "par téléphone au : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>06 34 26 64 00</a>",
         ],
       },
       {

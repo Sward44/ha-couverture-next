@@ -46,6 +46,9 @@ function PolitiqueConfidentialite() {
             </ul>
           </div>
         ))}
+           <div className={styles.conclusion}>
+          <p>{itemDataPolitiqueConfidentialite[0].MAJ}</p>
+        </div>
       </div>
     </>
   );

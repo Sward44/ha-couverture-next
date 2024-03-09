@@ -49,7 +49,7 @@
   display: grid;
   max-width: 940px;
   margin: 10rem auto;
-  grid-template-rows: repeat(9, auto);
+  grid-template-rows: repeat(11, auto);
   grid-template-columns: 1fr;
   grid-template-areas:
     "introduction"
@@ -60,7 +60,9 @@
     "article5"
     "article6"
     "article7"
-    "article8";
+    "article8"
+    "article9"
+    "conclusion";
   @include md {
     margin: 10rem 2rem;
   }
@@ -99,12 +101,17 @@
   .item:nth-child(9) {
     grid-area: article8;
   }
+  .item:nth-child(10) {
+    grid-area: article9;
+  }
+  .conclusion {
+    grid-area: conclusion;
+    text-align: right;
+    padding-top: 2rem;
+  }
   .item {
     .fontP {
-      padding: 0 1rem;
-      .centeredLink {
-        text-align: center;
-      }
+      padding: 0 1rem 0.5rem;
     }
     .fontLi {
       padding: 0 2rem 0.5rem;

@@ -1,6 +1,6 @@
 "use client";
 import { itemDataConditionGenerales } from "../../dictonnaries/DataDiaporama";
-import styles from "./PolitiqueConfidentialite.module.scss";
+import styles from "./CGU.module.scss";
 import { useViewport } from "@/hooks/viewPort";
 
 function CGU() {
@@ -46,6 +46,9 @@ function CGU() {
             </ul>
           </div>
         ))}
+        <div className={styles.conclusion}>
+          <p>{itemDataConditionGenerales[0].MAJ}</p>
+        </div>
       </div>
     </>
   );
