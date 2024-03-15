@@ -10,6 +10,7 @@ import LogoMobile from "../logo/LogoMobile";
 
 function Header() {
   const { isMobile, isTablet } = useViewport();
+  const [burger, setBurger] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -23,15 +24,21 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, visible]);
 
+  const handleBurger = () => {
+    setBurger(!burger);
+  };
+
   return (
-    <header className={`${styles.header} ${!visible ? styles.hidden : ""}`}>
+    <header
+      className={`${styles.header} ${!visible && !burger ? styles.hidden : ""}`}
+    >
       {isMobile || isTablet ? (
         <div className={styles.entete}>
           <Link href="/">
             <LogoMobile />
           </Link>
           <h3 style={{ fontFamily: "var(--font-chonburi)" }}>HA COUVERTURE</h3>
-          <NavBurger />
+          <NavBurger handleBurger={handleBurger} burger={burger} />
         </div>
       ) : (
         <>

@@ -12,7 +12,7 @@ export const generateMetadata = async () => {
     openGraph: {
       title: data.openGraph.title,
       description: data.openGraph.description,
-      url: `${process.env.NEXT_PUBLIC_HOST}/couverture`,
+      url: `${process.env.NEXT_PUBLIC_HOST}${data.openGraph.url}`,
       images: {
         url: `${process.env.NEXT_PUBLIC_HOST}${data.openGraph.images.url}`,
         alt: data.openGraph.images.alt,

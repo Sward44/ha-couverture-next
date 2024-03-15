@@ -6,35 +6,29 @@ import styles from "./NavBurger.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-function NavBurger() {
-  const [burger, setBurger] = useState(false);
+function NavBurger({ handleBurger, burger }) {
   const [accordion, setAccordion] = useState(false);
   const ref = useRef(null);
 
   return (
     <div className={styles.navBurger}>
       {burger ? (
-        <>
-          <div className={`${styles.burger}`}>
-            <span className={styles.spanAfter}></span>
-          </div>
-          <div
-            onClick={() => setBurger(!burger)}
-            className={`${styles.burgerActive} ${styles.burgerActiveTransform}`}
-          >
-            <span></span>
-          </div>
-        </>
+        <div
+          onClick={handleBurger}
+          className={`${styles.burger} ${styles.burgerActive}`}
+        >
+          <span></span>
+        </div>
       ) : (
-        <div onClick={() => setBurger(!burger)} className={styles.burger}>
-          <span className={styles.spanBefore}></span>
+        <div onClick={handleBurger} className={styles.burger}>
+          <span></span>
         </div>
       )}
       <CSSTransition
         in={burger}
         nodeRef={ref}
         unmountOnExit
-        timeout={800}
+        timeout={500}
         classNames={styles}
       >
         <div ref={ref} className={styles.navigation}>

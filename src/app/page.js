@@ -1,9 +1,13 @@
-import React from "react";
+"server only";
+import connect from "../../Mongoose";
+import homepage from "../../models/homepage";
 import HomePage from "../components/home/HomePage";
 import styles from "./page.module.scss";
-import { itemData } from "@/components/dictonnaries/DataDiaporama";
 
-export default function Home() {
+export default async function Home() {
+  connect();
+  const item = await homepage.find().exec();
+  const itemData = item.map((item) => item.toObject());
   return (
     <>
       <div className={styles.container}>

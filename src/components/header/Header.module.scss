@@ -1,7 +1,7 @@
 @import "../../components/style/media-queries.scss";
 
 .header {
-  position: absolute;
+  position: fixed;
   display: flex;
   z-index: 2;
   width: 100%;

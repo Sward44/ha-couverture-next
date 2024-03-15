@@ -13,79 +13,14 @@
   display: flex;
   .burger {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: 3.6rem;
     height: 2.4rem;
     cursor: pointer;
-    .spanBefore {
-      display: block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border-radius: 0.2rem;
-      height: 0.4rem;
-      width: 100%;
-      background-color: var(--text-dark);
-      &::before,
-      &::after {
-        content: "";
-        border-radius: 0.2rem;
-        position: absolute;
-        width: 100%;
-        height: 0.4rem;
-      }
-      &::before {
-        transform: translateY(-12px);
-        background-color: var(--text-dark);
-      }
-      &::after {
-        transform: translateY(12px);
-        background-color: var(--text-dark);
-      }
-    }
-    .spanAfter {
-      display: block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border-radius: 0.2rem;
-      height: 0.4rem;
-      width: 100%;
-      background-color: var(--background-transparent);
-      &::before,
-      &::after {
-        content: "";
-        border-radius: 0.2rem;
-        position: absolute;
-        width: 100%;
-        height: 0.4rem;
-      }
-      &::before {
-        transform: translateY(-12px);
-        background-color: var(--background-transparent);
-      }
-      &::after {
-        transform: translateY(12px);
-        background-color: var(--background-transparent);
-      }
-    }
-  }
-  .burgerActive {
-    position: fixed;
-    z-index: 3;
-    @include sm {
-      right: 2.1rem;
-      top: 2.3rem;
-    }
-    @include xs {
-      right: 1rem;
-      top: 2rem;
-    }
-
-    width: 3.6rem;
-    height: 2.4rem;
-    &Transform {
+    &Active {
+      // z-index: 3;
       span {
+        background-color: transparent !important;
         &::before {
           background-color: var(--background) !important;
           transform: translateY(0) rotateZ(45deg) !important;
@@ -98,13 +33,13 @@
     }
     span {
       display: block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border-radius: 0.2rem;
+      width: 3.6rem;
       height: 0.4rem;
-      width: 100%;
-      background-color: transparent;
+      background-color: var(--text-dark);
+      border-radius: 0.2rem;
+      position: absolute;
+      top: 32%;
+      transform: translateY(-50%);
       transition: background-color 0.5s;
       &::before,
       &::after {
@@ -141,7 +76,7 @@
     &Active,
     &Done {
       transform: translateX(0%);
-      transition: transform 0.8s;
+      transition: transform 0.5s;
     }
   }
   &.exit {
@@ -149,7 +84,7 @@
     &Active,
     &Done {
       transform: translateX(100%);
-      transition: transform 0.8s;
+      transition: transform 0.5s;
     }
   }
   .marginAround {
