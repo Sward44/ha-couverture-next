@@ -1,5 +1,5 @@
-import CGU from "../../../components/main/mentionslegales/CGU";
-import styles from "./page.module.scss";
+import CGU from "@/components/main/mentionslegales/CGU";
+import styles from "@/app/(mentions)/politique-generale-utilisateur/page.module.scss";
 
 function ConditionGenerale() {
   return (

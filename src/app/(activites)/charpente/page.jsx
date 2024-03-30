@@ -1,7 +1,7 @@
-import connect from "../../../../Mongoose";
-import Meta from "../../../../models/meta";
+import connect from "@utils/mongodb";
+import Meta from "@/models/meta";
 import PageAnnexes from "@/components/main/PageAnnexes";
-import styles from "../activites.module.scss";
+import styles from "@/app/(activites)/activites.module.scss";
 
 export async function generateMetadata() {
   await connect();

@@ -1,3 +1,2 @@
 use("ha-couverture");
-
-db.users.insertMany([]);
+db.users.find({ email: "davidlaunay567@gmail.com" });

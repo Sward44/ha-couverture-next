@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import connect from "../../../../Mongoose";
-import User from "../../../../models/user";
-import Devis from "../../../../models/devis";
+import connect from "@/utils/mongodb";
+import User from "@/models/user";
+import Devis from "@/models/devis";
 import email from "@/email/devis/email";
 
 export const POST = async (request) => {

@@ -1,8 +1,8 @@
 "server only";
-import connect from "../../Mongoose";
-import homepage from "../../models/homepage";
-import HomePage from "../components/home/HomePage";
-import styles from "./page.module.scss";
+import connect from "@/utils/mongodb";
+import homepage from "@/models/homepage";
+import HomePage from "@/components/home/HomePage";
+import styles from "@/app/page.module.scss";
 
 export default async function Home() {
   connect();

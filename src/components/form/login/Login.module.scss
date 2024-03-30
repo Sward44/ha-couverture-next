@@ -1,0 +1,183 @@
+@import "@/components/style/media-queries";
+@import "@/components//style/utils";
+
+@keyframes popup {
+  0% {
+    scale: 0.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes opac {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.formulaire {
+  position: fixed;
+  font-family: var(--font-mulish);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 4;
+  animation: opac 0.6s;
+
+  .loadingSpin {
+    position: absolute;
+    z-index: 5;
+    font-size: 200px;
+    color: var(--dark);
+    @include sm {
+      font-size: 153px;
+    }
+    @include xs {
+      font-size: 120px;
+    }
+  }
+  // .containerFormulaireAfter {
+  //   display: flex;
+  //   flex-direction: column;
+  //   max-width: 400px;
+  //   min-height: 300px;
+  //   padding: 2rem;
+  //   border: 2px solid var(--hint);
+  //   border-radius: 2rem;
+  //   animation: popup 0.4s 0.2s backwards;
+  //   background-color: whitesmoke;
+  //   @include md {
+  //     margin: 0 5rem;
+  //   }
+  //   @include sm {
+  //     font-size: 1.6rem;
+  //     margin: 0 5rem;
+  //   }
+  //   @include xs {
+  //     margin: 0 2rem;
+  //     border-radius: 1rem;
+  //     font-size: 1.5rem;
+  //   }
+  // }
+  .containerFormulaire {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--hint);
+    border-radius: 2rem;
+    animation: popup 0.4s 0.2s backwards;
+    background-color: whitesmoke;
+    @include sm {
+      font-size: 1.6rem;
+    }
+    @include xs {
+      border-radius: 1rem;
+      font-size: 1.5rem;
+    }
+    .form {
+      display: grid;
+      grid-template-rows: auto auto auto auto auto;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "start"
+        "email"
+        "envoie"
+        "or"
+        "google";
+      .positionEnTete {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 2rem 1rem;
+        @include xs {
+          margin: 0 0.5rem 1rem;
+        }
+      }
+    }
+    .positionPiedPage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 2rem 1rem;
+      @include xs {
+        margin: 0 0.5rem 1rem;
+      }
+      .formatButton {
+        padding: 0 4rem;
+        .positionButton {
+          display: flex;
+          position: relative;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .position {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      margin: 0 2rem 2rem;
+      @include xs {
+        margin: 0 0.5rem 1rem;
+      }
+      .errors {
+        position: absolute;
+        top: 66px;
+        font-size: 12px;
+        color: red;
+        @include sm {
+          top: 56px;
+        }
+        @include xs {
+          top: 56px;
+        }
+      }
+    }
+    .start {
+      grid-area: start;
+    }
+    .email {
+      grid-area: email;
+    }
+    .envoie {
+      grid-area: envoie;
+    }
+    .or {
+      grid-area: or;
+      align-items: center;
+    }
+    .google {
+      grid-area: google;
+    }
+    label {
+      font-size: 1.8rem;
+      @include sm {
+        font-size: 1.6rem;
+      }
+      @include xs {
+        font-size: 1.5rem;
+      }
+    }
+    input {
+      padding: 10px 15px;
+      border: 2px solid var(--hint);
+      border-radius: 6px;
+      font-size: 1.8rem;
+      @include sm {
+        font-size: 1.6rem;
+      }
+      @include xs {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

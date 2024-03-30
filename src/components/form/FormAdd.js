@@ -35,6 +35,7 @@ function FormAdd({ handleForm }) {
       .required("Numéro de téléphone demandé"),
     comments: yup.string(),
   });
+
   const {
     register,
     handleSubmit,
@@ -173,9 +174,6 @@ function FormAdd({ handleForm }) {
               {errors?.email && (
                 <p className={styles.errors}>{errors.email.message}</p>
               )}
-              {errors?.email && (
-                <p className={styles.errors}>{errors.email.message}</p>
-              )}
             </div>
 
             <div className={`${styles.phone} ${styles.position}`}>
@@ -202,7 +200,6 @@ function FormAdd({ handleForm }) {
                 placeholder="Préciser votre demande..."
               />
             </div>
-
             <div className={`${styles.envoie} ${styles.positionPiedPage}`}>
               <button disabled={isSubmitting} className={styles.formatButton}>
                 <div className={styles.positionButton}>

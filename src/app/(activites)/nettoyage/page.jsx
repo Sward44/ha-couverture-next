@@ -1,11 +1,11 @@
-import connect from "../../../../Mongoose";
-import Meta from "../../../../models/meta";
-import PageCouverture from "@/components/main/PageAnnexes";
-import styles from "../activites.module.scss";
+import connect from "@/utils/mongodb";
+import Meta from "@/models/meta";
+import PageAnnexes from "@/components/main/PageAnnexes";
+import styles from "@/app/(activites)/activites.module.scss";
 
-export const generateMetadata = async () => {
+export async function generateMetadata() {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_COUV }).exec();
+  const data = await Meta.findOne({ _id: process.env.META_ID_NETT }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -21,14 +21,14 @@ export const generateMetadata = async () => {
       },
     },
   };
-};
+}
 
-function couverturePage() {
+function nettoyagePage() {
   return (
     <div className={styles.container}>
-      <PageCouverture indexActivites={0} />
+      <PageAnnexes indexActivites={2} />
     </div>
   );
 }
 
-export default couverturePage;
+export default nettoyagePage;

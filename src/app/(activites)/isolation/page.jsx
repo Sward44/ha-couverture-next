@@ -1,11 +1,11 @@
-import connect from "../../../../Mongoose";
-import Meta from "../../../../models/meta";
+import connect from "@/utils/mongodb";
+import Meta from "@/models/meta";
 import PageAnnexes from "@/components/main/PageAnnexes";
-import styles from "../activites.module.scss";
+import styles from "@/app/(activites)/activites.module.scss";
 
-export async function generateMetadata() {
+export const generateMetadata = async () => {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_TRAV }).exec();
+  const data = await Meta.findOne({ _id: process.env.META_ID_ISOL }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -21,14 +21,14 @@ export async function generateMetadata() {
       },
     },
   };
-}
+};
 
-function travauxDiversPage() {
+function isolationPage() {
   return (
     <div className={styles.container}>
-      <PageAnnexes indexActivites={5} />
+      <PageAnnexes indexActivites={3} />
     </div>
   );
 }
 
-export default travauxDiversPage;
+export default isolationPage;

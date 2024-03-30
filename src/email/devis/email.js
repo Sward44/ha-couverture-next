@@ -28,7 +28,7 @@ class Email {
       );
 
       const data = await this.transporter.sendMail({
-        from: "Buzz Ready <no-reply@buzz-ready.com>",
+        from: process.env.EMAIL_FROM,
         to: options.to,
         subject: options.subject,
         html: template,

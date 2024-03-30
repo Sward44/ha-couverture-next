@@ -1,14 +1,17 @@
-import connect from "../../Mongoose";
+import connect from "@/utils/mongodb";
+import Meta from "@/models/meta";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Meta from "../../models/meta";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/utils/SessionProvider";
 
 export async function generateMetadata() {
   await connect();
   const data = await Meta.findOne({ _id: process.env.META_ID_HOME }).exec();
+
   return {
     title: data.title,
     description: data.description,
@@ -34,13 +37,16 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession();
   return (
     <html lang="fr">
       <body className={`${mulish.variable} ${chonburi.variable}`}>
-        <Header />
-        {children}
-        <Footer />
+        <SessionProvider session={session}>
+          <Header />
+          {children}
+          <Footer />
+        </SessionProvider>
       </body>
       <GoogleAnalytics gaId="G-S1PS75LLG4" />
     </html>

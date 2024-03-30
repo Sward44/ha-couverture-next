@@ -1,16 +1,20 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { useSession, signOut } from "next-auth/react";
 import { CSSTransition } from "react-transition-group";
 import Link from "next/link";
-import { useViewport } from "@/hooks/viewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Nav.module.scss";
+import { useViewport } from "@/hooks/viewPort";
+import { faPhone, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import styles from "@/components/header/nav/Nav.module.scss";
 
-function Nav() {
+function Nav({ handleLogin }) {
   const { isMobile } = useViewport();
   const [showMenu, setShowMenu] = useState(false);
+
   const ref = useRef(null);
+  const { data: session } = useSession();
+  console.log("token dans session : ", session);
 
   return (
     <div className={` ${isMobile ? "" : "m-20"} ${styles.header}`}>
@@ -71,7 +75,7 @@ function Nav() {
             </div>
           </CSSTransition>
         </div>
-        <Link href="/" className={`mr-20 ${styles.link}`}>
+        <Link href="/avis-clients" className={`mr-20 ${styles.link}`}>
           Avis clients
         </Link>
         <Link href="/blog" className={`mr-85 ${styles.link}`}>
@@ -89,15 +93,17 @@ function Nav() {
         </div>
       </a>
 
-      <Link href="/" className={styles.link}>
-        <button>
+      {!session ? (
+        <button onClick={handleLogin}>
           <FontAwesomeIcon
-            icon={faLocationDot}
+            icon={faRightToBracket}
             className={styles.tailleIcon}
             style={{ padding: "0" }}
           />
         </button>
-      </Link>
+      ) : (
+        <button></button>
+      )}
     </div>
   );
 }

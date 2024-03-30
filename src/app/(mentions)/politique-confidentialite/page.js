@@ -1,5 +1,5 @@
-import PolitiqueConfidentialite from "../../../components/main/mentionslegales/PolitiqueConfidentialite";
-import styles from "./page.module.scss";
+import PolitiqueConfidentialite from "@/components/main/mentionslegales/PolitiqueConfidentialite";
+import styles from "@/app/(mentions)/politique-confidentialite/page.module.scss";
 
 function MentionLegales() {
   return (

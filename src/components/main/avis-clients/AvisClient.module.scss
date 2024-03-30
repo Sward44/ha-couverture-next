@@ -1,0 +1,47 @@
+@import "../../style/media-queries";
+
+.overlay {
+  position: relative;
+  top: 98px;
+  width: 100%;
+  height: 15rem;
+  @include md {
+    top: 93px;
+  }
+  @include sm {
+    top: 72px;
+  }
+  @include xs {
+    top: 62px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+}
+.description {
+  display: flex;
+  position: relative;
+  top: -18px;
+  height: 6.5rem;
+  width: 6.5 rem;
+  justify-content: center;
+  color: var(--border);
+  font-weight: 700;
+  z-index: 1;
+  @include sm {
+    top: -48px;
+  }
+  @include xs {
+    top: -52px;
+  }
+  .fontH1 {
+    font-size: 4.2rem;
+  }
+}

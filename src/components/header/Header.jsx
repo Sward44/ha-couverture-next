@@ -7,12 +7,14 @@ import NavBurger from "./nav/NavBurger";
 import styles from "./Header.module.scss";
 import Logo from "../logo/Logo";
 import LogoMobile from "../logo/LogoMobile";
+import Login from "../form/login/Login";
 
 function Header() {
   const { isMobile, isTablet } = useViewport();
   const [burger, setBurger] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,27 +30,39 @@ function Header() {
     setBurger(!burger);
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLogin(!login);
+  };
+
   return (
-    <header
-      className={`${styles.header} ${!visible && !burger ? styles.hidden : ""}`}
-    >
-      {isMobile || isTablet ? (
-        <div className={styles.entete}>
-          <Link href="/">
-            <LogoMobile />
-          </Link>
-          <h3 style={{ fontFamily: "var(--font-chonburi)" }}>HA COUVERTURE</h3>
-          <NavBurger handleBurger={handleBurger} burger={burger} />
-        </div>
-      ) : (
-        <>
-          <Link href="/" className={styles.logo}>
-            <Logo />
-          </Link>
-          <Nav />
-        </>
-      )}
-    </header>
+    <>
+      <header
+        className={`${styles.header} ${
+          !visible && !burger ? styles.hidden : ""
+        }`}
+      >
+        {isMobile || isTablet ? (
+          <div className={styles.entete}>
+            <Link href="/">
+              <LogoMobile />
+            </Link>
+            <h3 style={{ fontFamily: "var(--font-chonburi)" }}>
+              HA COUVERTURE
+            </h3>
+            <NavBurger handleBurger={handleBurger} burger={burger} />
+          </div>
+        ) : (
+          <>
+            <Link href="/" className={styles.logo}>
+              <Logo />
+            </Link>
+            <Nav handleLogin={handleLogin} />
+          </>
+        )}
+      </header>
+      {login && <Login handleLogin={handleLogin} />}
+    </>
   );
 }
 

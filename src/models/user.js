@@ -8,13 +8,15 @@ const userSchema = new Schema(
     name: { type: String },
     enterprise: { type: String },
     email: { type: String, required: true, unique: true },
+    email_verified: { type: Boolean },
     done: { type: Boolean, default: false },
     mobile: { type: String },
     home: { type: String },
     adress: { type: String },
     code_postale: { type: String },
     ville: { type: String },
-    password: {type: String},
+    password: { type: String },
+    image_logo: { type: String },
   },
   { timestamps: true }
 );

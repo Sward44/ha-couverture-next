@@ -52,6 +52,7 @@
       right: 325px;
       border-radius: 10px;
       background: var(--background-transparent);
+      box-shadow: var(--shadow);
       @include md {
         top: 58px;
       }
