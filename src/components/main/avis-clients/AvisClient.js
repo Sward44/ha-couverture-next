@@ -21,13 +21,13 @@ function AvisClient({ indexActivites }) {
         />
       </div>
       <div className={styles.description}>
-        {/* <Image
-          src={require(`../${itemDataCouverture[indexActivites].urlSvg}`)}
+        <Image
+          src={require(`../../${itemDataCouverture[indexActivites].urlSvg}`)}
           width={itemDataCouverture[indexActivites].width}
           height={itemDataCouverture[indexActivites].height}
           alt={itemDataCouverture[indexActivites].altSvg}
           style={{ padding: "auto 0", marginRight: "1rem" }}
-        /> */}
+        />
         <h1 className={styles.fontH1}>
           {itemDataCouverture[indexActivites].title}
         </h1>

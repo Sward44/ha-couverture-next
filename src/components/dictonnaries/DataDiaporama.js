@@ -250,9 +250,9 @@ export const itemDataCouverture = [
     position: "center",
     altWebp:
       "Avis clients déposant un commentaire sur le service de Ha Couverture",
-    urlSvg: "img/main/travaux-divers.svg",
+    urlSvg: "img/avisClients/avis-clients.svg",
     altSvg: "Illustration de depots d'avis clients imagée",
-    width: "30",
+    width: "50",
     height: "65",
   },
 ];
