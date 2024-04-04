@@ -5,8 +5,8 @@ import { signIn, useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import styles from "@/components/form/login/Login.module.scss";
-import SignIn from "@/app/api/auth/email-signin";
+import styles from "@/components/header/login/Login.module.scss";
+import SignIn from "@/components/header/signin/email-signin";
 
 function Login({ handleLogin }) {
   const router = useRouter();

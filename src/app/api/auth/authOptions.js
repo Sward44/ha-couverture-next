@@ -1,4 +1,3 @@
-import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/utils/index";
@@ -8,17 +7,32 @@ import connect from "@/utils/mongodb";
 const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
-    EmailProvider({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        user: process.env.USER_FROM,
-        clientId: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET,
-        refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-        access_token: access_token,
+    {
+      id: "nodemailer",
+      type: "email",
+      async sendVerificationRequest({ identifier: email, url, callbacks }) {
+        const { host } = new URL(url);
+
+        try {
+          await email.getTemplate("email-connexion", {
+            subject: `Connexion demandée de ${email}`,
+            to: process.env.EMAIL_FROM,
+            metadata: {
+              bienvenue: "Nouvelle connexion demandée",
+              email: email,
+              ownerEmail: body.email,
+              ownerName: body.surname || "",
+              ownerSurname: body.name || "",
+              ownerPhone: body.number || "",
+              ownerComments: body.comments,
+              siteUrl: host,
+            },
+          });
+        } catch (e) {
+          throw new Error(e);
+        }
       },
-    }),
+    },
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
@@ -33,7 +47,19 @@ const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account?.provider == "google") {
+      if (account?.provider == "email") {
+        console.log(
+          "Utilisateur coté serveur : ",
+          user,
+          "Differente information de connexion : ",
+          account,
+          "Utillisateur : ",
+          profile,
+          "Email utilisateur : ",
+          profile.email
+        );
+        return true;
+      } else if (account?.provider == "google") {
         console.log(
           "Utilisateur coté serveur : ",
           user,
@@ -76,7 +102,7 @@ const authOptions = {
               );
               User.updateOne(
                 { _id: existingUser._id },
-                { $addToSet: { verified_email: profile.email_verified } },
+                { $set: { verified_email: profile.email_verified } },
                 { new: true }
               ).exec();
             }

@@ -18,6 +18,10 @@ html(lang="fr")
         table[class=body] a {
         font-size: 12px !important;
         }
+        table[class=body] .marge {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        }
         table[class=body] .title {
         font-size: 16px !important;
         margin-top: 30px !important;
@@ -51,6 +55,8 @@ html(lang="fr")
         }
         table[class=body] .alert {
         padding-top: 30px !important;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
         }
         div[class=footer] p[class=small],
         div[class=footer] a[class=small],
@@ -113,10 +119,10 @@ html(lang="fr")
                         a(href=`${ siteUrl }` style="color: #15212a")
                           img(src=`${process.env.NEXT_PUBLIC_HOST}/ha-couverture-logo-336x100.png` style="max-width: 336px; width:100%; max-height: 100px; height:100%" alt="Presentation de Ha-Couverture")
                     tr
-                      td(style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 16px;vertical-align: top;padding-left: 20px;padding-right: 20px;")
-                        p(class="title" style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 21px;color: #3a464c;font-weight: normal;line-height: 25px;margin-bottom: 0px;margin-top: 50px;font-weight: 600;color: #15212a;") Message de #{ ownerSurname }&nbsp;#{ ownerName },
+                      td(class="marge" style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 16px;vertical-align: top;padding-left: 20px;padding-right: 20px;")
+                        p(class="title" style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 21px;color: #3a464c;font-weight: normal;line-height: 25px;margin-bottom: 0px;margin-top: 50px;font-weight: 600;color: #15212a;") Message de #{ ownerName }&nbsp;#{ ownerSurname },
                     tr
-                      td(style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 14px;vertical-align: top;padding-top: 24px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;")
+                      td(class="marge" style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 14px;vertical-align: top;padding-top: 24px;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;")
                         p(style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 16px;color: #3a464c;font-weight: normal;margin: 0;line-height: 25px;") Vous pouvez me joindre à ce numéro :&nbsp;
                           a(href=`tel:${ ownerPhone }` style="color: #15212a") #{ ownerPhone.replace("+33", "0").replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5") }
                         p(style="font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Helvetica, Arial, sans-serif,'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol';font-size: 16px;color: #3a464c;font-weight: normal;margin: 0;line-height: 25px;margin-bottom: 20px;") Par email, voici l'adresse de réponse :&nbsp;

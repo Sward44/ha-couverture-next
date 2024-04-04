@@ -2,7 +2,7 @@ import connect from "@/utils/mongodb";
 import Meta from "@/models/meta";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
-import { GoogleAnalytics } from "@next/third-parties/google";
+// import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { getServerSession } from "next-auth";
@@ -48,7 +48,7 @@ export default async function RootLayout({ children }) {
           <Footer />
         </SessionProvider>
       </body>
-      <GoogleAnalytics gaId="G-S1PS75LLG4" />
+      {/* <GoogleAnalytics gaId="G-S1PS75LLG4" /> */}
     </html>
   );
 }

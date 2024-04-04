@@ -6,8 +6,8 @@ import Nav from "./nav/Nav";
 import NavBurger from "./nav/NavBurger";
 import styles from "./Header.module.scss";
 import Logo from "../logo/Logo";
-import LogoMobile from "../logo/LogoMobile";
-import Login from "../form/login/Login";
+import LogoMobile from "@/components/logo/LogoMobile";
+import Login from "@/components/header/login/Login";
 
 function Header() {
   const { isMobile, isTablet } = useViewport();
