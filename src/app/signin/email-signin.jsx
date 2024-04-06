@@ -7,21 +7,30 @@ import Image from "next/image";
 import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
 import styles from "@/components/header/login/Login.module.scss";
 
-export default function SignIn({ handleLogin }) {
+export default function SignIn({ handleLogin, handleLoading }) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   async function handleSubmit(event) {
+    // handleLoading();
     event.preventDefault();
     const formData = new FormData(event.target);
-    const email = formData.get("email");
-    console.log(
-      "Email sortie du navigateur : ",
-      email,
-      "Le callback avec searchParams : ",
-      callbackUrl
-    );
-    signIn("nodemailer", { email, callbackUrl });
+    await fetch("/api/auth/route", {
+      method: "POST",
+      body: JSON.stringify({
+        email: formData.get("email"),
+        callbackUrl: callbackUrl,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        signIn("nodemailer", { email, callbackUrl });
+      } else {
+        throw new Error("Failed to send email");
+      }
+    });
   }
 
   return (
@@ -37,16 +46,16 @@ export default function SignIn({ handleLogin }) {
           type="email"
           name="email"
           required
+          autoComplete="email"
           className={`${styles.email} `}
         />
       </label>
       <button
         type="submit"
-        // onClick={handleLogin}
         className={`${styles.envoie} ${styles.positionPiedPage} ${styles.formatButton}`}
       >
         <Image src={Favicon} alt="ha-couverture" width={30} className="mr-20" />
-        <h3>Connexion avec email</h3>
+        <h3>Connexion avec E-mail</h3>
       </button>
     </form>
   );

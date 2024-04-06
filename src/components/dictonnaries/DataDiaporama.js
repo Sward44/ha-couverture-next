@@ -255,6 +255,17 @@ export const itemDataCouverture = [
     width: "50",
     height: "65",
   },
+  {
+    title: "Connexion",
+    description: "",
+    urlWebp: "img/connexion/connexion.webp",
+    position: "center",
+    altWebp: "Clients voulant se connecter sur le site de Ha-Couverture",
+    urlSvg: "img/connexion/connexion.svg",
+    altSvg: "Illustration d'un clients voulant se connecter",
+    width: "50",
+    height: "65",
+  },
 ];
 
 export const itemDataPolitiqueConfidentialite = [

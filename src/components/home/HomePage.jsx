@@ -41,9 +41,10 @@ function HomePage({ itemData }) {
     }
   };
 
-  const handleForm = () => {
+  function handleForm(e) {
+    e.preventDefault();
     setAddForm(!addForm);
-  };
+  }
 
   return (
     <>

@@ -1,39 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import styles from "@/components/header/login/Login.module.scss";
-import SignIn from "@/components/header/signin/email-signin";
+import styles from "@/components/main/GoogleLogin/GoogleLogin.module.scss";
 
 function Login({ handleLogin }) {
-  const router = useRouter();
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState("");
-  const { data: session, status: sessionStatus } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (sessionStatus === "authenticated") {
-      router.replace("/dashboard");
-    }
-  }, [sessionStatus, router]);
-
-  if (sessionStatus === "loading") {
-    return (
-      <FontAwesomeIcon
-        icon={faSpinner}
-        spinPulse
-        className={styles.loadingSpin}
-      />
-    );
+  function handleLoading(e) {
+    e.preventDefault();
+    setIsLoading(!isLoading);
   }
 
   return (
     <div className={styles.formulaire}>
+      {isLoading && (
+        <FontAwesomeIcon
+          icon={faSpinner}
+          spinPulse
+          className={styles.loadingSpin}
+        />
+      )}
       <div className={styles.containerFormulaire}>
-        <SignIn handleLogin={handleLogin} />
         <div
           className={`${styles.or} ${styles.positionPiedPage} ${styles.formatButton}`}
         >
@@ -42,7 +32,7 @@ function Login({ handleLogin }) {
         <button
           className={`${styles.google} ${styles.positionPiedPage} ${styles.formatButton}`}
           onClick={() => {
-            signIn("google");
+            signIn("google"), handleLoading(e);
           }}
         >
           <Image

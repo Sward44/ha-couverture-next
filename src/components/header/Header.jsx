@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useViewport } from "@/hooks/viewPort";
-import Nav from "./nav/Nav";
-import NavBurger from "./nav/NavBurger";
-import styles from "./Header.module.scss";
-import Logo from "../logo/Logo";
+import Nav from "@/components/header/nav/Nav";
+import NavBurger from "@/components/header/nav/NavBurger";
+import styles from "@/components/header/Header.module.scss";
+import Logo from "@/components/logo/Logo";
 import LogoMobile from "@/components/logo/LogoMobile";
-import Login from "@/components/header/login/Login";
 
 function Header() {
   const { isMobile, isTablet } = useViewport();
@@ -26,14 +25,15 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, visible]);
 
-  const handleBurger = () => {
+  const handleBurger = (e) => {
+    e.preventDefault();
     setBurger(!burger);
   };
 
-  const handleLogin = (e) => {
+  function handleLogin(e) {
     e.preventDefault();
     setLogin(!login);
-  };
+  }
 
   return (
     <>
@@ -57,11 +57,10 @@ function Header() {
             <Link href="/" className={styles.logo}>
               <Logo />
             </Link>
-            <Nav handleLogin={handleLogin} />
+            <Nav />
           </>
         )}
       </header>
-      {login && <Login handleLogin={handleLogin} />}
     </>
   );
 }

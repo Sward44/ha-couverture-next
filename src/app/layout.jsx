@@ -2,11 +2,10 @@ import connect from "@/utils/mongodb";
 import Meta from "@/models/meta";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
-// import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import { getServerSession } from "next-auth";
-import SessionProvider from "@/utils/SessionProvider";
+import AuthProvider from "@/utils/SessionProvider";
 
 export async function generateMetadata() {
   await connect();
@@ -38,17 +37,16 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession();
   return (
     <html lang="fr">
       <body className={`${mulish.variable} ${chonburi.variable}`}>
-        <SessionProvider session={session}>
+        <AuthProvider>
           <Header />
           {children}
           <Footer />
-        </SessionProvider>
+        </AuthProvider>
       </body>
-      {/* <GoogleAnalytics gaId="G-S1PS75LLG4" /> */}
+      <GoogleAnalytics gaId="G-S1PS75LLG4" />
     </html>
   );
 }

@@ -14,7 +14,6 @@ import {
 
 function FormAdd({ handleForm }) {
   const [isLoading, setIsLoading] = useState(false);
-  // const [popup, setPopup] = useState(true);
   const isFinish = useRef(false);
   const nameRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
   const defaultValues = {

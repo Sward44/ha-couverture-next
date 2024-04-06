@@ -18,14 +18,14 @@ export const POST = async (request) => {
         phone: body.number,
       });
       await existingUser.save().then((doc) => {
-        console.log("Utilisateur enregistré : ", doc);
+        // console.log("Utilisateur enregistré : ", doc);
       });
       newDevis = new Devis({
         user: existingUser._id,
         body: body.comments,
       });
       await newDevis.save().then((doc) => {
-        console.log("Devis enregistré : ", doc);
+        // console.log("Devis enregistré : ", doc);
       });
       await email.getTemplate("email-devis", {
         subject: "[ha-couverture.com] Nouveau devis reçu, nouveau client",
@@ -74,14 +74,14 @@ export const POST = async (request) => {
       }
 
       await existingUser.save().then((doc) => {
-        console.log("Utilisateur enregistré : ", doc);
+        // console.log("Utilisateur enregistré : ", doc);
       });
       newDevis = new Devis({
         user: existingUser._id,
         body: body.comments,
       });
       await newDevis.save().then((doc) => {
-        console.log("Devis enregistré : ", doc);
+        // console.log("Devis enregistré : ", doc);
       });
       await email.getTemplate("email-devis", {
         subject: "[ha-couverture.com] Nouveau devis reçu, client existant",
