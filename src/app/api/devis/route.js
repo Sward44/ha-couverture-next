@@ -17,16 +17,14 @@ export const POST = async (request) => {
         email: body.email,
         phone: body.number,
       });
-      await existingUser.save().then((doc) => {
-        // console.log("Utilisateur enregistré : ", doc);
-      });
+      await existingUser.save();
+
       newDevis = new Devis({
         user: existingUser._id,
         body: body.comments,
       });
-      await newDevis.save().then((doc) => {
-        // console.log("Devis enregistré : ", doc);
-      });
+      await newDevis.save();
+
       await email.getTemplate("email-devis", {
         subject: "[ha-couverture.com] Nouveau devis reçu, nouveau client",
         to: "Abraham Hognon <ha.couverture44@gmail.com>",
@@ -73,16 +71,12 @@ export const POST = async (request) => {
         );
       }
 
-      await existingUser.save().then((doc) => {
-        // console.log("Utilisateur enregistré : ", doc);
-      });
+      await existingUser.save();
       newDevis = new Devis({
         user: existingUser._id,
         body: body.comments,
       });
-      await newDevis.save().then((doc) => {
-        // console.log("Devis enregistré : ", doc);
-      });
+      await newDevis.save();
       await email.getTemplate("email-devis", {
         subject: "[ha-couverture.com] Nouveau devis reçu, client existant",
         to: "Abraham Hognon <ha.couverture44@gmail.com>",

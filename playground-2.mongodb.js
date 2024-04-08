@@ -1,2 +1,8 @@
 use("ha-couverture");
-db.users.find({ email: "davidlaunay567@gmail.com" });
+
+db.pages
+  .find({})
+  .exec()
+  .then((data) => {
+    console.log(data);
+  });

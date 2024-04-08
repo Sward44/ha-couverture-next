@@ -45,29 +45,6 @@
       font-size: 120px;
     }
   }
-  // .containerFormulaireAfter {
-  //   display: flex;
-  //   flex-direction: column;
-  //   max-width: 400px;
-  //   min-height: 300px;
-  //   padding: 2rem;
-  //   border: 2px solid var(--hint);
-  //   border-radius: 2rem;
-  //   animation: popup 0.4s 0.2s backwards;
-  //   background-color: whitesmoke;
-  //   @include md {
-  //     margin: 0 5rem;
-  //   }
-  //   @include sm {
-  //     font-size: 1.6rem;
-  //     margin: 0 5rem;
-  //   }
-  //   @include xs {
-  //     margin: 0 2rem;
-  //     border-radius: 1rem;
-  //     font-size: 1.5rem;
-  //   }
-  // }
   .containerFormulaire {
     display: flex;
     flex-direction: column;

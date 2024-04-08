@@ -6,7 +6,8 @@ import Texte from "./texte/Texte";
 import ImageButton from "./button/ImageButton";
 import FormAdd from "../form/FormAdd";
 
-function HomePage({ itemData }) {
+function ComponentsHomePage({ itemData }) {
+  // console.log(itemData);
   const [direction, setDirection] = useState("imageGauche");
   const [index, setIndex] = useState(0);
   const [addForm, setAddForm] = useState(false);
@@ -73,4 +74,4 @@ function HomePage({ itemData }) {
   );
 }
 
-export default HomePage;
+export default ComponentsHomePage;

@@ -1,5 +1,6 @@
 import connect from "@/utils/mongodb";
 import Meta from "@/models/meta";
+import Page from "@/models/page";
 import AvisClient from "@/components/main/avis-clients/AvisClient";
 import styles from "@/app/avis-clients/avisClients.module.scss";
 
@@ -23,7 +24,12 @@ export async function generateMetadata() {
   };
 }
 
-function avisClients() {
+async function avisClients() {
+  // await connect();
+  // const itemsData = await Page.find().exec();
+  // console.log(itemsData);
+  // const itemData = JSON.parse(JSON.stringify(itemsData));
+  // console.log(itemData);
   return (
     <div className={styles.container}>
       <AvisClient indexActivites={6} />

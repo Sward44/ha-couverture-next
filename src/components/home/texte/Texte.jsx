@@ -8,7 +8,7 @@ function Texte({ itemData, index, handleForm }) {
       <div key={index} className={styles.container}>
         <div className={styles.apparition}>
           <Image
-            src={require(`../../${itemData[index].urlSvg}`).default}
+            src={require(`@/components/${itemData[index].urlSvg}`).default}
             width={itemData[index].width}
             height={itemData[index].height}
             alt={itemData[index].altSvg}

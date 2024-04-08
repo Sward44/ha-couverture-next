@@ -1,18 +1,11 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
-import styles from "@/components/header/login/Login.module.scss";
+import styles from "@/components/main/connexion/Connexion.module.scss";
 
-export default function SignIn({ handleLogin, handleLoading }) {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
-
+export default function EmailLogin({ handleLoading, callbackUrl }) {
   async function handleSubmit(event) {
-    // handleLoading();
     event.preventDefault();
     const formData = new FormData(event.target);
     await fetch("/api/auth/route", {
@@ -35,10 +28,6 @@ export default function SignIn({ handleLogin, handleLoading }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={`${styles.start} ${styles.positionEnTete}`}>
-        <h2>Login</h2>
-        <FontAwesomeIcon icon={faXmark} size={"2xl"} />
-      </div>
       <label className={styles.position}>
         E-mail
         <input
@@ -53,9 +42,15 @@ export default function SignIn({ handleLogin, handleLoading }) {
       <button
         type="submit"
         className={`${styles.envoie} ${styles.positionPiedPage} ${styles.formatButton}`}
+        // onClick={handleLoading}
       >
-        <Image src={Favicon} alt="ha-couverture" width={30} className="mr-20" />
-        <h3>Connexion avec E-mail</h3>
+        <Image
+          src={Favicon}
+          alt="Présentation du bouton de connexion via Email"
+          width={30}
+          className={`mr-20 ${styles.formatImage}`}
+        />
+        <h3 className={styles.formatH3}>Connexion avec E-mail</h3>
       </button>
     </form>
   );

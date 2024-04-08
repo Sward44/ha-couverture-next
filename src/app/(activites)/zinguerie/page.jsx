@@ -1,9 +1,9 @@
 import connect from "@/utils/mongodb";
 import Meta from "@/models/meta";
-// import Pages from "@/models/page";
+import Page from "@/models/page";
+import SousPage from "@/models/sousPage";
 import PageAnnexes from "@/components/main/PageAnnexes";
 import styles from "@/app/(activites)/activites.module.scss";
-// import { ObjectId } from "mongodb";
 
 export async function generateMetadata() {
   await connect();
@@ -26,25 +26,35 @@ export async function generateMetadata() {
   };
 }
 
-async function zingueriePage() {
-  // await connect();
-  // const id = process.env.NEXT_PUBLIC_PAGE_ID_ZING;
-  // console.log("Transmission de la variable 'id' : ", id);
-  // const response = await Pages.find({
-  //   _id: new ObjectId("65f4c3e125d09d3973d9199e"),
-  // }).exec();
-  // // const response = await Pages.findById("id").exec();
-  // console.log("Reponse de mongodb pour 'response' : ", response);
+export default async function zingueriePage() {
+  await connect();
+  const Data = await Page.findOne({
+    _id: process.env.PAGE_ID_ZING,
+  })
+    .lean()
+    .exec();
+  const DataPage = await SousPage.find({
+    _pageId: process.env.PAGE_ID_ZING,
+  })
+    .lean()
+    .exec();
+  const itemsData = {
+    id: Data._id,
+    title: Data.title,
+    description: DataPage,
+    urlWebp: Data.urlWebp,
+    position: Data.position,
+    altWebp: Data.altWebp,
+    urlSvg: Data.urlSvg,
+    altSvg: Data.altSvg,
+    width: Data.width,
+    height: Data.height,
+  };
 
-  // const items = response
-  //   .filter(response._id === process.env.NEXT_PUBLIC_PAGE_ID_ZING)
-  //   .map((item) => item.toObject());
-  // console.log(items);
+  const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
     <div className={styles.container}>
-      <PageAnnexes indexActivites={1} />
+      <PageAnnexes itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }
-
-export default zingueriePage;
