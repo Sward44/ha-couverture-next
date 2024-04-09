@@ -1,5 +1,7 @@
+"use server";
 import connect from "@/utils/mongodb";
 import Meta from "@/models/meta";
+import Page from "@/models/page";
 import Connexion from "@/components/main/connexion/Connexion";
 import styles from "@/app/avis-clients/avisClients.module.scss";
 
@@ -23,12 +25,30 @@ export async function generateMetadata() {
   };
 }
 
-function connexion() {
+export default async function connexion() {
+  await connect();
+  const Data = await Page.findOne({
+    _id: process.env.PAGE_ID_CONN,
+  })
+    .lean()
+    .exec();
+  const itemsData = {
+    id: Data._id,
+    title: Data.title,
+    // description: DataPage,
+    urlWebp: Data.urlWebp,
+    position: Data.position,
+    altWebp: Data.altWebp,
+    urlSvg: Data.urlSvg,
+    altSvg: Data.altSvg,
+    width: Data.width,
+    height: Data.height,
+  };
+
+  const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
     <div className={styles.container}>
-      <Connexion indexActivites={7} />
+      <Connexion itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }
-
-export default connexion;

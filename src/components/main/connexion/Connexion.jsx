@@ -2,14 +2,13 @@
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { itemDataCouverture } from "@/components/dictonnaries/DataDiaporama";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import styles from "@/components/main/connexion/Connexion.module.scss";
 import EmailLogin from "./EmailLogin/EmailLogin";
 import GoogleLogin from "./GoogleLogin/GoogleLogin";
 
-function Connexion({ indexActivites }) {
+function Connexion({ itemDataCouverture }) {
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -23,29 +22,24 @@ function Connexion({ indexActivites }) {
     <>
       <div className={styles.overlay}>
         <Image
-          src={
-            require(`../../${itemDataCouverture[indexActivites].urlWebp}`)
-              .default
-          }
-          alt={itemDataCouverture[indexActivites].altWebp}
-          fill={itemDataCouverture[indexActivites].position}
+          src={require(`../../${itemDataCouverture.urlWebp}`).default}
+          alt={itemDataCouverture.altWebp}
+          fill={itemDataCouverture.position}
           style={{
             objectFit: "cover",
-            objectPosition: `${itemDataCouverture[indexActivites].position}`,
+            objectPosition: `${itemDataCouverture.position}`,
           }}
         />
       </div>
       <div className={styles.description}>
         <Image
-          src={require(`../../${itemDataCouverture[indexActivites].urlSvg}`)}
-          width={itemDataCouverture[indexActivites].width}
-          height={itemDataCouverture[indexActivites].height}
-          alt={itemDataCouverture[indexActivites].altSvg}
+          src={require(`../../${itemDataCouverture.urlSvg}`)}
+          width={itemDataCouverture.width}
+          height={itemDataCouverture.height}
+          alt={itemDataCouverture.altSvg}
           style={{ padding: "auto 0", marginRight: "1rem" }}
         />
-        <h1 className={styles.fontH1}>
-          {itemDataCouverture[indexActivites].title}
-        </h1>
+        <h1 className={styles.fontH1}>{itemDataCouverture.title}</h1>
       </div>
       <div className={styles.formulaire}>
         {isLoading && (

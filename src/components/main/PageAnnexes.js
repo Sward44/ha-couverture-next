@@ -26,13 +26,13 @@ function PageCouverture({ itemDataCouverture }) {
         <h1 className={styles.fontH1}>{itemDataCouverture.title}</h1>
       </div>
       <div className={styles.grid}>
-        {itemDataCouverture.description.map((item, id) => (
+        {itemDataCouverture.description.map((item) => (
           <>
-            <div key={id} className={styles.item}>
+            <div key={item.id} className={styles.item}>
               <h2 className={styles.fontH2}>{item.title}</h2>
               <p className={styles.fontP}>{item.description}</p>
             </div>
-            <div className={styles.image}>
+            <div key={item.id} className={styles.image}>
               <Image
                 src={require(`@/components/${item.urlWebp}`).default}
                 alt={item.altWebp}

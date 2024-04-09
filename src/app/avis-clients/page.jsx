@@ -25,14 +25,29 @@ export async function generateMetadata() {
 }
 
 async function avisClients() {
-  // await connect();
-  // const itemsData = await Page.find().exec();
-  // console.log(itemsData);
-  // const itemData = JSON.parse(JSON.stringify(itemsData));
-  // console.log(itemData);
+  await connect();
+  const Data = await Page.findOne({
+    _id: process.env.PAGE_ID_AVIS,
+  })
+    .lean()
+    .exec();
+  const itemsData = {
+    id: Data._id,
+    title: Data.title,
+    // description: DataPage,
+    urlWebp: Data.urlWebp,
+    position: Data.position,
+    altWebp: Data.altWebp,
+    urlSvg: Data.urlSvg,
+    altSvg: Data.altSvg,
+    width: Data.width,
+    height: Data.height,
+  };
+
+  const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
     <div className={styles.container}>
-      <AvisClient indexActivites={6} />
+      <AvisClient itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }
