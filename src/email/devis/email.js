@@ -19,7 +19,7 @@ class Email {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "davidlaunay567@gmail.com",
+        user: "sav@buzz-ready.com",
         clientId: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET,
         refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
