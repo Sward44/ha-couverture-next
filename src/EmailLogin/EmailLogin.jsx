@@ -1,14 +1,10 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
 import styles from "@/components/main/connexion/Connexion.module.scss";
 
 export default function EmailLogin() {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
-
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
