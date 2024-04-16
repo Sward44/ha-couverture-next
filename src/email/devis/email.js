@@ -37,7 +37,7 @@ class Email {
     });
   }
 
-  async getTemplate(templateName, options, prod = false) {
+  async getTemplate(templateName, options, prod = true) {
     try {
       const template = pug.renderFile(
         `src/email/devis/template/${templateName}.pug`,
