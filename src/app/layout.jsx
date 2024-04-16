@@ -1,5 +1,5 @@
 import connect from "@/utils/mongodb";
-import Meta from "@/models/meta";
+import { MetaModel } from "@/models";
 import { mulish, chonburi } from "@/fonts/fonts";
 import "./globals.scss";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -9,7 +9,9 @@ import AuthProvider from "@/utils/SessionProvider";
 
 export async function generateMetadata() {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_HOME }).exec();
+  const data = await MetaModel.findOne({
+    _id: process.env.META_ID_HOME,
+  }).exec();
 
   return {
     title: data.title,

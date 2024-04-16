@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const metaSchema = new Schema(
   {
@@ -29,4 +27,6 @@ const metaSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.meta || mongoose.model("meta", metaSchema);
+const MetaModel = models.meta || mongoose.model("meta", metaSchema);
+
+export default MetaModel;

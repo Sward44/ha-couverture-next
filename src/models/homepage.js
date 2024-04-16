@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const homePageSchema = new Schema(
   [
@@ -20,5 +18,7 @@ const homePageSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.homepage ||
-  mongoose.model("homepage", homePageSchema);
+const HomePageModel =
+  models.homepage || mongoose.model("homepage", homePageSchema);
+
+export default HomePageModel;

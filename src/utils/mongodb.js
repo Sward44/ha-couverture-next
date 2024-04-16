@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const connect = async () => {
+  mongoose.Promise = global.Promise;
   if (mongoose.connections[0].readyState) return;
 
   try {

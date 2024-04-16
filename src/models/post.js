@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const postSchema = new Schema(
   {
@@ -11,23 +9,25 @@ const postSchema = new Schema(
     owner_answer: { type: String },
     owner_answer_timestamp: {
       type: Date,
-      default: Date.now($$CLUSTER_TIME),
+      default: Date.now(),
     },
     owner_answer_timestamp_datetime_utc: {
       type: Date,
-      default: Date.now($ISODate),
+      default: Date.now(),
     },
     review_rating: { type: Number, required: true },
     review_timestamp: {
       type: Date,
-      default: Date.now($$CLUSTER_TIME),
+      default: Date.now(),
     },
     review_datetime_utc: {
       type: Date,
-      default: Date.now($ISODate),
+      default: Date.now(),
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.models.post || mongoose.model("post", postSchema);
+const PostModel = models.post || mongoose.model("post", postSchema);
+
+export default PostModel;

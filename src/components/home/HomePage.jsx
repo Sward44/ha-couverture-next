@@ -7,7 +7,6 @@ import ImageButton from "./button/ImageButton";
 import FormAdd from "../form/FormAdd";
 
 function ComponentsHomePage({ itemData }) {
-  // console.log(itemData);
   const [direction, setDirection] = useState("imageGauche");
   const [index, setIndex] = useState(0);
   const [addForm, setAddForm] = useState(false);

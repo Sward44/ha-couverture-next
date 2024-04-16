@@ -1,14 +1,14 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const userSchema = new Schema(
   {
-    surname: { type: String },
+    firstname: { type: String },
+    lastname: { type: String },
     name: { type: String },
     enterprise: { type: String },
     email: { type: String, required: true, unique: true },
-    email_verified: { type: Boolean },
+    email_verified: { type: Boolean, default: false },
+    role: { type: String, default: "user" },
     done: { type: Boolean, default: false },
     mobile: { type: String },
     home: { type: String },
@@ -21,4 +21,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.user || mongoose.model("user", userSchema);
+const UserModel = models.user || mongoose.model("user", userSchema);
+
+export default UserModel;

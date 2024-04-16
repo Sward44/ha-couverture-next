@@ -1,14 +1,14 @@
 "server only";
 import connect from "@/utils/mongodb";
-import Page from "@/models/page";
-import SousPage from "@/models/sousPage";
-import Meta from "@/models/meta";
+import { PageModel, SousPageModel, MetaModel } from "@/models";
 import PageAnnexes from "@/components/main/PageAnnexes";
 import styles from "@/app/(activites)/activites.module.scss";
 
 export async function generateMetadata() {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_CHAR }).exec();
+  const data = await MetaModel.findOne({
+    _id: process.env.META_ID_CHAR,
+  }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -28,12 +28,12 @@ export async function generateMetadata() {
 
 export default async function charpentePage() {
   await connect();
-  const Data = await Page.findOne({
+  const Data = await PageModel.findOne({
     _id: process.env.PAGE_ID_CHAR,
   })
     .lean()
     .exec();
-  const DataPage = await SousPage.find({
+  const DataPage = await SousPageModel.find({
     _pageId: process.env.PAGE_ID_CHAR,
   })
     .lean()

@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const pageSchema = new Schema([
   {
@@ -15,4 +13,6 @@ const pageSchema = new Schema([
   },
 ]);
 
-export default mongoose.models.page || mongoose.model("page", pageSchema);
+const PageModel = models.page || mongoose.model("page", pageSchema);
+
+export default PageModel;

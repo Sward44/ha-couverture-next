@@ -4,12 +4,12 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import styles from "@/components/main/connexion/Connexion.module.scss";
 
-function GoogleLogin({ handleLoading }) {
+function GoogleLogin() {
   return (
     <button
       className={`${styles.google} ${styles.positionPiedPage} ${styles.formatButton}`}
       onClick={() => {
-        signIn("google"), handleLoading;
+        signIn("google");
       }}
     >
       <Image

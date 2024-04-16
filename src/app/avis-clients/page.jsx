@@ -1,12 +1,13 @@
 import connect from "@/utils/mongodb";
-import Meta from "@/models/meta";
-import Page from "@/models/page";
+import { MetaModel, PageModel } from "@/models";
 import AvisClient from "@/components/main/avis-clients/AvisClient";
 import styles from "@/app/avis-clients/avisClients.module.scss";
 
 export async function generateMetadata() {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_AVIS }).exec();
+  const data = await MetaModel.findOne({
+    _id: process.env.META_ID_AVIS,
+  }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -26,7 +27,7 @@ export async function generateMetadata() {
 
 async function avisClients() {
   await connect();
-  const Data = await Page.findOne({
+  const Data = await PageModel.findOne({
     _id: process.env.PAGE_ID_AVIS,
   })
     .lean()

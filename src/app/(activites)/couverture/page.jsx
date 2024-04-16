@@ -1,13 +1,13 @@
 import connect from "@/utils/mongodb";
-import Meta from "@/models/meta";
-import Page from "@/models/page";
-import SousPage from "@/models/sousPage";
+import { MetaModel, PageModel, SousPageModel } from "@/models";
 import PageCouverture from "@/components/main/PageAnnexes";
 import styles from "@/app/(activites)/activites.module.scss";
 
 export const generateMetadata = async () => {
   await connect();
-  const data = await Meta.findOne({ _id: process.env.META_ID_COUV }).exec();
+  const data = await MetaModel.findOne({
+    _id: process.env.META_ID_COUV,
+  }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -27,12 +27,12 @@ export const generateMetadata = async () => {
 
 export default async function couverturePage() {
   await connect();
-  const Data = await Page.findOne({
+  const Data = await PageModel.findOne({
     _id: process.env.PAGE_ID_COUV,
   })
     .lean()
     .exec();
-  const DataPage = await SousPage.find({
+  const DataPage = await SousPageModel.find({
     _pageId: process.env.PAGE_ID_COUV,
   })
     .lean()

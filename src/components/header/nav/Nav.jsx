@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSession } from "next-auth/react";
+// import { redirect, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +10,7 @@ import { useViewport } from "@/hooks/viewPort";
 import {
   faPhone,
   faRightToBracket,
+  faUser,
   faA,
   faB,
   faC,
@@ -36,21 +38,40 @@ import {
   faY,
   faZ,
 } from "@fortawesome/free-solid-svg-icons";
+import NavMenuUser from "@/user/NavMenuUser";
+import couverture from "@/components/img/home/couverture.svg";
+import zinguerie from "@/components/img/home/zinguerie.svg";
+import nettoyage from "@/components/img/home/nettoyage.svg";
+import isolation from "@/components/img/home/isolation.svg";
+import charpente from "@/components/img/home/charpente.svg";
+import travauxDivers from "@/components/img/home/travaux-divers.svg";
 import styles from "@/components/header/nav/Nav.module.scss";
 
 function Nav() {
   const { isMobile } = useViewport();
   const [showMenu, setShowMenu] = useState(false);
   const ref = useRef(null);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  // function handleShowMenuUser(e) {
+  //   e.preventDefault();
+  //   if (status === "unauthenticated" && usePathname() !== "/signin") {
+  //     const path = usePathname();
+  //       redirect("/signin?callbackUrl=" + path)}
+  //   }
+  // }
+  const handleShowMenu = (e) => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  };
 
   return (
     <div className={` ${isMobile ? "" : "m-20"} ${styles.header}`}>
       <div className={`${styles.linkNav}`}>
         <div
           className={`mr-20 ${styles.link}`}
-          onMouseEnter={() => setShowMenu(true)}
-          onMouseLeave={() => setShowMenu(false)}
+          onMouseEnter={handleShowMenu}
+          onMouseLeave={handleShowMenu}
         >
           Activités
           <CSSTransition
@@ -71,31 +92,73 @@ function Nav() {
               <ul>
                 <li style={{ padding: "10px 20px" }}>
                   <Link href="/couverture" className={styles.link}>
+                    <Image
+                      src={couverture}
+                      alt={"Illustration d'un toit imagé"}
+                      width={30}
+                      height={18}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Couverture
                   </Link>
                 </li>
                 <li style={{ padding: "0 20px 10px" }}>
                   <Link href="/zinguerie" className={styles.link}>
+                    <Image
+                      src={zinguerie}
+                      alt={"Illustration d'une goutière imagée"}
+                      width={30}
+                      height={17}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Zinguerie
                   </Link>
                 </li>
                 <li style={{ padding: "0 20px 10px" }}>
                   <Link href="/nettoyage" className={styles.link}>
+                    <Image
+                      src={nettoyage}
+                      alt={"Illustration d'un nettoyage de maison imagée"}
+                      width={30}
+                      height={18}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Nettoyage
                   </Link>
                 </li>
                 <li style={{ padding: "0 20px 10px" }}>
                   <Link href="/isolation" className={styles.link}>
+                    <Image
+                      src={isolation}
+                      alt={"Illustration d'une isolation de toit imagée"}
+                      width={30}
+                      height={18}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Isolation
                   </Link>
                 </li>
                 <li style={{ padding: "0 20px 10px" }}>
                   <Link href="/charpente" className={styles.link}>
+                    <Image
+                      src={charpente}
+                      alt={"Illustaion d'une charpente imagée"}
+                      width={30}
+                      height={18}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Charpente
                   </Link>
                 </li>
                 <li style={{ padding: "0 20px 10px" }}>
                   <Link href="/travaux-divers" className={styles.link}>
+                    <Image
+                      src={travauxDivers}
+                      alt={"Illustration de travaux divers imagée"}
+                      width={28}
+                      height={18}
+                      style={{ marginRight: "0.5rem" }}
+                    />
                     Travaux-divers
                   </Link>
                 </li>
@@ -118,6 +181,8 @@ function Nav() {
       </a>
 
       {session ? (
+        <NavMenuUser />
+      ) : (
         <Link href="/signin">
           <button>
             <FontAwesomeIcon
@@ -127,14 +192,6 @@ function Nav() {
             />
           </button>
         </Link>
-      ) : (
-        <button>
-          {session?.user?.image ? (
-            <Image src={session.user.image} alt={session.user.name} fill />
-          ) : (
-            <FontAwesomeIcon icon={faD} size="2x" />
-          )}
-        </button>
       )}
     </div>
   );

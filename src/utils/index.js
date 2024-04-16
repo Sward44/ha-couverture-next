@@ -1,30 +1,70 @@
-// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
-import { MongoClient } from "mongodb";
+import * as joseJwt from "jose"
+import { nanoid } from "nanoid"
+import CryptoJS from "crypto-js"
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
+export const signJwtToken = async(payload) => {
+    const privateKey = process.env.ACCESS_TOKEN_PRIVATE_KEY
+    const expiresIn = "5m"
+    const token = await new joseJwt.SignJWT(payload)
+    .setProtectedHeader({alg: "HS256"})
+    .setJti(nanoid())
+    .setIssuedAt()
+    .setExpirationTime(expiresIn)
+    .sign(new TextEncoder().encode(privateKey))
+    return token
 }
 
-const uri = process.env.MONGODB_URI;
-const options = {};
-
-let client;
-let clientPromise;
-
-if (process.env.NODE_ENV === "development") {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    global._mongoClientPromise = client.connect();
-  }
-  clientPromise = global._mongoClientPromise;
-} else {
-  // In production mode, it's best to not use a global variable.
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+export const verifyJwtToken = async(token) => {
+    try {
+        const privateKey = process.env.ACCESS_TOKEN_PRIVATE_KEY
+        const result = await joseJwt.jwtVerify(token, new TextEncoder().encode(privateKey))
+        return {data: result.payload, isError: false, message: "success" }
+    } catch (error) {
+        return { data: null, isError: true, message:error.message }
+    }
 }
 
-// Export a module-scoped MongoClient promise. By doing this in a
-// separate module, the client can be shared across functions.
-export default clientPromise;
+export const decodeJwtToken = (token) => {
+    try {
+        const payload = joseJwt.decodeJwt(token)
+        return {data: payload, isError: false, message: "success" }
+    } catch (error) {
+        return { data: null, isError: true, message:error.message }
+    }
+}
+
+export const encryptString = (str) => {
+    const secretKey = CryptoJS.enc.Utf8.parse(process.env.CRYPTO_ENCRYPTION_KEY)
+    const iv = CryptoJS.enc.Utf8.parse(process.env.CRYPTO_IV_KEY)
+    const encrypted = CryptoJS.AES.encrypt(str, secretKey, {iv})
+    const hexString = CryptoJS.enc.Hex.stringify(encrypted.ciphertext)
+    return hexString
+}
+
+export const decryptString = (hexString) => {
+    const secretKey = CryptoJS.enc.Utf8.parse(process.env.CRYPTO_ENCRYPTION_KEY)
+    const iv = CryptoJS.enc.Utf8.parse(process.env.CRYPTO_IV_KEY)
+    const ciphertext = CryptoJS.enc.Hex.parse(hexString)
+    const decrypted = CryptoJS.AES.decrypt({ciphertext}, secretKey, {iv}).toString(CryptoJS.enc.Utf8)
+    console.log("decrypted: ", decrypted)
+    return JSON.parse(decrypted)
+}
+
+export const checkUserRole =(role) => {
+    return {
+        isAdminRole: role === 'admin',
+        isUserRole: role === 'user',
+    }
+}
+
+export const formatDate = (date) => {
+    return new Intl.DateTimeFormat(undefined, { dateStyle: "short", timeStyle: "short", }).format(new Date(date))
+}
+
+export const getErrorMessage = (error) => {
+    let message = error.message
+    if(error?.response?.data){
+        message = error.response.data
+    }
+        return message
+}

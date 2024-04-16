@@ -1,29 +1,19 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
 import styles from "@/components/main/connexion/Connexion.module.scss";
 
-export default function EmailLogin({ handleLoading, callbackUrl }) {
+export default function EmailLogin() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    await fetch("/api/auth/route", {
-      method: "POST",
-      body: JSON.stringify({
-        email: formData.get("email"),
-        callbackUrl: callbackUrl,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      if (response.ok) {
-        signIn("nodemailer", { email, callbackUrl });
-      } else {
-        throw new Error("Failed to send email");
-      }
-    });
+    const email = formData.get("email");
+    signIn("hacouverture", { email });
   }
 
   return (
@@ -34,15 +24,15 @@ export default function EmailLogin({ handleLoading, callbackUrl }) {
           id="email"
           type="email"
           name="email"
-          required
+          placeholder="votre-nom@exemple.com"
           autoComplete="email"
           className={`${styles.email} `}
+          required
         />
       </label>
       <button
         type="submit"
         className={`${styles.envoie} ${styles.positionPiedPage} ${styles.formatButton}`}
-        // onClick={handleLoading}
       >
         <Image
           src={Favicon}

@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema } = mongoose;
+import mongoose, { Schema, models } from "mongoose";
 
 const sousPageSchema = new Schema([
   {
@@ -14,5 +12,6 @@ const sousPageSchema = new Schema([
   },
 ]);
 
-export default mongoose.models.souspage ||
-  mongoose.model("souspage", sousPageSchema);
+const SousPage = models.souspage || mongoose.model("souspage", sousPageSchema);
+
+export default SousPage;

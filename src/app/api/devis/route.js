@@ -1,17 +1,16 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/mongodb";
-import User from "@/models/user";
-import Devis from "@/models/devis";
+import { UserModel, DevisModel } from "@/models";
 import email from "@/email/devis/email";
 
 export const POST = async (request) => {
   const body = await request.json();
   try {
     await connect();
-    let existingUser = await User.findOne({ email: body.email }).exec();
+    let existingUser = await UserModel.findOne({ email: body.email }).exec();
     let newDevis;
     if (!existingUser) {
-      existingUser = new User({
+      existingUser = new UserModel({
         name: body.surname,
         surname: body.name,
         email: body.email,
@@ -19,7 +18,7 @@ export const POST = async (request) => {
       });
       await existingUser.save();
 
-      newDevis = new Devis({
+      newDevis = new DevisModel({
         user: existingUser._id,
         body: body.comments,
       });
@@ -45,7 +44,7 @@ export const POST = async (request) => {
         body.name.length !== 0 &&
         existingUser.surnname !== body.name
       ) {
-        await User.updateOne(
+        await UserModel.updateOne(
           { email: body.email },
           { $set: { surname: body.name } }
         );
@@ -55,7 +54,7 @@ export const POST = async (request) => {
         body.surname.length !== 0 &&
         existingUser.name !== body.surname
       ) {
-        await User.updateOne(
+        await UserModel.updateOne(
           { email: body.email },
           { $set: { name: body.surname } }
         );
@@ -65,7 +64,7 @@ export const POST = async (request) => {
         body.number.length !== 0 &&
         existingUser.phone !== body.number
       ) {
-        await User.updateOne(
+        await UserModel.updateOne(
           { email: body.email },
           { $set: { phone: body.number } }
         );
