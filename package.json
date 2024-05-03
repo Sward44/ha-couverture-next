@@ -20,14 +20,10 @@
     "@types/mongoose": "^5.11.97",
     "@types/nodemailer": "^6.4.14",
     "@types/react-transition-group": "^4.4.10",
-    "bcrypt": "^5.1.1",
-    "crypto-js": "^4.2.0",
     "googleapis": "^134.0.0",
-    "jose": "^5.2.4",
     "mongod": "^2.0.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.1.1",
-    "nanoid": "^5.0.7",
     "next": "^14.1.2",
     "next-auth": "^4.24.7",
     "nodemailer": "^6.9.9",
@@ -39,9 +35,7 @@
     "react-transition-group": "^4.4.5",
     "sass": "^1.70.0",
     "sharp": "^0.33.2",
-    "slugify": "^1.6.6",
-    "yup": "^1.3.3",
-    "zod": "^3.22.4"
+    "yup": "^1.3.3"
   },
   "devDependencies": {
     "eslint": "^8",

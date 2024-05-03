@@ -9,7 +9,9 @@ export default function EmailLogin() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");
-    signIn("hacouverture", { email });
+    signIn("hacouverture", {
+      email,
+    });
   }
 
   return (

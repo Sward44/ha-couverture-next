@@ -10,21 +10,30 @@ const authOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-      profile(profile, account) {
-        console.log("Profile Google :", profile, "Account Google :", account);
+      profile(profile) {
+        let userRole = "user";
+        if (
+          profile?.email === "davidlaunay567@gmail.com" ||
+          profile?.email === "ha.couverture44@gmail.com"
+        ) {
+          userRole = "admin";
+        }
         return {
           id: profile.sub,
-          name: profile.name,
           email: profile.email,
+          name: profile.name,
+          firstName: profile.given_name,
+          lastName: profile.family_name,
           image: profile.picture,
-          role: profile.role ?? "user",
+          role: userRole,
         };
       },
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
     {
       id: "hacouverture",
+      name: "Email",
       type: "email",
       sendVerificationRequest,
     },
@@ -35,29 +44,56 @@ const authOptions = {
   },
 
   callbacks: {
-    async session({ session, token, user }) {
-      console.log("Session :", session, "Token :", token, "User :", user);
-      session.user.role = token.role;
-      return session;
-    },
-    async jwt({ token, user, trigger, session }) {
+    async signIn(user, account, email, profile) {
       console.log(
-        "Token :",
-        token,
-        "User :",
+        "Account signIn : ",
+        user.account,
+        "Profile signIn : ",
+        profile,
+        "User signIn : ",
         user,
-        "Trigger :",
-        trigger,
-        "Session :",
-        session
+        "User signIn Email before : ",
+        user.user.email,
+        "Email signIn before : ",
+        email
       );
-      if (user) {
-        token.role = user.role;
+      if (user.account.provider === "hacouverture") {
+        user = {
+          ...user,
+          role:
+            user.user.email === "davidlaunay567@gmail.com" ||
+            user.user.email === "ha.couverture44@gmail.com"
+              ? "admin"
+              : "user",
+          image: null,
+        };
+        console.log("User signIn Email after : ", user);
+      } else if (account.provider === "google") {
+        user = {
+          ...user,
+          id: profile.id,
+          email: profile.email,
+          image: profile.picture,
+          role: profile.role,
+        };
+        console.log("User signIn Google after : ", user);
       }
-      if (trigger === "update" && session?.name) {
-        token.name = session.name;
+      return user;
+    },
+    async jwt({ token, user, account }) {
+      console.log("User JWT before : ", user);
+      console.log("Account JWT before: ", account);
+      if (user) {
+        token.image = user.image;
+        token.role = user.role;
+        console.log("User JWT after : ", user);
       }
       return token;
+    },
+    async session({ session, token }) {
+      if (session?.user) session.user.image = token.image;
+      session.user.role = token.role;
+      return session;
     },
   },
 };

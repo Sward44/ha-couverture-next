@@ -44,7 +44,7 @@ function Connexion({ itemDataCouverture }) {
         )}
         <div className={styles.containerFormulaire}>
           <EmailLogin />
-          {/* <div
+          <div
             className={`${styles.or} ${styles.positionPiedPage} ${styles.formatButton}`}
             style={{ margin: "8rem 0" }}
           >
@@ -52,7 +52,7 @@ function Connexion({ itemDataCouverture }) {
             <h3>&nbsp;&nbsp;&nbsp;&nbsp;OU&nbsp;&nbsp;&nbsp;&nbsp;</h3>
             <hr style={{ width: "100%", margin: "0" }} />
           </div>
-          <GoogleLogin /> */}
+          <GoogleLogin />
         </div>
       </div>
     </>

@@ -53,13 +53,6 @@ function Nav() {
   const ref = useRef(null);
   const { data: session, status } = useSession();
 
-  // function handleShowMenuUser(e) {
-  //   e.preventDefault();
-  //   if (status === "unauthenticated" && usePathname() !== "/signin") {
-  //     const path = usePathname();
-  //       redirect("/signin?callbackUrl=" + path)}
-  //   }
-  // }
   const handleShowMenu = (e) => {
     e.stopPropagation();
     setShowMenu(!showMenu);

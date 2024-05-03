@@ -15,8 +15,7 @@ import styles from "@/user/NavMenuUser.module.scss";
 const NavMenuUser = () => {
   const [showMenuUser, setShowMenuUser] = useState(false);
   const ref = useRef(null);
-  const { data: session } = useSession();
-
+  const { data: session, status } = useSession();
   const handleShowMenuUser = (e) => {
     e.stopPropagation();
     setShowMenuUser(!showMenuUser);
@@ -29,7 +28,7 @@ const NavMenuUser = () => {
     >
       <button className={styles.image}>
         {session?.user?.image ? (
-          <Image src={session?.user?.image} alt={session.user.name} fill />
+          <Image src={session.user.image} alt={session?.user?.name} fill />
         ) : (
           <FontAwesomeIcon icon={faUser} size="2x" />
         )}
@@ -54,7 +53,7 @@ const NavMenuUser = () => {
               <div className={styles.linkBlock}>
                 {session?.user?.image ? (
                   <Image
-                    src={`${session?.user?.image}`}
+                    src={session.user.image}
                     alt={session?.user?.name}
                     width={32}
                     height={32}
@@ -73,6 +72,7 @@ const NavMenuUser = () => {
                     {session?.user?.name ? session.user.name : "Utilisateur"}
                   </p>
                   <p className={styles.email}>{session.user.email}</p>
+                  <p className={styles.email}>{session.user.role}</p>
                 </div>
               </div>
             </li>
