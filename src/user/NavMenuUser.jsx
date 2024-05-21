@@ -10,7 +10,6 @@ import {
   faUserGear,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "@/user/NavMenuUser.module.scss";
 
 const NavMenuUser = () => {
   const [showMenuUser, setShowMenuUser] = useState(false);
@@ -22,11 +21,11 @@ const NavMenuUser = () => {
   };
   return (
     <div
-      className={styles.link}
+      className=""
       onMouseEnter={handleShowMenuUser}
       onMouseLeave={handleShowMenuUser}
     >
-      <button className={styles.image}>
+      <button className="">
         {session?.user?.image ? (
           <Image src={session.user.image} alt={session?.user?.name} fill />
         ) : (
@@ -38,19 +37,12 @@ const NavMenuUser = () => {
         in={showMenuUser}
         timeout={{ enter: 400, exit: 400 }}
         unmountOnExit
-        classNames={{
-          enter: styles["enter"],
-          enterActive: styles["enterActive"],
-          enterDone: styles["enterDone"],
-          exit: styles["exit"],
-          exitActive: styles["exitActive"],
-          exitDone: styles["exitDone"],
-        }}
+        classNames=""
       >
-        <div ref={ref} className={styles.menu}>
+        <div ref={ref} className="">
           <ul>
             <li style={{ padding: "10px 20px" }}>
-              <div className={styles.linkBlock}>
+              <div className="">
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}
@@ -67,17 +59,17 @@ const NavMenuUser = () => {
                     style={{ marginRight: "1rem" }}
                   />
                 )}
-                <div className={styles.linkName}>
-                  <p className={styles.user}>
+                <div className="">
+                  <p className="">
                     {session?.user?.name ? session.user.name : "Utilisateur"}
                   </p>
-                  <p className={styles.email}>{session.user.email}</p>
-                  <p className={styles.email}>{session.user.role}</p>
+                  <p className="">{session.user.email}</p>
+                  <p className="">{session.user.role}</p>
                 </div>
               </div>
             </li>
             <li style={{ padding: "0 20px 10px" }}>
-              <Link href="/couverture" className={styles.link}>
+              <Link href="/couverture" className="">
                 <FontAwesomeIcon
                   icon={faUserGear}
                   color="#000000"
@@ -87,7 +79,7 @@ const NavMenuUser = () => {
               </Link>
             </li>
             <li style={{ padding: "0 20px 10px" }}>
-              <span onClick={() => signOut()} className={styles.link}>
+              <span onClick={() => signOut()} className="">
                 <FontAwesomeIcon
                   icon={faRightFromBracket}
                   color="#000000"

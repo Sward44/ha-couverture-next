@@ -3,15 +3,15 @@ import mongoose, { Schema, models } from "mongoose";
 const userSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
+    phone: { type: String, unique: true}, 
     name: { type: String },
     firstName: { type: String },
     lastName: { type: String },
     image: { type: String },
     role: { type: String, default: "user" },
-    emailVerified: { type: Date, default: false },
+    emailVerified: { type: Date, default: null },
     // enterprise: { type: String },
-    // done: { type: Boolean, default: false },
-    // mobile: { type: String },
+    // done: { type: Boolean, default: false },,
     // home: { type: String },
     // adress: { type: String },
     // code_postale: { type: String },

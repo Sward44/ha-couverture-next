@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import ImageDiaporama from "./image/ImageDiaporama";
-import Texte from "./texte/Texte";
-import ImageButton from "./button/ImageButton";
-import FormAdd from "../form/FormAdd";
+import ImageDiaporama from "@/components/home/image/ImageDiaporama";
+import Texte from "@/components/home/texte/Texte";
+import ImageButton from "@/components/home/button/ImageButton";
+import FormAdd from "@/components/form/FormAdd";
+import SvgMap from "@/components/logo/MappageLogo";
 
 function ComponentsHomePage({ itemData }) {
   const [direction, setDirection] = useState("imageGauche");
@@ -46,9 +47,24 @@ function ComponentsHomePage({ itemData }) {
     setAddForm(!addForm);
   }
 
+  let svgName = itemData[index].url.slice(
+    itemData[index].url.lastIndexOf("/") + 1
+  );
+  if (svgName === "travaux-divers")
+    svgName = svgName.slice(0, svgName.lastIndexOf("-"));
+
+  const SvgComponent = SvgMap[svgName];
+
+  if (!SvgComponent) return null;
+
   return (
-    <>
-      <Texte itemData={itemData} index={index} handleForm={handleForm} />
+    <div>
+      <Texte
+        itemData={itemData}
+        index={index}
+        handleForm={handleForm}
+        SvgComponent={SvgComponent}
+      />
       <ImageButton
         itemData={itemData}
         index={index}
@@ -69,7 +85,7 @@ function ComponentsHomePage({ itemData }) {
         </CSSTransition>
       </TransitionGroup>
       {addForm && <FormAdd handleForm={handleForm} />}
-    </>
+    </div>
   );
 }
 

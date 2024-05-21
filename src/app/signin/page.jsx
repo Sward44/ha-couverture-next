@@ -2,7 +2,7 @@
 import connect from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
 import Connexion from "@/components/main/connexion/Connexion";
-import styles from "@/app/avis-clients/avisClients.module.scss";
+import HeaderMain from "@/components/main/header/HeaderMain";
 
 export async function generateMetadata() {
   await connect();
@@ -48,8 +48,9 @@ export default async function connexion() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className={styles.container}>
-      <Connexion itemDataCouverture={itemDataCouverture} />
+    <div className="flex flex-col w-full min-h-screen">
+    <HeaderMain itemDataCouverture={itemDataCouverture} />
+      {/* <Connexion itemDataCouverture={itemDataCouverture} /> */}
     </div>
   );
 }

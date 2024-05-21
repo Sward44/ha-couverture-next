@@ -1,6 +1,14 @@
 "use client";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import {
+  Charpente,
+  Couverture,
+  Isolation,
+  Nettoyage,
+  Travaux,
+  Zinguerie,
+} from "@/components/logo/Logo";
 import { CSSTransition } from "react-transition-group";
 import styles from "./NavBurger.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +19,7 @@ function NavBurger({ handleBurger, burger }) {
   const ref = useRef(null);
 
   return (
-    <div className={styles.navBurger}>
+    <div className="flex justify-between text-xl">
       {burger ? (
         <div
           onClick={handleBurger}
@@ -20,7 +28,7 @@ function NavBurger({ handleBurger, burger }) {
           <span></span>
         </div>
       ) : (
-        <div onClick={handleBurger} className={styles.burger}>
+        <div onClick={handleBurger} className={`${styles.burger}`}>
           <span></span>
         </div>
       )}
@@ -29,95 +37,117 @@ function NavBurger({ handleBurger, burger }) {
         nodeRef={ref}
         unmountOnExit
         timeout={500}
-        classNames={styles}
+        classNames={{
+          enter: styles["enter"],
+          enterActive: styles["enterActive"],
+          enterDone: styles["enterDone"],
+          exit: styles["exit"],
+          exitActive: styles["exitActive"],
+          exitDone: styles["exitDone"],
+        }}
       >
-        <div ref={ref} className={styles.navigation}>
-          <div className={styles.marginAround}>
+        <div
+          ref={ref}
+          className="fixed z-60 top-0 left-0 w-full h-screen bg-neutral-950 opacity-90 text-neutral-100"
+        >
+          <div className="flex flex-col w-full absolute h-screen top-1/3 items-center text-bg-neutral-100">
             <div
-              className={styles.positionLink}
+              className="flex items-center min-w-48 pb-2"
               onClick={() => setAccordion(!accordion)}
             >
-              <h3>Activités</h3>
-              <FontAwesomeIcon
-                icon={faAngleDown}
-                size="lg"
-                color="white"
-                className={accordion ? styles.rotate : styles.rotate180}
-              />
+              <h3 className="">Activités</h3>
+              <div className="pl-2">
+                <FontAwesomeIcon
+                  icon={faAngleDown}
+                  className={`${
+                    accordion
+                      ? "flex self-center justify-center rotate-0 transition duration-300"
+                      : "flex self-center justify-center  rotate-180 transition duration-300"
+                  }`}
+                />
+              </div>
             </div>
             <ul
-              className={`${styles.accordion} ${
-                accordion ? styles.active : ""
+              className={`relative min-w-48 ${
+                accordion
+                  ? "transition-all duration-300 max-h-56 overflow-auto"
+                  : "transition-all duration-300 max-h-0 overflow-hidden"
               }`}
             >
               <li>
-                <Link
-                  href="/couverture"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Couverture</h3>
+                <Link href="/couverture" onClick={() => setBurger(false)}>
+                  <div className="flex pb-1">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Couverture />
+                    </div>
+                    <h3>Couverture</h3>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/zinguerie"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Zinguerie</h3>
+                <Link href="/zinguerie" onClick={() => setBurger(false)}>
+                  <div className="flex pb-1">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Zinguerie />
+                    </div>
+                    <h3>Zinguerie</h3>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/nettoyage"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Nettoyage</h3>
+                <Link href="/nettoyage" onClick={() => setBurger(false)}>
+                  <div className="flex pb-1">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Nettoyage />
+                    </div>
+                    <h3>Nettoyage</h3>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/isolation"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Isolation</h3>
+                <Link href="/isolation" onClick={() => setBurger(false)}>
+                  <div className="flex pb-1">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Isolation />
+                    </div>
+                    <h3>Isolation</h3>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/charpente"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Charpente</h3>
+                <Link href="/charpente" onClick={() => setBurger(false)}>
+                  <div className="flex pb-1">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Charpente />
+                    </div>
+                    <h3>Charpente</h3>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/travaux-divers"
-                  onClick={() => setBurger(false)}
-                  className={styles.positionLink}
-                >
-                  <h3>Travaux-divers</h3>
+                <Link href="/travaux-divers" onClick={() => setBurger(false)}>
+                  <div className="flex pb-2">
+                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                      <Travaux />
+                    </div>
+                    <h3>Travaux-divers</h3>
+                  </div>
                 </Link>
               </li>
             </ul>
             <Link
-              href="/"
+              href="/avis-clients"
               onClick={() => setBurger(false)}
-              className={`${styles.positionLink}`}
+              className="text-neutral-100 min-w-48 pb-2"
             >
-              <h3>Avis clients</h3>
+              <h3 className="">Avis clients</h3>
             </Link>
             <Link
-              href="/"
+              href="/blog"
               onClick={() => setBurger(false)}
-              className={`${styles.positionLink}`}
+              className="text-neutral-100 min-w-48"
             >
-              <h3>Blogs</h3>
+              <h3 className="">Blogs</h3>
             </Link>
           </div>
         </div>

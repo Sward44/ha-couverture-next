@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useViewport } from "@/hooks/viewPort";
 import Nav from "@/components/header/nav/Nav";
 import NavBurger from "@/components/header/nav/NavBurger";
+import { Logo, LogoMobile } from "@/components/logo/Logo";
 import styles from "@/components/header/Header.module.scss";
-import Logo from "@/components/logo/Logo";
-import LogoMobile from "@/components/logo/LogoMobile";
 
 function Header() {
   const { isMobile, isTablet } = useViewport();
@@ -38,27 +37,28 @@ function Header() {
   return (
     <>
       <header
-        className={`${styles.header} ${
-          !visible && !burger ? styles.hidden : ""
+        className={`2xl:px-16 lg:px-8 md:px-4 md:py-2 shadow-ha fixed flex  w-full z-20 bg-neutral-100 transition-transform duration-300 ${
+          !visible && !burger ? styles.maskBarreNavigation : ""
         }`}
       >
         {isMobile || isTablet ? (
-          <div className={styles.entete}>
+          <div className="flex w-full justify-between items-center px-3 py-2">
             <Link href="/">
-              <LogoMobile />
+              <div className="h-14 w-14">
+                <LogoMobile />
+              </div>
             </Link>
-            <h3 style={{ fontFamily: "var(--font-chonburi)" }}>
-              HA COUVERTURE
-            </h3>
+            <h3 className="font-serif text-xl font-bold">HA COUVERTURE</h3>
             <NavBurger handleBurger={handleBurger} burger={burger} />
           </div>
         ) : (
-          <>
-            <Link href="/" className={styles.logo}>
+          <Link href="/" className="flex items-center justify-between w-full">
+            <div className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
               <Logo />
-            </Link>
+            </div>
+
             <Nav />
-          </>
+          </Link>
         )}
       </header>
     </>

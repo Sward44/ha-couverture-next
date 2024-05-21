@@ -1,7 +1,7 @@
 import connect from "@/utils/mongodb";
 import { MetaModel, PageModel, SousPageModel } from "@/models";
-import PageCouverture from "@/components/main/PageAnnexes";
-import styles from "@/app/(activites)/activites.module.scss";
+import HeaderMain from "@/components/main/header/HeaderMain";
+import Activites from "@/components/main/activites/Activites";
 
 export const generateMetadata = async () => {
   await connect();
@@ -52,8 +52,9 @@ export default async function couverturePage() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className={styles.container}>
-      <PageCouverture itemDataCouverture={itemDataCouverture} />
+    <div className="flex flex-col w-full min-h-screen">
+       <HeaderMain itemDataCouverture={itemDataCouverture} />
+      <Activites itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }

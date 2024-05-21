@@ -1,9 +1,8 @@
 import Image from "next/image";
-import styles from "./ImageDiaporama.module.scss";
 
 const ImageDiaporama = ({ itemData, index }) => {
   return (
-    <div className={styles.format}>
+    <div className="relative h-screen w-full min-h-[600px]">
       <Image
         index={index}
         src={require(`../../${itemData[index].urlWebp}`).default}
@@ -15,6 +14,7 @@ const ImageDiaporama = ({ itemData, index }) => {
         }}
         priority
         quality={60}
+        className="brightness-[0.5]"
       />
     </div>
   );

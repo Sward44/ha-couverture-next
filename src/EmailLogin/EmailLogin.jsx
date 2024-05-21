@@ -2,7 +2,6 @@
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
-import styles from "@/components/main/connexion/Connexion.module.scss";
 
 export default function EmailLogin() {
   async function handleSubmit(event) {

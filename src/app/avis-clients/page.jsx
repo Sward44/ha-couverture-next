@@ -1,7 +1,6 @@
 import connect from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
-import AvisClient from "@/components/main/avis-clients/AvisClient";
-import styles from "@/app/avis-clients/avisClients.module.scss";
+import HeaderMain from "@/components/main/header/HeaderMain";
 
 export async function generateMetadata() {
   await connect();
@@ -47,8 +46,8 @@ async function avisClients() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className={styles.container}>
-      <AvisClient itemDataCouverture={itemDataCouverture} />
+    <div className="flex flex-col w-full min-h-screen">
+      <HeaderMain itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }

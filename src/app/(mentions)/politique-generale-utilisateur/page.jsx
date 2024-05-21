@@ -1,12 +1,11 @@
-import CGU from "@/components/main/mentionslegales/CGU";
-import styles from "@/app/(mentions)/politique-generale-utilisateur/page.module.scss";
+"use server";
+import Conditions from "@/components/main/mentionslegales/Conditions";
+import { itemDataConditionGenerales } from "@/components/dictonnaries/DataDiaporama";
 
-function ConditionGenerale() {
+
+export default async function ConditionGenerale() {
   return (
-    <div className={styles.container}>
-      <CGU />
-    </div>
+    <Conditions itemData={itemDataConditionGenerales} />
   );
 }
 
-export default ConditionGenerale;

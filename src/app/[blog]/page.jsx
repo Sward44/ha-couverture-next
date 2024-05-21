@@ -1,8 +1,5 @@
-import React from "react";
-import styles from "@/app/[blog]/blogPage.module.scss";
+"use server"
 
-function blogPage() {
-  return <div className={styles.container}></div>;
+export default async function blogPage() {
+  return <div className="flex flex-col w-full min-h-screen"></div>;
 }
-
-export default blogPage;

@@ -1,12 +1,10 @@
-import PolitiqueConfidentialite from "@/components/main/mentionslegales/PolitiqueConfidentialite";
-import styles from "@/app/(mentions)/politique-confidentialite/page.module.scss";
+"use server";
+import Conditions from "@/components/main/mentionslegales/Conditions";
+import { itemDataPolitiqueConfidentialite } from "@/components/dictonnaries/DataDiaporama";
 
-function MentionLegales() {
+export default async function MentionLegales() {
   return (
-    <div className={styles.container}>
-      <PolitiqueConfidentialite />
-    </div>
+
+      <Conditions itemData={itemDataPolitiqueConfidentialite}/>
   );
 }
-
-export default MentionLegales;

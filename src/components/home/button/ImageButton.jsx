@@ -2,8 +2,7 @@
 import { useViewport } from "@/hooks/viewPort";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-import styles from "./ImageButton.module.scss";
+import SvgMap from "@/components/logo/MappageLogo";
 
 function ImageButton({
   itemData,
@@ -18,25 +17,50 @@ function ImageButton({
     <>
       {isMobile || isTablet ? null : (
         <>
-          <button onClick={handleNext} className={styles.buttonGauche}>
-            <FontAwesomeIcon icon={faAngleLeft} size="2xl" />
+          <button
+            onClick={handleNext}
+            className=" z-10 absolute top-1/2  left-16"
+          >
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className="text-neutral-100 md:size-10 lg:size-12 xl:size-14"
+            />
           </button>
-          <button onClick={handlePrev} className={styles.buttonDroite}>
-            <FontAwesomeIcon icon={faAngleRight} size="2xl" />
+          <button
+            onClick={handlePrev}
+            className="z-10 absolute top-1/2 right-16"
+          >
+            <FontAwesomeIcon
+              icon={faAngleRight}
+              className="text-neutral-100 md:size-10 lg:size-12 xl:size-14"
+            />
           </button>
         </>
       )}
 
-      <div className={styles.containeurButtonIcon}>
-        {itemData.map((i, indexButton) => (
-          <button
-            key={indexButton}
-            onClick={() => handleEveryImage(indexButton)}
-            className={`mr-10 ${index === indexButton && styles.shining}`}
-          >
-            <Image src={require(`../../${i.urlSvg}`)} alt={i.altSvg} />
-          </button>
-        ))}
+      <div className="absolute md:bottom-16 bottom-6 right-1/2 z-10 flex translate-x-1/2">
+        {itemData.map((i, indexButton) => {
+          let svgName = i.url.slice(i.url.lastIndexOf("/") + 1);
+          if (svgName === "travaux-divers")
+            svgName = svgName.slice(0, svgName.lastIndexOf("-"));
+
+          const SvgComponent = SvgMap[svgName];
+
+          if (!SvgComponent) return null;
+          return (
+            <button
+              key={indexButton}
+              onClick={() => handleEveryImage(indexButton)}
+              className={`mx-2 bg-neutral-300 rounded-lg md:hover:bg-supernova-500 md:hover:fill-mahogany-950 transition-all duration-300 md:hover:scale-105 md:hover:shadow-haDark ${
+                index === indexButton && "bg-supernova-500 fill-mahogany-950"
+              }`}
+            >
+              <div className="md:h-8 md:w-8 h-7 w-7">
+                <SvgComponent alt={i.altSvg} />
+              </div>
+            </button>
+          );
+        })}
       </div>
     </>
   );

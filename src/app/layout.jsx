@@ -1,7 +1,7 @@
+"use server";
 import connect from "@/utils/mongodb";
 import { MetaModel } from "@/models";
-import { mulish, chonburi } from "@/fonts/fonts";
-import "./globals.scss";
+import "@/app/globals.scss";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
@@ -41,7 +41,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body className={`${mulish.variable} ${chonburi.variable}`}>
+      <body>
         <AuthProvider>
           <Header />
           {children}

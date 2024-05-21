@@ -10,7 +10,7 @@ export const itemDataPolitiqueConfidentialite = [
         description: [
           "Nous collectons les informations personnelles suivantes lorsque vous utilisez nos services :",
         ],
-        intitule: ["Nom", "Adresse", "Numéro de téléphone", "Adresse e-mail"],
+        intitule: ["Nom ;", "Adresse ;", "Numéro de téléphone ;", "Adresse e-mail."],
       },
       {
         title: "2. Utilisation des Informations",
@@ -18,10 +18,10 @@ export const itemDataPolitiqueConfidentialite = [
           "Nous utilisons les informations collectées dans le but de :",
         ],
         intitule: [
-          "Fournir nos services et répondre à vos demandes",
-          "Améliorer nos services et personnaliser votre expérience",
-          "Communiquer avec vous, notamment pour vous informer sur les mises à jour, les promotions ou les événements",
-          "Collecter des avis clients afin d'améliorer la qualité de nos services",
+          "Fournir nos services et répondre à vos demandes ;",
+          "Améliorer nos services et personnaliser votre expérience ;",
+          "Communiquer avec vous, notamment pour vous informer sur les mises à jour, les promotions ou les événements ;",
+          "Collecter des avis clients afin d'améliorer la qualité de nos services.",
         ],
       },
       {
@@ -42,17 +42,16 @@ export const itemDataPolitiqueConfidentialite = [
         title: "5. Vos Droits",
         description: ["Vous avez le droit de :"],
         intitule: [
-          "Accéder à vos informations personnelles et les corriger si elles sont inexactes",
-          "Demander la suppression de vos informations personnelles",
-          "Vous opposer au traitement de vos informations personnelles",
-          "Demander la limitation du traitement de vos informations personnelles",
+          "Accéder à vos informations personnelles et les corriger si elles sont inexactes ;",
+          "Demander la suppression de vos informations personnelles ;",
+          "Vous opposer au traitement de vos informations personnelles ;",
+          "Demander la limitation du traitement de vos informations personnelles.",
         ],
       },
       {
         title: "6. Contactez-nous",
         description: [
-          "Si vous avez des questions concernant notre Politique de Confidentialité ou si vous souhaitez exercer vos droits en matière de protection des données, veuillez nous contacter à l'adresse suivante :",
-          `<div style='text-align:center;padding-bottom:1rem;cursor: pointer;'><a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>ha.couverture44@gmail.com</a></div>`,
+          <span key={1}>Si vous avez des questions concernant notre Politique de Confidentialit&#233; ou si vous souhaitez exercer vos droits en mati&#232;re de protection des donn&#233;es, veuillez nous contacter &#224; l&#39;adresse suivante : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300 ">ha.couverture44@gmail.com</a></span>,
           "Nous nous engageons à traiter toutes les demandes dans les meilleurs délais et dans le respect de la réglementation applicable en matière de protection des données.",
           "En utilisant nos services, vous consentez à la collecte et à l'utilisation de vos informations personnelles conformément à cette Politique de Confidentialité. Cette politique est sujette à modification, veuillez donc la consulter régulièrement pour vous tenir informé des mises à jour.",
         ],
@@ -75,8 +74,8 @@ export const itemDataConditionGenerales = [
           "L’édition et la direction de la publication du site buzz-ready.com est assurée par David LAUNAY, domicilié 2 impasse de la tonnelle 44640 Le Pellerin.",
         ],
         intitule: [
-          "Numéro de téléphone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>06 36 94 69 70</a>",
-          "Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' style='color:var(--text-dark);text-decoration: none'>davidlaunay567@gmail.com</a>",
+          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">06 36 94 69 70</a></span>,
+          <span key={2}>Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">davidlaunay567@gmail.com</a></span>,
         ],
       },
       {
@@ -85,7 +84,7 @@ export const itemDataConditionGenerales = [
           "L'hébergeur du site buzz-ready.com est la société OVH SAS, dont le siège social est situé au 2 rue Kellerman 59100 Roubaix",
         ],
         intitule: [
-          "Numéro de téléphone : <a href='tel:+33972101007' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>09 72 10 10 07</a>",
+          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33972101007' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">09 72 10 10 07</a></span>,
         ],
       },
       {
@@ -105,9 +104,9 @@ export const itemDataConditionGenerales = [
           "En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur exerce ce droit :",
         ],
         intitule: [
-          "par e-mail a cette adresse : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>ha.couverture44@gmail.com</a>",
+          <span key={1}>par e-mail a cette adresse : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">ha.couverture44@gmail.com</a></span>,
           "par voie postale à cette adresse : Impasse de Pontrigne 44860 Saint-Aignan-de-Grandlieu",
-          "par téléphone au : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' style='color:var(--text-dark);text-decoration: none'>06 34 26 64 00</a>",
+          <span key={3}>par t&#233;l&#233;phone au : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">06 34 26 64 00</a></span>,
         ],
       },
       {

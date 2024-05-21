@@ -1,7 +1,8 @@
 import connect from "@/utils/mongodb";
 import { PageModel, SousPageModel, MetaModel } from "@/models";
-import PageAnnexes from "@/components/main/PageAnnexes";
-import styles from "@/app/(activites)/activites.module.scss";
+import HeaderMain from "@/components/main/header/HeaderMain";
+import Activites from "@/components/main/activites/Activites";
+
 
 export const generateMetadata = async () => {
   await connect();
@@ -52,8 +53,9 @@ export default async function isolationPage() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className={styles.container}>
-      <PageAnnexes itemDataCouverture={itemDataCouverture} />
+    <div className="flex flex-col w-full min-h-screen">
+      <HeaderMain itemDataCouverture={itemDataCouverture} />
+      <Activites itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }
