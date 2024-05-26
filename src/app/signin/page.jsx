@@ -49,8 +49,8 @@ export default async function connexion() {
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
     <div className="flex flex-col w-full min-h-screen">
-    <HeaderMain itemDataCouverture={itemDataCouverture} />
-      {/* <Connexion itemDataCouverture={itemDataCouverture} /> */}
+      <HeaderMain itemDataCouverture={itemDataCouverture} />
+      <Connexion itemDataCouverture={itemDataCouverture} />
     </div>
   );
 }

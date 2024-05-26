@@ -1,8 +1,7 @@
 "use client";
 import { useViewport } from "@/hooks/viewPort";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import SvgMap from "@/components/logo/MappageLogo";
+import { AngleLeft, AngleRight } from "@/components/logo/Logo";
 
 function ImageButton({
   itemData,
@@ -21,19 +20,17 @@ function ImageButton({
             onClick={handleNext}
             className=" z-10 absolute top-1/2  left-16"
           >
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className="text-neutral-100 md:size-10 lg:size-12 xl:size-14"
-            />
+            <div className="fill-neutral-100 md:size-10 md:hover:fill-supernova-500 md:hover:scale-105 transition duration-300">
+              <AngleLeft />
+            </div>
           </button>
           <button
             onClick={handlePrev}
             className="z-10 absolute top-1/2 right-16"
           >
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="text-neutral-100 md:size-10 lg:size-12 xl:size-14"
-            />
+            <div className="fill-neutral-100 md:size-10 md:hover:fill-supernova-500 md:hover:scale-105 transition duration-300">
+              <AngleRight />
+            </div>
           </button>
         </>
       )}

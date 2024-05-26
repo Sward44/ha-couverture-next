@@ -1,23 +1,18 @@
 "use client";
 import React from "react";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
+import { Google } from "@/components/logo/Logo";
 
 
 function GoogleLogin() {
   return (
     <button
-      className=""
-      onClick={() => {
-        signIn("google");
-      }}
+    onClick={() => {
+      signIn("google");
+    }}
+    className=""
     >
-      <Image
-        src={require("@/components/img/header/google-svg-login.svg")}
-        alt="google"
-        width={20}
-        className=""
-      />
+      <Google />
       <h3 className="">Connexion avec Google</h3>
     </button>
   );

@@ -1,10 +1,36 @@
 "use client";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
-import Favicon from "@/components/img/header/ha-couverture-favicon.svg";
+import { LogoMobile } from "@/components/logo/Logo";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function EmailLogin() {
-  async function handleSubmit(event) {
+
+  const defaultvalues = {
+    email: "",
+  };
+
+  const schema = yup.object({
+    email: yup
+      .string()
+      .required("Email est demandé...")
+      .email("Votre email n'est pas conforme"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultvalues,
+    resolver: yupResolver(schema),
+  });
+
+  async function submit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = formData.get("email");
@@ -14,30 +40,29 @@ export default function EmailLogin() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <label className={styles.position}>
+    <form onSubmit={submit} className="flex flex-col">
+      <label>
         E-mail
+      </label>
         <input
           id="email"
           type="email"
           name="email"
           placeholder="votre-nom@exemple.com"
           autoComplete="email"
-          className={`${styles.email} `}
+          className={`px-4 py-2 border border-neutral-300 rounded-lg bg-neutral-50 ${errors?.firstName && "bg-red-50"}`} 
           required
         />
-      </label>
+      
       <button
         type="submit"
-        className={`${styles.envoie} ${styles.positionPiedPage} ${styles.formatButton}`}
+        className="flex bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
       >
-        <Image
-          src={Favicon}
-          alt="Présentation du bouton de connexion via Email"
-          width={30}
-          className={`mr-20 ${styles.formatImage}`}
-        />
-        <h3 className={styles.formatH3}>Connexion avec E-mail</h3>
+        <div className="size-6 mr-2">
+          <LogoMobile />
+        </div>
+          <h3 className="">Connexion avec E-mail</h3>
+        
       </button>
     </form>
   );

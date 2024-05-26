@@ -88,6 +88,37 @@ module.exports = {
         190: "190",
         200: "200",
       },
+      transitionDelay: {
+        3000: "3000ms",
+        10000: "10000ms",
+      },
+      keyframes: {
+        apparitionEcran: {
+          from: { backgroundColor: "rgba(10, 10, 10, 0)" },
+          to: { backgroundColor: "rgba(10, 10, 10, 0.6)" },
+        },
+        apparitionCard: {
+          from: { scale: "0.2" },
+          to:   { scale: "1" },
+        },
+        apparitionBanner: {
+          "0%"  : { transform: "translateY(110%)" },
+          "35%" : { transform: "translateY(-8%)" },
+          "60%" : { transform: "translateY(4%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        apparitionBannerMd: {
+          "0%"  : {transform: "translateX(-110%)"},
+          "35%" : {transform: "translateX(8%)"},
+          "60%" : {transform: "translateX(-4%)"},
+          "100%": {transform: "translateX(0)"}
+        },
+      },
+      animation: {
+        apparitionBanner: "apparitionBanner 0.6s ease",
+        apparitionBannerMd: "apparitionBannerMd 0.6s ease",
+        apparitionCard: "apparitionCard 0.6s ease",
+      },    
     },
     plugins: [],
   },

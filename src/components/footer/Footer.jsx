@@ -1,6 +1,6 @@
 "use server";
 import Link from "next/link";
-import { LogoMobile } from "@/components/logo/Logo";
+import { Facebook, LogoMobile, Send } from "@/components/logo/Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
@@ -22,12 +22,12 @@ async function Footer() {
           </div>
           <div className="max-w-80 sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:max-w-none lg:m-2 ">
             <h3 className="text-center sm:text-left font-bold text-lg mb-3">Notre support</h3>
-            <p className="mb-1">
+            <p className="mb-1  md:hover:text-supernova-500 transition-all duration-300">
               <Link href="/politique-confidentialite">
                 Politique de confidentialité
               </Link>
             </p>
-            <p className="mb-1">
+            <p className="mb-1  md:hover:text-supernova-500 transition-all duration-300">
               <Link href="/politique-generale-utilisateur">CGU</Link>
             </p>
           </div>
@@ -43,27 +43,26 @@ async function Footer() {
                 placeholder="Votre email"
                 className="my-2 py-2 px-4 w-full rounded-lg text-neutral-950"
               />
-              <FontAwesomeIcon
-                icon={faPaperPlane}
-                className=" absolute right-3 top-1/2 -translate-y-1/2 size-4 text-neutral-950"
-              />
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 size-4 fill-neutral-950">
+                <Send />
+              </div>
+        
             </div>
           </div>
           <div className="max-w-80  sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:max-w-none lg:m-2">
             <h3 className="font-bold text-lg mb-3 text-center sm:text-left">Rejoignez-nous</h3>
+            <div className="flex justify-center sm:justify-start">
             <a
               href="https://facebook.com/ha.couverture"
               target="_blank "
               rel="noopener noreferrer"
               alt="Lien vers Facebook"
             >
-              <div className="text-center sm:text-left">
-              <FontAwesomeIcon
-                icon={faSquareFacebook}
-                className="size-7"
-              />
+              <div className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300">
+                <Facebook />
               </div>
             </a>
+            </div>
           </div>
         </div>
       </div>
@@ -73,6 +72,7 @@ async function Footer() {
           href="https://david-launay.com"
           target="_blank "
           rel="noopener noreferrer"
+          className="md:hover:text-supernova-500 transition-all duration-300"
         >
           David Launay
         </a>

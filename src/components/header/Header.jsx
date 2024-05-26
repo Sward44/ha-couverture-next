@@ -10,8 +10,8 @@ import styles from "@/components/header/Header.module.scss";
 function Header() {
   const { isMobile, isTablet } = useViewport();
   const [burger, setBurger] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [login, setLogin] = useState(false);
 
   useEffect(() => {

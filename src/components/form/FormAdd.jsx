@@ -1,18 +1,12 @@
 "use client";
 import { useRef } from "react";
 import React, { useState } from "react";
-import styles from "./FormAdd.module.scss";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPaperPlane,
-  faSpinner,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { Loading, Mark, Send } from "../logo/Logo";
 
-function FormAdd({ handleForm }) {
+export default function FormAdd({ handleForm }) {
   const [isLoading, setIsLoading] = useState(false);
   const isFinish = useRef(false);
   const nameRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
@@ -83,7 +77,7 @@ function FormAdd({ handleForm }) {
   }
 
   return (
-    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen bg-neutral-950 bg-opacity-90 z-30   text-lg`}>
+    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen  z-30 text-lg  animate-[apparitionEcran_0.5s_ease_forwards]`}>
       {isFinish.current ? (
         <div className={`flex flex-col p-8 bg-neutral-300 `}>
           <div className="">
@@ -101,17 +95,14 @@ function FormAdd({ handleForm }) {
           </div>
         </div>
       ) : (
-        <div className={`flex flex-1 sm:flex-none flex-col p-20 mx-4 max-w-[480px] sm:max-w-none bg-neutral-100 rounded-xl ${styles.apparition}`}>
-          <form onSubmit={handleSubmit(submit)} className="grid  sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[50px_1fr_1fr_3fr_60px]
+        <div className="flex flex-1 sm:flex-none flex-col py-4 px-2 mx-4 max-w-[480px] sm:max-w-none bg-neutral-100 rounded-xl animate-[apparitionCard_0.5s_ease]">
+          <form onSubmit={handleSubmit(submit)} className="grid sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[50px_1fr_1fr_3fr_60px]
           grid-rows-[50px_1fr_1fr_1fr_1fr_3fr_60px]">
             <div className="flex justify-between sm:col-span-2 md:col-span-4">
               <h2 className="sm:pl-4 text-2xl font-bold">Devis</h2>
-              <FontAwesomeIcon
-                icon={faXmark}
-                onClick={handleForm}
-                size={"2xl"}
-                className="sm:pr-4"
-              />
+              <div onClick={handleForm} className="md:mr-4 size-6 md:hover:fill-mahogany-950 md:hover:scale-105 transition duration-300">
+                <Mark />
+              </div>
             </div>
 
             <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-4 sm:mb-6">
@@ -186,19 +177,18 @@ function FormAdd({ handleForm }) {
             </div>
             <div className="flex sm:col-span-2 md:col-start-2">
               <div className="flex flex-1 items-center justify-center">
-                <button disabled={isSubmitting} className=" bg-neutral-300 py-2 px-4 rounded-xl">
-                  <div className="flex ">
+                <button disabled={isSubmitting} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">
+                  <div className="flex flex-1 items-center">
                     <div className="mr-2">
-                      {isLoading ?  <FontAwesomeIcon
-                        icon={faSpinner}
-                        spinPulse
-                        className="size-4"
-                      /> :  <FontAwesomeIcon
-                        icon={faPaperPlane}
-                        className="size-4"
-                      /> }
-                      
-                      
+                      {isLoading ? 
+                        <div className="size-4 animate-spin">
+                          <Loading />
+                        </div>
+                       :  
+                        <div className="size-4">
+                          <Send />
+                        </div>
+                      } 
                     </div>
                     <h3 className="font-bold">Envoyer</h3>
                   </div>
@@ -211,5 +201,3 @@ function FormAdd({ handleForm }) {
     </div>
   );
 }
-
-export default FormAdd;

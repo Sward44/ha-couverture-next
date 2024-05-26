@@ -2,10 +2,11 @@
 import connect from "@/utils/mongodb";
 import { MetaModel } from "@/models";
 import "@/app/globals.scss";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import GoogleAnalytics from "@/components/analytics_google/GoogleAnalystics" ;
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import AuthProvider from "@/utils/SessionProvider";
+import CookieBanner from "@/components/banner/CookieBanner";
 
 export async function generateMetadata() {
   await connect();
@@ -41,14 +42,15 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   return (
     <html lang="fr">
+      <GoogleAnalytics GA_MEASUREMENT_ID="G-0NGBKPJP1N" />
       <body>
         <AuthProvider>
           <Header />
           {children}
           <Footer />
         </AuthProvider>
+        <CookieBanner />
       </body>
-      <GoogleAnalytics gaId="G-S1PS75LLG4" />
     </html>
   );
 }

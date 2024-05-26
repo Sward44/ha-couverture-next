@@ -67,12 +67,12 @@ const authOptions = {
         },
       },
     }),
-    // {
-    //   id: "hacouverture",
-    //   name: "Email",
-    //   type: "email",
-    //   sendVerificationRequest,
-    // },
+    {
+      id: "hacouverture",
+      name: "Email",
+      type: "email",
+      sendVerificationRequest,
+    },
   ],
   pages: {
     signIn: "/signin",

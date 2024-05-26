@@ -7,16 +7,16 @@ const userSchema = new Schema(
     name: { type: String },
     firstName: { type: String },
     lastName: { type: String },
+    enterprise: { type: String },
     image: { type: String },
+    password: { type: String },
     role: { type: String, default: "user" },
     emailVerified: { type: Date, default: null },
-    // enterprise: { type: String },
     // done: { type: Boolean, default: false },,
     // home: { type: String },
     // adress: { type: String },
     // code_postale: { type: String },
     // ville: { type: String },
-    // password: { type: String },
   }
   // { timestamps: true }
 );
