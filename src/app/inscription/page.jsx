@@ -1,16 +1,14 @@
-"server only";
+"use server";
 import {connect} from "@/utils/mongodb";
-import { PageModel, SousPageModel, MetaModel } from "@/models";
+import { MetaModel, PageModel } from "@/models";
+import Inscription from "@/components/main/inscription/Inscription";
 import HeaderMain from "@/components/main/header/HeaderMain";
-import Activites from "@/components/main/activites/Activites";
 
 export async function generateMetadata() {
   await connect();
   const data = await MetaModel.findOne({
-    _id: process.env.META_ID_CHAR,
-  })
-    .lean()
-    .exec();
+    _id: process.env.META_ID_INSC,
+  }).exec();
   return {
     title: data.title,
     description: data.description,
@@ -28,36 +26,28 @@ export async function generateMetadata() {
   };
 }
 
-export default async function charpentePage() {
+export default async function inscription() {
   await connect();
   const Data = await PageModel.findOne({
-    _id: process.env.PAGE_ID_CHAR,
-  })
-    .lean()
-    .exec();
-  const DataPage = await SousPageModel.find({
-    _pageId: process.env.PAGE_ID_CHAR,
+    _id: process.env.PAGE_ID_INSC,
   })
     .lean()
     .exec();
   const itemsData = {
     id: Data._id,
     title: Data.title,
-    description: DataPage,
+    // description: DataPage,
     urlWebp: Data.urlWebp,
     position: Data.position,
     altWebp: Data.altWebp,
     urlSvg: Data.urlSvg,
-    altSvg: Data.altSvg,
-    width: Data.width,
-    height: Data.height,
   };
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
     <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
       <HeaderMain itemDataCouverture={itemDataCouverture} />
-      <Activites itemDataCouverture={itemDataCouverture} />
+      <Inscription />
     </div>
   );
 }

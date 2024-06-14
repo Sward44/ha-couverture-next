@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const connect = async () => {
+export const connect = async () => {
   mongoose.Promise = global.Promise;
   if (mongoose.connections[0].readyState) return;
 
@@ -12,4 +12,3 @@ const connect = async () => {
   }
 };
 
-export default connect;

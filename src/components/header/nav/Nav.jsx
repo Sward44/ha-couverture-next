@@ -59,49 +59,49 @@ function Nav() {
               <ul className="">
                 <li className="group mx-2 px-2 mt-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/couverture" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Couverture />
-                    </div>
+                    </span>
                     <h2>Couverture</h2>
                   </Link>
                 </li>
                 <li className="group mx-2 px-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/zinguerie" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Zinguerie />
-                    </div>
+                    </span>
                     <h2>Zinguerie</h2>
                   </Link>
                 </li>
                 <li className="group mx-2 px-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/nettoyage" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Nettoyage />
-                    </div>
+                    </span>
                     <h2>Nettoyage</h2>
                   </Link>
                 </li>
                 <li className="group mx-2 px-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/isolation" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Isolation />
-                    </div>
+                    </span>
                     <h2>Isolation</h2>
                   </Link>
                 </li>
                 <li className="group mx-2 px-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/charpente" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Charpente />
-                    </div>
+                    </span>
                     <h2>Charpente</h2>
                   </Link>
                 </li>
                 <li className="group mx-2 px-2 mb-2 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
                   <Link href="/travaux-divers" className="flex items-center">
-                    <div className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <span className="size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
                       <Travaux />
-                    </div>
+                    </span>
                     <h2>Travaux-divers</h2>
                   </Link>
                 </li>
@@ -125,20 +125,20 @@ function Nav() {
             Blogs
           </h2>
         </Link>
-        {session ? (
+        {session && session.user ? (
           <NavMenuUser />
         ) : (
-          <Link href="/signin">
-            <div className="flex group justify-center items-center bg-neutral-300 rounded-xl w-10 h-10 hover:scale-105 hover:bg-supernova-500 transition-all duration-300 ">
-              <div className="flex size-6 fill-neutral-950 group-hover:fill-mahogany-950">
+          <Link href="/connexion">
+            <span className="flex group justify-center items-center bg-neutral-300 rounded-xl w-10 h-10 hover:scale-105 hover:bg-supernova-500 transition-all duration-300 hover:md:shadow-ha">
+              <span className="flex size-6 fill-neutral-950 group-hover:fill-mahogany-950">
                 <Login />
-              </div>
-            </div>
+              </span>
+            </span>
           </Link>
         )}
       </div>
       <a href="tel:+33634266400" target="_blank " rel="noopener noreferrer" >
-        <span className="absolute group flex flex-nowrap flex-row justify-start items-center overflow-x-hidden top-[20px] md:right-16 lg:right-20 2xl:right-[112px] bg-neutral-300 rounded-xl pl-2 min-h-10 w-10 hover:justify-start hover:scale-105 transition-all duration-500 hover:w-44 whitespace-nowrap hover:bg-supernova-500 hover:text-mahogany-950" >
+        <span className="absolute group flex flex-nowrap flex-row justify-start items-center overflow-x-hidden top-[20px] md:right-16 lg:right-20 2xl:right-[112px] bg-neutral-300 rounded-xl pl-2 min-h-10 w-10 hover:justify-start hover:scale-105 transition-all duration-500 hover:w-44 whitespace-nowrap hover:bg-supernova-500 hover:text-mahogany-950 hover:md:shadow-ha" >
           <span className="flex size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
             <Phone />
           </span>

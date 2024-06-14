@@ -43,19 +43,17 @@ function Header() {
       >
         {isMobile || isTablet ? (
           <div className="flex w-full justify-between items-center px-3 py-2">
-            <Link href="/">
-              <div className="h-14 w-14">
-                <LogoMobile />
-              </div>
+            <Link href="/" className="size-14">
+              <LogoMobile />
             </Link>
             <h3 className="font-serif text-xl font-bold">HA COUVERTURE</h3>
             <NavBurger handleBurger={handleBurger} burger={burger} />
           </div>
         ) : (
           <Link href="/" className="flex items-center justify-between w-full">
-            <div className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
+            <span className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
               <Logo />
-            </div>
+            </span>
 
             <Nav />
           </Link>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connect from "@/utils/mongodb";
+import { connect } from "@/utils/mongodb";
 import { UserModel, DevisModel } from "@/models";
 import email from "@/email/devis/email";
 

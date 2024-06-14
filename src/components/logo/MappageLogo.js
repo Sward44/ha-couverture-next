@@ -8,6 +8,7 @@ import {
   Travaux,
   AvisClients,
   Connexion,
+  Inscription,
 } from "@/components/logo/Logo";
 
 const SvgMap = {
@@ -19,6 +20,7 @@ const SvgMap = {
   travaux: Travaux,
   avisclients: AvisClients,
   connexion: Connexion,
+  inscription: Inscription,
 };
 
 export default SvgMap;

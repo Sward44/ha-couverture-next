@@ -1,8 +1,8 @@
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { sendVerificationRequest } from "@/email/sendVerificationRequest";
-import connect from "@/utils/mongodb";
-import { UserModel } from "@/models";
+import { connect } from "@/utils/mongodb";
+import { AccountModel, UserModel } from "@/models";
 import * as bcrypt from "bcrypt";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/utils/adapterMongoDb";
@@ -14,26 +14,33 @@ const authOptions = {
   },
   providers: [
     GoogleProvider({
-      profile(profile) {
-        let userRole = "user";
-        if (
-          profile?.email === "davidlaunay567@gmail.com" ||
-          profile?.email === "ha.couverture44@gmail.com"
-        ) {
-          userRole = "admin";
-        }
-        return {
-          id: profile.sub,
-          email: profile.email,
-          name: profile.name,
-          firstName: profile.given_name,
-          lastName: profile.family_name,
-          image: profile.picture,
-          role: userRole,
-        };
-      },
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
+      profile: async (user) => {
+        console.log("C'est GoogleProvider : ", user);
+        const role = user?.hasOwnProperty("role") ? user.role : "user";
+        const isVerifiedEmail = user?.hasOwnProperty("email_verified")
+          ? user?.email_verified
+          : true;
+        const image = user?.picture;
+        const createdAt = user?.hasOwnProperty("createdAt")
+          ? user?.createdAt
+          : new Date().toISOString();
+        const updatedAt = user?.hasOwnProperty("updatedAt")
+          ? user?.updatedAt
+          : new Date().toISOString();
+        const id = user?.id ? user?.id : user?.sub;
+        return {
+          id,
+          name: user?.name,
+          email: user?.email,
+          role,
+          isVerifiedEmail,
+          avatar,
+          createdAt,
+          updatedAt,
+        };
+      },
     }),
     CredentialsProvider({
       name: "Credidentials",
@@ -75,61 +82,51 @@ const authOptions = {
     },
   ],
   pages: {
-    signIn: "/signin",
+    signIn: "/connexion",
     error: "/error",
   },
 
   callbacks: {
-    async signIn(user, account, email, profile) {
-      console.log(
-        "Account signIn : ",
-        user.account,
-        "Profile signIn : ",
-        profile,
-        "User signIn : ",
-        user,
-        "User signIn Email before : ",
-        user.user.email,
-        "Email signIn before : ",
-        email
-      );
-      if (user.account.provider === "hacouverture") {
-        user = {
-          ...user,
-          role:
-            user.user.email === "davidlaunay567@gmail.com" ||
-            user.user.email === "ha.couverture44@gmail.com"
-              ? "admin"
-              : "user",
-          image: null,
-        };
-        console.log("User signIn Email after : ", user);
-      } else if (account.provider === "google") {
-        user = {
-          ...user,
-          id: profile.id,
-          email: profile.email,
-          image: profile.picture,
-          role: profile.role,
-        };
-        console.log("User signIn Google after : ", user);
+    async signIn(user, account, profile, email, credentials) {
+      return true;
+      },
+    async session({ session, token, user }) {
+      if (token) {
+        session.user = token?.user;
+        session.accessToken = token?.accessToken;
       }
-      return user;
+      return session;
     },
-    async jwt({ token, user, account }) {
-      console.log("User JWT before : ", user);
-      console.log("Account JWT before: ", account);
-      if (user) {
-        token.image = user.image;
-        token.role = user.role;
-        console.log("User JWT after : ", user);
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (token && user) {
+        const _user = {
+          id: user.id,
+          email: user.email,
+          role: user.role,
+          name: user.name,
+          avatar: user.avatar,
+        };
+        // create a fn generate access token
+        const accessToken = await generateAccessToken({
+          accessToken: token?.accessToken,
+          user: _user,
+          isRefresh: false,
+        });
+        token.user = _user;
+        token.accessToken = accessToken;
+      }
+      if (token && !user) {
+        const _user = token?.user;
+        // create a fn generate access token
+        const accessToken = await generateAccessToken({
+          accessToken: token?.accessToken,
+          user: _user,
+          isRefresh: true,
+        });
+        token.user = _user;
+        token.accessToken = accessToken;
       }
       return token;
-    },
-    async session({ session, token }) {
-      if (session?.user) session.user.image = token.image;
-      session.user.role = token.role;
-      return session;
     },
   },
 };

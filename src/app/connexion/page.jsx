@@ -1,5 +1,5 @@
 "use server";
-import connect from "@/utils/mongodb";
+import { connect } from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
 import Connexion from "@/components/main/connexion/Connexion";
 import HeaderMain from "@/components/main/header/HeaderMain";
@@ -41,14 +41,11 @@ export default async function connexion() {
     position: Data.position,
     altWebp: Data.altWebp,
     urlSvg: Data.urlSvg,
-    altSvg: Data.altSvg,
-    width: Data.width,
-    height: Data.height,
   };
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
       <HeaderMain itemDataCouverture={itemDataCouverture} />
       <Connexion itemDataCouverture={itemDataCouverture} />
     </div>

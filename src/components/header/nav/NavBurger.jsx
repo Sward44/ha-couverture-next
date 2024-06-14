@@ -76,62 +76,62 @@ function NavBurger({ handleBurger, burger }) {
             >
               <li>
                 <Link href="/couverture" onClick={() => setBurger(false)}>
-                  <div className="flex pb-1">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-1">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Couverture />
-                    </div>
+                    </span>
                     <h3>Couverture</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/zinguerie" onClick={() => setBurger(false)}>
-                  <div className="flex pb-1">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-1">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Zinguerie />
-                    </div>
+                    </span>
                     <h3>Zinguerie</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/nettoyage" onClick={() => setBurger(false)}>
-                  <div className="flex pb-1">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-1">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Nettoyage />
-                    </div>
+                    </span>
                     <h3>Nettoyage</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/isolation" onClick={() => setBurger(false)}>
-                  <div className="flex pb-1">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-1">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Isolation />
-                    </div>
+                    </span>
                     <h3>Isolation</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/charpente" onClick={() => setBurger(false)}>
-                  <div className="flex pb-1">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-1">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Charpente />
-                    </div>
+                    </span>
                     <h3>Charpente</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/travaux-divers" onClick={() => setBurger(false)}>
-                  <div className="flex pb-2">
-                    <div className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
+                  <span className="flex pb-2">
+                    <span className="flex self-center h-7 w-7 fill-neutral-100 mr-2 ml-4">
                       <Travaux />
-                    </div>
+                    </span>
                     <h3>Travaux-divers</h3>
-                  </div>
+                  </span>
                 </Link>
               </li>
             </ul>

@@ -7,8 +7,10 @@ const AccountSchema = new Schema({
   type: { type: String, default: "credentials" },
   providerAccountId: { type: String },
   access_token: { type: String },
+  expire_at: { type: Date },
   scope: { type: String, default: "all" },
-});
+  id_token: { type: String },
+},{ timestamps: true });
 
 const AccountModel = models.account || mongoose.model("account", AccountSchema);
 

@@ -1,5 +1,5 @@
 "server only";
-import connect from "@/utils/mongodb";
+import {connect} from "@/utils/mongodb";
 import { HomePageModel } from "@/models";
 import ComponentsHomePage from "@/components/home/HomePage";
 
@@ -9,7 +9,7 @@ export default async function Home() {
   const itemData = JSON.parse(JSON.stringify(itemsData));
   return (
     <>
-      <div className="relative min-h-screen w-full">
+      <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <ComponentsHomePage itemData={itemData} />
       </div>
     </>

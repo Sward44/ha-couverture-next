@@ -1,9 +1,9 @@
 'use client';
 
 import Script from 'next/script'
-import {usePathname, useSearchParams} from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from "react";
-import {pageview} from "@/lib/gtagHelper"
+import { PageView } from "@/lib/gtagHelper"
 
 export default function GoogleAnalytics({GA_MEASUREMENT_ID}){
 
@@ -13,7 +13,7 @@ export default function GoogleAnalytics({GA_MEASUREMENT_ID}){
   useEffect(() => {
       const url = pathname + searchParams.toString()
   
-      pageview(GA_MEASUREMENT_ID, url);
+      PageView(GA_MEASUREMENT_ID, url);
       
   }, [pathname, searchParams, GA_MEASUREMENT_ID]);
 

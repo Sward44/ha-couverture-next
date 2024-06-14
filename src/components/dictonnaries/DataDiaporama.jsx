@@ -74,8 +74,8 @@ export const itemDataConditionGenerales = [
           "L’édition et la direction de la publication du site buzz-ready.com est assurée par David LAUNAY, domicilié 2 impasse de la tonnelle 44640 Le Pellerin.",
         ],
         intitule: [
-          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">06 36 94 69 70</a></span>,
-          <span key={2}>Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">davidlaunay567@gmail.com</a></span>,
+          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' className="underline md:hover:text-mahogany-950 transition-colors duration-300">06 36 94 69 70</a></span>,
+          <span key={2}>Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' className="underline md:hover:text-mahogany-950 transition-colors duration-300">davidlaunay567@gmail.com</a></span>,
         ],
       },
       {

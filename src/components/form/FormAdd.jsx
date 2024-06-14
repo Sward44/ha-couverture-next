@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Loading, Mark, Send } from "../logo/Logo";
+import { Email, Loading, Mark, Phone, Send, User } from "@/components/logo/Logo";
 
 export default function FormAdd({ handleForm }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,8 +19,8 @@ export default function FormAdd({ handleForm }) {
       .string()
       .required("Email est demandé...")
       .email("Votre email n'est pas conforme"),
-    lastName: yup.string().required("Nom est demandé..."),
-    firstName: yup.string().required("Prénom est demandé..."),
+    lastName: yup.string().required("Nom est demandé...").min(2, "Plus de 2 charactères").max(50, "Moins de 50 charactères"),
+    firstName: yup.string().required("Prénom est demandé...").min(2, "Plus de 2 charactères minimum").max(50, "Moins de 50 charactères"),
     indicatif: yup.string(),
     number: yup
       .string()
@@ -77,7 +77,7 @@ export default function FormAdd({ handleForm }) {
   }
 
   return (
-    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen  z-30 text-lg  animate-[apparitionEcran_0.5s_ease_forwards]`}>
+    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen  z-30 animate-[apparitionEcran_0.5s_ease_forwards]`}>
       {isFinish.current ? (
         <div className={`flex flex-col p-8 bg-neutral-300 `}>
           <div className="">
@@ -85,8 +85,7 @@ export default function FormAdd({ handleForm }) {
               <h3 className="mb-20">
                 Merci, nous avons bien reçu votre message, nous vous repondrons
                 dans 48h maximum.
-              </h3>
-            </div>
+              </h3>                                                                                                   </div>
             <div className="">
               <button className="" onClick={handleForm}>
                 <h3>Ok</h3>
@@ -95,84 +94,94 @@ export default function FormAdd({ handleForm }) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-1 sm:flex-none flex-col py-4 px-2 mx-4 max-w-[480px] sm:max-w-none bg-neutral-100 rounded-xl animate-[apparitionCard_0.5s_ease]">
-          <form onSubmit={handleSubmit(submit)} className="grid sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[50px_1fr_1fr_3fr_60px]
-          grid-rows-[50px_1fr_1fr_1fr_1fr_3fr_60px]">
-            <div className="flex justify-between sm:col-span-2 md:col-span-4">
+          <form onSubmit={handleSubmit(submit)} className="shadow-ha px-4 py-8 rounded-xl grid grid-cols-[minmax(260px,500px)] mx-8 my-4 sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[auto_1fr_1fr_3fr_60px] grid-rows-[1fr_1fr_1fr_1fr_3fr_60px] md:max-w-[800px] bg-neutral-100">
+            <div className="hidden sm:flex justify-between sm:col-span-2 md:col-span-4 mb-8">
               <h2 className="sm:pl-4 text-2xl font-bold">Devis</h2>
-              <div onClick={handleForm} className="md:mr-4 size-6 md:hover:fill-mahogany-950 md:hover:scale-105 transition duration-300">
+              <div onClick={handleForm} className="sm:mr-4 size-6 md:hover:fill-mahogany-950 md:hover:scale-105 transition duration-300">
                 <Mark />
               </div>
             </div>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-4 sm:mb-6">
-              <label htmlFor="firstName">Prénom</label>
+            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="firstName" className={`labelForm ${errors?.firstName ? "to-red-50": "to-neutral-50"}`}>Prénom</label>
               <input
                 id="firstName"
                 type="text"
                 {...register("firstName")}
-                className={`px-4 py-2 border border-neutral-300 rounded-lg bg-neutral-50 ${errors?.firstName && "bg-red-50"}`} 
+                className={`inputFormIconLeft ${errors?.firstName && "bg-red-50" }`} 
                 placeholder="Votre prénom..."
               />
+              <div className="iconLeft">
+                <User />
+              </div>
               {errors?.firstName && (
-                <p className="absolute text-red-500 text-sm top-[74px] pl-2">{errors.firstName.message}</p>
+                <p className="errorsForm">{errors.firstName.message}</p>
               )}
             </div>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-4 sm:mb-6">
-              <label htmlFor="lastName">Nom</label>
+            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="lastName" className={`labelForm ${errors?.lastName ? "to-red-50": "to-neutral-50"}`}>Nom</label>
               <input
                 id="lastName"
                 type="text"
                 {...register("lastName")}
-                className={`px-4 py-2 border border-neutral-300 rounded-lg ${errors?.lastName && "bg-red-50"}`}
+                className={`inputFormIconLeft ${errors?.lastName && "bg-red-50"}`}
                 placeholder="Votre nom..."
               />
+              <div className="iconLeft">
+                <User />
+            </div>
               {errors?.lastName && (
-                <p className="absolute text-red-500 text-sm top-[74px] pl-2">{errors.lastName.message}</p>
+                <p className="errorsForm">{errors.lastName.message}</p>
               )}
             </div>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-4 sm:mb-6">
-              <label htmlFor="email">E-mail</label>
+            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="email" className={`labelForm ${errors?.email ? "to-red-50": "to-neutral-50"}`}>E-mail</label>
               <input
                 id="email"
                 type="email"
                 {...register("email")}
                 defaultvalues={"email"}
-                className={`px-4 py-2 border border-neutral-300 rounded-lg ${errors?.email && "bg-red-50"}`}
+                className={`inputFormIconLeft ${errors?.email && "bg-red-50"}`}
                 placeholder="Votre email..."
               />
+              <div className="iconLeft">
+                <Email />
+            </div>
               {errors?.email && (
-                <p className="absolute text-red-500 text-sm top-[74px] pl-2">{errors.email.message}</p>
+                <p className="errorsForm">{errors.email.message}</p>
               )}
             </div>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-4 sm:mb-6">
-              <label htmlFor="number">N° de téléphone</label>
+            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="number" className={`labelForm ${errors?.number ? "to-red-50": "to-neutral-50"}`}>N° de téléphone</label>
               <input
                 id="number"
                 type="text"
                 {...register("number")}
-                className={`px-4 py-2 border border-neutral-300 rounded-lg ${errors?.number && "bg-red-50"}`}
+                className={`inputFormIconLeft ${errors?.number && "bg-red-50"}`}
                 placeholder="Votre n° de téléphone..."
-              ></input>
+              />
+              <div className="iconLeft">
+                <Phone />
+              </div>
               {errors?.number && (
-                <p className="absolute text-red-500 text-sm top-[74px] pl-2">{errors.number.message}</p>
+                <p className="errorsForm">{errors.number.message}</p>
               )}
             </div>
 
-            <div className="relative flex flex-col sm:col-span-2 md:col-span-4 sm:mx-4 mb-4 sm:mb-6">
-              <label htmlFor="comments">Demande précis</label>
+            <div className="relative flex flex-col sm:col-span-2 md:col-span-4 sm:mx-4 mb-8">
+              <label htmlFor="comments" className={`labelForm ${errors?.comments ? "to-red-50": "to-neutral-50"}`}>Demande précis</label>
               <textarea
                 id="comments"
                 type="text"
                 {...register("comments")}
-                className={`px-4 py-2 h-full border border-neutral-300 rounded-lg resize-none ${errors?.comments && "bg-red-50"}`}
+                className={`h-full inputFormBase resize-none ${errors?.comments && "bg-red-50"}`}
                 placeholder="Préciser votre demande..."
               />
               {errors?.comments && (
-                <p className="absolute text-red-500 text-sm top-[254px] sm:top-[270px] pl-2">{errors.comments.message}</p>
+                <p className="absolute text-red-500 text-[12px] top-[213px] pl-2">{errors.comments.message}</p>
               )}
             </div>
             <div className="flex sm:col-span-2 md:col-start-2">
@@ -196,7 +205,6 @@ export default function FormAdd({ handleForm }) {
               </div>
             </div>
           </form>
-        </div>
       )}
     </div>
   );

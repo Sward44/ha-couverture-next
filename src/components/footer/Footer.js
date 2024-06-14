@@ -1,22 +1,20 @@
 "use server";
 import Link from "next/link";
 import { Facebook, LogoMobile, Send } from "@/components/logo/Logo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
 
 async function Footer() {
   return (
-    <footer className="flex flex-col items-center bg-neutral-950 text-neutral-100">
+    <footer className="relative flex flex-col items-center bg-neutral-950 text-neutral-100 top-[72px] md:top-[81px]">
       <div className="my-4 mx-8 sm:mx-2 lg:mx-6 xl:mx-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-12 sm:gap-y-2 sm:gap-x-16 md:gap-6 xl:gap-8">
           <div className="max-w-80 sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:max-w-none lg:m-2">
             <Link href="/">
-              <div className="flex mb-3 items-center justify-center sm:justify-normal transition duration-300 fill-neutral-100">
-                <div className="h-7 w-7 mr-2 "><LogoMobile /></div>
+              <span className="flex mb-3 items-center justify-center sm:justify-normal transition duration-300 fill-neutral-100">
+                <span className="h-7 w-7 mr-2 ">
+                  <LogoMobile />
+                </span>
                 <h3 className="font-bold text-lg font-serif transition duration-300 sm:hover:text-supernova-500 hover:scale-102">HA Couverture</h3>
-                
-              </div>
+              </span>
             </Link>
             <p>Notre histoire de Ha-couverture...</p>
           </div>
@@ -58,9 +56,9 @@ async function Footer() {
               rel="noopener noreferrer"
               alt="Lien vers Facebook"
             >
-              <div className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300">
+              <span className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300">
                 <Facebook />
-              </div>
+              </span>
             </a>
             </div>
           </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const ImageDiaporama = ({ itemData, index }) => {
   return (
-    <div className="relative h-screen w-full min-h-[600px] flex flex-nowrap shrink-0 snap-center">
+    <div className="relative h-[calc(100vh-72px)] md:h-[calc(100vh-81px)] w-full min-h-[600px] flex flex-nowrap shrink-0 snap-center">
       <Image
         index={index}
         src={require(`@/components/${itemData[index].urlWebp}`).default}
