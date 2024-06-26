@@ -12,6 +12,7 @@ const oauth2Client = new google.auth.OAuth2(
 oauth2Client.setCredentials({
   refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
 });
+
 class Email {
   constructor() {
     const accessToken = oauth2Client.getAccessToken();
@@ -59,7 +60,7 @@ class Email {
           html: template,
         });
       }
-      console.log("EMAIL OK ! : ", data);
+
     } catch (e) {
       throw new Error(e);
     }

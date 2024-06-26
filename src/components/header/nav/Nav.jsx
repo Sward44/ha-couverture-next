@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { use, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -18,9 +18,11 @@ import styles from "@/components/header/nav/Nav.module.scss";
 
 function Nav() {
   const [showMenu, setShowMenu] = useState(false);
-  const [darkMode, setDarkMode] = useState();
-  const ref = useRef(null);
   const { data: session, status } = useSession();
+  // const [darkMode, setDarkMode] = useState();
+  const ref = React.useRef(null);
+
+  console.log("Session : ",session,"Status : ", status);
 
   const handleShowMenu = (e) => {
     e.stopPropagation();
@@ -31,7 +33,7 @@ function Nav() {
     <div className="flex">
       <div className="flex justify-end items-center text-lg">
         <div
-          className="px-2 flex items-center my-1 py-[6px]  bg-neutral-100 hover:bg-neutral-300 rounded-lg transition-colors duration-300"
+          className="px-2 flex items-center my-1 py-[6px] bg-neutral-100 hover:bg-neutral-300 rounded-lg transition-colors duration-300"
           onMouseEnter={handleShowMenu}
           onMouseLeave={handleShowMenu}
         >
@@ -137,14 +139,13 @@ function Nav() {
           </Link>
         )}
       </div>
-      <a href="tel:+33634266400" target="_blank " rel="noopener noreferrer" >
-        <span className="absolute group flex flex-nowrap flex-row justify-start items-center overflow-x-hidden top-[20px] md:right-16 lg:right-20 2xl:right-[112px] bg-neutral-300 rounded-xl pl-2 min-h-10 w-10 hover:justify-start hover:scale-105 transition-all duration-500 hover:w-44 whitespace-nowrap hover:bg-supernova-500 hover:text-mahogany-950 hover:md:shadow-ha" >
-          <span className="flex size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
-            <Phone />
-          </span>
-          <p className="mr-2">06 34 26 64 00</p>
-        </span>
-      </a>
+        <Link href="tel:+33634266400" target="_blank " rel="noopener noreferrer" className="absolute group flex flex-nowrap flex-row justify-start items-center overflow-x-hidden top-[20px] md:right-16 lg:right-20 2xl:right-[112px] bg-neutral-300 rounded-xl pl-2 min-h-10 w-10 hover:justify-start hover:scale-105 transition-all duration-500 hover:w-44 whitespace-nowrap hover:bg-supernova-500 hover:text-mahogany-950 hover:md:shadow-ha ">
+            <span className="flex min-w-6 size-6 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+              <Phone />
+            </span>
+            <p className="mr-2">06 34 26 64 00</p>
+
+        </Link>
     </div>
   );
 }

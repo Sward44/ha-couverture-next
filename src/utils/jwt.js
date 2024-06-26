@@ -1,7 +1,12 @@
 import jwt from 'jsonwebtoken';
 
-export function signJwt(payload) {
- const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, { expiresIn: "1d" });
+export function signJwtOneHours(payload) {
+ const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "1h" });
+  return token;
+}
+
+export function signJwtOneDay(payload) {
+ const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "1d" });
   return token;
 }
 

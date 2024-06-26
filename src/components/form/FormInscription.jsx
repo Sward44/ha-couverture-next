@@ -5,11 +5,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Loading, Send, EyeOpen, EyeClose, Password, Phone, Email, User } from "@/components/logo/Logo";
+import { useRouter } from "next/navigation";
 
 export default function FormInscription() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isVisiblePassword, setIsVisiblePassword] = React.useState(false);
   const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = React.useState(false);
+  const router = useRouter();
   let newEmailResponse;
   const nameRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
   const defaultvalues = {
@@ -76,6 +78,7 @@ export default function FormInscription() {
         reset();
         newEmailResponse = await response.json();
         toast.success(newEmailResponse.message);
+        router.push("/connexion");
       } else {
         toast.error(response.error);
       }

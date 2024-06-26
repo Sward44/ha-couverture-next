@@ -3,7 +3,7 @@ import { connect } from "@/utils/mongodb";
 import { UserModel, DevisModel } from "@/models";
 import email from "@/email/devis/email";
 
-export const POST = async (request) => {
+export async function POST(request) {
   const body = await request.json();
 
   let phoneNumberDigits = body.number.replace(/\D/g, "");

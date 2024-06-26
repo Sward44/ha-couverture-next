@@ -37,7 +37,7 @@ function Header() {
   return (
     <>
       <header
-        className={`2xl:px-16 lg:px-8 md:px-4 md:py-2 shadow-ha fixed flex  w-full z-20 bg-neutral-100 transition-transform duration-300 ${
+        className={` 2xl:px-16 lg:px-8 md:px-4 md:py-2 shadow-ha fixed flex w-full z-20 bg-neutral-100 transition-transform duration-300 ${
           !visible && !burger ? styles.maskBarreNavigation : ""
         }`}
       >
@@ -50,13 +50,14 @@ function Header() {
             <NavBurger handleBurger={handleBurger} burger={burger} />
           </div>
         ) : (
-          <Link href="/" className="flex items-center justify-between w-full">
-            <span className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
-              <Logo />
-            </span>
-
+          <div className="flex flex-1 items-center justify-between">
+            <Link href="/" className="flex">
+              <span className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
+                <Logo />
+              </span>
+            </Link>
             <Nav />
-          </Link>
+          </div>
         )}
       </header>
     </>

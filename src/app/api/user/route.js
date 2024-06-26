@@ -2,7 +2,7 @@ import { connect } from "@/utils/mongodb";
 import { UserModel } from "@/models";
 import { NextResponse } from "next/server";
 import * as bycrypt from "bcrypt";
-import { signJwt } from "@/utils/jwt";
+import { signJwtOneDay } from "@/utils/jwt";
 import email from "@/email/devis/email";
 
 export async function POST(request) {
@@ -55,15 +55,15 @@ export async function POST(request) {
       password: await bycrypt.hash(body.password, 10),
       emailVerified: null,
     });
-    const messageReturn = `Succès ! Nous avons envoyé un email de confirmation à ${body.email}. Vous avez 24h pour activé votre compte.`;
+    const messageReturn = `Succès ! Nous avons envoyé un email de confirmation à ${body.email}. Votre lien est valable pendant 24h.`;
     const newUser = await UserModel.findOne({ email: body.email }).lean().exec();
-      const jwtUserId = signJwt({ id: newUser._id });
+      const jwtUserId = signJwtOneDay({ id: newUser._id });
       await email.getTemplate("email-connexion", {
         subject: "Activation de compte pendant 24h",
         to: body.email,
         metadata: {
           name: body.name,
-          url: `${process.env.NEXT_PUBLIC_HOST}/activation/${jwtUserId}`,
+          url: `${process.env.NEXT_PUBLIC_HOST}/activation/email/${jwtUserId}`,
           message: "Activation de votre e-mail",
         }});
     return NextResponse.json(
@@ -115,17 +115,16 @@ export async function POST(request) {
       );
       messagePassword = " Votre mot de passe a été crée !";
     }
-    console.log(existingUser._id);
     let messageSend= "";
-    if (existingUser?.emailVerified === null) {
-      messageSend = `Nous avons envoyé un email de confirmation à ${body.email}. Vous avez 24h pour activé votre compte.`;
-      const jwtUserId = signJwt({ id: existingUser._id });
+    if (existingUser?.emailVerified === null ) {
+      messageSend = `Nous avons envoyé un email de confirmation à ${body.email}. Votre lien est valable pendant 24h.`;
+      const jwtUserId = signJwtOneDay({ id: existingUser._id });
       await email.getTemplate("email-connexion", {
         subject: "Activation de compte pendant 24h",
         to: body.email,
         metadata: {
           name: body.name,
-          url: `${process.env.NEXT_PUBLIC_HOST}/activation/${jwtUserId}`,
+          url: `${process.env.NEXT_PUBLIC_HOST}/activation/email/${jwtUserId}`,
           message: "Activation de votre e-mail", 
         },
       });

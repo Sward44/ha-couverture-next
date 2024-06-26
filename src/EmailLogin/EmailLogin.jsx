@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { Email, EyeClose, EyeOpen, Loading, LogoMobile, Password } from "@/components/logo/Logo";
 
 export default function EmailLogin() {
   const [isVisiblePassword, setIsVisiblePassword] = React.useState(false);
+  const { status } = useSession();
   const defaultvalues = {
     email: "",
     password: "",
@@ -29,6 +30,7 @@ export default function EmailLogin() {
   const {
     register,
     handleSubmit,
+    reset,
     setError,
     clearErrors,
     formState: { errors, isSubmitting },
@@ -37,20 +39,24 @@ export default function EmailLogin() {
     resolver: yupResolver(schema),
   });
 
-  async function onSubmit(data) {
-    const result = await signIn("credentials", {
-      redirect: false,
-      username: data.email,
-      password: data.password,
-    });
-    if (!result?.ok) {
-      toast.error(result?.error);
-      return;
+  async function onSubmit(values, error) {
+    try {
+      // e.preventDefault();
+      
+      const response = await signIn("credentials", {
+        redirect: false,
+        username: values.email,
+        password: values.password,
+      }); 
+      if (response.ok) {
+        reset();
+        toast.success("Bienvenue sur Ha Couverture");
+      } else {
+        toast.error(response.error);
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
-    toast.success("Bienvenue sur Ha Couverture");
-    router.push(props.callbackUrl ? props.callbackUrl : "/");
-    
- 
   }
 
   return (

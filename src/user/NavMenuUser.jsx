@@ -1,97 +1,97 @@
 "use client";
-import { useState, useRef } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-  faUserGear,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { Logout, Parametre, User } from "@/components/logo/Logo";
+import styles from "@/components/header/nav/Nav.module.scss";
+
 
 const NavMenuUser = () => {
   const [showMenuUser, setShowMenuUser] = useState(false);
-  const ref = useRef(null);
+  const ref = React.useRef(null);
   const { data: session, status } = useSession();
   const handleShowMenuUser = (e) => {
     e.stopPropagation();
     setShowMenuUser(!showMenuUser);
   };
+  console.log("Session : ",session,"Status : ", status);
   return (
+    <>
     <div
-      className=""
       onMouseEnter={handleShowMenuUser}
       onMouseLeave={handleShowMenuUser}
     >
-      <button className="">
+      <button className="relative flex justify-center items-center bg-neutral-300 rounded-xl w-10 h-10 hover:scale-105 hover:bg-supernova-500 transition duration-300 hover:md:shadow-ha">
         {session?.user?.image ? (
-          <Image src={session.user.image} alt={session?.user?.name} fill />
+          <Image src={session.user.image} alt={session?.user?.name} fill className="rounded-xl"/>
         ) : (
-          <FontAwesomeIcon icon={faUser} size="2x" />
+          <div className="size-6">
+            <User />
+          </div>
+          
         )}
       </button>
+    
       <CSSTransition
         nodeRef={ref}
         in={showMenuUser}
-        timeout={{ enter: 400, exit: 400 }}
+        timeout={{ enter: 300, exit: 300 }}
         unmountOnExit
-        classNames=""
+        classNames={{
+          enter: styles["enter"],
+          enterActive: styles["enterActive"],
+          enterDone: styles["enterDone"],
+          exit: styles["exit"],
+          exitActive: styles["exitActive"],
+          exitDone: styles["exitDone"],
+        }}
       >
-        <div ref={ref} className="">
+        <div ref={ref} className="flex flex-col absolute top-[63px] right-1 rounded-xl bg-neutral-100 shadow-ha">
           <ul>
-            <li style={{ padding: "10px 20px" }}>
-              <div className="">
+            <li className="group mx-2 px-2 mt-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
+              <Link href="#" className="flex items-center">
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}
                     alt={session?.user?.name}
-                    width={32}
-                    height={32}
-                    style={{ marginRight: "0.5rem", borderRadius: "50%" }}
+                    width={28}
+                    height={28}
+                    className="rounded-xl mr-2"
                   />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    alt="User Image"
-                    color="#000000"
-                    style={{ marginRight: "1rem" }}
-                  />
+                  <span className="size-4 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                    <User />
+                  </span>
                 )}
-                <div className="">
-                  <p className="">
+                <span className="">
+                  <p className="text-sm font-bold">
                     {session?.user?.name ? session.user.name : "Utilisateur"}
                   </p>
-                  <p className="">{session.user.email}</p>
-                  <p className="">{session.user.role}</p>
-                </div>
-              </div>
-            </li>
-            <li style={{ padding: "0 20px 10px" }}>
-              <Link href="/couverture" className="">
-                <FontAwesomeIcon
-                  icon={faUserGear}
-                  color="#000000"
-                  style={{ marginRight: "0.5rem" }}
-                />
-                Paramètres
+                  <p className="text-xs">{session.user.email}</p>
+                </span>
               </Link>
             </li>
-            <li style={{ padding: "0 20px 10px" }}>
-              <span onClick={() => signOut()} className="">
-                <FontAwesomeIcon
-                  icon={faRightFromBracket}
-                  color="#000000"
-                  style={{ marginRight: "0.5rem" }}
-                />
-                Deconnexion
+            <li className="group mx-2 px-2 mt-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
+              <Link href="/couverture" className="flex items-center">
+                <span className="size-4 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                  <Parametre />
+                </span>
+                <h2>Paramètres</h2>
+              </Link>
+            </li>
+            <li onClick={() => signOut()} className="flex items-center group mx-2 px-2 my-2 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
+              <span  className="size-4 mr-2 fill-neutral-950 group-hover:fill-mahogany-950">
+                <Logout />
               </span>
+                <h2>Deconnexion</h2>
             </li>
           </ul>
         </div>
       </CSSTransition>
-    </div>
+      </div>
+    </>
   );
 };
 

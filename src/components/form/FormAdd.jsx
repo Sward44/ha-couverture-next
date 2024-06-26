@@ -58,7 +58,7 @@ export default function FormAdd({ handleForm }) {
       );
       if (response.ok) {
         const newEmailResponse = await response.json();
-        console.log(newEmailResponse);
+
         reset();
         isFinish.current = true;
       } else {

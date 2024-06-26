@@ -1,13 +1,13 @@
 "use server";
 import { connect } from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
-import Inscription from "@/components/main/inscription/Inscription";
 import HeaderMain from "@/components/main/header/HeaderMain";
+import MotDePasseInitialisation from "@/components/form/MotDePasseInitialisation";
 
 export async function generateMetadata() {
   await connect();
   const data = await MetaModel.findOne({
-    _id: process.env.META_ID_INSC,
+    _id: process.env.META_ID_PASS,
   }).exec();
   return {
     title: data.title,
@@ -29,7 +29,7 @@ export async function generateMetadata() {
 export default async function inscription() {
   await connect();
   const Data = await PageModel.findOne({
-    _id: process.env.PAGE_ID_INSC,
+    _id: process.env.PAGE_ID_PASS,
   })
     .lean()
     .exec();
@@ -47,7 +47,7 @@ export default async function inscription() {
   return (
     <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
       <HeaderMain itemDataCouverture={itemDataCouverture} />
-      <Inscription />
+      <MotDePasseInitialisation />
     </div>
   );
 }

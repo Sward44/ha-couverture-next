@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import connect from "@/utils/mongodb";
 import { UserModel, PostModel } from "@/models";
 
-export async function GET() {
+export async function POST() {
   await connect();
   try {
     const itemDataComments = await PostModel.find().exec();

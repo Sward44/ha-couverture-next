@@ -8,11 +8,10 @@ import {
   Nettoyage,
   Travaux,
   Zinguerie,
+  AngleDown
 } from "@/components/logo/Logo";
 import { CSSTransition } from "react-transition-group";
 import styles from "./NavBurger.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 function NavBurger({ handleBurger, burger }) {
   const [accordion, setAccordion] = useState(false);
@@ -57,14 +56,9 @@ function NavBurger({ handleBurger, burger }) {
             >
               <h3 className="">Activités</h3>
               <div className="pl-2">
-                <FontAwesomeIcon
-                  icon={faAngleDown}
-                  className={`${
-                    accordion
-                      ? "flex self-center justify-center rotate-0 transition duration-300"
-                      : "flex self-center justify-center  rotate-180 transition duration-300"
-                  }`}
-                />
+                <div className={`flex self-center justify-center transition duration-300 fill-neutral-100 ${accordion ? 'rotate-0' : 'rotate-180'}`} >
+                  <AngleDown />
+                </div>
               </div>
             </div>
             <ul

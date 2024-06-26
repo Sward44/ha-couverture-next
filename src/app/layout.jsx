@@ -2,7 +2,6 @@
 import { connect } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
 import "@/app/globals.scss";
-import GoogleAnalytics from "@/components/analytics_google/GoogleAnalystics" ;
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import AuthProvider from "@/utils/SessionProvider";
@@ -43,21 +42,29 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }) {
+
   return (
     <html lang="fr">
-      <GoogleAnalytics GA_MEASUREMENT_ID="G-0NGBKPJP1N" />
+
+{/* <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NB78FJGN');</script> */}
+
       <body>
-          <AuthProvider>
-            <Header />
-            <Suspense fallback={<div>Loading...</div>}>
+
+{/* <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NB78FJGN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> */}
+
+        <AuthProvider>
+          <Header />
+          <Suspense>
               {children}
-            </Suspense>
-            <ToastContainer />
-            <Footer />
-          </AuthProvider>
-        <Suspense fallback={<div>Loading...</div>}>
-          <CookieBanner />
-        </Suspense>
+          </Suspense>
+          <ToastContainer />
+          <Footer />
+        </AuthProvider>
+        <CookieBanner />
       </body>
     </html>
   );

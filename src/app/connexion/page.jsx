@@ -4,6 +4,7 @@ import { MetaModel, PageModel } from "@/models";
 import Connexion from "@/components/main/connexion/Connexion";
 import HeaderMain from "@/components/main/header/HeaderMain";
 
+
 export async function generateMetadata() {
   await connect();
   const data = await MetaModel.findOne({

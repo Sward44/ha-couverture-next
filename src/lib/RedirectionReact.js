@@ -13,13 +13,12 @@ export function RedirectionActivationEmail({ timer, url }) {
     const taille = 100;
     const calculatedSpeed = Math.round(timer / taille);
     setSpeed(calculatedSpeed);
-    console.log(taille, timer, calculatedSpeed);
     return () => clearInterval(intervalRef.current);
   }, []);
 
   React.useEffect(() => {
     if (count >= 100) {
-      redirect(`/${url}`);
+      redirect(`${url}`);
     }
     
     const incrementTime = () => {
@@ -35,13 +34,9 @@ export function RedirectionActivationEmail({ timer, url }) {
     return () => clearInterval(intervalRef.current);
   }, [count, isHovered, speed]);
 
-  React.useEffect(() => {
-    console.log(count);
-  }, [count]);
-
   return (
     <div className="flex flex-col items-center justify-center">
-      <Link href={`/${url}`}>
+      <Link href={`${url}`}>
         <button
           className="relative bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha w-48"
           onMouseEnter={() => setIsHovered(true)}

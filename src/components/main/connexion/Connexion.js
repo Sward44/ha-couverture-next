@@ -1,14 +1,23 @@
-"use server";
-// import { useSession } from "next-auth/react";
+"use client";
+import React from "react";
 import EmailLogin from "@/EmailLogin/EmailLogin";
 import GoogleLogin from "@/GoogleLogin/GoogleLogin";
 import Link from "next/link";
 import { Login } from "@/components/logo/Logo";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 
-export default async function Connexion({ itemDataCouverture }) {
-  // const { data: session, status } = useSession();
+export default async function Connexion() {
+  const { status } = useSession();
+  const router = useRouter();
 
+  React.useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  },[status, router])
+  
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-col sm:m-auto w-full justify-center items-center">
