@@ -27,7 +27,7 @@ export default async function reinitialisationPage({params}) {
     return (
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
-        <h1 className="text-5xl mb-8"> Votre url n'est plus active</h1>
+        <h1 className="text-5xl mb-8"> Votre url n&#39;est plus active !</h1>
           <RedirectionActivationEmail timer={3000} url={"/mot-de-passe-oublie"} />
         </div>
       </div>
