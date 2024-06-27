@@ -1,7 +1,7 @@
 "only server";
 import Link from "next/link";
 import { Plus } from "@/components/logo/Logo";
-import { signOut } from "next-auth/react";
+
 
 function TexteButton({ handleForm, itemData, index }) {
   return (
@@ -23,14 +23,6 @@ function TexteButton({ handleForm, itemData, index }) {
           className="bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
         >
           <h3>Demande de devis</h3>
-        </button>
-      </div>
-      <div className={`flex justify-center apparitionButton`}>
-        <button
-          onClick={() => signOut()}
-          className="bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
-        >
-          <h3>SignOut</h3>
         </button>
       </div>
     </>

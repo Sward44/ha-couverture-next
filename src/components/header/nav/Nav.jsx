@@ -128,7 +128,7 @@ function Nav() {
           </h2>
         </Link>
         {session && session.user ? (
-          <NavMenuUser />
+          <NavMenuUser session={session} status={status} />
         ) : (
           <Link href="/connexion">
             <span className="flex group justify-center items-center bg-neutral-300 rounded-xl w-10 h-10 hover:scale-105 hover:bg-supernova-500 transition-all duration-300 hover:md:shadow-ha">

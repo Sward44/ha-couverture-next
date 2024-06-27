@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 
-export default async function Connexion() {
+export default function Connexion() {
   const { status } = useSession();
   const router = useRouter();
 
@@ -28,9 +28,9 @@ export default async function Connexion() {
           <div
             className="flex items-center bg-neutral-100 "
           >
-            <hr className="w-full mx-2" />
+            <hr className="w-full mx-4" />
             <h3>OU</h3>
-            <hr className="w-full mx-2" />
+            <hr className="w-full mx-4" />
           </div>
           <div className="flex flex-col  justify-center items-center bg-neutral-100 md:max-w-[800px]">
             <GoogleLogin />

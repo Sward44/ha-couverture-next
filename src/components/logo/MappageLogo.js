@@ -10,6 +10,7 @@ import {
   Connexion,
   Inscription,
   MotDePasse,
+  User,
 } from "@/components/logo/Logo";
 
 const SvgMap = {
@@ -23,6 +24,7 @@ const SvgMap = {
   connexion: Connexion,
   inscription: Inscription,
   motdepasse: MotDePasse,
+  user: User,
 };
 
 export default SvgMap;

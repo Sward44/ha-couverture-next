@@ -2,10 +2,11 @@ import { connect } from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
 import HeaderMain from "@/components/main/header/HeaderMain";
 
+
 export async function generateMetadata() {
   await connect();
   const data = await MetaModel.findOne({
-    _id: process.env.META_ID_AVIS,
+    _id: process.env.META_ID_USER,
   }).exec();
   return {
     title: data.title,
@@ -24,10 +25,11 @@ export async function generateMetadata() {
   };
 }
 
-async function avisClients() {
+async function userPage() {
+
   await connect();
   const Data = await PageModel.findOne({
-    _id: process.env.PAGE_ID_AVIS,
+    _id: process.env.PAGE_ID_USER,
   })
     .lean()
     .exec();
@@ -52,4 +54,4 @@ async function avisClients() {
   );
 }
 
-export default avisClients;
+export default userPage;

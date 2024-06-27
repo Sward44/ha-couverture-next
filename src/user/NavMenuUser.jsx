@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useSession, signOut } from "next-auth/react";
+import {  signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { Logout, Parametre, User } from "@/components/logo/Logo";
 import styles from "@/components/header/nav/Nav.module.scss";
 
 
-const NavMenuUser = () => {
+const NavMenuUser = ({session, status}) => {
   const [showMenuUser, setShowMenuUser] = useState(false);
   const ref = React.useRef(null);
-  const { data: session, status } = useSession();
   const handleShowMenuUser = (e) => {
     e.stopPropagation();
     setShowMenuUser(!showMenuUser);

@@ -4,13 +4,12 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { Email, EyeClose, EyeOpen, Loading, LogoMobile, Password } from "@/components/logo/Logo";
 
 export default function EmailLogin() {
   const [isVisiblePassword, setIsVisiblePassword] = React.useState(false);
-  const { status } = useSession();
   const defaultvalues = {
     email: "",
     password: "",
@@ -39,10 +38,8 @@ export default function EmailLogin() {
     resolver: yupResolver(schema),
   });
 
-  async function onSubmit(values, error) {
-    try {
-      // e.preventDefault();
-      
+  async function onSubmit(values) {
+    try {      
       const response = await signIn("credentials", {
         redirect: false,
         username: values.email,
