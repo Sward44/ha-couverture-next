@@ -58,11 +58,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <AuthProvider>
           <Header />
-          <Suspense>
-              {children}
-          </Suspense>
+            <Suspense>
+                {children}
+            </Suspense>
           <ToastContainer />
-          <Footer />
+          {/* <Footer /> */}
         </AuthProvider>
         <CookieBanner />
       </body>

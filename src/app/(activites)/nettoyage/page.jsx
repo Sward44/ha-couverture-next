@@ -2,6 +2,7 @@ import {connect} from "@/utils/mongodb";
 import { PageModel, SousPageModel, MetaModel } from "@/models";
 import HeaderMain from "@/components/main/header/HeaderMain";
 import Activites from "@/components/main/activites/Activites";
+import Footer from "@/components/footer/Footer";
 
 
 export async function generateMetadata() {
@@ -53,9 +54,12 @@ export default async function nettoyagePage() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
-      <HeaderMain itemDataCouverture={itemDataCouverture} />
-      <Activites itemDataCouverture={itemDataCouverture} />
-    </div>
+    <>
+      <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
+        <HeaderMain itemDataCouverture={itemDataCouverture} />
+        <Activites itemDataCouverture={itemDataCouverture} />
+      </div>
+      <Footer />
+    </>
   );
 }

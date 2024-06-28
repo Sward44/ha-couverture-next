@@ -3,6 +3,7 @@ import { connect } from "@/utils/mongodb";
 import { MetaModel, PageModel } from "@/models";
 import Inscription from "@/components/main/inscription/Inscription";
 import HeaderMain from "@/components/main/header/HeaderMain";
+import Footer from "@/components/footer/Footer";
 
 export async function generateMetadata() {
   await connect();
@@ -45,9 +46,12 @@ export default async function inscription() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
-      <HeaderMain itemDataCouverture={itemDataCouverture} />
-      <Inscription />
-    </div>
+    <>  
+      <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
+        <HeaderMain itemDataCouverture={itemDataCouverture} />
+        <Inscription />
+      </div>
+      <Footer />
+    </>
   );
 }
