@@ -43,7 +43,7 @@ function Header() {
       >
         {isMobile || isTablet ? (
           <div className="flex w-full justify-between items-center px-3 py-2">
-            <Link href="/" className="size-14">
+            <Link href="/" className="size-14" aria-label="Lien vers la page d'accueil">
               <LogoMobile />
             </Link>
             <h3 className="font-serif text-xl font-bold">HA COUVERTURE</h3>
@@ -51,7 +51,7 @@ function Header() {
           </div>
         ) : (
           <div className="flex flex-1 items-center justify-between">
-            <Link href="/" className="flex">
+            <Link href="/" className="flex" aria-label="Lien vers la page d'accueil">
               <span className="h-[65px] w-[147px] transition duration-300 fill-neutral-950 hover:scale-102 hover:drop-shadow hover:fill-mahogany-950">
                 <Logo />
               </span>

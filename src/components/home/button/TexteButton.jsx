@@ -6,7 +6,7 @@ import { Plus } from "@/components/logo/Logo";
 function TexteButton({ handleForm, itemData, index }) {
   return (
     <>
-      <Link href={itemData[index].url}>
+      <Link href={itemData[index].url} aria-label={itemData[index].arialLabelLink}>
         <span
           className="group flex justify-center items-center mt-6 mb-4 apparitionButton "
         >

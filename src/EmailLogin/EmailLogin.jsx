@@ -103,7 +103,7 @@ export default function EmailLogin() {
       )}
       </div>
       <div className="flex ml-2 sm:ml-4 mb-6">
-        <Link href="/mot-de-passe-oublie" className="font-bold">Mot de passe oublié ?</Link>
+        <Link href="/mot-de-passe-oublie" className="font-bold" aria-label="Lien vers la page de réinitialisation du mot de passe de chaques utilisateurs">Mot de passe oublié ?</Link>
       </div>
       <div className="flex">
       <div className="flex flex-1 items-center justify-center">

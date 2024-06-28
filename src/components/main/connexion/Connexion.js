@@ -36,7 +36,7 @@ export default function Connexion() {
             <GoogleLogin />
           </div>
         </div>
-        <Link href="/inscription">
+        <Link href="/inscription" aria-label="Lien vers la page d'inscription des utilisateurs">
           <span className="group flex mx-8 mt-4 mb-2 md:mb-8 text-center items-center">
             <span className="size-6 mr-2 md:mr-4 group-hover:fill-mahogany-950 md:group-hover:scale-105 transition duration-300">
               <Login />

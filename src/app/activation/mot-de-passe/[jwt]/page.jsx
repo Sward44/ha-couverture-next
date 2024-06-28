@@ -19,7 +19,7 @@ export default async function reinitialisationPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <h1 className="text-5xl mb-8"> Votre url n&#39;est pas valide !</h1>
-          <RedirectionActivationEmail timer={3000} url={"/mot-de-passe-oublie"} /> 
+          <RedirectionActivationEmail timer={3000} url={"/mot-de-passe-oublie"} arialLabel={"Lien vers la page de réinitialisation du mot de passe de chaques utilisateurs"} /> 
         </div>
       </div>
     )
@@ -28,7 +28,7 @@ export default async function reinitialisationPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
         <h1 className="text-5xl mb-8"> Votre url n&#39;est plus active !</h1>
-          <RedirectionActivationEmail timer={3000} url={"/mot-de-passe-oublie"} />
+          <RedirectionActivationEmail timer={3000} url={"/mot-de-passe-oublie"} arialLabel={"Lien vers la page de réinitialisation du mot de passe de chaques utilisateurs"} />
         </div>
       </div>
     )

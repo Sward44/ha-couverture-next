@@ -14,7 +14,7 @@ export default async function activitionPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <h1 className="text-5xl mb-8"> Votre url n&#39;est pas valide !</h1>
-          <RedirectionActivationEmail timer={3000} url={"/inscription"} /> 
+          <RedirectionActivationEmail timer={3000} url={"/inscription"} arialLabel={"Lien vers la page d'inscription des utilisateurs"} /> 
         </div>
       </div>
     )
@@ -28,7 +28,7 @@ export default async function activitionPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <h1 className="text-5xl mb-8">Votre email est validé et enregistré !</h1>
-          <RedirectionActivationEmail timer={3000} url={"/connexion"} />
+          <RedirectionActivationEmail timer={3000} url={"/connexion"} arialLabel={"Lien vers la page de connexion des utilisateurs"}  />
         </div>
       </div>
     )
@@ -37,7 +37,7 @@ export default async function activitionPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <h1 className="text-5xl mb-8">Votre email est déjà vérifié !</h1>
-          <RedirectionActivationEmail timer={3000} url={"/connexion"} />
+          <RedirectionActivationEmail timer={3000} url={"/connexion"} arialLabel={"Lien vers la page de connexion des utilisateurs"}  />
         </div>
       </div>
     )
@@ -46,7 +46,7 @@ export default async function activitionPage({params}) {
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
         <div className="flex flex-1 flex-col justify-center items-center">
           <h1 className="text-5xl mb-8">Votre url n&#39;est plus valable</h1>
-          <RedirectionActivationEmail timer={3000} url={"/connexion"} />
+          <RedirectionActivationEmail timer={3000} url={"/connexion"} arialLabel={"Lien vers la page de connexion des utilisateurs"}  />
         </div>
       </div>
     )

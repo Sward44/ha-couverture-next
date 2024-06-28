@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { redirect } from "next/navigation";
 
-export function RedirectionActivationEmail({ timer, url }) {
+export function RedirectionActivationEmail({ timer, url, arialLabel }) {
   const [count, setCount] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const intervalRef = React.useRef(null);
@@ -36,7 +36,7 @@ export function RedirectionActivationEmail({ timer, url }) {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <Link href={`${url}`}>
+      <Link href={`${url}`} aria-label={arialLabel}>
         <button
           className="relative bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha w-48"
           onMouseEnter={() => setIsHovered(true)}

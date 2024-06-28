@@ -50,7 +50,7 @@ const NavMenuUser = ({session, status}) => {
         <div ref={ref} className="flex flex-col absolute top-[63px] right-1 rounded-xl bg-neutral-100 shadow-ha">
           <ul>
             <li className="group mx-2 px-2 mt-2 mb-1 py-1 hover:text-mahogany-950 bg-neutral-100 hover:bg-neutral-300 rounded-lg transition duration-300 hover:scale-105">
-              <Link href="#" className="flex items-center">
+              <Link href="/user" className="flex items-center" aria-label="Lien vers la page de profile utilisateur">
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}

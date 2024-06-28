@@ -85,7 +85,7 @@ function NavBurger({ handleBurger, burger }) {
               }`}
             >
               <li>
-                <Link href="/couverture" onClick={() => setBurger(false)}>
+                <Link href="/couverture" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité de couverture">
                   <span className="flex pb-2">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Couverture />
@@ -95,7 +95,7 @@ function NavBurger({ handleBurger, burger }) {
                 </Link>
               </li>
               <li>
-                <Link href="/zinguerie" onClick={() => setBurger(false)}>
+                <Link href="/zinguerie" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité de zinguerie">
                   <span className="flex pb-2">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Zinguerie />
@@ -105,7 +105,7 @@ function NavBurger({ handleBurger, burger }) {
                 </Link>
               </li>
               <li>
-                <Link href="/nettoyage" onClick={() => setBurger(false)}>
+                <Link href="/nettoyage" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité de nettoyage">
                   <span className="flex pb-2">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Nettoyage />
@@ -115,7 +115,7 @@ function NavBurger({ handleBurger, burger }) {
                 </Link>
               </li>
               <li>
-                <Link href="/isolation" onClick={() => setBurger(false)}>
+                <Link href="/isolation" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité d'isolation">
                   <span className="flex pb-2">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Isolation />
@@ -125,7 +125,7 @@ function NavBurger({ handleBurger, burger }) {
                 </Link>
               </li>
               <li>
-                <Link href="/charpente" onClick={() => setBurger(false)}>
+                <Link href="/charpente" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité de charpente">
                   <span className="flex pb-2">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Charpente />
@@ -135,7 +135,7 @@ function NavBurger({ handleBurger, burger }) {
                 </Link>
               </li>
               <li>
-                <Link href="/travaux-divers" onClick={() => setBurger(false)}>
+                <Link href="/travaux-divers" onClick={() => setBurger(false)} aria-label="Lien vers la page de présentation de l'activité des travaux-divers">
                   <span className="flex pb-4">
                     <span className="flex self-center h-7 w-7 fill-neutral-100 mr-3 ml-4">
                       <Travaux />
@@ -149,6 +149,7 @@ function NavBurger({ handleBurger, burger }) {
               href="/avis-clients"
               onClick={() => setBurger(false)}
               className="text-neutral-100 min-w-48 pb-4"
+              aria-label="Lien vers la page de présentation des avis clients"
             >
               <span className="flex  items-center">
                 <span className="flex size-6 fill-neutral-100 mr-3">
@@ -162,6 +163,7 @@ function NavBurger({ handleBurger, burger }) {
               href="/blog"
               onClick={() => setBurger(false)}
               className="text-neutral-100 min-w-48 pb-4"
+              aria-label="Lien vers la page de présentation de blogs"
             >
               <span className="flex  items-center">
                 <span className="flex size-6 justify-center fill-neutral-100 mr-3">
@@ -175,6 +177,7 @@ function NavBurger({ handleBurger, burger }) {
               href="tel:+33634266400"
               onClick={() => setBurger(false)}
               className="text-neutral-100 min-w-48 pb-4"
+              aria-label="Lien vers le numéro de téléphone"
             >
               <span className="flex items-center">
                 <span className="flex size-6 justify-center fill-neutral-100 mr-3">
@@ -189,6 +192,7 @@ function NavBurger({ handleBurger, burger }) {
                   href="#"
                   onClick={() => setBurger(false)}
                   className="text-neutral-100 min-w-48 pb-4"
+                  aria-label="Lien vers la page de profil de l'utilisateur"
                   >
                     <span className="flex w-full items-center size-6 ">
                       {session?.user?.image ? (
@@ -221,6 +225,7 @@ function NavBurger({ handleBurger, burger }) {
                 href="/connexion"
                 onClick={() => setBurger(false)}
                 className="text-neutral-100 min-w-48 pb-4"
+                aria-label="Lien vers la page de connexion des utilisateurs"
               >
                 <span className="flex items-center">
                   <span className="flex size-6 justify-center fill-neutral-100 mr-3">
@@ -233,6 +238,7 @@ function NavBurger({ handleBurger, burger }) {
                 href="/inscription"
                 onClick={() => setBurger(false)}
                 className="text-neutral-100 min-w-48"
+                aria-label="Lien vers la page d'inscription des utilisateurs"
               >
                 <span className="flex items-center">
                   <span className="flex size-6 justify-center fill-neutral-100 mr-3">

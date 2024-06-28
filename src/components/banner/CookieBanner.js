@@ -54,7 +54,7 @@ export default function CookieBanner(){
     return (        
         <div className={` max-w-[340px] flex-col fixed bottom-3 left-3 right-3 z-30 mx-auto md:mx-0 bg-neutral-100 rounded-lg shadow-ha animate-apparitionBanner md:animate-apparitionBannerMd`}>
                 <div className='p-4'>
-                    <p>Nous utilisons Google Analytics voir les <Link href="/politique-confidentialite"><span className='underline md:hover:text-mahogany-950'>condition générales</span></Link> de ce site.</p>
+                    <p>Nous utilisons Google Analytics voir les <Link href="/politique-confidentialite" aria-label="Lien vers la page de politique confidentialité"><span className='underline md:hover:text-mahogany-950'>condition générales</span></Link> de ce site.</p>
                 </div>
                 <div className='flex justify-center gap-x-2 mb-4 mx-2'>
                     <button className=' py-2 text-neutral-700 bg-neutral-100 rounded-lg border-neutral-900 flex-1' onClick={refuseConsent}>Rennoncer</button>
