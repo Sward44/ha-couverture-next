@@ -55,6 +55,7 @@ async function Footer() {
               target="_blank "
               rel="noopener noreferrer"
               alt="Lien vers Facebook"
+              aria-label="Lien vers la page de profil Facebook de HA Couverture"
             >
               <span className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300">
                 <Facebook />
