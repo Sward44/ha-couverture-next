@@ -48,7 +48,7 @@ export function LogoMobile() {
       data-name="Logo Ha Couverture"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      alt="Logo de Ha Couverture"
+      alt="Logo de l'entreprise Ha Couverture Mobile"
     >
       <circle className="fill-supernova-500" cx="292.06" cy="256" r="180.28" />
       <path
@@ -272,7 +272,7 @@ export function EyeClose() {
 
 export function Google() {
   return(
-    <svg viewBox="0 0 262 262" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 262 262" xmlns="http://www.w3.org/2000/svg" alt="Illustration de Google pour se connecter">
       <path
         d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
         fill="#4285F4" />
@@ -291,7 +291,7 @@ export function Google() {
 
 export function Phone() {
   return(
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" alt="Illustration de combiné de téléphone">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" alt="Illustration de combiné de téléphone pour contacter le représentant de l'entreprise">
       <path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
     </svg>
   )
@@ -368,7 +368,7 @@ export function Send() {
 
 export function Facebook() {
   return(
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" alt="Illustration de Facebook lien vers la page de l'entreprise">
       <path
         d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
     </svg>
@@ -440,7 +440,7 @@ export function Activites() {
 
 export function Blog() {
   return(
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" alt="Illustration des informations concernant les actions de l'entreprise">
       <path
         d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
     </svg>

@@ -53,7 +53,7 @@ function ImageButton({
               }`}
             >
               <div className="md:h-8 md:w-8 h-7 w-7">
-                <SvgComponent alt={i.altSvg} />
+                <SvgComponent />
               </div>
             </button>
           );
