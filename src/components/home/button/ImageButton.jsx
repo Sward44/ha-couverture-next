@@ -19,6 +19,8 @@ function ImageButton({
           <button
             onClick={handleNext}
             className=" z-10 absolute top-1/2  left-16"
+            id="buttonGauche"
+            aria-label="Button pour aller à l'image précédente"
           >
             <div className="fill-neutral-100 md:size-10 md:hover:fill-supernova-500 md:hover:scale-105 transition duration-300">
               <AngleLeft />
@@ -27,6 +29,8 @@ function ImageButton({
           <button
             onClick={handlePrev}
             className="z-10 absolute top-1/2 right-16"
+            id="buttonDroite"
+            aria-label="Button pour aller à l'image suivante"
           >
             <div className="fill-neutral-100 md:size-10 md:hover:fill-supernova-500 md:hover:scale-105 transition duration-300">
               <AngleRight />
@@ -46,6 +50,8 @@ function ImageButton({
           if (!SvgComponent) return null;
           return (
             <button
+              id={i.buttonId}
+              aria-label={i.arialLabel}
               key={indexButton}
               onClick={() => handleEveryImage(indexButton)}
               className={`mx-2 bg-neutral-300 rounded-lg md:hover:bg-supernova-500 md:hover:fill-mahogany-950 transition-all duration-300 md:hover:scale-105 md:hover:shadow-haDark ${
