@@ -1,14 +1,21 @@
-import {connect} from "@/utils/mongodb";
-import { MetaModel, PageModel, SousPageModel } from "@/models";
+"use server";
+import { connect } from "@/utils/mongodb";
+import { PageModel, SousPageModel, MetaModel } from "@/models";
+import { getEnvVarForActivity } from "@/app/(activites)/layout";
 import HeaderMain from "@/components/main/header/HeaderMain";
 import Activites from "@/components/main/activites/Activites";
-import Footer from "@/components/footer/Footer";
 
-export const generateMetadata = async () => {
+export async function generateMetadata({ params }) {
+  let { activities } = params;
+  if ( activities === "travaux-divers") activities = activities.slice(0, activities.lastIndexOf('-'));
+  const metaId = await getEnvVarForActivity(activities, "meta");
+
   await connect();
   const data = await MetaModel.findOne({
-    _id: process.env.META_ID_COUV,
-  }).exec();
+    _id: metaId,
+  })
+    .lean()
+    .exec();
   return {
     title: data.title,
     description: data.description,
@@ -24,17 +31,20 @@ export const generateMetadata = async () => {
       },
     },
   };
-};
+}
 
-export default async function couverturePage() {
+export default async function activitesPage({params}) {
+  let { activities } = params;
+  if ( activities === "travaux-divers") activities = activities.slice(0, activities.lastIndexOf('-'));
+  const pageId = await getEnvVarForActivity(activities, "page");
   await connect();
   const Data = await PageModel.findOne({
-    _id: process.env.PAGE_ID_COUV,
+    _id: pageId,
   })
     .lean()
     .exec();
   const DataPage = await SousPageModel.find({
-    _pageId: process.env.PAGE_ID_COUV,
+    _pageId: pageId,
   })
     .lean()
     .exec();
@@ -53,12 +63,9 @@ export default async function couverturePage() {
 
   const itemDataCouverture = JSON.parse(JSON.stringify(itemsData));
   return (
-    <>
-      <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
-        <HeaderMain itemDataCouverture={itemDataCouverture} />
-        <Activites itemDataCouverture={itemDataCouverture} />
-      </div>
-      <Footer />
-    </>
+    <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
+      <HeaderMain itemDataCouverture={itemDataCouverture} />
+      <Activites itemDataCouverture={itemDataCouverture} />
+    </div>
   );
 }

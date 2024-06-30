@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ImageDiaporama from '@/components/home/image/ImageDiaporama';
 import Texte from '@/components/home/texte/Texte';
@@ -11,6 +11,8 @@ function ComponentsHomePage({ itemData }) {
   const [direction, setDirection] = useState('imageGauche');
   const [index, setIndex] = useState(0);
   const [addForm, setAddForm] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const handleNext = () => {
     const newIndex = index - 1;
@@ -25,6 +27,24 @@ function ComponentsHomePage({ itemData }) {
   const handlePrev = () => {
     setIndex((index + 1) % itemData.length);
     setDirection('imageDroite');
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      handleNext();
+    }
+
+    if (touchEndX.current - touchStartX.current > 50) {
+      handlePrev();
+    }
   };
 
   const childFactory = (direction) => (child) =>
@@ -63,14 +83,17 @@ function ComponentsHomePage({ itemData }) {
         handlePrev={handlePrev}
         handleEveryImage={handleEveryImage}
       />
-      <div className="relative flex overflow-auto overflow-x-hidden snap-x snap-mandatory">
+      <div
+        className="relative flex overflow-auto overflow-x-hidden snap-x snap-mandatory"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <TransitionGroup childFactory={childFactory(direction)} component={null}>
           <CSSTransition
-            // in={false}
             key={index}
             timeout={800}
             classNames={direction}
-            // en
           >
             <ImageDiaporama itemData={itemData} index={index} />
           </CSSTransition>
@@ -78,11 +101,7 @@ function ComponentsHomePage({ itemData }) {
       </div>
       {addForm && <FormAdd handleForm={handleForm} />}
     </div>
-
   );
-
 }
-
-
 
 export default ComponentsHomePage;
