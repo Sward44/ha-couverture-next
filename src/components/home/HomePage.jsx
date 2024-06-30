@@ -30,21 +30,27 @@ function ComponentsHomePage({ itemData }) {
   };
 
   const handleTouchStart = (e) => {
+    console.log('Touch Start', e.touches[0].clientX);
     touchStartX.current = e.touches[0].clientX;
+    e.preventDefault();
   };
 
   const handleTouchMove = (e) => {
+    console.log('Touch Move', e.touches[0].clientX);
     touchEndX.current = e.touches[0].clientX;
+    e.preventDefault();
   };
 
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) {
+  const handleTouchEnd = (e) => {
+    console.log('Touch End', touchEndX.current - touchStartX.current);
+    const deltaX = touchEndX.current - touchStartX.current;
+    if (deltaX > 50) {
+      handlePrev();
+    } else if (deltaX < -50) {
       handleNext();
     }
-
-    if (touchEndX.current - touchStartX.current > 50) {
-      handlePrev();
-    }
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   const childFactory = (direction) => (child) =>
@@ -55,10 +61,10 @@ function ComponentsHomePage({ itemData }) {
   const handleEveryImage = (a) => {
     if (a > index) {
       setIndex(a);
-      setDirection('imageDroite');
+      setDirection('imageGauche');
     } else if (a < index) {
       setIndex(a);
-      setDirection('imageGauche');
+      setDirection('imageDroite');
     }
   };
 
