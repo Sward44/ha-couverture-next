@@ -50,17 +50,16 @@ async function Footer() {
           <div className="max-w-80  sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:max-w-none lg:m-2">
             <h3 className="font-bold text-lg mb-3 text-center sm:text-left">Rejoignez-nous</h3>
             <div className="flex justify-center sm:justify-start">
-            <a
+            <Link
               href="https://facebook.com/ha.couverture"
               target="_blank "
               rel="noopener noreferrer"
               alt="Lien vers Facebook"
               aria-label="Lien vers la page de profil Facebook de HA Couverture"
+              className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300"
             >
-              <span className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300">
-                <Facebook />
-              </span>
-            </a>
+              <Facebook />
+            </Link>
             </div>
           </div>
         </div>
