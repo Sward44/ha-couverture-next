@@ -42,9 +42,9 @@ function ComponentsHomePage({ itemData }) {
   const handleTouchEnd = (e) => {
     const deltaX = touchEndX.current - touchStartX.current;
     if (deltaX > 50) {
-      handlePrev();
-    } else if (deltaX < -50) {
       handleNext();
+    } else if (deltaX < -50) {
+      handlePrev();
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
