@@ -30,19 +30,16 @@ function ComponentsHomePage({ itemData }) {
   };
 
   const handleTouchStart = (e) => {
-    console.log('Touch Start', e.touches[0].clientX);
     touchStartX.current = e.touches[0].clientX;
     e.preventDefault();
   };
 
   const handleTouchMove = (e) => {
-    console.log('Touch Move', e.touches[0].clientX);
     touchEndX.current = e.touches[0].clientX;
     e.preventDefault();
   };
 
   const handleTouchEnd = (e) => {
-    console.log('Touch End', touchEndX.current - touchStartX.current);
     const deltaX = touchEndX.current - touchStartX.current;
     if (deltaX > 50) {
       handlePrev();
@@ -61,10 +58,10 @@ function ComponentsHomePage({ itemData }) {
   const handleEveryImage = (a) => {
     if (a > index) {
       setIndex(a);
-      setDirection('imageGauche');
+      setDirection('imageDroite');
     } else if (a < index) {
       setIndex(a);
-      setDirection('imageDroite');
+      setDirection('imageGauche');
     }
   };
 
