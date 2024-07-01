@@ -19,10 +19,9 @@ import styles from "@/components/header/nav/Nav.module.scss";
 function Nav() {
   const [showMenu, setShowMenu] = useState(false);
   const { data: session, status } = useSession();
-  // const [darkMode, setDarkMode] = useState();
   const ref = React.useRef(null);
 
-  console.log("Session : ",session,"Status : ", status);
+
 
   const handleShowMenu = (e) => {
     e.stopPropagation();

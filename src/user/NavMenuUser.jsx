@@ -15,7 +15,7 @@ const NavMenuUser = ({session, status}) => {
     e.stopPropagation();
     setShowMenuUser(!showMenuUser);
   };
-  console.log("Session : ",session,"Status : ", status);
+  
   return (
     <>
     <div
