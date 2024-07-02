@@ -1,6 +1,7 @@
 "use server";
 import { connect } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "@/app/globals.scss";
 import Header from "@/components/header/Header";
 import AuthProvider from "@/utils/SessionProvider";
@@ -54,6 +55,7 @@ export default async function RootLayout({ children }) {
         </AuthProvider>
         {/* <CookieBanner /> */}
       </body>
+      <GoogleTagManager gtmId="GTM-NB78FJGN" />
     </html>
   );
 }
