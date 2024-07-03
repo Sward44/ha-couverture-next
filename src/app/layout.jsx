@@ -1,11 +1,10 @@
 "use server";
 import { connect } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
-import { GoogleTagManager } from "@next/third-parties/google";
 import "@/app/globals.scss";
 import Header from "@/components/header/Header";
 import AuthProvider from "@/utils/SessionProvider";
-// import CookieBanner from "@/components/banner/CookieBanner";
+import CookieBanner from "@/components/banner/CookieBanner";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
@@ -53,9 +52,9 @@ export default async function RootLayout({ children }) {
             </Suspense>
           <ToastContainer />
         </AuthProvider>
-        {/* <CookieBanner /> */}
+        <CookieBanner />
       </body>
-      <GoogleTagManager gtmId="GTM-NB78FJGN" />
+      
     </html>
   );
 }
