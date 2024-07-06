@@ -446,3 +446,68 @@ export function Blog() {
     </svg>
   )
 }
+
+export function Star() {
+  return (
+    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" alt="Illustration d'étoile pleine pour le cotation des avis">
+  <path
+    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+  </path>
+</svg>
+  )
+}
+
+export function StarUnQuart() {
+  return (
+    <svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" alt="Illustration d'étoile un-quart de remplissage pour le cotation des avis">
+  <path
+    d="m545.8,226.1l-105.7,103,25,145.5c4.5,26.3-23.2,45.9-46.4,33.7l-130.7-68.7-130.7,68.7c-7,3.7-14.5,4.5-21.4,3V158.7l58.1-8.5L259.3,17.8c11.8-23.9,45.7-23.6,57.4,0l65.3,132.4,146.1,21.3c26.2,3.8,36.7,36.1,17.7,54.6Z" />
+  <path fill="#ffcc00" d="m135.9,158.7v352.7c-15.7-3.3-28.1-18.4-25-36.8l25-145.5L30.2,226.1c-19-18.5-8.5-50.8,17.7-54.6l88-12.8Z" />
+</svg>
+  )
+}
+
+export function StarTroisHuitieme() {
+return (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" alt="Illustration d'étoile trois-huitième de remplissage pour le cotation des avis">
+    <path
+      d="m545.8,226.1l-105.7,103,25,145.5c4.5,26.3-23.2,45.9-46.4,33.7l-130.7-68.7-76.2,40.1V114.2l47.5-96.4c11.8-23.9,45.7-23.6,57.4,0l65.3,132.4,146.1,21.3c26.2,3.8,36.7,36.1,17.7,54.6Z" />
+    <path fill="#ffcc00"
+      d="m211.8,114.2v365.5l-54.5,28.6c-23.2,12.3-50.9-7.4-46.4-33.7l25-145.5L30.2,226.1c-19-18.5-8.5-50.8,17.7-54.6l146.1-21.3,17.8-36Z" />
+  </svg>
+  )
+}
+
+export function StarUnDemi() {
+return (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" alt="Illustration d'étoile un-demi de remplissage pour le cotation des avis">
+    <path
+      d="m545.8,226.1l-105.7,103,25,145.5c4.5,26.3-23.2,45.9-46.4,33.7l-130.7-68.7.7-439.6c11.2.2,22.3,6.2,28,17.8l65.3,132.4,146.1,21.3c26.2,3.8,36.7,36.1,17.7,54.6Z" />
+    <path fill="#ffcc00"
+      d="m288.7,0l-.7,439.6-130.7,68.7c-23.2,12.3-50.9-7.4-46.4-33.7l25-145.5L30.2,226.1c-19-18.5-8.5-50.8,17.7-54.6l146.1-21.3L259.3,17.8c6-12.2,17.8-18.1,29.4-17.8Z" />
+  </svg>
+  )
+}
+
+export function StarTroisQuart() {
+return (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" alt="Illustration d'étoile trois-quart de remplissage pour le cotation des avis">
+    <path
+    d="m545.8,226.1l-105.7,103,25,145.5c4.5,26.3-23.2,45.9-46.4,33.7l-54.7-28.7V113.8l18,36.4,146.1,21.3c26.2,3.8,36.7,36.1,17.7,54.6Z" />
+    <path
+      fill="#ffcc00"
+      d="m364,113.8v365.8l-76-40-130.7,68.7c-23.2,12.3-50.9-7.4-46.4-33.7l25-145.5L30.2,226.1c-19-18.5-8.5-50.8,17.7-54.6l146.1-21.3L259.3,17.8c11.8-23.9,45.7-23.6,57.4,0l47.3,96Z" />
+  </svg>
+  )
+}
+
+export function StarCinqHuitieme() {
+return (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" alt="Illustration d'étoile cinq-huitème de remplissage pour le cotation des avis">
+    <path d="m545.8,226.1l-105.7,103,25,145.5c3.1,18.3-9.3,33.4-25,36.7V158.7l88,12.8c26.2,3.8,36.7,36.1,17.7,54.6Z" />
+    <path
+    fill="#ffcc00"
+    d="m440.1,158.7v352.6c-6.9,1.5-14.3.7-21.4-3l-130.7-68.7-130.7,68.7c-23.2,12.3-50.9-7.4-46.4-33.7l25-145.5L30.2,226.1c-19-18.5-8.5-50.8,17.7-54.6l146.1-21.3L259.3,17.8c11.8-23.9,45.7-23.6,57.4,0l65.3,132.4,58.1,8.5Z" />
+  </svg>
+  )
+}

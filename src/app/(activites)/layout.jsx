@@ -28,6 +28,26 @@ export async function getEnvVarForActivity(activity, type) {
       meta: process.env.META_ID_TRAV,
       page: process.env.PAGE_ID_TRAV,
     },
+    avis: {
+      meta: process.env.META_ID_AVIS,
+      page: process.env.PAGE_ID_AVIS,
+    },
+    connexion: {
+      meta: process.env.META_ID_CONN,
+      page: process.env.PAGE_ID_CONN,
+    },
+    inscription: {
+      meta: process.env.META_ID_INSC,
+      page: process.env.PAGE_ID_INSC,
+    },
+    mot: {
+      meta: process.env.META_ID_PASS,
+      page: process.env.PAGE_ID_PASS,
+    },
+    user: {
+      meta: process.env.META_ID_USER,
+      page: process.env.PAGE_ID_USER,
+    }
   };
 
   if (!mapping[activity] ) {
