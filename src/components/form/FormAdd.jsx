@@ -85,7 +85,8 @@ export default function FormAdd({ handleForm }) {
               <h3 className="mb-20">
                 Merci, nous avons bien reçu votre message, nous vous repondrons
                 dans 48h maximum.
-              </h3>                                                                                                   </div>
+              </h3>
+            </div>
             <div className="">
               <button className="" onClick={handleForm}>
                 <h3>Ok</h3>
@@ -94,11 +95,19 @@ export default function FormAdd({ handleForm }) {
           </div>
         </div>
       ) : (
-          <form onSubmit={handleSubmit(submit)} className="shadow-ha px-4 py-8 rounded-xl grid grid-cols-[minmax(260px,500px)] mx-8 my-4 sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[auto_1fr_1fr_3fr_60px] grid-rows-[1fr_1fr_1fr_1fr_3fr_60px] md:max-w-[800px] bg-neutral-100">
+          <form onSubmit={handleSubmit(submit)} className="relative shadow-ha px-4 py-8 rounded-xl grid grid-cols-[minmax(260px,500px)] mx-8 my-4 sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[auto_1fr_1fr_3fr_60px] grid-rows-[1fr_1fr_1fr_1fr_3fr_60px] md:max-w-[800px] bg-neutral-100">
             <div className="hidden sm:flex justify-between sm:col-span-2 md:col-span-4 mb-8">
               <h2 className="sm:pl-4 text-2xl font-bold">Devis</h2>
               <div onClick={handleForm} className="sm:mr-4 size-6 md:hover:fill-mahogany-950 md:hover:scale-105 transition duration-300">
                 <Mark />
+              </div>
+            </div>
+            <div className="absolute sm:hidden top-0 right-0 translate-x-4 -translate-y-4 z-10">
+              <div onClick={handleForm} className="flex items-center justify-center size-8 bg-neutral-100 border-neutral-300 border rounded-full">
+                <div className="size-5 fill-neutral-950">
+                  <Mark />
+                </div>
+                
               </div>
             </div>
 

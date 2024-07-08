@@ -27,9 +27,9 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
               <>
                 <div className="flex justify-between max-w-[320px] mx-auto items-center mb-8">
                   <div className="flex flex-col items-center justify-center bg-supernova-500 p-6 rounded-full size-24 sm:size-32">
-                    <span className="size-8 sm:size-10 fill-neutral-100"><Trophy /></span>
-                    <span className="font-bold text-xs sm:text-sm text-neutral-100">{Note}/5</span>
-                    <span className="font-bold text-xs sm:text-sm text-neutral-100">{NoteAvis} avis</span>
+                    <span className="size-8 sm:size-10 fill-neutral-950"><Trophy /></span>
+                    <span className="font-bold text-xs sm:text-sm text-neutral-950">{Note}/5</span>
+                    <span className="font-bold text-xs sm:text-sm text-neutral-950">{NoteAvis} avis</span>
                   </div>
                   <div className="flex flex-col justify-center items-center">
                     <span className=" text-sm md:text-lg mb-2 ">Note globale : <span className="text-lg md:text-xl font-bold">{Note}</span>/5</span>
@@ -133,9 +133,9 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
               <>
                 <div className="flex justify-between items-center">
                   <div className="flex flex-col  items-center justify-center bg-supernova-500 p-6 rounded-full size-24 sm:size-32">
-                    <span className="size-8 sm:size-10 fill-neutral-100"><Trophy /></span>
-                    <span className="font-bold text-xs sm:text-sm text-neutral-100">{Note}/5</span>
-                    <span className="font-bold text-xs sm:text-sm text-neutral-100">{NoteAvis} avis</span>
+                    <span className="size-8 sm:size-10 fill-neutral-950"><Trophy /></span>
+                    <span className="font-bold text-xs sm:text-sm text-neutral-950">{Note}/5</span>
+                    <span className="font-bold text-xs sm:text-sm text-neutral-950">{NoteAvis} avis</span>
                   </div>
                   <div className="flex flex-col justify-center items-center">
                     <span className=" text-sm md:text-lg mb-2 sm:mr-4">Note globale : <span className="text-lg md:text-xl font-bold">{Note}</span>/5</span>
