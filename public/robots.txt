@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://buzz-ready/sitemap.xml https://www.buzz-ready.com/sitemap.xml
+Sitemap: https://buzz-ready/sitemap.xml

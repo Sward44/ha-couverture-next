@@ -6,7 +6,9 @@ import {
   StarUnDemi, 
   StarTroisQuart, 
   StarCinqHuitieme, 
-  Trophy 
+  Trophy, 
+  StarUnHuitieme,
+  StarSeptHuitieme
 } from "@/components/logo/Logo";
 import { useViewport } from "@/hooks/viewPort";
 import Link from "next/link";
@@ -14,7 +16,6 @@ import Link from "next/link";
 
 export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) {
   const { isMobile, isTablet } = useViewport();
-  
 
   return (
     <div className="w-full md:w-auto mt-6 md:mt-12 mb-2 md:mb-6">
@@ -33,7 +34,7 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                   <div className="flex flex-col justify-center items-center">
                     <span className=" text-sm md:text-lg mb-2 ">Note globale : <span className="text-lg md:text-xl font-bold">{Note}</span>/5</span>
                     <div className="flex justify-center sm:mb-none">
-                      {[...Array(5)].map((_, index) => {
+                    {[...Array(5)].map((_, index) => {
                           if (NoteEntiere > index) {
                             return (
                               <span
@@ -43,7 +44,16 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                               </span>
                               );
                             } else if (NoteEntiere === index) {
-                              if (NoteDecimal < (1/4*100)) {
+                              if (NoteDecimal < (1/8*100)) {
+                                return (
+                                  <span
+                                    key={index}
+                                    className="size-6 md:size-8 mr-1 fill-neutral-500">
+                                    <StarUnHuitieme />
+                                  </span>
+                                );
+
+                              } else if (NoteDecimal < (1/4*100)) {
                                 return (
                                   <span
                                     key={index}
@@ -81,6 +91,14 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                                     key={index}
                                     className="size-6 md:size-8 mr-1 fill-neutral-500">
                                     <StarTroisQuart />
+                                  </span>
+                                );
+                              } else if (NoteDecimal < (7/8*100)) {
+                                return (
+                                  <span
+                                    key={index}
+                                    className="size-6 md:size-8 mr-1 fill-neutral-500">
+                                    <StarSeptHuitieme />
                                   </span>
                                 );
                               } else {
@@ -123,7 +141,7 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                     <span className=" text-sm md:text-lg mb-2 sm:mr-4">Note globale : <span className="text-lg md:text-xl font-bold">{Note}</span>/5</span>
                     <div className="flex justify-center mb-6 sm:mb-none">
                       {[...Array(5)].map((_, index) => {
-                          if (Note > index) {
+                          if (NoteEntiere > index) {
                             return (
                               <span
                                 key={index}
@@ -131,8 +149,17 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                                 <Star />
                               </span>
                               );
-                            } else if (Note === index) {
-                              if (NoteDecimal < (1/4*100)) {
+                            } else if (NoteEntiere === index) {
+                              if (NoteDecimal < (1/8*100)) {
+                                return (
+                                  <span
+                                    key={index}
+                                    className="size-6 md:size-8 mr-1 fill-neutral-500">
+                                    <StarUnHuitieme />
+                                  </span>
+                                );
+
+                              } else if (NoteDecimal < (1/4*100)) {
                                 return (
                                   <span
                                     key={index}
@@ -170,6 +197,15 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
                                     key={index}
                                     className="size-6 md:size-8 mr-1 fill-neutral-500">
                                     <StarTroisQuart />
+                                  </span>
+                                );
+                              } else if (NoteDecimal < (7/8*100)) {
+                                
+                                return (
+                                  <span
+                                    key={index}
+                                    className="size-6 md:size-8 mr-1 fill-neutral-500">
+                                    <StarSeptHuitieme />
                                   </span>
                                 );
                               } else {
