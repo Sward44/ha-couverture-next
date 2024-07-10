@@ -107,7 +107,6 @@ export default function FormAdd({ handleForm }) {
                 <div className="size-5 fill-neutral-950">
                   <Mark />
                 </div>
-                
               </div>
             </div>
 
@@ -193,6 +192,7 @@ export default function FormAdd({ handleForm }) {
                 <p className="absolute text-red-500 text-[12px] top-[213px] pl-2">{errors.comments.message}</p>
               )}
             </div>
+            
             <div className="flex sm:col-span-2 md:col-start-2">
               <div className="flex flex-1 items-center justify-center">
                 <button disabled={isSubmitting} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">

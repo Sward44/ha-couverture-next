@@ -1,31 +1,33 @@
 "use client";
-import { useRef } from "react";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Email, Loading, Mark, Phone, Send, User } from "@/components/logo/Logo";
+import { Loading, Mark, Send, Star, StarUnDemi, User,} from "@/components/logo/Logo";
+import Image from "next/image";
 
-export default function FormAdd({ handleForm }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const isFinish = useRef(false);
-  const defaultvalues = {
-    email: "",
-  };
+export default function FormAdd({ handleForm, session }) {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [note, setNote] = React.useState(5);
+  const isFinish = React.useRef(false);
+
+  function handleValue(e) {
+    e.preventDefault();
+    setNote(e.target.value); 
+  }
 
   const schema = yup.object({
-    email: yup
+    note: yup
+      .number()
+      .required("Note obligatoire")
+      .min(0, "0 minimum")
+      .max(5, "5 maximum"),
+    title: yup
       .string()
-      .required("Email est demandé...")
-      .email("Votre email n'est pas conforme"),
-    lastName: yup.string().required("Nom est demandé...").min(2, "Plus de 2 charactères").max(50, "Moins de 50 charactères"),
-    firstName: yup.string().required("Prénom est demandé...").min(2, "Plus de 2 charactères minimum").max(50, "Moins de 50 charactères"),
-    indicatif: yup.string(),
-    number: yup
-      .string()
-      .required("Numéro de téléphone demandé...")
-      .matches(nameRegex, "Numéro de téléphone non conforme"),
-    comments: yup.string().required("Le sujet de votre email est demandé..."),
+      .required("Titre obligatoire")
+      .min(5, "5 caractères minimum")
+      .max(36, "36 caractère maximum"),
+    comments: yup.string().required("Le sujet de votre email est demandé...").min(20, "20 cractères minimum"),
   });
 
   const {
@@ -36,7 +38,9 @@ export default function FormAdd({ handleForm }) {
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm({
-    defaultvalues,
+    defaultValues: {
+      note: note,
+    },
     resolver: yupResolver(schema),
   });
 
@@ -76,99 +80,133 @@ export default function FormAdd({ handleForm }) {
   }
 
   return (
-    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen  z-30 animate-[apparitionEcran_0.5s_ease_forwards]`}>
-
-          <form onSubmit={handleSubmit(submit)} className="shadow-ha px-4 py-8 rounded-xl grid grid-cols-[minmax(260px,500px)] mx-8 my-4 sm:grid-cols-2 md:grid-cols-4 sm:grid-rows-[auto_1fr_1fr_3fr_60px] grid-rows-[1fr_1fr_1fr_1fr_3fr_60px] md:max-w-[800px] bg-neutral-100">
-            <div className="hidden sm:flex justify-between sm:col-span-2 md:col-span-4 mb-8">
-              <h2 className="sm:pl-4 text-2xl font-bold">Devis</h2>
+    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen z-30 py-12 px-4 sm:px-12 md:py-32 animate-[apparitionEcran_0.5s_ease_forwards]`}>
+          <form onSubmit={handleSubmit(submit)} className="relative h-full w-full shadow-ha px-4 py-8 rounded-xl grid grid-cols-1 my-4 sm:grid-cols-[1fr_1fr]  grid-rows-[auto_auto_1fr_60px] sm:grid-rows-[auto_auto_auto_1fr_60px] sm:max-w-[640px] bg-neutral-100">
+            <div className="absolute flex items-center top-0 left-1/2 -translate-x-1/2 -translate-y-4 z-10 bg-neutral-100 rounded-full border border-neutral-300 shadow-ha">
+              <div className="size-8 ml-1 mr-2">
+                {session?.user?.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt={session?.user?.name}
+                    width={30}
+                    height={30}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center size-8 bg-neutral-300 rounded-full">
+                    <div className="size-6 fill-neutral-950">
+                      <User />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div>
+                <p className="text-xs pr-4">{session?.user?.email}</p>
+                <p className="text-xs pr-4 pb-1">{session?.user?.name}</p>
+              </div>
+            </div>
+            <div className="hidden sm:flex justify-between sm:col-span-2 mb-8">
+              <h2 className="sm:pl-4 text-2xl font-bold">Avis clients</h2>
               <div onClick={handleForm} className="sm:mr-4 size-6 md:hover:fill-mahogany-950 md:hover:scale-105 transition duration-300">
                 <Mark />
               </div>
             </div>
-
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
-              <label htmlFor="firstName" className={`labelForm ${errors?.firstName ? "to-red-50": "to-neutral-50"}`}>Prénom</label>
-              <input
-                id="firstName"
-                type="text"
-                {...register("firstName")}
-                className={`inputFormIconLeft ${errors?.firstName && "bg-red-50" }`} 
-                placeholder="Votre prénom..."
-              />
-              <div className="iconLeft">
-                <User />
+            <div className="absolute sm:hidden top-0 right-0 translate-x-4 -translate-y-4 z-10">
+              <div onClick={handleForm} className="flex items-center justify-center size-8 bg-neutral-100 border-neutral-300 border rounded-full">
+                <div className="size-5 fill-neutral-950">
+                  <Mark />
+                </div>
               </div>
-              {errors?.firstName && (
-                <p className="errorsForm">{errors.firstName.message}</p>
-              )}
             </div>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
-              <label htmlFor="lastName" className={`labelForm ${errors?.lastName ? "to-red-50": "to-neutral-50"}`}>Nom</label>
-              <input
-                id="lastName"
-                type="text"
-                {...register("lastName")}
-                className={`inputFormIconLeft ${errors?.lastName && "bg-red-50"}`}
-                placeholder="Votre nom..."
-              />
-              <div className="iconLeft">
-                <User />
-            </div>
-              {errors?.lastName && (
-                <p className="errorsForm">{errors.lastName.message}</p>
-              )}
-            </div>
+            <div className="relative flex flex-col sm:col-span-2 sm:mx-4 mb-8">
+              <p className="absolute px-1 text-base -top-3 left-4" htmlFor="note">Note avis :</p>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
-              <label htmlFor="email" className={`labelForm ${errors?.email ? "to-red-50": "to-neutral-50"}`}>E-mail</label>
-              <input
-                id="email"
-                type="email"
-                {...register("email")}
-                defaultvalues={"email"}
-                className={`inputFormIconLeft ${errors?.email && "bg-red-50"}`}
-                placeholder="Votre email..."
+              <input 
+                id="note"
+                type="number"
+                min="0"
+                max="5"
+                step="0.5"
+                {...register("note")}
+                className="absolute font-bold text-base text-right -top-3 right-6 bg-neutral-100 w-[52px] outline-none"
+                defaultValue={'5'}
+                onChange={handleValue}
               />
-              <div className="iconLeft">
-                <Email />
-            </div>
-              {errors?.email && (
-                <p className="errorsForm">{errors.email.message}</p>
-              )}
-            </div>
+              <p className="absolute px-1 text-base -top-3 right-0">/5</p>
 
-            <div className="relative flex flex-col md:col-span-2 sm:mx-4 mb-8">
-              <label htmlFor="number" className={`labelForm ${errors?.number ? "to-red-50": "to-neutral-50"}`}>N° de téléphone</label>
-              <input
-                id="number"
-                type="text"
-                {...register("number")}
-                className={`inputFormIconLeft ${errors?.number && "bg-red-50"}`}
-                placeholder="Votre n° de téléphone..."
-              />
-              <div className="iconLeft">
-                <Phone />
+              {errors?.note && (
+                <p className="errorsForm">{errors.note.message}</p>
+              )}
+              <div on className="flex justify-around mt-4 md:mt-6 mx-4 sm:mx-8 md:mx-16 ">
+                {[...Array(5)].map((_, index) => {
+                    if (Math.floor(note) > index) {
+                      return (
+                        <span
+                          key={index}
+                          className="size-16 mr-1 fill-supernova-500">
+                          <Star />
+                        </span>
+                        );
+                    } else if (Math.floor(note) === index) {
+                      if (Number(note.slice(2,note.length + 1)) === 5) {
+                        return (
+                          <span
+                            key={index}
+                            className="size-16  mr-1 fill-neutral-500">
+                            <StarUnDemi />
+                          </span>
+                        );
+                      } else {
+                        return (
+                          <span
+                            key={index}
+                            className="size-16  mr-1 fill-neutral-500">
+                            <Star />
+                          </span>
+                        );
+                      }
+                    } else {
+                      return (
+                        <span
+                          key={index}
+                          className="size-16 mr-1 fill-neutral-500">
+                          <Star />
+                        </span>
+                      );
+                    }
+                })}
               </div>
-              {errors?.number && (
-                <p className="errorsForm">{errors.number.message}</p>
+            </div>
+
+            <div className="relative flex flex-col sm:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="title" className={`labelForm ${errors?.title ? "to-red-50": "to-neutral-50"}`}>Titre</label>
+              <input
+                id="title"
+                type="text"
+                {...register("title")}
+                className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+                placeholder="Votre titre..."
+              />
+              {errors?.title && (
+                <p className="errorsForm">{errors.title.message}</p>
               )}
             </div>
 
-            <div className="relative flex flex-col sm:col-span-2 md:col-span-4 sm:mx-4 mb-8">
-              <label htmlFor="comments" className={`labelForm ${errors?.comments ? "to-red-50": "to-neutral-50"}`}>Demande précis</label>
+            <div className="relative flex flex-col sm:col-span-2 sm:mx-4 mb-8">
+              <label htmlFor="comments" className={`labelForm ${errors?.comments ? "to-red-50": "to-neutral-50"}`}>Description</label>
               <textarea
                 id="comments"
                 type="text"
                 {...register("comments")}
                 className={`h-full inputFormBase resize-none ${errors?.comments && "bg-red-50"}`}
-                placeholder="Préciser votre demande..."
+                placeholder="Vos commentaires..."
               />
               {errors?.comments && (
                 <p className="absolute text-red-500 text-[12px] top-[213px] pl-2">{errors.comments.message}</p>
               )}
             </div>
-            <div className="flex sm:col-span-2 md:col-start-2">
+            <div className="flex sm:col-span-2 ">
               <div className="flex flex-1 items-center justify-center">
                 <button disabled={isSubmitting} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">
                   <div className="flex flex-1 items-center">
