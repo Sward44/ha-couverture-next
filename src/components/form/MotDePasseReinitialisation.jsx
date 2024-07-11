@@ -48,7 +48,7 @@ export default function MotDePasseReinitialisation({dataUser}) {
       clearErrors();
       const {confirmPassword, ...newEmail} = values;
       newEmail.email = dataUser;
-      console.log(newEmail);
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_HOST}/api/motdepasse`,
         {

@@ -3,22 +3,33 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import { Loading, Mark, Send, Star, StarUnDemi, User,} from "@/components/logo/Logo";
 import Image from "next/image";
 
 export default function FormAdd({ handleForm, session }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [note, setNote] = React.useState(5);
+  const [decimalPart, setDecimalPart] = React.useState(0);
+  const [initialNote, setInitialNote] = React.useState(5);
+  const [hoverNote, setHoverNote] = React.useState(null);
   const isFinish = React.useRef(false);
+  const router = useRouter();
 
   function handleValue(e) {
     e.preventDefault();
-    setNote(e.target.value); 
+    setNote(Number(e.target.value));
+    if (e.target.value.length > 1) {
+      setDecimalPart(Number(e.target.value.toString().split('.')[1]));
+    } else {
+      setDecimalPart(0);
+    } 
   }
 
   const schema = yup.object({
-    note: yup
-      .number()
+    notes: yup
+      .string()
       .required("Note obligatoire")
       .min(0, "0 minimum")
       .max(5, "5 maximum"),
@@ -38,9 +49,7 @@ export default function FormAdd({ handleForm, session }) {
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm({
-    defaultValues: {
-      note: note,
-    },
+    values: {notes: note},
     resolver: yupResolver(schema),
   });
 
@@ -48,7 +57,7 @@ export default function FormAdd({ handleForm, session }) {
     try {
       setIsLoading(true);
       clearErrors();
-      const newEmail = values;
+      const newEmail = { ...values, notes: note, email: session?.user?.email };
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_HOST}/api/posts`,
         {
@@ -60,23 +69,57 @@ export default function FormAdd({ handleForm, session }) {
         }
       );
       if (response.ok) {
-        const newEmailResponse = await response.json();
-
+        const dataResponse = await response.json();
         reset();
-        isFinish.current = true;
+        toast.success(dataResponse.message || "Votre avis est enregistré");
+        router.refresh();
+        // router.push("/avis-clients");
       } else {
-        setError("generic", {
-          type: "generic",
-          message: "Problèmes serveurs else",
-        });
+        const errorData = await response.json();
+        toast.error(errorData.error || response.statusText);
       }
     } catch (e) {
-      setError("generic", {
-        type: "generic",
-        message: "Problèmes serveurs catch",
-      });
+      if (e) {
+        toast.error(e.message || "Une erreur s'est produite");
+      } else {
+        toast.error("Une erreur inconnue s'est produite");
+      }
+    } finally {
+      setIsLoading(false);
+      handleForm();
     }
-    setIsLoading(false);
+  }
+
+  function getStarType(index) {
+    const currentNote = hoverNote ? Number(hoverNote) : Number(note)
+    if (index < currentNote - 0.5) {
+      return "full";
+    } else if (currentNote > Number(index) && currentNote < Number(index + 1)) {
+      return "half";
+    } else {
+      return "empty";
+    }
+  }
+
+  function handleStarHover(event, index) {
+    const { width, left } = event.currentTarget.getBoundingClientRect();
+    const hoverPosition = event.clientX - left;
+    let hoverValue;
+    if (hoverPosition / width <= 0.5) {
+      hoverValue = Number(index + 0.5);
+    } else {
+      hoverValue = Number(index + 1);
+    }
+    setHoverNote(hoverValue);
+  }
+
+  function handleStarClick() {
+    setNote(hoverNote);
+    setInitialNote(hoverNote);
+  }
+
+  function handleStarLeave() {
+    setHoverNote(null);
   }
 
   return (
@@ -120,62 +163,40 @@ export default function FormAdd({ handleForm, session }) {
             </div>
 
             <div className="relative flex flex-col sm:col-span-2 sm:mx-4 mb-8">
-              <p className="absolute px-1 text-base -top-3 left-4" htmlFor="note">Note avis :</p>
-
+              <p className="absolute px-1 text-base -top-3 left-4" htmlFor="notes">Note avis :</p>
               <input 
-                id="note"
+                id="notes"
                 type="number"
                 min="0"
                 max="5"
                 step="0.5"
-                {...register("note")}
+                {...register("notes")}
                 className="absolute font-bold text-base text-right -top-3 right-6 bg-neutral-100 w-[52px] outline-none"
-                defaultValue={'5'}
+                value={note}
                 onChange={handleValue}
               />
               <p className="absolute px-1 text-base -top-3 right-0">/5</p>
 
-              {errors?.note && (
-                <p className="errorsForm">{errors.note.message}</p>
+              {errors?.notes && (
+                <p className="absolute text-xs text-red-500 -top-2 left-1/2 -translate-x-1/2">{errors.notes.message}</p>
               )}
               <div on className="flex justify-around mt-4 md:mt-6 mx-4 sm:mx-8 md:mx-16 ">
-                {[...Array(5)].map((_, index) => {
-                    if (Math.floor(note) > index) {
-                      return (
-                        <span
-                          key={index}
-                          className="size-16 mr-1 fill-supernova-500">
-                          <Star />
-                        </span>
-                        );
-                    } else if (Math.floor(note) === index) {
-                      if (Number(note.slice(2,note.length + 1)) === 5) {
-                        return (
-                          <span
-                            key={index}
-                            className="size-16  mr-1 fill-neutral-500">
-                            <StarUnDemi />
-                          </span>
-                        );
-                      } else {
-                        return (
-                          <span
-                            key={index}
-                            className="size-16  mr-1 fill-neutral-500">
-                            <Star />
-                          </span>
-                        );
-                      }
-                    } else {
-                      return (
-                        <span
-                          key={index}
-                          className="size-16 mr-1 fill-neutral-500">
-                          <Star />
-                        </span>
-                      );
-                    }
-                })}
+              {[...Array(5)].map((_, index) => {
+              const starType = getStarType(index);
+              return (
+                <span
+                  key={index}
+                  className={`size-16 mr-1 ${starType === "full" ? "fill-supernova-500" : "fill-neutral-500"}`}
+                  onMouseMove={(e) => handleStarHover(e, index)}
+                  onMouseLeave={handleStarLeave}
+                  onClick={handleStarClick}
+                >
+                  {starType === "full" && <Star />}
+                  {starType === "half" && <StarUnDemi />}
+                  {starType === "empty" && <Star />}
+                </span>
+              );
+            })}
               </div>
             </div>
 
@@ -189,7 +210,7 @@ export default function FormAdd({ handleForm, session }) {
                 placeholder="Votre titre..."
               />
               {errors?.title && (
-                <p className="errorsForm">{errors.title.message}</p>
+                <p className="errorsFormBottom">{errors.title.message}</p>
               )}
             </div>
 
@@ -203,12 +224,12 @@ export default function FormAdd({ handleForm, session }) {
                 placeholder="Vos commentaires..."
               />
               {errors?.comments && (
-                <p className="absolute text-red-500 text-[12px] top-[213px] pl-2">{errors.comments.message}</p>
+                <p className="errorsFormBottom">{errors.comments.message}</p>
               )}
             </div>
             <div className="flex sm:col-span-2 ">
               <div className="flex flex-1 items-center justify-center">
-                <button disabled={isSubmitting} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">
+                <button disabled={isSubmitting} className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">
                   <div className="flex flex-1 items-center">
                     <div className="mr-2">
                       {isLoading ? 

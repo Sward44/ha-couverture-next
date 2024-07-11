@@ -14,7 +14,7 @@ export function RedirectionActivationEmail({ timer, url, arialLabel }) {
     const calculatedSpeed = Math.round(timer / taille);
     setSpeed(calculatedSpeed);
     return () => clearInterval(intervalRef.current);
-  }, []);
+  }, [timer]);
 
   React.useEffect(() => {
     if (count >= 100) {
@@ -32,7 +32,7 @@ export function RedirectionActivationEmail({ timer, url, arialLabel }) {
     }
     
     return () => clearInterval(intervalRef.current);
-  }, [count, isHovered, speed]);
+  }, [count, isHovered, speed, url]);
 
   return (
     <div className="flex flex-col items-center justify-center">

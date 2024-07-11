@@ -24,7 +24,10 @@ export default  function AvisGlobal({Note, NoteEntiere, NoteDecimal, NoteAvis}) 
   const [addForm, setAddForm] = React.useState(false);
 
   function handleForm(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+    
     setAddForm(!addForm);
   }
 

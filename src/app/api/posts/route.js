@@ -1,19 +1,27 @@
 import { NextResponse } from "next/server";
-import connect from "@/utils/mongodb";
-import { UserModel, PostModel } from "@/models";
+import { connect } from "@/utils/mongodb";
+import { UserModel, AvisClientModel } from "@/models";
 
-export async function POST() {
+export async function POST(request) {
+  const body = await request.json();
+
   await connect();
   try {
-    const itemDataComments = await PostModel.find().exec();
-    return NextResponse.json(itemDataComments, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const existingUser = await UserModel.findOne({email: body.email}).exec();
+      const newPosts = new AvisClientModel({
+        userId: existingUser._id,
+        title: body.title,
+        description: body.comments,
+        note: body.notes,
+        date_review: new Date(),
+      });
+      await newPosts.save();
+
+    return NextResponse.json(
+      { message: "Votre avis est enregistré" },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { error: "Erreur de serveur" },
       {
