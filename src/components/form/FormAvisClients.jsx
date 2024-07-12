@@ -9,7 +9,6 @@ import { Loading, Mark, Send, Star, StarUnDemi, User,} from "@/components/logo/L
 import Image from "next/image";
 
 export default function FormAdd({ handleForm, session }) {
-  const [isLoading, setIsLoading] = React.useState(false);
   const [note, setNote] = React.useState(5);
   const [decimalPart, setDecimalPart] = React.useState(0);
   const [initialNote, setInitialNote] = React.useState(5);
@@ -44,7 +43,6 @@ export default function FormAdd({ handleForm, session }) {
   const {
     register,
     handleSubmit,
-    setError,
     reset,
     clearErrors,
     formState: { errors, isSubmitting },
@@ -55,7 +53,6 @@ export default function FormAdd({ handleForm, session }) {
 
   async function submit(values) {
     try {
-      setIsLoading(true);
       clearErrors();
       const newEmail = { ...values, notes: note, email: session?.user?.email };
       const response = await fetch(
@@ -73,7 +70,6 @@ export default function FormAdd({ handleForm, session }) {
         reset();
         toast.success(dataResponse.message || "Votre avis est enregistré");
         router.refresh();
-        // router.push("/avis-clients");
       } else {
         const errorData = await response.json();
         toast.error(errorData.error || response.statusText);
@@ -85,7 +81,6 @@ export default function FormAdd({ handleForm, session }) {
         toast.error("Une erreur inconnue s'est produite");
       }
     } finally {
-      setIsLoading(false);
       handleForm();
     }
   }
@@ -232,7 +227,7 @@ export default function FormAdd({ handleForm, session }) {
                 <button disabled={isSubmitting} className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark">
                   <div className="flex flex-1 items-center">
                     <div className="mr-2">
-                      {isLoading ? 
+                      {isSubmitting ? 
                         <div className="size-4 animate-spin">
                           <Loading />
                         </div>
