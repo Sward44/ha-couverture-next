@@ -35,7 +35,7 @@ export function Transition({ item }) {
       setCount(0);
     }
 
-    intervalRef.current = setInterval(incrementTime, Math.round(80000 / 100));
+    intervalRef.current = setInterval(incrementTime, Math.round(8000 / 100));
     return () => clearInterval(intervalRef.current);
   }, [count, direction, index, item]);
 
