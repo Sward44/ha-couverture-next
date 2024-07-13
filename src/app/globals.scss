@@ -6,8 +6,59 @@ input:-webkit-autofill{
   -webkit-box-shadow: 0 0 0 30px #fafafa inset;
   box-shadow: 0 0 0px 30px #fafafa inset;
 }
+.cardGauche-enter {
+  transform: translateX(-100%);
+  @apply lg:ml-[-5rem] sm:ml-[-2rem] ml-[-1rem]; /* Ajout de marges pour différentes tailles de viewport */
+}
+.cardGauche-enter-active,
+.cardGauche-enter-done {
+  transform: translateX(0%);
+  @apply lg:ml-0 sm:ml-0 ml-4; /* Correction des marges */
+  transition: transform 0.8s ease, margin-left 0.8s ease;
+}
+.cardGauche-exit {
+  transform: translateX(0%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  @apply lg:ml-0 sm:ml-0 ml-4; /* Correction des marges */
+}
+.cardGauche-exit-active,
+.cardGauche-exit-done {
+  transform: translateX(100%);
+  @apply lg:ml-[5rem] sm:ml-[2rem] ml-[1rem]; /* Ajout de marges pour différentes tailles de viewport */
+  width: 100%;
+  transition: transform 0.8s ease, margin-left 0.8s ease;
+}
+
+.cardDroite-enter {
+  transform: translateX(100%);
+  @apply lg:mr-[-5rem] sm:mr-[-2rem] mr-[-1rem]; /* AJout de marges pour différentes tailles de viewport */
+}
+.cardDroite-enter-active,
+.cardDroite-enter-done {
+  transform: translateX(0%);
+  @apply lg:mr-0 sm:mr-0 mr-4; /* Correction des marges */
+  transition: transform 0.8s, margin-right 0.8s;
+}
+.cardDroite-exit {
+  transform: translateX(0%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  @apply lg:mr-0 sm:mr-0 mr-4; /* Correction des marges */
+}
+.cardDroite-exit-active,
+.cardDroite-exit-done {
+  transform: translateX(-100%);
+  @apply lg:mr-[5rem] sm:mr-[2rem] mr-[1rem]; /* Ajout de marges pour différentes tailles de viewport */
+  width: 100%;
+  transition: transform 0.8s, margin-right 0.8s;
+}
+
 .imageGauche-enter {
   transform: translateX(-100%);
+
 }
 .imageGauche-enter-active,
 .imageGauche-enter-done {

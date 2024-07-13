@@ -16,11 +16,9 @@ export default async function CardAvisClients({ itemData }) {
 
   return  (
     <>
-    <h2 className="font-bold text-2xl text-center mt-6 sm:mt-8 mb-2">Avis de nos clients</h2>
-      <hr className="w-32 border-neutral-300 mb-6 sm:mb-8" />
       {itemData.map((item) => (
         <div key={item.id} className="w-full md:w-auto my-4">
-          <div className="bg-neutral-100 py-4 px-6 w-full md:w-[720px] rounded-lg shadow-ha">
+          <div className="bg-neutral-100 py-4 px-6 w-full  md:w-[720px] rounded-lg shadow-ha">
             <div className="flex justify-between items-center">
               <div className="font-bold text-lg mb-4 mr-4">{item.title}</div>
               <div className="flex mb-4">

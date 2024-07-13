@@ -2,7 +2,7 @@
 import { connect } from "@/utils/mongodb";
 import { AvisClientModel, AddressModel } from "@/models";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
-import { Star } from "@/components/logo/Logo";
+import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
 import CardAvisClients from "./CardAvisClients";
 
 export default async function AvisClient() {
@@ -44,6 +44,7 @@ export default async function AvisClient() {
   return (
     <div className="flex flex-col w-full justify-center items-center px-4">
       <AvisGlobal Note={Note} NoteEntiere={NoteEntiere} NoteDecimal={NoteDecimal} NoteAvis={NoteAvis} />
+      <EnteteAvisClient />
       <CardAvisClients itemData={itemData} />
     </div>
   );
