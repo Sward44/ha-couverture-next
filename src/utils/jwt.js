@@ -10,6 +10,11 @@ export function signJwtOneDay(payload) {
   return token;
 }
 
+export function signJwtThreeDay(payload) {
+  const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "3d" });
+   return token;
+ }
+
 export function verifyJwt(token) {
   try {
     const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET);

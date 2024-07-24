@@ -118,7 +118,7 @@ export default function FormAdd({ handleForm, session }) {
   }
 
   return (
-    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen z-30 py-12 px-4 sm:px-12 md:py-32 animate-[apparitionEcran_0.5s_ease_forwards]`}>
+    <div className={`fixed flex justify-center items-center top-0 left-0 w-full h-screen z-30 py-8 px-4 sm:px-12 md:py-32 animate-[apparitionEcran_0.5s_ease_forwards]`}>
           <form onSubmit={handleSubmit(submit)} className="relative h-full w-full shadow-ha px-4 py-8 rounded-xl grid grid-cols-1 my-4 sm:grid-cols-[1fr_1fr]  grid-rows-[auto_auto_1fr_60px] sm:grid-rows-[auto_auto_auto_1fr_60px] sm:max-w-[640px] bg-neutral-100">
             <div className="absolute flex items-center top-0 left-1/2 -translate-x-1/2 -translate-y-4 z-10 bg-neutral-100 rounded-full border border-neutral-300 shadow-ha">
               <div className="size-8 ml-1 mr-2">

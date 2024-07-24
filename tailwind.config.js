@@ -120,6 +120,6 @@ module.exports = {
         apparitionCard: "apparitionCard 0.6s ease",
       },    
     },
-    plugins: [],
   },
+  plugins: [],
 };

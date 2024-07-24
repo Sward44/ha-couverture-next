@@ -2,11 +2,14 @@ import mongoose, { Schema, models } from "mongoose";
 
 const devisSchema = new Schema(
   {
-    user: { type: mongoose.Types.ObjectId, ref: "UserModel" },
-    body: { type: String, required: true },
+    userId: { type: mongoose.Types.ObjectId, ref: "user" },
+    body: { type: String },
+    done: {type: Boolean, default: false},
   },
   { timestamps: true }
 );
-const devisModel = models.devis || mongoose.model("devis", devisSchema);
+const DevisModel = models.devis || mongoose.model("devis", devisSchema);
 
-export default devisModel;
+export default DevisModel;
+
+// 

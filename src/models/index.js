@@ -2,6 +2,7 @@ export { default as AccountModel } from "@/models/account";
 export { default as AddressModel } from "@/models/address";
 export { default as DevisModel } from "@/models/devis";
 export { default as HomePageModel } from "@/models/homepage";
+export { default as ImageModel } from "@/models/image";
 export { default as MarketingModel } from "@/models/marketing";
 export { default as MetaModel } from "@/models/meta";
 export { default as PageModel } from "@/models/page";

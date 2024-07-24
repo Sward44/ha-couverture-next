@@ -1,11 +1,18 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { signJwtThreeDay, verifyJwt } from "@/utils/jwt";
 import { connect } from "@/utils/mongodb";
 import { UserModel, DevisModel } from "@/models";
-import email from "@/email/devis/email";
 
 export async function POST(request) {
+  const cookieStore = cookies();
+  const devisCookie = cookieStore.get("chiffrage") ||  null;
+  const devis = devisCookie === null ? null : 
+    await DevisModel.findOne({_id: verifyJwt(devisCookie.value).devisId})
+                    .sort({ createdAt: -1 })
+                    .populate("userId")
+                    .exec()
   const body = await request.json();
-
   let phoneNumberDigits = body.number.replace(/\D/g, "");
   let numberDigits;
 
@@ -40,6 +47,7 @@ export async function POST(request) {
     await connect();
     let existingUser = await UserModel.findOne({ email: body.email }).lean().exec();
     let newDevis;
+    
     if (!existingUser) {
       existingUser = new UserModel({
         name: body.name,
@@ -49,27 +57,7 @@ export async function POST(request) {
         phone: body.number,
       });
       await existingUser.save();
-
-      newDevis = new DevisModel({
-        user: existingUser._id,
-        body: body.comments,
-      });
-      await newDevis.save();
-
-      await email.getTemplate("email-devis", {
-        subject: "[ha-couverture.com] Nouveau devis reçu, nouveau client",
-        to: "Abraham Hognon <ha.couverture44@gmail.com>",
-        metadata: {
-          bienvenue: "Nouveau devis reçu d'un nouveau client",
-          email: "davidlaunay567@gmail.com",
-          ownerEmail: body.email,
-          ownerName: body.firstName,
-          ownerSurname: body.lastName,
-          ownerPhone: body.number,
-          ownerComments: body.comments,
-          siteUrl: "https://buzz-ready.com",
-        },
-      });
+      
     } else {
       if (
         body.firstName &&
@@ -115,33 +103,25 @@ export async function POST(request) {
           { upsert:true }
         );
       }
-
+    }
+    if (!devis || new Date(devis?.createdAt).getTime() < Date.now() - (3 * 24 * 60 * 60 * 1000) && !devis?.done) {
       newDevis = new DevisModel({
-        user: existingUser._id,
-        body: body.comments,
+        userId: existingUser._id,
       });
       await newDevis.save();
-      await email.getTemplate("email-devis", {
-        subject: "[ha-couverture.com] Nouveau devis reçu, client existant",
-        to: "Abraham Hognon <ha.couverture44@gmail.com>",
-        metadata: {
-          bienvenue: "Nouveau devis reçu d'un client existant",
-          email: "davidlaunay567@gmail.com",
-          ownerEmail: body.email,
-          ownerName: body.firstName,
-          ownerSurname: body.lastName,
-          ownerPhone: body.number,
-          ownerComments: body.comments,
-          siteUrl: "https://buzz-ready.com",
-        },
-      });
+    } else {
+      newDevis = JSON.parse(JSON.stringify(devis));
     }
-    return NextResponse.json({auteur : body.name, message: "Ok"}, {
+    const chiffrage = signJwtThreeDay({ userId: existingUser._id, devisId: newDevis._id });
+    const response = NextResponse.json({ message: "Ok"}, {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
     });
+    response.headers.set('Set-Cookie', `chiffrage=${chiffrage}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${3 * 24 * 60 * 60}`);
+     return response;
+    
   } catch (error) {
     console.error(error);
     return NextResponse.json(

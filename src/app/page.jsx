@@ -1,13 +1,19 @@
 "server only";
+import { cookies } from "next/headers";
 import { connect } from "@/utils/mongodb";
-import { HomePageModel, AvisClientModel, AddressModel } from "@/models";
+import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel } from "@/models";
 import ComponentsHomePage from "@/components/home/HomePage";
 import Footer from "@/components/footer/Footer";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
 import { Transition } from "@/components/main/avis-clients/Transition";
 import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
+import { verifyJwt } from "@/utils/jwt";
+
 
 export default async function Home() {
+  const cookieStore = cookies();
+  const devisCookie = cookieStore.get("chiffrage") ||  null;
+    
   await connect();
   const itemsData = await HomePageModel.find().lean().exec();
   const itemData = JSON.parse(JSON.stringify(itemsData));
@@ -45,12 +51,48 @@ export default async function Home() {
       date: new Date(item.date_review).toLocaleDateString(),
     };
   });
-  console.log(itemDataAvisClient.length - 1 )
+
+  const devisComplet = devisCookie === null ? null : 
+    await DevisModel.findOne({_id: verifyJwt(devisCookie.value).devisId})
+                    .sort({ createdAt: -1 })
+                    .populate("userId")
+                    .exec()
+  const savedImages = devisComplet === null ? [] :
+    await ImageModel.find({ devisId: verifyJwt(devisCookie.value).devisId, userId: verifyJwt(devisCookie.value).userId })
+                    .exec();
+  const savedAddress = devisComplet === null ? null :
+    await AddressModel.findOne({ userId: verifyJwt(devisCookie.value).userId })
+                    .sort({ _id: -1 })
+                    .exec();
+  const imagesDevis = savedImages === null ? [] : 
+  savedImages.map((item) => {
+    return {
+      pictureId: item.pictureId,
+      size: item.size,
+      type: item.type,
+      name: item.name,
+      preview: item.preview,
+      lastModified: new Date(item.lastModified).getTime(),
+    };
+  });
+
+  const devis = devisComplet === null ? null : {
+    firstName: devisComplet.userId.firstName,
+    lastName: devisComplet.userId.lastName,
+    email: devisComplet.userId.email,
+    phone: devisComplet.userId.phone,
+    createdAt: devisComplet.createdAt,
+    voie: savedAddress?.address || "",
+    codePostal: savedAddress?.code_postal || "",
+    ville: savedAddress?.ville || "",
+    comments: devisComplet?.body || "",
+  };   
 
   return (
+    
     <>
       <div className="relative flex flex-col min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
-        <ComponentsHomePage itemData={itemData} />
+        <ComponentsHomePage itemData={itemData} devis={devis} imagesDevis={imagesDevis}/>
       </div>
       <div className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px]">
         <div className="flex w-full px-4 sm:px-8 justify-center">

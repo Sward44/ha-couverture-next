@@ -4,10 +4,10 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ImageDiaporama from '@/components/home/image/ImageDiaporama';
 import Texte from '@/components/home/texte/Texte';
 import ImageButton from '@/components/home/button/ImageButton';
-import FormAdd from '@/components/form/FormAdd';
+import { MultiForm } from '@/components/form/MultiForm';
 import SvgMap from '@/components/logo/MappageLogo';
 
-function ComponentsHomePage({ itemData }) {
+function ComponentsHomePage({ itemData, devis, imagesDevis }) {
   const [direction, setDirection] = useState('imageGauche');
   const [index, setIndex] = useState(0);
   const [addForm, setAddForm] = useState(false);
@@ -65,8 +65,7 @@ function ComponentsHomePage({ itemData }) {
     }
   };
 
-  function handleForm(e) {
-    e.preventDefault();
+  function handleForm() {
     setAddForm(!addForm);
   }
 
@@ -102,7 +101,7 @@ function ComponentsHomePage({ itemData }) {
           </CSSTransition>
         </TransitionGroup>
       </div>
-      {addForm && <FormAdd handleForm={handleForm} />}
+      {addForm && <MultiForm handleForm={handleForm} devis={devis} imagesDevis={imagesDevis} />}
     </div>
   );
 }
