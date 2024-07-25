@@ -18,6 +18,8 @@ export async function generateMetadata() {
   return {
     title: data.title,
     description: data.description,
+    robots: data.robots,
+    keywords: "travaux de couverture, rénovation de toiture, fenêtre de toit, qualibat, faites appel, goutières, isolation thermique, équipe de professionels, eco artisan, installeur, qualifiée, demande de devis, Nantes, Saint-Nazaire, Cholet, la Roche-sur-Yon, Loire-Atlantique, Vendée",
     icons: {
       icon: data.icons.icon,
       shortcut: data.icons.shortcut,
@@ -43,7 +45,24 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
 
   return (
-    <html lang="fr">
+    <html lang="FR_fr">
+      <head>
+        <meta name="subject" content="Professionnel du BTP, spécialisé dans les travaux de couverture, zinguerie, isolation, charpente, nettoyage, travaux divers et pose de fenêtre de toit." />
+        <meta name="language" content="fr_FR" />
+        <meta name="author" content="David Launay" />
+        <meta name="owner" content="Abraham Hognon, David Santiago" />
+        <meta name="copyright" content="Ha Couverture" />
+        <meta name="coverage" content="Pays de la loire, Bretagne" />
+        <meta name="og:email" content="ha.couverture44@gmail.com" />
+        <meta name="og:phone_number" content="+33634266400" />
+        <meta name="og:latitude" content="47.12633139433206" />
+        <meta name="og:longitude" content="-1.645738623465296" />
+        <meta name="og:street_address" content="4 Impasse de Pontrigné" />
+        <meta name="og:postal_code" content="44860" />
+        <meta name="og:locality" content="Saint-Aignan-Grandlieu" />
+        <meta name="og:region" content="Pays de la Loire" />
+        <meta name="og:country" content="France" />
+      </head>
       <body>
         <AuthProvider>
           <Header />
