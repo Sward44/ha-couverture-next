@@ -1,9 +1,9 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import NavMenuUser from "@/user/NavMenuUser";
+import NavMenuUser from "@/components/header/user/NavMenuUser";
 import {
   Charpente,
   Couverture,

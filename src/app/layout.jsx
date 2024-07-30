@@ -43,7 +43,6 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }) {
-
   return (
     <html lang="FR_fr">
       <head>

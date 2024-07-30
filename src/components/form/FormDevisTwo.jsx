@@ -32,15 +32,32 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
   }, [imagesDevis]);
 
   const onDrop = React.useCallback((acceptedFiles) => {
-    const newFiles = acceptedFiles.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-        pictureId: crypto.randomUUID(),
-      })
-    );
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    newFiles.forEach((file) => uploadFile(file));
-  }, []);
+    if (!acceptedFiles.length) {
+      console.error('Aucun fichier accepté.');
+      return;
+    }
+    const newFiles = acceptedFiles.map((file) => {
+
+      if (!file.type.startsWith('image/')) {
+        console.error(`Le fichier ${file.name} est ignoré car il n'a pas un type MIME valide.`);
+        return null;
+      } 
+    try {
+      const preview = URL.createObjectURL(file);
+      const pictureId = crypto.randomUUID();
+      if (!preview || !pictureId) {
+        console.error(`Erreur: Aperçu ou UUID invalide pour le fichier ${file.name}`);
+        return null;
+      }
+      return Object.assign(file, { preview, pictureId });
+    } catch (error) {
+      console.error(`Erreur lors de la génération de l'aperçu ou de l'UUID pour le fichier ${file.name}:`, error);
+      return null;
+    }
+  }).filter(file => file !== null && typeof file.preview === 'string' && file.pictureId);
+  setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  newFiles.forEach((file) => file && uploadFile(file));
+}, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -50,6 +67,10 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
   });
 
    const uploadFile = async (file) => {
+    if (!file || !file.preview || !file.pictureId) {
+      console.error(`Erreur: Le fichier est invalide ou manquant : ${file}`);
+      return;
+    }
     const formData = new FormData();
     formData.append("file", file);
     formData.append("preview", file.preview);
@@ -122,8 +143,7 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-4 sm:grid-rows-3 size-full gap-6 my-6">
         {files.map((file) => (
-          <>
-          <div key={file.pictureId} >
+          <div key={file.pictureId}>
             {/* {picture ? 
             <>
 
@@ -153,23 +173,23 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
               </>
              : */}
               <div className="relative size-full">
-              <Image
-                src={file.preview}
-                alt={file.name}
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => deleteFile(file.pictureId)}
-                className="absolute flex justify-center items-center size-5 top-0 right-0 translate-x-3 -translate-y-3 bg-neutral-300  border border-neutral-500 rounded-full z-40">
+                <Image
+                  src={file.preview}
+                  alt={file.name}
+                  fill
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => deleteFile(file.pictureId)}
+                  className="absolute flex justify-center items-center size-5 top-0 right-0 translate-x-3 -translate-y-3 bg-neutral-300 border border-neutral-500 rounded-full z-40">
                   <div className="size-3 fill-neutral-500">
                     <Mark />
                   </div>
-              </button>
+                </button>
               <div
                 className={`absolute flex justify-center items-center top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2`}
                 style={{
@@ -178,25 +198,36 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
                       progress.fileName === file.name &&
                       progress.percentage >= 100
                   )
-                  ? ""
-                  : "rgba(23, 23 ,23 , 0.8)",
-                    fontSize: "1rem",
-                    color: "rgb(245,245,245)",
-                }}
-              >
+                    ? ""
+                    : "rgba(23, 23 ,23 , 0.8)",
+                  fontSize: "1rem",
+                  color: "rgb(245,245,245)",
+                }}>
                 {uploadProgress.find(
                   (progress) =>
                     progress.fileName === file.name && progress.percentage >= 100
-                )
-                  ? <div className="size-5 fill-green-500"><Ok /></div>
-                  : 
-                   `${uploadProgress?.find((progress) => progress?.fileName === file?.name)?.percentage + "%" || "En attente..."}`}
+                ) ? (
+                  <div className="size-5 fill-green-500"><Ok /></div>
+                ) : (
+                  `${uploadProgress?.find((progress) => progress?.fileName === file?.name)?.percentage + "%" || "En attente..."}`
+                )}
               </div>
             </div>
             {/* } */}
-          {isMobile ? <p className="text-xs text-center">{file.name.slice(0,file.name.lastIndexOf('.')).length > 8 ? `${file.name.slice(0,6)}...${file.name.slice(file.name.lastIndexOf('.') + 1,file.name.length + 1)} `:`${file.name}`}</p> :<p className="text-xs text-center">{file.name.slice(0,file.name.lastIndexOf('.')).length > 16 ? `${file.name.slice(0,16)}...${file.name.slice(file.name.lastIndexOf('.') + 1,file.name.length + 1)} `:`${file.name}`}</p>}
+            {isMobile ? (
+              <p className="text-xs text-center">
+                {file.name.slice(0, file.name.lastIndexOf('.')).length > 8
+                  ? `${file.name.slice(0, 6)}...${file.name.slice(file.name.lastIndexOf('.') + 1, file.name.length)}`
+                  : `${file.name}`}
+              </p>
+            ) : (
+              <p className="text-xs text-center">
+                {file.name.slice(0, file.name.lastIndexOf('.')).length > 16
+                  ? `${file.name.slice(0, 16)}...${file.name.slice(file.name.lastIndexOf('.') + 1, file.name.length)}`
+                  : `${file.name}`}
+              </p>
+            )}
           </div>
-          </>
         ))}
       </div>
       <div className="flex flex-1">

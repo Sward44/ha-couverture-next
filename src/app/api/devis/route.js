@@ -104,13 +104,15 @@ export async function POST(request) {
         );
       }
     }
-    if (!devis || new Date(devis?.createdAt).getTime() < Date.now() - (3 * 24 * 60 * 60 * 1000) && !devis?.done) {
+    if (!devis || new Date(devis?.updatedAt).getTime() < Date.now() - (3 * 24 * 60 * 60 * 1000) && !devis?.done) {
       newDevis = new DevisModel({
         userId: existingUser._id,
       });
       await newDevis.save();
     } else {
-      newDevis = JSON.parse(JSON.stringify(devis));
+      newDevis = devis;
+      newDevis.updatedAt = new Date();
+      await newDevis.save();
     }
     const chiffrage = signJwtThreeDay({ userId: existingUser._id, devisId: newDevis._id });
     const response = NextResponse.json({ message: "Ok"}, {

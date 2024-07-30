@@ -8,6 +8,7 @@ import Connexion from "@/components/main/connexion/Connexion";
 import Inscription from "@/components/main/inscription/Inscription";
 import MotDePasseInitialisation from "@/components/form/MotDePasseInitialisation";
 import AvisClient from "@/components/main/avis-clients/AvisClient";
+import { ProfileUser } from "@/components/main/user/ProfileUser";
 
 export async function generateMetadata({ params }) {
   let { activities } = params;
@@ -105,6 +106,7 @@ export default async function activitesPage({params}) {
     return (
       <div className="relative flex flex-col w-full min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
       <HeaderMain itemDataCouverture={itemDataCouverture} />
+      <ProfileUser />
     </div>
     )
   }
