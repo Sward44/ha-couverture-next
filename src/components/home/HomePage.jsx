@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ImageDiaporama from '@/components/home/image/ImageDiaporama';
 import Texte from '@/components/home/texte/Texte';
@@ -76,7 +77,28 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
   if (!SvgComponent) return null;
 
   return (
-    <div>
+    <>
+    <Helmet>
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "name": "Couverture", "position": 1, "url": "http://localhost:3001/couverture" },
+          { "@type": "ListItem", "name": "Zinguerie", "position": 2, "url": "http://localhost:3001/zinguerie" },
+          { "@type": "ListItem", "name": "Nettoyage", "position": 3, "url": "http://localhost:3001/nettoyage" },
+          { "@type": "ListItem", "name": "Isolation", "position": 4, "url": "http://localhost:3001/isolation" },
+          { "@type": "ListItem", "name": "Charpente", "position": 5, "url": "http://localhost:3001/charpente" },
+          { "@type": "ListItem", "name": "Réparations diverses", "position": 6, "url": "http://localhost:3001/travaux-divers" }
+        ]
+      })}
+    </script>
+  </Helmet>
+    <div 
+      className="overflow-auto overflow-x-hidden snap-x snap-mandatory"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}>
       <Texte itemData={itemData} index={index} handleForm={handleForm} SvgComponent={SvgComponent} />
       <ImageButton
         itemData={itemData}
@@ -86,11 +108,7 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
         handleEveryImage={handleEveryImage}
       />
       <div
-        className="relative flex overflow-auto overflow-x-hidden snap-x snap-mandatory"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
+        className="relative flex">
         <TransitionGroup childFactory={childFactory(direction)} component={null}>
           <CSSTransition
             key={index}
@@ -103,6 +121,7 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
       </div>
       {addForm && <MultiForm handleForm={handleForm} devis={devis} imagesDevis={imagesDevis} />}
     </div>
+  </>
   );
 }
 

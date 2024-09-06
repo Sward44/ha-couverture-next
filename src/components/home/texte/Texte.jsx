@@ -18,9 +18,9 @@ function Texte({ itemData, index, handleForm, SvgComponent }) {
           <div className=" h-10 w-10 mr-3">
             <SvgComponent alt={itemData[index].alt} />
           </div>
-          <h2 className="font-serif font-bold sm:text-3xl text-2xl">
+          <h1 className="font-serif font-bold sm:text-3xl text-2xl">
             {itemData[index].title}
-          </h2>
+          </h1>
         </div>
         <p className="z-10 apparitionTexte">{itemData[index].description}</p>
         <TexteButton

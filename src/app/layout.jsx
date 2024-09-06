@@ -1,10 +1,13 @@
 "use server";
 import { connect } from "@/utils/mongodb";
-import { MetaModel } from "@/models";
+import { MetaModel } from "@/models"
+import { cookies } from 'next/headers';
+// import PathNameNow from "@/utils/PathNameNow";
 import "@/app/globals.scss";
 import Header from "@/components/header/Header";
 import AuthProvider from "@/utils/SessionProvider";
 import CookieBanner from "@/components/banner/CookieBanner";
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
@@ -43,9 +46,14 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }) {
+  const gaMesurementId = process.env.NEXT_PUBLIC_GA_MESUREMENT_ID
+  const gtmMesurementId = process.env.NEXT_PUBLIC_GTM_MESUREMENT_ID;
+  
   return (
     <html lang="FR_fr">
       <head>
+        <GoogleTagManager gtmId={gtmMesurementId} />
+        <meta name="robots" content="follow, index" />
         <meta name="subject" content="Professionnel du BTP, spécialisé dans les travaux de couverture, zinguerie, isolation, charpente, nettoyage, travaux divers et pose de fenêtre de toit." />
         <meta name="language" content="fr_FR" />
         <meta name="author" content="David Launay" />
@@ -72,7 +80,7 @@ export default async function RootLayout({ children }) {
         </AuthProvider>
         <CookieBanner />
       </body>
-      
+      <GoogleAnalytics gaId={gaMesurementId} />
     </html>
   );
 }

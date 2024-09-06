@@ -1,10 +1,9 @@
 import { getToken } from "next-auth/jwt";
-import { NextResponse}  from "next/server";
+import { NextResponse }  from "next/server";
 
 export async function middleware(req) { 
   const token = await getToken({ req });
   const { pathname } = req.nextUrl;
-  // console.log(pathname);
 
   if (pathname.startsWith("/user") && !token) {
     return NextResponse.redirect(`${process.env.HOST}/connexion`);

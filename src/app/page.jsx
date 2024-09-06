@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { connect } from "@/utils/mongodb";
 import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel } from "@/models";
+import handler from "@/app/api/google_reviews/route";
 import ComponentsHomePage from "@/components/home/HomePage";
 import Footer from "@/components/footer/Footer";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
@@ -9,10 +10,11 @@ import { Transition } from "@/components/main/avis-clients/Transition";
 import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
 import { verifyJwt } from "@/utils/jwt";
 
-
 export default async function Home() {
   const cookieStore = cookies();
   const devisCookie = cookieStore.get("chiffrage") ||  null;
+  // const googleReviews = await handler();
+  // console.log(googleReviews);
     
   await connect();
   const itemsData = await HomePageModel.find().lean().exec();
@@ -38,7 +40,7 @@ export default async function Home() {
       };
     })
   );
-
+  
   const itemDataAvisClient = dataAddresses.filter((item, index) => index < 5).map((item) => {
     return {
       id: item._id.toString(),
