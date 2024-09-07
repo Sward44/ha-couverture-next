@@ -93,7 +93,7 @@ export default async function Home() {
   return (
     
     <>
-      <div className="relative flex flex-col min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] top-[72px] md:top-[81px]">
+      <div className="relative flex flex-col min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] min-w-full top-[72px] md:top-[81px]">
         <ComponentsHomePage itemData={itemData} devis={devis} imagesDevis={imagesDevis}/>
       </div>
       <div className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px]">

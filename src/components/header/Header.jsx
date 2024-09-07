@@ -37,7 +37,7 @@ function Header() {
   return (
     <>
       <header
-        className={` 2xl:px-16 lg:px-8 md:px-4 md:py-2 shadow-ha fixed flex w-full z-20 bg-neutral-100 transition-transform duration-300 ${
+        className={` 2xl:px-16 lg:px-8 md:px-4 md:py-2 shadow-ha fixed flex w-full z-30 bg-neutral-100 transition-transform duration-300 ${
           !visible && !burger ? styles.maskBarreNavigation : ""
         }`}
       >

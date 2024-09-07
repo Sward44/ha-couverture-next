@@ -7,6 +7,7 @@ import Texte from '@/components/home/texte/Texte';
 import ImageButton from '@/components/home/button/ImageButton';
 import { MultiForm } from '@/components/form/MultiForm';
 import SvgMap from '@/components/logo/MappageLogo';
+import TexteButton from './button/TexteButton';
 
 function ComponentsHomePage({ itemData, devis, imagesDevis }) {
   const [direction, setDirection] = useState('imageGauche');
@@ -94,19 +95,24 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
       })}
     </script>
   </Helmet>
-    <div 
+  <ImageButton
+    itemData={itemData}
+    index={index}
+    handleNext={handleNext}
+    handlePrev={handlePrev}
+    handleEveryImage={handleEveryImage}
+  />
+  <TexteButton
+    handleForm={handleForm}
+    itemData={itemData}
+    index={index}
+  />
+  <div 
       className="overflow-auto overflow-x-hidden snap-x snap-mandatory"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}>
       <Texte itemData={itemData} index={index} handleForm={handleForm} SvgComponent={SvgComponent} />
-      <ImageButton
-        itemData={itemData}
-        index={index}
-        handleNext={handleNext}
-        handlePrev={handlePrev}
-        handleEveryImage={handleEveryImage}
-      />
       <div
         className="relative flex">
         <TransitionGroup childFactory={childFactory(direction)} component={null}>

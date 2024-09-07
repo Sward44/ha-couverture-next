@@ -1,33 +1,27 @@
 "only server";
-import TexteButton from "@/components/home/button/TexteButton";
 
 
-function Texte({ itemData, index, handleForm, SvgComponent }) {
+function Texte({ itemData, index, SvgComponent }) {
   return (
     <div
       key={index}
-      className="flex absolute bg-transparent font-sans text-base sm:text-lg min-h-screen min-w-full items-center justify-center text-neutral-100 "
+      className="absolute left-1/2 bottom-1/2 sm:bottom-1/3 md:bottom-1/2 translate-y-8 sm:translate-y-0 -translate-x-1/2 bg-transparent font-sans text-base sm:text-lg text-neutral-100 z-20"
     >
       <div
         key={index}
-        className="flex flex-col  rounded-lg max-w-[500px] min-h-[400px] p-4 mx-4"
+        className="flex flex-col flex-auto max-w-[620px] min-w-[320px]"
       >
         <div
-          className={`z-10 flex justify-center items-center mb-4 fill-neutral-100  apparitionTitre`}
+          className="flex justify-center items-center mb-4 fill-neutral-100  apparitionTitre"
         >
-          <div className=" h-10 w-10 mr-3">
+          <div className="h-10 w-10 mr-3">
             <SvgComponent alt={itemData[index].alt} />
           </div>
           <h1 className="font-serif font-bold sm:text-3xl text-2xl">
             {itemData[index].title}
           </h1>
         </div>
-        <p className="z-10 apparitionTexte">{itemData[index].description}</p>
-        <TexteButton
-          handleForm={handleForm}
-          itemData={itemData}
-          index={index}
-        />
+        <p className="apparitionTexte">{itemData[index].description}</p>
       </div>
     </div>
   );
