@@ -10,7 +10,7 @@ function TexteButton({ handleForm, itemData, index }) {
         <span
           className="group flex justify-center items-center mt-6 mb-4 apparitionButton "
         >
-          <span className="flex justify-center items-center size-4 mr-3 fill-neutral-100 md:group-hover:fill-supernova-500 md:group-hover:scale-110 transition duration-300">
+          <span className="self-center size-4 mr-3 fill-neutral-100 md:group-hover:fill-supernova-500 md:group-hover:scale-110 transition duration-300">
             <Plus />
           </span>
 
