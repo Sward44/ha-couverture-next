@@ -85,12 +85,12 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "itemListElement": [
-          { "@type": "ListItem", "name": "Couverture", "position": 1, "url": "http://localhost:3001/couverture" },
-          { "@type": "ListItem", "name": "Zinguerie", "position": 2, "url": "http://localhost:3001/zinguerie" },
-          { "@type": "ListItem", "name": "Nettoyage", "position": 3, "url": "http://localhost:3001/nettoyage" },
-          { "@type": "ListItem", "name": "Isolation", "position": 4, "url": "http://localhost:3001/isolation" },
-          { "@type": "ListItem", "name": "Charpente", "position": 5, "url": "http://localhost:3001/charpente" },
-          { "@type": "ListItem", "name": "Réparations diverses", "position": 6, "url": "http://localhost:3001/travaux-divers" }
+          { "@type": "ListItem", "name": "Couverture", "position": 1, "url": `${process.env.NEXT_PUBLIC_HOST}/couverture` },
+          { "@type": "ListItem", "name": "Zinguerie", "position": 2, "url": `${process.env.NEXT_PUBLIC_HOST}/zinguerie` },
+          { "@type": "ListItem", "name": "Nettoyage", "position": 3, "url": `${process.env.NEXT_PUBLIC_HOST}/nettoyage` },
+          { "@type": "ListItem", "name": "Isolation", "position": 4, "url": `${process.env.NEXT_PUBLIC_HOST}/isolation` },
+          { "@type": "ListItem", "name": "Charpente", "position": 5, "url": `${process.env.NEXT_PUBLIC_HOST}/charpente` },
+          { "@type": "ListItem", "name": "Réparations diverses", "position": 6, "url": `${process.env.NEXT_PUBLIC_HOST}/travaux-divers` }
         ]
       })}
     </script>
