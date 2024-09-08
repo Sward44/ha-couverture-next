@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { connect } from "@/utils/mongodb";
 import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel } from "@/models";
-import handler from "@/app/api/google_reviews/route";
+// import handler from "@/app/api/google_reviews/route";
 import ComponentsHomePage from "@/components/home/HomePage";
 import Footer from "@/components/footer/Footer";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";

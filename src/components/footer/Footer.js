@@ -1,6 +1,6 @@
 "use server";
 import Link from "next/link";
-import { Facebook, LogoMobile, Send } from "@/components/logo/Logo";
+import { Facebook, LinkedIn, LogoMobile, Send } from "@/components/logo/Logo";
 
 async function Footer() {
   return (
@@ -56,9 +56,19 @@ async function Footer() {
               rel="noopener noreferrer"
               alt="Lien vers Facebook"
               aria-label="Lien vers la page de profil Facebook de HA Couverture"
-              className="sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300"
+              className="mr-2 sm:text-left size-8 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300"
             >
               <Facebook />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/company/ha-couverture"
+              target="_blank "
+              rel="noopener noreferrer"
+              alt="Lien vers Facebook"
+              aria-label="Lien vers la page de profil LinkedIn de HA Couverture"
+              className="sm:text-left size-7 fill-neutral-100 md:hover:scale-105 md:hover:fill-supernova-500 transition-all duration-300"
+            >
+              <LinkedIn />
             </Link>
             </div>
           </div>

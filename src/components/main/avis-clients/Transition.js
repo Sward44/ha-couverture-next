@@ -56,6 +56,8 @@ export function Transition({ item }) {
         className="relative flex md:w-[768px] lg:w-[880px] w-full items-center overflow-hidden mx-4 sm:mx-8 lg:mx-20"
         onMouseEnter={handleHoverEnter}
         onMouseLeave={handleHoverLeave}
+        onTouchStart={handleHoverEnter}
+        onTouchEnd={handleHoverLeave}
       >
         <TransitionGroup childFactory={childFactory(direction)} component={null}>
           <CSSTransition key={index} timeout={800} classNames={direction}>
