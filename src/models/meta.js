@@ -27,6 +27,6 @@ const metaSchema = new Schema(
   { timestamps: true }
 );
 
-const MetaModel = models.meta || mongoose.model("meta", metaSchema);
+const MetaModel = models.metas || mongoose.model("metas", metaSchema);
 
 export default MetaModel;
