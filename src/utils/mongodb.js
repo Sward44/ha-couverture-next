@@ -7,6 +7,10 @@ export const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("Mongo connexion etablie");
+
+    const collections = await mongoose.connection.db.collections();
+    console.log("Collections disponibles: ", collections.map(col => col.collectionName));
+    
   } catch (error) {
     throw new Error("Error connection vers MongoDB");
   }
