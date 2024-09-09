@@ -80,6 +80,7 @@ export default async function RootLayout({ children }) {
           <ToastContainer />
         </AuthProvider>
         <CookieBanner />
+        <SpeedInsights />
       </body>
       <GoogleAnalytics gaId={gaMesurementId} />
     </html>
