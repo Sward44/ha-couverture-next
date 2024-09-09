@@ -1,4 +1,5 @@
 "use server";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { connect } from "@/utils/mongodb";
 import { MetaModel } from "@/models"
 import { cookies } from 'next/headers';
