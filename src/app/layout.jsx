@@ -1,5 +1,6 @@
 "use server";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from '@vercel/analytics/react';
 import { connect } from "@/utils/mongodb";
 import { MetaModel } from "@/models"
 import { cookies } from 'next/headers';
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }) {
         </AuthProvider>
         <CookieBanner />
         <SpeedInsights />
+        <Analytics />
       </body>
       <GoogleAnalytics gaId={gaMesurementId} />
     </html>
