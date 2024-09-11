@@ -26,6 +26,11 @@ const authOptions = {
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
       allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI,
+        },
+      }
     }),
     CredentialsProvider({
       name: "Credidentials",
