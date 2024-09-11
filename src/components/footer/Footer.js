@@ -19,7 +19,7 @@ async function Footer() {
             <p>Notre histoire de Ha-couverture...</p>
           </div>
           <div className="max-w-80 sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:max-w-none lg:m-2 ">
-            <h3 className="text-center sm:text-left font-bold text-lg mb-3">Notre support</h3>
+            <h3 className="text-center sm:text-left font-bold text-lg mb-3">Mentions légales</h3>
             <p className="mb-1  md:hover:text-supernova-500 transition-all duration-300">
               <Link href="/politique-confidentialite" aria-label="Lien vers la page de politique confidentialité">
                 Politique de confidentialité
