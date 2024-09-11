@@ -85,6 +85,7 @@ async function Footer() {
           David Launay
         </a>
       </p>
+      <p>N° de siret : 53366955200036</p>
     </footer>
   );
 }

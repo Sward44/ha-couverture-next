@@ -64,12 +64,23 @@ export const itemDataPolitiqueConfidentialite = [
 export const itemDataConditionGenerales = [
   {
     title: "Conditions Générales d'Utilisation",
-    MAJ: "Dernière mise à jour : le 06 mars 2024",
+    MAJ: "Dernière mise à jour : le 11 septembre 2024",
     introduction:
       "Les présentes conditions générales d'utilisation (dites « CGU ») ont pour objet l'encadrement juridique des modalités de mise à disposition du site et des services par Ha Couverture et de définir les conditions d’accès et d’utilisation des services par « l'Utilisateur ». Les présentes CGU sont accessibles sur le site à la rubrique «CGU».",
     article: [
       {
         title: "1. Mentions légales",
+        description: [
+          "Le propriétaire du du site buzz-ready.com est à Abraham Hognon, domicilié 4 Impasse de Pontrigné 44860 Saint-Aignan-de-Grandlieu.",
+        ],
+        intitule: [
+          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' className="underline md:hover:text-mahogany-950 transition-colors duration-300">06 34 26 64 00</a></span>,
+          <span key={2}>Adresse e-mail : <a href='mailto:ha.couverture44@gmail.com' target='_blank' className="underline md:hover:text-mahogany-950 transition-colors duration-300">ha.couverture44@gmail.com</a></span>,
+          <span key={3}>N° de Siret : 53366955200036</span>
+        ],
+      },
+      {
+        title: "",
         description: [
           "L’édition et la direction de la publication du site buzz-ready.com est assurée par David LAUNAY, domicilié 2 impasse de la tonnelle 44640 Le Pellerin.",
         ],
@@ -81,10 +92,11 @@ export const itemDataConditionGenerales = [
       {
         title: "",
         description: [
-          "L'hébergeur du site buzz-ready.com est la société OVH SAS, dont le siège social est situé au 2 rue Kellerman 59100 Roubaix",
+          "L'hébergeur du site buzz-ready.com est la société Vercel, dont le siège social est situé au 440 N Barranca #4133 Covina, CA91723",
         ],
         intitule: [
-          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33972101007' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">09 72 10 10 07</a></span>,
+          <span key={1}>Adresse e-mail : <a href='mailto:privacy@vercel.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">privacy@vercel.com</a></span>,
+          <span key={2}>Pour les utilisateurs de l’EEE, notez que Vercel peut collecter vos données personnelles en tant que « contrôleur de données » lorsque Vercel détermine les moyens et le but du traitement, par exemple lorsque Vercel traite les données personnelles des visiteurs de notre site, des participants à des événements et/ou des clients, ou en tant que « processeur de données » lorsque Vercel collecte et traite des données personnelles pour le compte de nos clients qui utilisent nos services et hébergent leurs propres sites Web avec Vercel ou des clients qui utilisent nos outils d’analyse. De même, pour les utilisateurs en Californie, Vercel agit actuellement en tant que « fournisseur de services » pour les « entreprises » qui sont soumises au California Consumer Privacy Act lorsque Vercel collecte et traite des données ou des informations personnelles au nom de nos Clients qui utilisent nos Services et hébergent leurs propres sites Web avec Vercel ou des Clients qui utilisent nos outils d’analyse. Visitez <a href='https://vercel.com/legal/privacy-policy' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300"> https://vercel.com/legal/privacy-policy</a> pour plus d’informations.</span>
         ],
       },
       {
