@@ -74,7 +74,7 @@ async function Footer() {
           </div>
         </div>
       </div>
-      <p className="my-4">
+      <p className="mt-4">
         2024-Copyright@
         <a
           href="https://david-launay.com"
@@ -85,7 +85,7 @@ async function Footer() {
           David Launay
         </a>
       </p>
-      <p>N° de siret : 53366955200036</p>
+      <p className="mb-4">N° de siret : 53366955200036</p>
     </footer>
   );
 }
