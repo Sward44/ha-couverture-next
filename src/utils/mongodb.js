@@ -16,8 +16,10 @@ export async function connectToDatabase() {
   }
 
   const client = new MongoClient(MONGODB_URI, {
-    // Supprimez les options obsolètes
-    serverSelectionTimeoutMS: 50000, // Augmenter le temps d'attente à 50 secondes
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    connectTimeoutMS: 30000,
+    socketTimeoutMS: 45000,
   });
 
   await client.connect();
@@ -69,3 +71,8 @@ export async function connectMongoose() {
 //   }
 // };
 
+// d5qjm-1726235228771-45f4623cab22
+// ?state=3z8iSid1Hci1e1bK5ZAnd5qNyf5THdtmXIjhA1A2fH4
+// &code=4%2F0AQlEd8xB2HPHsWMjUP7dc0fkCHjfslQbM7-5ySR9o9AL-4dEfuUZlmDovUXFHdHaG7TwWg
+// &scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserin
+    
