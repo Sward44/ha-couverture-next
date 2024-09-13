@@ -76,6 +76,7 @@ const authOptions = {
     async jwt({ token, user, account, profile }) {
       console.log("Token brut : ",token,"User brut : ", user,"Account brut : ", account,"Profile brut :", profile)
       if (user && account?.provider === "google") {
+        await connectMongoose();
         const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
         console.log("Profile userPerso extrait de mongoDB :",userPerso)
   //       if (!userPerso) {
