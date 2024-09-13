@@ -75,8 +75,9 @@ const authOptions = {
   callbacks: {
     async jwt({ token, user, account, profile }) {
       console.log("Token brut : ",token,"User brut : ", user,"Account brut : ", account,"Profile brut :", profile)
-  //     if (user && account?.provider === "google") {
-  //       const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
+      if (user && account?.provider === "google") {
+        const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
+        console.log("Profile userPerso extrait de mongoDB :",userPerso)
   //       if (!userPerso) {
   //         if (profile.email === "davidlaunay567@gmail.com" || profile.email === "ha.couverture44@gmail.com" ) {let role = "admin"}
   //         await UserModel.create({
@@ -103,7 +104,7 @@ const authOptions = {
   //         },
   //         { upsert: true},
   //       ).lean().exec();
-  //     }
+      }
   //       const { id, password, _id, __v, emailVerified, ...userWithoutPass } = user;
   //       token.user = userWithoutPass;
 
