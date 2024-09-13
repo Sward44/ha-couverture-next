@@ -43,7 +43,6 @@ const authOptions = {
         async authorize(credentials) {
             await connectMongoose();
             const user = await UserModel.findOne({ email: credentials?.username })
-              .lean()
               .exec();
             if (!user) {
               throw new Error("L'email n'est pas enregistré...")
@@ -76,7 +75,7 @@ const authOptions = {
     async jwt({ token, user, account, profile }) {
 
       if (user && account?.provider === "google") {
-        const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
+        const userPerso = await UserModel.findOne({ email: profile.email }).exec();
         if (!userPerso) {
           if (profile.email === "davidlaunay567@gmail.com" || profile.email === "ha.couverture44@gmail.com" ) {let role = "admin"}
           await UserModel.create({
@@ -102,7 +101,7 @@ const authOptions = {
             }
           },
           { upsert: true},
-        ).lean().exec();
+        ).exec();
       }
         const { id, password, _id, __v, emailVerified, ...userWithoutPass } = user;
         token.user = userWithoutPass;
