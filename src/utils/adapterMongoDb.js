@@ -5,6 +5,8 @@ if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
+console.log(process.env.MONGODB_URI)
+
 const uri = process.env.MONGODB_URI;
 const options = {
   serverSelectionTimeoutMS: 50000, // Augmenter le temps d'attente à 50 secondes
