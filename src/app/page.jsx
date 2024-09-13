@@ -1,6 +1,6 @@
 "server only";
 import { cookies } from "next/headers";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel } from "@/models";
 // import handler from "@/app/api/google_reviews/route";
 import ComponentsHomePage from "@/components/home/HomePage";
@@ -16,7 +16,7 @@ export default async function Home() {
   // const googleReviews = await handler();
   // console.log(googleReviews);
     
-  await connect();
+  await connectMongoose();
   const itemsData = await HomePageModel.find().lean().exec();
   const itemData = JSON.parse(JSON.stringify(itemsData));
 

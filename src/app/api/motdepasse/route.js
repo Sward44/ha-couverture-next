@@ -1,4 +1,4 @@
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { UserModel } from "@/models";
 import { NextResponse } from "next/server";
 import * as bycrypt from "bcrypt";
@@ -12,7 +12,7 @@ export async function POST(request) {
     body.email = body.email.trim();
     body.email = body.email.slice(0, body.email.indexOf('@')).toLowerCase()+ "@" + body.email.slice(body.email.indexOf('@') + 1, body.email.length).toLowerCase(),
     
-    await connect();
+    await connectMongoose();
     let existingUser = await UserModel.findOne({ email: body.email }).lean().exec();
     let messageSend = "";
 
@@ -52,7 +52,7 @@ export async function POST(request) {
       { status: 200 }
     );
   } else {
-    await connect();
+    await connectMongoose();
     const newPassword = await UserModel.findOneAndUpdate(
       { email: body.email },
       { password: await bycrypt.hash(body.password, 10) },

@@ -1,7 +1,7 @@
 // import { google } from 'googleapis';
 // import { readFile } from 'fs/promises';
 // import { join } from "path";
-// import { connect } from "@/utils/mongodb";
+// import { connectMongoose } from "@/utils/mongodb";
 // import { ImageModel } from "@/models";
 // import { NextResponse } from "next/server";
 // import { verifyJwt } from "@/utils/jwt";
@@ -53,7 +53,7 @@
 //   }
 
 //   const buffer = Buffer.from(await file.arrayBuffer());
-//   await connect();
+//   await connectMongoose();
 //   const updateDevis = new ImageModel(
 //     {
 //       userId: chiffrage.userId,
@@ -117,7 +117,7 @@
 import { cookies } from "next/headers";
 import { extname, join } from "path";
 import { stat, mkdir, writeFile, unlink } from "fs/promises";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { ImageModel } from "@/models";
 import { NextResponse } from "next/server";
 import { verifyJwt } from "@/utils/jwt";
@@ -141,7 +141,7 @@ export async function POST(request, res) {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  await connect();
+  await connectMongoose();
   const updateDevis = new ImageModel(
     {
       userId: chiffrage.userId,
@@ -200,7 +200,7 @@ export async function DELETE(request) {
   }
 
   const uploadDir = join(process.cwd(), "/public/uploads");
-  await connect();
+  await connectMongoose();
 
   try {
     const image = await ImageModel.findOne({ pictureId });

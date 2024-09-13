@@ -1,12 +1,12 @@
 "use server";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { AvisClientModel, AddressModel } from "@/models";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
 import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
 import CardAvisClients from "./CardAvisClients";
 
 export default async function AvisClient() {
-  await connect();
+  await connectMongoose();
   const data = await AvisClientModel.find()
     .sort({ date_review: -1 })
     .populate("userId")

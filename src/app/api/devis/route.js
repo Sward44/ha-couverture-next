@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { signJwtThreeDay, verifyJwt } from "@/utils/jwt";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { UserModel, DevisModel } from "@/models";
 
 export async function POST(request) {
@@ -44,7 +44,7 @@ export async function POST(request) {
   body.number = phoneNumberDigits;
 
   try {
-    await connect();
+    await connectMongoose();
     let existingUser = await UserModel.findOne({ email: body.email }).lean().exec();
     let newDevis;
     

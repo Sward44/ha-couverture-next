@@ -1,7 +1,7 @@
 // import { cookies } from "next/headers";
 // import { NextResponse } from "next/server";
 // import { verifyJwt } from "@/utils/jwt";
-// import { connect } from "@/utils/mongodb";
+// import { connectMongoose } from "@/utils/mongodb";
 // import { UserModel, DevisModel, AddressModel, ImageModel } from "@/models";
 // import email from "@/email/devis/email";
 
@@ -16,7 +16,7 @@
 //   body.voie = body.voie.trim();
 //   body.ville = body.ville.trim();
 //   try {
-//     await connect();
+//     await connectMongoose();
 //     let address = await AddressModel.findOne({ userId: chiffrage.userId }).sort({_id: -1}).exec();
 //     console.log("Address de MongoDB : ",address.address,"Address de FormDevisThree : ", body.voie, address.code_postal, body.codePostal, address.ville, body.ville);
 //     if(!address){
@@ -100,7 +100,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { verifyJwt } from "@/utils/jwt";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { UserModel, DevisModel, AddressModel, ImageModel } from "@/models";
 import email from "@/email/devis/email";
 
@@ -115,7 +115,7 @@ export async function POST(request) {
   body.voie = body.voie.trim();
   body.ville = body.ville.trim();
   try {
-    await connect();
+    await connectMongoose();
     let address = await AddressModel.findOne({ userId: chiffrage.userId }).sort({_id: -1}).exec();
 
     if(!address) {

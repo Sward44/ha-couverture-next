@@ -1,7 +1,7 @@
 "use server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from '@vercel/analytics/react';
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel } from "@/models"
 import { cookies } from 'next/headers';
 // import PathNameNow from "@/utils/PathNameNow";
@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 
 export async function generateMetadata() {
-  await connect();
+  await connectMongoose();
   const data = await MetaModel.findOne({
     _id: process.env.META_ID_HOME,
   }).exec();

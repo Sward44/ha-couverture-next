@@ -1,5 +1,5 @@
 "use server";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { PageModel, SousPageModel, MetaModel, AvisClientModel, AddressModel } from "@/models";
 import { getEnvVarForActivity } from "@/app/(activites)/layout";
 import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
   if ( activities === "travaux-divers" || activities === "avis-clients" || activities === "mot-de-passe-oublie") activities = activities.slice(0, activities.indexOf('-'));
   const metaId = await getEnvVarForActivity(activities, "meta");
 
-  await connect();
+  await connectMongoose();
   const data = await MetaModel.findOne({
     _id: metaId,
   })
@@ -45,7 +45,7 @@ export default async function activitesPage({params}) {
   let { activities } = params;
   if ( activities === "travaux-divers" || activities === "avis-clients" || activities === "mot-de-passe-oublie") activities = activities.slice(0, activities.indexOf('-'));
   const pageId = await getEnvVarForActivity(activities, "page");
-  await connect();
+  await connectMongoose();
   const Data = await PageModel.findOne({
     _id: pageId,
   })

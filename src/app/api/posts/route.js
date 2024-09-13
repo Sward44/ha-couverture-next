@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { UserModel, AvisClientModel } from "@/models";
 
 
@@ -8,7 +8,7 @@ export async function POST(request) {
   const body = await request.json();
 
 
-  await connect();
+  await connectMongoose();
   try {
     const existingUser = await UserModel.findOne({email: body.email}).exec();
       const newPosts = new AvisClientModel({

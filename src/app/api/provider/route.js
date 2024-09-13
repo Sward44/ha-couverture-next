@@ -1,10 +1,10 @@
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { AccountModel, UserModel } from "@/models";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const body = await request.json();
-  await connect();
+  await connectMongoose();
   const existingAccount = await AccountModel.findOne({email: body.user.email, provider: body.account.provider}).lean().exec();
     if (!existingAccount) {
       const existingUser = await UserModel.findOne({email: body.user.email}).lean().exec();

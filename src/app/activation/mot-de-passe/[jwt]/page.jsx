@@ -1,7 +1,7 @@
 "use server";
 import { UserModel } from "@/models";
 import { verifyJwt } from "@/utils/jwt"
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import MotDePasseReinitialisation from "@/components/form/MotDePasseReinitialisation";
 import { RedirectionActivationEmail } from "@/lib/RedirectionReact";
 import Footer from "@/components/footer/Footer";
@@ -9,7 +9,7 @@ import Footer from "@/components/footer/Footer";
 export default async function reinitialisationPage({params}) {
   const jwtUserId = verifyJwt(params.jwt)
 
-  await connect();
+  await connectMongoose();
   const data = jwtUserId ? await UserModel.findOne({ _id: jwtUserId.id}).lean().exec() : null;
   const dataUser = data.email.toString();
 

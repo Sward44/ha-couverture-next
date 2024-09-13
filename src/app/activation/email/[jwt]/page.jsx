@@ -3,12 +3,12 @@ import { RedirectionActivationEmail } from "@/lib/RedirectionReact";
 import { redirect } from "next/navigation";
 import { UserModel } from "@/models";
 import { verifyJwt } from "@/utils/jwt"
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import Footer from "@/components/footer/Footer";
 
 export default async function activitionPage({params}) {
   const jwtUserId = verifyJwt(params.jwt)
-  await connect();
+  await connectMongoose();
   const dataUser = jwtUserId ? await UserModel.findOne({ _id: jwtUserId.id,}).lean().exec() : null;
   if (!jwtUserId) {
     return(

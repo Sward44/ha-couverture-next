@@ -1,4 +1,4 @@
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import { UserModel } from "@/models";
 import { NextResponse } from "next/server";
 import * as bycrypt from "bcrypt";
@@ -42,7 +42,7 @@ export async function POST(request) {
     {
       body.role = "admin";
     }    
-  await connect();
+  await connectMongoose();
   let existingUser = await UserModel.findOne({ email: body.email }).lean().exec();
   if (!existingUser) {
      await UserModel.create({

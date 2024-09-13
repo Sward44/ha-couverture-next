@@ -1,7 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import { sendVerificationRequest } from "@/email/sendVerificationRequest";
-import { connect } from "@/utils/mongodb";
+import { connectMongoose } from "@/utils/mongodb";
 import {  UserModel } from "@/models";
 import * as bcrypt from "bcrypt";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
@@ -41,7 +41,7 @@ const authOptions = {
         },
       },
         async authorize(credentials) {
-            await connect();
+            await connectMongoose();
             const user = await UserModel.findOne({ email: credentials?.username })
               .lean()
               .exec();
