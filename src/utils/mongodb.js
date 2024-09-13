@@ -16,9 +16,8 @@ export async function connectToDatabase() {
   }
 
   const client = new MongoClient(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 50000,
+    // Supprimez les options obsolètes
+    serverSelectionTimeoutMS: 50000, // Augmenter le temps d'attente à 50 secondes
   });
 
   await client.connect();
@@ -35,16 +34,21 @@ let isConnected = false;
 
 export async function connectMongoose() {
   if (isConnected) {
+    console.log("MongoDB est déjà connectée.");
     return;
   }
 
-  await mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000,
-  });
-
-  isConnected = true;
+  try {
+    console.log("Connection à MongoDB...");
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 50000, // Augmentez à 50 secondes
+    });
+    isConnected = true;
+    console.log("MongoDB connection est connectée maitenant.");
+  } catch (error) {
+    console.error("Error connection à MongoDB:", error);
+    throw new Error("Error connection à MongoDB définitivement");
+  }
 }
 
 // import mongoose from "mongoose";
