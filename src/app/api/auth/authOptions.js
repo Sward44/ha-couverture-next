@@ -72,9 +72,9 @@ const authOptions = {
       //   },
       ],
       
-  // callbacks: {
-  //   async jwt({ token, user, account, profile }) {
-
+  callbacks: {
+    async jwt({ token, user, account, profile }) {
+      console.log("Token brut : ",token,"User brut : ", user,"Account brut : ", account,"Profile brut :", profile)
   //     if (user && account?.provider === "google") {
   //       const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
   //       if (!userPerso) {
@@ -112,14 +112,14 @@ const authOptions = {
   //       token.user = user;
   //       return token;
   //     }
-  //     return token;
-  //   },
+      return token;
+    },
   //   async session({ session, token }) {
   //       session.user = token?.user;
   //       session.accessToken = token?.accessToken;
   //     return session;
   //   },
-  // },
+  },
 };
 
 export default authOptions;
