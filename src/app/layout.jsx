@@ -2,8 +2,9 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from '@vercel/analytics/react';
 import { connectMongoose } from "@/utils/mongodb";
-import { MetaModel } from "@/models"
-import { cookies } from 'next/headers';
+import { MetaModel } from "@/models";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/authOptions";
 // import PathNameNow from "@/utils/PathNameNow";
 import "@/app/globals.scss";
 import Header from "@/components/header/Header";
@@ -50,6 +51,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   const gaMesurementId = process.env.NEXT_PUBLIC_GA_MESUREMENT_ID
   const gtmMesurementId = process.env.NEXT_PUBLIC_GTM_MESUREMENT_ID;
+  const session = await getServerSession(authOptions)
   
   return (
     <html lang="FR_fr">
@@ -74,7 +76,7 @@ export default async function RootLayout({ children }) {
       </head>
       <body>
         <AuthProvider>
-          <Header />
+          <Header session={session}/>
             <Suspense>
                 {children}
             </Suspense>

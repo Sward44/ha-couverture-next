@@ -1,19 +1,15 @@
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import { sendVerificationRequest } from "@/email/sendVerificationRequest";
 import { connectMongoose } from "@/utils/mongodb";
-import {  UserModel } from "@/models";
+import { UserModel } from "@/models";
 import * as bcrypt from "bcrypt";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/utils/adapterMongoDb";
-// import { User } from "@/components/logo/Logo";
-// import { signIn } from "next-auth/react";
 
-const authOptions = {
+export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   pages: {
     signIn: "/connexion",
-    // error: "/error",
   },
   session: {
     strategy: "jwt",
@@ -64,21 +60,13 @@ const authOptions = {
             return userWithoutPass;
         },
       }),
-      // {
-      //     id: "hacouverture",
-      //     name: "Email",
-      //     type: "email",
-      //     sendVerificationRequest,
-      //   },
       ],
       
   callbacks: {
     async jwt({ token, user, account, profile }) {
-      // console.log("Token brut : ",token,"User brut : ", user,"Account brut : ", account,"Profile brut :", profile)
       if (user && account?.provider === "google") {
         await connectMongoose();
         const userPerso = await UserModel.findOne({ email: profile.email }).lean().exec();
-        // console.log("Profile userPerso extrait de mongoDB :",userPerso)
         if (!userPerso) {
           if (profile.email === "davidlaunay567@gmail.com" || profile.email === "ha.couverture44@gmail.com" ) {let role = "admin"}
           await UserModel.create({
@@ -123,5 +111,3 @@ const authOptions = {
     },
   },
 };
-
-export default authOptions;

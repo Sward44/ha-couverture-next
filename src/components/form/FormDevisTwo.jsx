@@ -5,28 +5,14 @@ import Image from "next/image";
 import axios from "axios";
 import { useViewport } from "@/hooks/viewPort";
 import { AngleLeft, AngleRight, Mark, Ok, Upload } from "../logo/Logo";
-import { set } from "mongoose";
-// import { loadSavedImages } from "@/utils/loadSavedImages";
-
-function loadSavedImages(imagesDevis) {
-  return imagesDevis.map((image) => ({
-    pictureId: image.pictureId,
-    size: image.size,
-    type: image.type,
-    name: image.name,
-    preview: `${process.env.NEXT_PUBLIC_HOST}/uploads/${image.pictureId}.${image.type.slice(image.type.lastIndexOf('/') + 1, image.type.length + 1)}`,
-    lastModified: image.lastModified,
-  }));
-}
 
 export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
   const [files, setFiles] = React.useState([]);
   const [uploadProgress, setUploadProgress] = React.useState([]);
-  // const [picture, setPicture] = React.useState(false)
   const { isMobile } = useViewport();
 
   React.useEffect( () => {
-    const initialFiles = loadSavedImages(imagesDevis);
+    const initialFiles = imagesDevis;
     setFiles(initialFiles);
     setUploadProgress(initialFiles.map((file) => ({ fileName: file.name, percentage: 100 })));
   }, [imagesDevis]);
@@ -130,7 +116,7 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
 
 
   return (
-    <form className="relative flex flex-col sm:mx-4 ">
+    <form className="relative flex flex-col h-full mt-8 sm:mx-4 ">
       <div {...getRootProps({ className: "dropzone" })}>
         <input
         {...getInputProps()} />

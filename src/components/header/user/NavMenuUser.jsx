@@ -8,7 +8,7 @@ import { Logout, Parametre, User } from "@/components/logo/Logo";
 import styles from "@/components/header/nav/Nav.module.scss";
 
 
-const NavMenuUser = ({session, status}) => {
+const NavMenuUser = ({session}) => {
   const [showMenuUser, setShowMenuUser] = useState(false);
   const ref = React.useRef(null);
   const handleShowMenuUser = (e) => {

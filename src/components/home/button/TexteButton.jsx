@@ -1,9 +1,8 @@
-"only server";
 import Link from "next/link";
 import { Plus } from "@/components/logo/Logo";
 
 
-function TexteButton({ handleForm, itemData, index }) {
+function TexteButton({ itemData, index }) {
   return (
     <div className="absolute left-1/2 -translate-x-1/2 bottom-1/2 translate-y-32 sm:translate-y-24 sm:bottom-1/3 md:bottom-1/2 z-20">
       <Link href={itemData[index].url} aria-label={itemData[index].arialLabelLink} >
@@ -18,12 +17,13 @@ function TexteButton({ handleForm, itemData, index }) {
         </span>
       </Link>
       <div className={`flex justify-center apparitionButton`}>
-        <button
-          onClick={handleForm}
-          className=" bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
-        >
-          <h3>Demande de devis</h3>
-        </button>
+        {/* <Link href="/#encars_devis" scroll="true"> */}
+          <button
+            className=" bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
+          >
+            <h3>Demande de devis</h3>
+          </button>
+        {/* </Link> */}
       </div>
     </div>
   );

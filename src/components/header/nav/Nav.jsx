@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import NavMenuUser from "@/components/header/user/NavMenuUser";
 import {
@@ -16,9 +15,8 @@ import {
 } from "@/components/logo/Logo";
 import styles from "@/components/header/nav/Nav.module.scss";
 
-function Nav() {
+function Nav({session}) {
   const [showMenu, setShowMenu] = useState(false);
-  const { data: session, status } = useSession();
   const ref = React.useRef(null);
 
 
@@ -128,8 +126,8 @@ function Nav() {
             Blogs
           </h2>
         </Link>
-        {session && session.user ? (
-          <NavMenuUser session={session} status={status} />
+        {session?.user ? (
+          <NavMenuUser session={session} />
         ) : (
           <Link href="/connexion" aria-label="Lien vers la page de connexion des utilisateurs">
             <span className="flex group justify-center items-center bg-neutral-300 rounded-xl w-10 h-10 hover:scale-105 hover:bg-supernova-500 transition-all duration-300 hover:md:shadow-ha">

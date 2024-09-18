@@ -1,5 +1,5 @@
 "use server";
-import authOptions from "@/app/api/auth/authOptions";
+import { authOptions } from "@/app/api/auth/authOptions";
 import { getServerSession } from "next-auth/next"; 
 import Image from "next/image";
 import { ProfileToRead } from "@/components/main/user/ProfileToRead";

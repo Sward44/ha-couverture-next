@@ -1,7 +1,9 @@
 "server only";
 import { cookies } from "next/headers";
 import { connectMongoose } from "@/utils/mongodb";
-import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel } from "@/models";
+import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel, UserModel } from "@/models";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/authOptions";
 // import handler from "@/app/api/google_reviews/route";
 import ComponentsHomePage from "@/components/home/HomePage";
 import Footer from "@/components/footer/Footer";
@@ -9,8 +11,16 @@ import AvisGlobal from "@/components/main/avis-clients/AvisGlobal";
 import { Transition } from "@/components/main/avis-clients/Transition";
 import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
 import { verifyJwt } from "@/utils/jwt";
+import { MultiForm } from "@/components/form/MultiForm";
+
 
 export default async function Home() {
+  await connectMongoose();
+  const session = await getServerSession(authOptions);
+  let newUserComplet;
+  if(session){
+    newUserComplet = await UserModel.findOne({email: session.user.email}).exec(); 
+  }
   const cookieStore = cookies();
   const devisCookie = cookieStore.get("chiffrage") ||  null;
   // const googleReviews = await handler();
@@ -54,18 +64,19 @@ export default async function Home() {
     };
   });
 
-  const devisComplet = devisCookie === null ? null : 
+  const devisComplet = devisCookie === null ? null :
+    
     await DevisModel.findOne({_id: verifyJwt(devisCookie.value).devisId})
                     .sort({ createdAt: -1 })
-                    .populate("userId")
                     .exec()
   const savedImages = devisComplet === null ? [] :
-    await ImageModel.find({ devisId: verifyJwt(devisCookie.value).devisId, userId: verifyJwt(devisCookie.value).userId })
+    await ImageModel.find({ devisId: verifyJwt(devisCookie.value).devisId })
                     .exec();
   const savedAddress = devisComplet === null ? null :
-    await AddressModel.findOne({ userId: verifyJwt(devisCookie.value).userId })
+    await AddressModel.findOne({ userId: newUserComplet._id })
                     .sort({ _id: -1 })
                     .exec();
+
   const imagesDevis = savedImages === null ? [] : 
   savedImages.map((item) => {
     return {
@@ -73,17 +84,12 @@ export default async function Home() {
       size: item.size,
       type: item.type,
       name: item.name,
-      preview: item.preview,
+      preview: `${process.env.NEXT_PUBLIC_HOST}/uploads/${item.pictureId}${item.extension}`,
       lastModified: new Date(item.lastModified).getTime(),
     };
   });
 
   const devis = devisComplet === null ? null : {
-    firstName: devisComplet.userId.firstName,
-    lastName: devisComplet.userId.lastName,
-    email: devisComplet.userId.email,
-    phone: devisComplet.userId.phone,
-    createdAt: devisComplet.createdAt,
     voie: savedAddress?.address || "",
     codePostal: savedAddress?.code_postal || "",
     ville: savedAddress?.ville || "",
@@ -95,6 +101,11 @@ export default async function Home() {
     <>
       <div className="relative flex flex-col min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] min-w-full top-[72px] md:top-[81px]">
         <ComponentsHomePage itemData={itemData} devis={devis} imagesDevis={imagesDevis}/>
+      </div>
+      <div id="encars_devis" className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px] px-4 py-8 sm:py-16">
+        <div className="bg-neutral-100 md:w-[720px] py-4 px-4 sm:px-8 border border-neutral-300 shadow-ha rounded-lg ">
+          <MultiForm session={session} devis={devis} imagesDevis={imagesDevis} />
+        </div>
       </div>
       <div className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px]">
         <div className="flex w-full px-4 sm:px-8 justify-center">

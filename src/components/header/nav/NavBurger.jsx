@@ -23,9 +23,8 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./NavBurger.module.scss";
 import { useSession, signOut } from "next-auth/react";
 
-function NavBurger({ handleBurger, burger }) {
+function NavBurger({ handleBurger, burger, session }) {
   const [accordion, setAccordion] = useState(false);
-  const {data: session, status} = useSession();
   const ref = useRef(null);
 
   return (
@@ -186,7 +185,7 @@ function NavBurger({ handleBurger, burger }) {
               <h3 className="">06 34 26 64 00</h3>
               </span>
             </Link>
-            {session && session.user ? (
+            {session?.user ? (
               <>
                 <Link 
                   href="#"

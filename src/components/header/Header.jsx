@@ -7,7 +7,7 @@ import NavBurger from "@/components/header/nav/NavBurger";
 import { Logo, LogoMobile } from "@/components/logo/Logo";
 import styles from "@/components/header/Header.module.scss";
 
-function Header() {
+function Header({session}) {
   const { isMobile, isTablet } = useViewport();
   const [burger, setBurger] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -47,7 +47,7 @@ function Header() {
               <LogoMobile />
             </Link>
             <h3 className="font-serif text-xl font-bold">HA COUVERTURE</h3>
-            <NavBurger handleBurger={handleBurger} burger={burger} />
+            <NavBurger handleBurger={handleBurger} burger={burger} session={session} />
           </div>
         ) : (
           <div className="flex flex-1 items-center justify-between">
@@ -56,7 +56,7 @@ function Header() {
                 <Logo />
               </span>
             </Link>
-            <Nav />
+            <Nav session={session} />
           </div>
         )}
       </header>

@@ -1,6 +1,4 @@
 "only server";
-
-
 function Texte({ itemData, index, SvgComponent }) {
   return (
     <div

@@ -1,5 +1,7 @@
 import mongoose, { Schema, models } from "mongoose";
 
+// delete mongoose.connection.models['devis'];
+
 const devisSchema = new Schema(
   {
     userId: { type: mongoose.Types.ObjectId, ref: "user" },

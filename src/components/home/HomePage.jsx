@@ -9,7 +9,7 @@ import { MultiForm } from '@/components/form/MultiForm';
 import SvgMap from '@/components/logo/MappageLogo';
 import TexteButton from './button/TexteButton';
 
-function ComponentsHomePage({ itemData, devis, imagesDevis }) {
+function ComponentsHomePage({ itemData }) {
   const [direction, setDirection] = useState('imageGauche');
   const [index, setIndex] = useState(0);
   const [addForm, setAddForm] = useState(false);
@@ -103,7 +103,6 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
     handleEveryImage={handleEveryImage}
   />
   <TexteButton
-    handleForm={handleForm}
     itemData={itemData}
     index={index}
   />
@@ -125,7 +124,7 @@ function ComponentsHomePage({ itemData, devis, imagesDevis }) {
           </CSSTransition>
         </TransitionGroup>
       </div>
-      {addForm && <MultiForm handleForm={handleForm} devis={devis} imagesDevis={imagesDevis} />}
+      {/* {addForm && <MultiForm handleForm={handleForm} devis={devis} imagesDevis={imagesDevis} />} */}
     </div>
   </>
   );
