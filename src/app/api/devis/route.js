@@ -97,9 +97,7 @@ export async function POST(request) {
     await ImageModel.updateMany({ devisId: devisIdInterne },{ $set: { userId: existingUser._id } },{new: true, upsert: true }).exec();
     const devis = await DevisModel.findOne({_id : devisIdInterne, userId : existingUser._id}).exec();
     const images = await ImageModel.find({devisId : devisIdInterne, userId : existingUser._id}).exec();
-    console.log(devis)
 
-    // Envoyer un e-mail de confirmation
     await email.getTemplate("email-devis", {
       subject: `[${process.env.NEXT_PUBLIC_HOST}] Nouveau devis de ${existingUser.firstName} ${existingUser.lastName}`,
       to: "Abraham Hognon <ha.couverture44@gmail.com>",

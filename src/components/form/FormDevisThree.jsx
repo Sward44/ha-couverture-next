@@ -7,7 +7,6 @@ import { AngleLeft, Email,  Loading, Phone, Send, User } from "@/components/logo
 
 export function FormDevisThree({ isActive, prevStep, devis, session }) {
   const [defaultValues, setDefaultValues] = React.useState({});
-  // const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
   const nameRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
 
   React.useEffect(() => {
@@ -55,21 +54,14 @@ export function FormDevisThree({ isActive, prevStep, devis, session }) {
     resolver: yupResolver(schema),
   });
 
-  // console.log('Form Errors:', errors);
-
   React.useEffect(() => {
     reset(defaultValues);
   }, [defaultValues, reset]);
 
   async function onSubmit(values) {
-    // setIsFormSubmitted(true);
-    // console.log('onSubmit is called');
     try {
       clearErrors();
       const newEmail = values;
-
-      console.log('Submitting form data:', newEmail);
-      console.log('API URL:', `${process.env.NEXT_PUBLIC_HOST}/api/devis`);
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_HOST}/api/devis`,
@@ -102,7 +94,6 @@ export function FormDevisThree({ isActive, prevStep, devis, session }) {
     setStep(1)
     }
   }
-  // console.log('Is Form Submitted:', isFormSubmitted);
 
   if (!isActive) return null;
 

@@ -73,7 +73,7 @@ export default async function Home() {
     await ImageModel.find({ devisId: verifyJwt(devisCookie.value).devisId })
                     .exec();
   const savedAddress = devisComplet === null ? null :
-    await AddressModel.findOne({ userId: newUserComplet._id })
+    await AddressModel.findOne({ userId: newUserComplet?._id })
                     .sort({ _id: -1 })
                     .exec();
 

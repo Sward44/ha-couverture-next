@@ -31,7 +31,7 @@ export async function POST(request, res) {
   const buffer = Buffer.from(await file.arrayBuffer());
   const updateDevis = new ImageModel(
     {
-      userId: sessionId._id,
+      userId: sessionId?._id,
       devisId: chiffrage.devisId,
       pictureId: pictureId,
       extension: extname(file.name),
@@ -51,12 +51,9 @@ export async function POST(request, res) {
     if (e.code === "ENOENT") {
       await mkdir(uploadDir, { recursive: true });
     } else {
-      console.error(
-        "Error while trying to create directory when uploading a file\n",
-        e
-      );
+      console.error("Erreur lors de la création d'un répertoire lors du téléchargement d'un fichier\n",e);
       return NextResponse.json(
-        { error: "Something went wrong." },
+        { error: "Quelque chose n'a pas fonctionné." },
         { status: 500 }
       );
 
@@ -71,9 +68,9 @@ export async function POST(request, res) {
     return NextResponse.json({ done: "ok", filename: filename, httpfilepath: finalFilePath }, { status: 200 });
 
   } catch (e) {
-    console.error("Error while trying to upload a file\n", e);
+    console.error("Erreur lors du téléchargement d'un fichier\n", e);
     return NextResponse.json(
-      { error: "Something went wrong." },
+      { error: "Quelque chose n'a pas fonctionné." },
       { status: 500 }
     );
   }
@@ -104,10 +101,10 @@ export async function DELETE(request) {
 
     await ImageModel.deleteOne({ pictureId });
 
-    return NextResponse.json({ message: "Image deleted successfully." }, { status: 200 });
+    return NextResponse.json({ message: "L'image a été supprimée avec succès." }, { status: 200 });
   } catch (error) {
-    console.error("Error deleting image:", error);
-    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+    console.error("Erreur de suppression de l'image : ", error);
+    return NextResponse.json({ error: "Quelque chose n'a pas fonctionné." }, { status: 500 });
   }
 }
 

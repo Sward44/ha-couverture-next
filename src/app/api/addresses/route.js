@@ -15,8 +15,6 @@ export async function POST(request) {
   let sessionId = session?.user?.email ? await UserModel.findOne({email : session.user.email}).exec() : null;
   let chiffrage = devisCookie?.value;
 
-  // console.log(devis, devisCookie);
-
   const body = await request.json();
   body.comments = body.comments.trim();
   try {

@@ -100,18 +100,6 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
     }
   };
 
-  // const handlePicture = (e) => {
-  //   e.preventDefault()
-  //   setPicture(!picture)
-  // }
-
-  // React.useEffect(
-  //   () => () => {
-  //     files.forEach((file) => URL.revokeObjectURL(file.preview));
-  //   },
-  //   [files]
-  // );
-
   if (!isActive) return null;
 
 
@@ -130,34 +118,6 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-4 sm:grid-rows-3 size-full gap-6 my-6">
         {files.map((file) => (
           <div key={file.pictureId}>
-            {/* {picture ? 
-            <>
-
-              <div className="fixed top-0 left-0 w-screen h-screen bg-neutral-950 opacity-95 z-20">
-                <div className="flex justify-center items-center m-20">
-                  <button
-                    type="button"
-                    onClick={handlePicture}
-                    className="absolute flex justify-center items-center size-12 top-0 right-0 -translate-x-8 translate-y-8 z-40">
-                      <div className="size-12 fill-neutral-100">
-                        <Mark />
-                      </div>
-                  </button>
-                  <div className="relative w-full h-[calc(100vh-160px)] z-30">
-                    <Image 
-                      src={file.preview} 
-                      alt={file.name} 
-                      fill 
-                      style={{ 
-                        objectFit: 'contain',
-                        objectPosition: "center"
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-              </>
-             : */}
               <div className="relative size-full">
                 <Image
                   src={file.preview}

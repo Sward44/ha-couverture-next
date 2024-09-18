@@ -64,7 +64,7 @@ export function FormDevisOne({ isActive, nextStep, devis }) {
       }
     } catch (error) {
       if (error) {
-        toast.error(e.message || "Une erreur s'est produite");
+        toast.error(error.message || "Une erreur s'est produite");
       } else {
         toast.error("Une erreur inconnue s'est produite");
       }
