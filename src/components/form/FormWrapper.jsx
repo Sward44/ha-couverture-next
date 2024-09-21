@@ -6,6 +6,7 @@ export function FormWrapper({ children }) {
   const [step, setStep] = React.useState(1);
   const nextStep = () => setStep((prevStep) => prevStep + 1);
   const prevStep = () => setStep((prevStep) => prevStep - 1);
+  const initialStep = () => setStep((prevStep) => prevStep - 2)
 
   return (
     <>
@@ -17,6 +18,7 @@ export function FormWrapper({ children }) {
           isActive: index + 1 === step,
           nextStep,
           prevStep,
+          initialStep,
         });
       })}
     </div>

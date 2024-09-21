@@ -8,7 +8,7 @@ import { formatDate } from "@/app/api/upload/route"
 import email from "@/email/devis/email";
 
 export async function POST(request) {
-  if (req.method === "OPTIONS") {
+  if (request.method === "OPTIONS") {
     return new NextResponse(null, {
       status: 200,
       headers: {

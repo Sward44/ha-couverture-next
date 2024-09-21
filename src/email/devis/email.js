@@ -67,4 +67,6 @@ class Email {
   }
 }
 
-export default new Email();
+const newEmail = new Email();
+
+export default newEmail;

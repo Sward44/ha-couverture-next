@@ -3,11 +3,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 import { AngleLeft, Email,  Loading, Phone, Send, User } from "@/components/logo/Logo";
+import { toast } from "react-toastify";
 
-export function FormDevisThree({ isActive, prevStep, devis, session }) {
+export function FormDevisThree({ isActive, initialStep, prevStep, devis, session }) {
   const [defaultValues, setDefaultValues] = React.useState({});
   const nameRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+  const router = useRouter();
 
   React.useEffect(() => {
     const fetchDefaultValuesSession = async () => {
@@ -76,6 +79,7 @@ export function FormDevisThree({ isActive, prevStep, devis, session }) {
       if (response.ok) {
         const newEmailResponse = await response.json();
         reset();
+        router.refresh()
         toast.success(newEmailResponse.message || "Message envoyé avec succès !");
 
       } else {
@@ -91,7 +95,7 @@ export function FormDevisThree({ isActive, prevStep, devis, session }) {
       });
     } 
     finally {
-    setStep(1)
+    initialStep()
     }
   }
 
