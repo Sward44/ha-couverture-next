@@ -102,7 +102,7 @@ export function FormDevisThree({ isActive, initialStep, prevStep, devis, session
   if (!isActive) return null;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col mt-8 sm:mx-4 ">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full mt-8 sm:mx-4 ">
 
     <div className="relative flex flex-col mb-8">
       <label htmlFor="firstName" className={`labelForm ${errors?.firstName ? "to-red-50": "to-neutral-50"}`}>Prénom</label>
@@ -210,7 +210,7 @@ export function FormDevisThree({ isActive, initialStep, prevStep, devis, session
           <p className="errorsFormBottom">{errors.ville.message}</p>
         )}
     </div>
-    <div className="flex flex-1">
+    <div className="flex flex-1 w-full item-end justify-start">
       <div className="flex flex-1 items-end justify-start">
         <button onClick={prevStep} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
           <div className="flex flex-1 items-center">
@@ -221,7 +221,7 @@ export function FormDevisThree({ isActive, initialStep, prevStep, devis, session
           </div>
         </button>
       </div>
-      <div className="flex flex-1 items-end justify-end">
+      <div className="flex flex-1 w-full items-end justify-end">
         <button disabled={isSubmitting} type="submit" className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
           <div className="flex flex-1 items-center">
           <h3 className="font-bold">Envoyer</h3>

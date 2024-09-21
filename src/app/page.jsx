@@ -102,8 +102,8 @@ export default async function Home() {
       <div className="relative flex flex-col min-h-[calc(100vh-72px)] md:min-h-[calc(100vh-81px)] min-w-full top-[72px] md:top-[81px]">
         <ComponentsHomePage itemData={itemData} devis={devis} imagesDevis={imagesDevis}/>
       </div>
-      <div id="encars_devis" className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px] px-4 py-8 sm:py-16">
-        <div className="bg-neutral-100 md:w-[720px] py-4 px-4 sm:px-8 border border-neutral-300 shadow-ha rounded-lg ">
+      <div id="encars_devis" className="relative flex flex-col justify-center items-center top-[72px] md:top-[81px] px-4 py-8 sm:px-8 sm:py-16">
+        <div className="bg-neutral-100 md:w-[720px] w-full py-4 px-4 border border-neutral-300 shadow-ha rounded-lg ">
           <MultiForm session={session} devis={devis} imagesDevis={imagesDevis} />
         </div>
       </div>
