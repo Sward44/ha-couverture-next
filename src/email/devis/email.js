@@ -1,6 +1,7 @@
 "server only";
 import nodemailer from "nodemailer";
 import pug from "pug";
+import path from "path";
 import { google } from "googleapis";
 
 const oauth2Client = new google.auth.OAuth2(
@@ -41,7 +42,9 @@ class Email {
   async getTemplate(templateName, options, prod = true) {
     try {
       const template = pug.renderFile(
-        `src/email/devis/template/${templateName}.pug`,
+        path.join(
+          process.cwd(),
+          `src/email/devis/template/${templateName}.pug`),
         options.metadata
       );
       let data;

@@ -2,12 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "next.config.js",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "src/email/devis/template/*",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "includeFiles": [
+          "src/email/devis/template/email-devis.pug",
+          "src/email/devis/template/email-connexion.pug"
+        ]
+      }
     }
   ],
   "routes": [
