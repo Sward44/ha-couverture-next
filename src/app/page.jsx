@@ -84,7 +84,7 @@ export default async function Home() {
       size: item.size,
       type: item.type,
       name: item.name,
-      preview: `${process.env.NEXT_PUBLIC_HOST}/uploads/${item.pictureId}${item.extension}`,
+      preview: item.preview,
       lastModified: new Date(item.lastModified).getTime(),
     };
   });

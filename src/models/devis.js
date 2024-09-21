@@ -6,6 +6,7 @@ const devisSchema = new Schema(
   {
     userId: { type: mongoose.Types.ObjectId, ref: "user" },
     body: { type: String },
+    driveFolderId: {type: String},
     done: {type: Boolean, default: false},
   },
   { timestamps: true }

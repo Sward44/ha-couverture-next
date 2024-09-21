@@ -1,15 +1,26 @@
 import { cookies } from "next/headers";
-import { extname, join } from "path";
-import { stat, mkdir, writeFile, unlink } from "fs/promises";
+import { join, extname } from "path";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/authOptions";
 import { connectMongoose } from "@/utils/mongodb";
-import { UserModel, ImageModel } from "@/models";
+import { UserModel, ImageModel, DevisModel } from "@/models";
 import { NextResponse } from "next/server";
 import { verifyJwt } from "@/utils/jwt";
+import { findFolderIdByPath, findFolderIdByName, renameFolder, uploadToDrive, createFolder, setFilePermissions, deleteFileFromDrive } from "@/utils/googleDrive";
 
 
-export async function POST(request, res) {
+import { Readable } from 'stream';
+
+export function formatDate(timestamp) {
+  const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
+
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('fr-FR', options);
+  
+  return formattedDate.replace('\\u202f', ''); // Supprimer le point après le mois
+}
+
+export async function POST(request) {
   const cookieStore = cookies();
   const devisCookie = cookieStore.get("chiffrage");
   const session = await getServerSession(authOptions);
@@ -19,7 +30,7 @@ export async function POST(request, res) {
   const pictureId = formData.get("pictureId");
   const preview = formData.get("preview");
   await connectMongoose();
-  const sessionId = session?.user?.email ? await UserModel.findOne({email : session.user.email}).exec() : null;
+  const sessionId = session?.user?.email ? await UserModel.findOne({ email: session.user.email }).exec() : null;
 
   if (!file) {
     return NextResponse.json(
@@ -28,9 +39,64 @@ export async function POST(request, res) {
     );
   }
 
+  // Convertir le fichier en stream
   const buffer = Buffer.from(await file.arrayBuffer());
-  const updateDevis = new ImageModel(
-    {
+  const readableFile = new Readable();
+  readableFile.push(buffer);
+  readableFile.push(null);
+
+  // Métadonnées pour la sauvegarde
+  const fileInfo = {
+    name: file.name,
+    type: file.type,
+    stream: readableFile
+  };
+
+  try {
+    // Trouver l'ID du dossier existant
+    const clientHaCouvertureFolderId = await findFolderIdByPath("Personnel/Ha-Couverture/Client-Ha-Couverture");
+
+    // Formate la date du timestamp du JWT
+    const formattedDate = formatDate(chiffrage.iat);
+
+    // Nom dynamique pour le dossier final
+    const finalFolderName = session?.user 
+      ? `${session.user.firstName}_${session.user.lastName}_${formattedDate}`
+      : `${chiffrage.devisId}`;
+
+    // Rechercher ou créer le dossier final
+    let finalFolderId = await findFolderIdByName(chiffrage.devisId, clientHaCouvertureFolderId);
+    if (!finalFolderId && finalFolderName === chiffrage.devisId ) {
+      finalFolderId = await createFolder(finalFolderName, clientHaCouvertureFolderId);
+    } else if (!finalFolderId && finalFolderName !== chiffrage.devisId ){
+      finalFolderId = await findFolderIdByName(finalFolderName, clientHaCouvertureFolderId);
+        if(!finalFolderId) {
+          finalFolderId = await createFolder(finalFolderName, clientHaCouvertureFolderId);
+        }
+    } else if (finalFolderId && finalFolderId.name === chiffrage.devisId) {
+      finalFolderId = await renameFolder( finalFolderId.id, finalFolderName)
+    } else {
+      finalFolderId = await findFolderIdByName(finalFolderName, clientHaCouvertureFolderId);
+    }
+
+    // Noté le dossier dans devis
+    const devis = await DevisModel.findOne({_id : chiffrage.devisId}).exec();
+    if(!devis?.driveFolderId){
+      await DevisModel.updateOne({_id : chiffrage.devisId },{
+        $set : {driveFolderId : finalFolderId.id}
+      },{upsert: true}).exec();
+      }   
+    // Envoyer le fichier sur Google Drive et récupérer les informations de retour
+    const fileData = await uploadToDrive(fileInfo, finalFolderId.id);
+      
+    // Définir les permissions pour rendre le fichier public
+    await setFilePermissions(fileData.id, 'reader');
+    
+    // URL du fichier sur Google Drive
+    const finalFilePath = fileData.webViewLink;
+
+    // Enregistrer les informations nécessaires sur la base de données
+    const updateDevis = new ImageModel({
       userId: sessionId?._id,
       devisId: chiffrage.devisId,
       pictureId: pictureId,
@@ -38,37 +104,16 @@ export async function POST(request, res) {
       size: file.size,
       type: file.type,
       name: file.name,
-      preview: preview,
+      preview: `https://drive.google.com/uc?export=view&id=${fileData.id}`,
       lastModified: file.lastModified,
-    }
-  );
-  await updateDevis.save();
-  const uploadDir = join(process.cwd(), "/public/uploads");
+      driveFileId: fileData.id // Add driveFileId for deletion reference
+    });
 
-  try {
-    await stat(uploadDir);
+    await updateDevis.save();
+
+    return NextResponse.json({ done: "ok", filename: file.name, httpfilepath: finalFilePath }, { status: 200 });
   } catch (e) {
-    if (e.code === "ENOENT") {
-      await mkdir(uploadDir, { recursive: true });
-    } else {
-      console.error("Erreur lors de la création d'un répertoire lors du téléchargement d'un fichier\n",e);
-      return NextResponse.json(
-        { error: "Quelque chose n'a pas fonctionné." },
-        { status: 500 }
-      );
-
-    }
-  }
-
-  try {
-    const fileExtension = extname(file.name);
-    const filename = `${pictureId}${fileExtension}`;
-    await writeFile(`${uploadDir}/${filename}`, buffer);
-    const finalFilePath = `${process.env.NEXT_PUBLIC_HOST}/uploads/${filename}`;
-    return NextResponse.json({ done: "ok", filename: filename, httpfilepath: finalFilePath }, { status: 200 });
-
-  } catch (e) {
-    console.error("Erreur lors du téléchargement d'un fichier\n", e);
+    console.error("Erreur lors de l'upload sur Google Drive\n", e);
     return NextResponse.json(
       { error: "Quelque chose n'a pas fonctionné." },
       { status: 500 }
@@ -84,7 +129,6 @@ export async function DELETE(request) {
     return NextResponse.json({ error: "Picture ID is required." }, { status: 400 });
   }
 
-  const uploadDir = join(process.cwd(), "/public/uploads");
   await connectMongoose();
 
   try {
@@ -94,10 +138,8 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "Image not found." }, { status: 404 });
     }
 
-    const filename = `${image.pictureId}${extname(image.name)}`;
-    const filepath = `${uploadDir}/${filename}`;
-
-    await unlink(filepath);
+    // Supprimer le fichier sur Google Drive
+    await deleteFileFromDrive(image.driveFileId); // Ajouter une fonction deleteFileFromDrive dans googleDrive.js pour gérer la suppression
 
     await ImageModel.deleteOne({ pictureId });
 
@@ -107,4 +149,3 @@ export async function DELETE(request) {
     return NextResponse.json({ error: "Quelque chose n'a pas fonctionné." }, { status: 500 });
   }
 }
-

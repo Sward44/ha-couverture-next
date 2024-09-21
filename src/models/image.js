@@ -13,6 +13,7 @@ const imageSchema = new Schema({
   name: { type: String },
   preview: { type: String },
   lastModified: { type: Number },
+  driveFileId : {type : String },
 }, { timestamps: true });
 
 const ImageModel = models.images || mongoose.model('images', imageSchema);

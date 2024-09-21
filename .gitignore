@@ -8,7 +8,7 @@
 
 # testing
 /coverage
-playground*
+playground**
 
 # next.js
 /.next/

@@ -3,12 +3,25 @@ import { NextResponse } from "next/server";
 import { verifyJwt } from "@/utils/jwt";
 import { connectMongoose } from "@/utils/mongodb";
 import { UserModel, DevisModel, AddressModel, ImageModel } from "@/models";
+import {  setFolderPermissions } from "@/utils/googleDrive";
+import { formatDate } from "@/app/api/upload/route"
 import email from "@/email/devis/email";
 
 export async function POST(request) {
+  if (req.method === "OPTIONS") {
+    return new NextResponse(null, {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
+  }
   const cookieStore = cookies();
   const devisCookie = cookieStore.get("chiffrage") || null;
   const devisIdInterne = verifyJwt(devisCookie.value).devisId;
+  const chiffrage = verifyJwt(devisCookie.value);
 
   const body = await request.json();
   let phoneNumberDigits = body.number.replace(/\D/g, "");
@@ -97,6 +110,11 @@ export async function POST(request) {
     await ImageModel.updateMany({ devisId: devisIdInterne },{ $set: { userId: existingUser._id } },{new: true, upsert: true }).exec();
     const devis = await DevisModel.findOne({_id : devisIdInterne, userId : existingUser._id}).exec();
     const images = await ImageModel.find({devisId : devisIdInterne, userId : existingUser._id}).exec();
+    const address = await AddressModel.findOne({devisId : devisIdInterne, userId: existingUser._id})
+    const emailAuthorization = ["davidlaunay567@gmail.com", "ha.couverture44@gmail.com", existingUser.email]
+
+    await setFolderPermissions(devis.driveFolderId, emailAuthorization)
+    const formattedDate = formatDate(chiffrage.iat);
 
     await email.getTemplate("email-devis", {
       subject: `[${process.env.NEXT_PUBLIC_HOST}] Nouveau devis de ${existingUser.firstName} ${existingUser.lastName}`,
@@ -108,13 +126,16 @@ export async function POST(request) {
         ownerName: existingUser.firstName,
         ownerSurname: existingUser.lastName,
         ownerPhone: existingUser.phone,
-        ownerVoie: newAddress.address,
-        ownerCodePostal: newAddress.code_postal,
-        ownerVille: newAddress.ville,
+        ownerVoie: address.address,
+        ownerCodePostal: address.code_postal,
+        ownerVille: address.ville,
         ownerComments: devis.body,
+        ownerFolder: `${existingUser.firstName}_${existingUser.lastName}_${formattedDate}`,
+        ownerFolderLink: `https://drive.google.com/drive/folders/${devis.driveFolderId}`,
         ownerImages: images.map((item) => ({
           name: item.name,
-          path: `${process.env.NEXT_PUBLIC_HOST}/uploads/${item.pictureId}${item.extension}`
+          url: `https://drive.google.com/uc?export=view&id=${item.driveFileId}`,
+          path: `https://drive.google.com/file/d/${item.driveFileId}/view`,
         })),
         siteUrl: process.env.NEXT_PUBLIC_HOST,
       },
@@ -122,7 +143,10 @@ export async function POST(request) {
 
     const response = NextResponse.json({ message: "Message remis avec succès à Ha Couverture" }, {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+       },
     });
     response.cookies.delete("chiffrage");
     return response;
@@ -131,7 +155,21 @@ export async function POST(request) {
     console.error(error);
     return NextResponse.json(
       { error: "Erreur de serveur" },
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      { status: 500, headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      } }
     );
   }
 };
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}

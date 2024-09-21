@@ -22,6 +22,7 @@
     "bcrypt": "^5.1.1",
     "cookies-next": "^4.2.1",
     "date-fns": "^3.6.0",
+    "google-auth-library": "^9.14.1",
     "googleapis": "^134.0.0",
     "idna-uts46-hx": "^6.0.4",
     "jsonwebtoken": "^9.0.2",
