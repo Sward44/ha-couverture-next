@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useDropzone } from "react-dropzone";
+import heic2any from 'heic2any'; 
 import Image from "next/image";
 import axios from "axios";
 import { useViewport } from "@/hooks/viewPort";
@@ -11,48 +12,54 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
   const [uploadProgress, setUploadProgress] = React.useState([]);
   const { isMobile } = useViewport();
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     const initialFiles = imagesDevis;
     setFiles(initialFiles);
     setUploadProgress(initialFiles.map((file) => ({ fileName: file.name, percentage: 100 })));
   }, [imagesDevis]);
 
-  const onDrop = React.useCallback((acceptedFiles) => {
+  const onDrop = React.useCallback(async (acceptedFiles) => {
     if (!acceptedFiles.length) {
       console.error('Aucun fichier accepté.');
       return;
     }
-    const newFiles = acceptedFiles.map((file) => {
 
-      if (!file.type.startsWith('image/')) {
-        console.error(`Le fichier ${file.name} est ignoré car il n'a pas un type MIME valide.`);
-        return null;
-      } 
     try {
-      const preview = URL.createObjectURL(file);
-      const pictureId = crypto.randomUUID();
-      if (!preview || !pictureId) {
-        console.error(`Erreur: Aperçu ou UUID invalide pour le fichier ${file.name}`);
-        return null;
-      }
-      return Object.assign(file, { preview, pictureId });
+      const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
+        if (file.type === 'image/heic') {
+          try {
+            const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg' });
+            const convertedFile = new File([convertedBlob], file.name.replace('.heic', '.jpeg'), { type: 'image/jpeg' });
+            const preview = URL.createObjectURL(convertedFile);
+            const pictureId = crypto.randomUUID();
+            return Object.assign(convertedFile, { preview, pictureId });
+          } catch (error) {
+            console.error(`Erreur lors de la conversion du fichier ${file.name}:`, error);
+            return null;
+          }
+        } else {
+          const preview = URL.createObjectURL(file);
+          const pictureId = crypto.randomUUID();
+          return Object.assign(file, { preview, pictureId });
+        }
+      }));
+
+      const validNewFiles = newFiles.filter(file => file !== null && file.pictureId);
+
+      setFiles((prevFiles) => [...prevFiles, ...validNewFiles]);
+      validNewFiles.forEach((file) => file && uploadFile(file));
     } catch (error) {
-      console.error(`Erreur lors de la génération de l'aperçu ou de l'UUID pour le fichier ${file.name}:`, error);
-      return null;
+      console.error('Erreur lors de la gestion des fichiers acceptés:', error);
     }
-  }).filter(file => file !== null && typeof file.preview === 'string' && file.pictureId);
-  setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-  newFiles.forEach((file) => file && uploadFile(file));
-}, []);
+  }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "image/png, image/jpeg, image/jpg, image/webp, image/heic",
     multiple: true,
     maxFiles: 8,
   });
 
-   const uploadFile = async (file) => {
+  const uploadFile = async (file) => {
     if (!file || !file.preview || !file.pictureId) {
       console.error(`Erreur: Le fichier est invalide ou manquant : ${file}`);
       return;
@@ -63,37 +70,28 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
     formData.append("pictureId", file.pictureId);
 
     try {
-      const response = await axios.post(
-        "/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const { loaded, total } = progressEvent;
-            const percentage = Math.floor((loaded * 100) / total);
-            setUploadProgress((prevProgress) => [
-              ...prevProgress.filter((p) => p.fileName !== file.name),
-              { fileName: file.name, percentage },
-            ]);
-          },
-        }
-      );
+      await axios.post("/api/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          const percentage = Math.floor((loaded * 100) / total);
+          setUploadProgress((prevProgress) => [
+            ...prevProgress.filter((p) => p.fileName !== file.name),
+            { fileName: file.name, percentage },
+          ]);
+        },
+      });
     } catch (error) {
       console.error("Erreur de téléversement:", error);
     }
   };
-
 
   const deleteFile = async (fileId) => {
     try {
       const response = await axios.delete(`/api/upload?pictureId=${fileId}`);
       if (response.status === 200) {
         setFiles(files.filter((file) => file.pictureId !== fileId));
-        setUploadProgress(
-          uploadProgress.filter((progress) => progress.fileId !== fileId)
-        );
+        setUploadProgress(uploadProgress.filter((progress) => progress.fileId !== fileId));
       }
     } catch (error) {
       console.error("Erreur de suppression:", error);
@@ -102,64 +100,59 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
 
   if (!isActive) return null;
 
-
   return (
-    <form className="relative flex flex-col h-full mt-8 sm:mx-4 ">
+    <form className="relative flex flex-col h-full mt-8 sm:mx-4">
       <div {...getRootProps({ className: "dropzone" })}>
-        <input
-        {...getInputProps()} />
-          <div className={`flex flex-col justify-center items-center h-24 sm:h-32 w-full border-2 transition-colors ${!isDragActive ? "text-neutral-500 border-neutral-300 bg-neutral-200 fill-neutral-500":"border-dashed text-neutral-300 border-neutral-500 bg-neutral-400 fill-neutral-300"}  rounded-lg`}>
-            <div className="size-12">
-              <Upload />
-            </div>
-            <p className="text-xs sm:text-sm px-4 md:px-0">Glissez-déposez des fichiers ici (8 max), ou cliquez pour sélectionner des fichiers...</p>
+        <input {...getInputProps()} />
+        <div className={`flex flex-col justify-center items-center h-24 sm:h-32 w-full border-2 transition-colors ${!isDragActive ? "text-neutral-500 border-neutral-300 bg-neutral-200 fill-neutral-500" : "border-dashed text-neutral-300 border-neutral-500 bg-neutral-400 fill-neutral-300"} rounded-lg`}>
+          <div className="size-12">
+            <Upload />
           </div>
+          <p className="text-xs sm:text-sm px-4 md:px-0">Glissez-déposez des fichiers ici (8 max), ou cliquez pour sélectionner des fichiers...</p>
+        </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-4 sm:grid-rows-3 size-full gap-6 my-6">
         {files.map((file) => (
           <div key={file.pictureId}>
-              <div className="relative size-full">
-                <Image
-                  src={file.preview}
-                  alt={file.name}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={() => deleteFile(file.pictureId)}
-                  className="absolute flex justify-center items-center size-5 top-0 right-0 translate-x-3 -translate-y-3 bg-neutral-300 border border-neutral-500 rounded-full z-40">
-                  <div className="size-3 fill-neutral-500">
-                    <Mark />
-                  </div>
-                </button>
+            <div className="relative size-full">
+              {
+                file.type.startsWith("image/") ? (
+                  <Image
+                    src={file.preview}
+                    alt={file.name}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                ) : file.type.startsWith("video/") ? (
+                  <video src={file.preview} controls className="object-cover w-full h-full rounded-lg" />
+                ) : (
+                  <a href={file.preview} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-full h-full bg-gray-200 rounded-lg">
+                    <span className="text-xs text-center">{file.name}</span>
+                  </a>
+                )
+              }
+              <button
+                type="button"
+                onClick={() => deleteFile(file.pictureId)}
+                className="absolute flex justify-center items-center size-5 top-0 right-0 translate-x-3 -translate-y-3 bg-neutral-300 border border-neutral-500 rounded-full z-40">
+                <div className="size-3 fill-neutral-500">
+                  <Mark />
+                </div>
+              </button>
               <div
                 className={`absolute flex justify-center items-center top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2`}
                 style={{
-                  background: uploadProgress.find(
-                    (progress) =>
-                      progress.fileName === file.name &&
-                      progress.percentage >= 100
-                  )
-                    ? ""
-                    : "rgba(23, 23 ,23 , 0.8)",
+                  background: uploadProgress.find((progress) => progress.fileName === file.name && progress.percentage >= 100) ? "" : "rgba(23, 23 ,23 , 0.8)",
                   fontSize: "1rem",
                   color: "rgb(245,245,245)",
                 }}>
-                {uploadProgress.find(
-                  (progress) =>
-                    progress.fileName === file.name && progress.percentage >= 100
-                ) ? (
+                {uploadProgress.find((progress) => progress.fileName === file.name && progress.percentage >= 100) ? (
                   <div className="size-5 fill-green-500"><Ok /></div>
                 ) : (
-                  `${uploadProgress?.find((progress) => progress?.fileName === file?.name)?.percentage + "%" || "En attente..."}`
+                  `${uploadProgress.find((progress) => progress.fileName === file.name)?.percentage + "%" || "En attente..."}`
                 )}
               </div>
             </div>
-            {/* } */}
             {isMobile ? (
               <p className="text-xs text-center">
                 {file.name.slice(0, file.name.lastIndexOf('.')).length > 8
@@ -178,7 +171,7 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
       </div>
       <div className="flex flex-1">
         <div className="flex flex-1 items-end justify-start">
-          <button onClick={prevStep} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
+          <button onClick={prevStep} className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
             <div className="flex flex-1 items-center">
               <div className="size-4 mr-2">
                 <AngleLeft />
@@ -186,11 +179,10 @@ export function FormDevisTwo({ isActive, nextStep, prevStep, imagesDevis }) {
               <h3 className="font-bold">Précédent</h3>
             </div>
           </button>
-          
         </div>
         <div className="flex flex-1 items-end justify-end">
-          <button onClick={nextStep} className=" bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
-          <div className="flex flex-1 items-center">
+          <button onClick={nextStep} className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
+            <div className="flex flex-1 items-center">
               <h3 className="font-bold">Suivant</h3>
               <div className="size-4 ml-2">
                 <AngleRight />

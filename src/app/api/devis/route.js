@@ -3,9 +3,18 @@ import { NextResponse } from "next/server";
 import { verifyJwt } from "@/utils/jwt";
 import { connectMongoose } from "@/utils/mongodb";
 import { UserModel, DevisModel, AddressModel, ImageModel } from "@/models";
-import {  setFolderPermissions } from "@/utils/googleDrive";
-import { formatDate } from "@/app/api/upload/route"
+import {  setFolderPermissions, renameFolder } from "@/utils/googleDrive";
 import email from "@/email/devis/email";
+
+function formatDate(timestamp) {
+  const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
+
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('fr-FR', options);
+  
+  return formattedDate.replace('\\u202f', ''); // Supprimer le point après le mois
+}
+
 
 export async function POST(request) {
   if (request.method === "OPTIONS") {
@@ -115,6 +124,7 @@ export async function POST(request) {
 
     await setFolderPermissions(devis.driveFolderId, emailAuthorization)
     const formattedDate = formatDate(chiffrage.iat);
+    await renameFolder(devis.driveFolderId,`${existingUser.firstName}_${existingUser.lastName}_${formattedDate}_${chiffrage.devisId}` )
 
     await email.getTemplate("email-devis", {
       subject: `[${process.env.NEXT_PUBLIC_HOST}] Nouveau devis de ${existingUser.firstName} ${existingUser.lastName}`,

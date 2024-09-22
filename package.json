@@ -24,6 +24,7 @@
     "date-fns": "^3.6.0",
     "google-auth-library": "^9.14.1",
     "googleapis": "^134.0.0",
+    "heic2any": "^0.0.4",
     "idna-uts46-hx": "^6.0.4",
     "jsonwebtoken": "^9.0.2",
     "mongod": "^2.0.0",

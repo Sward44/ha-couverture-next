@@ -5,6 +5,7 @@ import { authOptions } from "@/app/api/auth/authOptions";
 import { signJwtThreeDay, verifyJwt } from "@/utils/jwt";
 import { connectMongoose } from "@/utils/mongodb";
 import { DevisModel, UserModel } from "@/models";
+import { findFolderIdByPath, createFolder } from "@/utils/googleDrive";
 
 export async function POST(request) {
   const cookieStore = cookies();
@@ -47,6 +48,11 @@ export async function POST(request) {
                 }},
                 { upsert:true }).exec()
     }
+
+
+      const clientHaCouvertureFolderId = await findFolderIdByPath("Personnel/Ha-Couverture/Client-Ha-Couverture");
+      await createFolder(comments._id, clientHaCouvertureFolderId);
+
 
     const response = NextResponse.json({ message: "Message envoyé à Ha Couverture !" }, {
       status: 200,
