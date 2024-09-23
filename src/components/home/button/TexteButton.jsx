@@ -17,13 +17,13 @@ function TexteButton({ itemData, index }) {
         </span>
       </Link>
       <div className={`flex justify-center apparitionButton`}>
-        {/* <Link href="/#encars_devis" scroll="true"> */}
+        <Link href="#encars_devis" scroll={true}>
           <button
             className=" bg-neutral-300 text-neutral-950 py-2 px-4 rounded-xl md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-haDark"
           >
             <h3>Demande de devis</h3>
           </button>
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   );
