@@ -11,6 +11,7 @@ import {
   Inscription,
   MotDePasse,
   User,
+  Blogger
 } from "@/components/logo/Logo";
 
 const SvgMap = {
@@ -25,6 +26,7 @@ const SvgMap = {
   inscription: Inscription,
   motdepasse: MotDePasse,
   user: User,
+  blogger: Blogger
 };
 
 export default SvgMap;

@@ -47,7 +47,12 @@ export async function getEnvVarForActivity(activity, type) {
     user: {
       meta: process.env.META_ID_USER,
       page: process.env.PAGE_ID_USER,
+    },
+    blog: {
+      meta: process.env.META_ID_BLOG,
+      page: process.env.PAGE_ID_BLOG,
     }
+
   };
 
   if (!mapping[activity] ) {
