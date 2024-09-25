@@ -14,7 +14,7 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next/static|_next/images).*)",
+  matcher: "/((?!api|_next/static|_next/images|sitemap.xml|robots.txt).*)",
   api: {
     bodyParser: false,
   },

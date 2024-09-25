@@ -1,5 +1,6 @@
 export { default as AccountModel } from "@/models/account";
 export { default as AddressModel } from "@/models/address";
+export { default as BlogModel } from "@/models/blog";
 export { default as DevisModel } from "@/models/devis";
 export { default as HomePageModel } from "@/models/homepage";
 export { default as ImageModel } from "@/models/image";

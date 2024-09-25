@@ -1,5 +1,7 @@
 import mongoose, { Schema, models } from "mongoose";
 
+// delete mongoose.connection.models['souspage'];
+
 const sousPageSchema = new Schema([
   {
     index: { type: Number },
@@ -9,6 +11,7 @@ const sousPageSchema = new Schema([
     altWebp: { type: String },
     position: { type: String },
     _pageId: { type: mongoose.Schema.Types.ObjectId, ref: "page" },
+    blogId: { type: mongoose.Schema.Types.ObjectId, ref: "blog" },
   },
 ]);
 

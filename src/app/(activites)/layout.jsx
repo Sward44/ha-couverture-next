@@ -52,7 +52,6 @@ export async function getEnvVarForActivity(activity, type) {
       meta: process.env.META_ID_BLOG,
       page: process.env.PAGE_ID_BLOG,
     }
-
   };
 
   if (!mapping[activity] ) {
@@ -62,6 +61,20 @@ export async function getEnvVarForActivity(activity, type) {
   return mapping[activity][type];
 }
 
+export async function getEnvVarForBlog(blog, type) {
+  const mapping = {
+    renovationverendapouliguen:{
+      meta: process.env.META_ID_BLOG_POUL,
+      page: process.env.BLOG_ID_POUL,
+    }
+  }
+
+  if (!mapping[blog] ) {
+    notFound();
+  }
+
+  return mapping[blog][type];
+}
 
 
 export default async function ActivitesLayout({ children }) {

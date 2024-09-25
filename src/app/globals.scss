@@ -98,7 +98,9 @@ input:-webkit-autofill{
   transform: translateX(-100%);
   transition: transform 0.8s;
 }
-
+.imageBlog:nth-child(5){
+  @apply lg:col-start-1 lg:row-start-3
+}
 
 @keyframes fade-in {
   0% {

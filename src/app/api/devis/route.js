@@ -6,7 +6,7 @@ import { UserModel, DevisModel, AddressModel, ImageModel } from "@/models";
 import {  setFolderPermissions, renameFolder } from "@/utils/googleDrive";
 import email from "@/email/devis/email";
 
-function formatDate(timestamp) {
+export function formatDate(timestamp) {
   const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
 
   const options = { day: '2-digit', month: 'short', year: 'numeric' };

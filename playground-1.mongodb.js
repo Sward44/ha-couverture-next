@@ -1,16 +1,13 @@
 
 
 use("ha-couverture");
-db.addresses.findOneAndUpdate({_id : ObjectId('66e983e3dafc013448178a75')},
+db.blogs.aggregate(
 {
-  $set:{
-    devisId : ObjectId('66e93f8a76af05c1728b4d1d')
-  }
+  $addFields :{
+    createdAt: {$toDate : ObjectId('66f1836a22d9c0b457b6263f')},
+    updatedAt : {$toDate : ObjectId('66f1836a22d9c0b457b6263f')}}
 }
-,{
-  upsert : true,
-  returnOriginal: 'after'
-})
+)
 
 // db.addresses.find({_id : ObjectId('66e983e3dafc013448178a75')},{},{returnOriginal:false})
 

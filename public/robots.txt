@@ -1,5 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /uploads/**/*
+Allow: /
+Disallow: 
 
-Sitemap: https://buzz-ready/sitemap.xml
+Sitemap: https://www.buzz-ready/sitemap.xml
