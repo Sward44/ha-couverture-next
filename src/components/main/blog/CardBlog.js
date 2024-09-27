@@ -19,6 +19,7 @@ console.log(itemsData)
                       objectFit: "cover",
                       objectPosition: `center`,
                     }}
+                    quality={60}
                   />
             </span>
             <h2 className='text-center font-bold text-sm pt-2'>{item.title.slice(0, 27)}...</h2>

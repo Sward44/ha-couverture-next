@@ -22,6 +22,7 @@ export default async function Activites({ itemDataCouverture }) {
           objectFit: "cover",
           objectPosition: `${item.position}`,
         }}
+        quality={60}
       />
       </div>
       

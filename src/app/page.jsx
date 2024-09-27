@@ -1,4 +1,4 @@
-"server only";
+"use server";
 import { cookies } from "next/headers";
 import { connectMongoose } from "@/utils/mongodb";
 import { HomePageModel, AvisClientModel, AddressModel, DevisModel, ImageModel, UserModel } from "@/models";
@@ -12,6 +12,7 @@ import { Transition } from "@/components/main/avis-clients/Transition";
 import EnteteAvisClient from "@/components/main/avis-clients/EnteteAvisClient";
 import { verifyJwt } from "@/utils/jwt";
 import { MultiForm } from "@/components/form/MultiForm";
+
 
 
 export default async function Home() {
@@ -120,3 +121,5 @@ export default async function Home() {
    </>
    );
 }
+
+

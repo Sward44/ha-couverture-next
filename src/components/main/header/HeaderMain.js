@@ -17,6 +17,7 @@ export default async function HeaderMain({ itemDataCouverture }) {
             objectPosition: `${itemDataCouverture.position}`,
           }}
           className="brightness-[0.3]"
+          quality={60}
         />
       </div>
       <div className="flex absolute h-[80px] md:h-[150px] w-full justify-center items-center text-neutral-100 font-bold z-10">

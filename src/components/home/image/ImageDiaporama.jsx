@@ -15,6 +15,7 @@ const ImageDiaporama = ({ itemData, index }) => {
         priority
         quality={60}
         className="brightness-[0.5] h-screen w-full min-h-[600px]"
+        title={''}
       />
     </div>
   );

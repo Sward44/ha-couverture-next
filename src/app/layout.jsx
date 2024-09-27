@@ -45,10 +45,36 @@ export async function generateMetadata() {
         },
       },
       manifest: data.manifest,
+      robots: {
+        index : true,
+        follow:true,
+        googleBot: {
+          index:true,
+          follow:true,
+        }
+      },
+      other: {
+        subject: "Professionnel du BTP, spécialisé dans les travaux de couverture, zinguerie, isolation, charpente, nettoyage, travaux divers et pose de fenêtre de toit.",
+        language: "fr_FR",
+        author:"David Launay",
+        owner:["Abraham Hognon", "David Santiago"],
+        copyright:"Ha Couverture",
+        coverage:["Loire-Atlantique", "Bretagne", "Vendée", "Maine-et-Loire","Pays de la loire"],
+        emil: "ha.couverture44@gmail.com",
+        phone_number:"+33634266400",
+        latitude: "47.12633139433206",
+        longitude: "-1.645738623465296",
+        street_address: "4 Impasse de Pontrigné",
+        postal_code: "44860",
+        locality: "Saint-Aignan-Grandlieu",
+        region: "Pays de la Loire",
+        country:"France",    
+      },
     };
   }
 
-export default async function RootLayout({ children }) {
+
+export default async function RootLayout( { children }) {
   const gaMesurementId = process.env.NEXT_PUBLIC_GA_MESUREMENT_ID
   const gtmMesurementId = process.env.NEXT_PUBLIC_GTM_MESUREMENT_ID;
   const session = await getServerSession(authOptions)
@@ -57,22 +83,6 @@ export default async function RootLayout({ children }) {
       <html lang="FR_fr">
         <head>
           <GoogleTagManager gtmId={gtmMesurementId} />
-          <meta name="robots" content="follow, index" />
-          <meta name="subject" content="Professionnel du BTP, spécialisé dans les travaux de couverture, zinguerie, isolation, charpente, nettoyage, travaux divers et pose de fenêtre de toit." />
-          <meta name="language" content="fr_FR" />
-          <meta name="author" content="David Launay" />
-          <meta name="owner" content="Abraham Hognon, David Santiago" />
-          <meta name="copyright" content="Ha Couverture" />
-          <meta name="coverage" content="Pays de la loire, Bretagne" />
-          <meta name="og:email" content="ha.couverture44@gmail.com" />
-          <meta name="og:phone_number" content="+33634266400" />
-          <meta name="og:latitude" content="47.12633139433206" />
-          <meta name="og:longitude" content="-1.645738623465296" />
-          <meta name="og:street_address" content="4 Impasse de Pontrigné" />
-          <meta name="og:postal_code" content="44860" />
-          <meta name="og:locality" content="Saint-Aignan-Grandlieu" />
-          <meta name="og:region" content="Pays de la Loire" />
-          <meta name="og:country" content="France" />
         </head>
         <body>
           <AuthProvider>

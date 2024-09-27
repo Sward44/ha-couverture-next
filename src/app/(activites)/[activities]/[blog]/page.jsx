@@ -73,6 +73,7 @@ export default async function blogPage({params}) {
               objectFit: "cover",
               objectPosition: `center`,
             }}
+            quality={60}
           />
         </div>
         <div className="flex flex-col justify-center mx-4 sm:mx-0 mt-6 lg:mx-8">
@@ -108,6 +109,7 @@ export default async function blogPage({params}) {
                   objectFit: "cover",
                   objectPosition: `center`,
                 }}
+                quality={60}
               />
             </div>
             </div>

@@ -1,6 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-Disallow: 
-
 Sitemap: https://www.buzz-ready/sitemap.xml
