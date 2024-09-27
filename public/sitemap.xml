@@ -8,31 +8,31 @@
     <priority>1</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-global.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcouverture.341d6556.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/couverture.341d6556.webp</image:loc>
       <image:caption>Vue d'un toit en tuile traditionnelle dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fzinguerie.91fea70a.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/zinguerie.91fea70a.webp</image:loc>
       <image:caption>Vue d'une goutière en zinc dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnettoyage.3cd16295.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/nettoyage.3cd16295.webp</image:loc>
       <image:caption>Nettoyage d'une toiture avant et après en Loire-Atlantique</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fisolation.3b341555.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/isolation.3b341555.webp</image:loc>
       <image:caption>Isolation d'un toit par l'intérieur dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcharpente.a8bfa5a9.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/charpente.a8bfa5a9.webp</image:loc>
       <image:caption>Charpente traditionnelle en bois dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftravaux-divers.65271a16.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/travaux-divers.65271a16.webp</image:loc>
       <image:caption>Petits travaux de réparation de toiture dans le sud loire de Nantes</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/avis-clients</loc>
@@ -41,11 +41,11 @@
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-avis-clients.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favis-clients.1ccd0247.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/avis-clients.1ccd0247.webp</image:loc>
       <image:caption>Avis clients déposant un commentaire sur le service de Ha Couverture</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/blog</loc>
@@ -54,15 +54,15 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-blog.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fha-couverture-blog.42df245c.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/ha-couverture-blog.42df245c.webp</image:loc>
       <image:caption>Affichage du profil de blogger</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_pouliguen_verenda.c80966df.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/blog_pouliguen_verenda.c80966df.webp</image:loc>
       <image:caption>Affichage du profil de blogger</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/blog/renovation-verenda-pouliguen</loc>
@@ -71,24 +71,23 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/blog/ha-couverture-blog-verenda-pouliguen.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_pouliguen_verenda.c80966df.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/blog_pouliguen_verenda.c80966df.webp</image:loc>
       <image:caption>Affichage du profil de blogger</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_verenda_pouliguen_chiffrage.d4b518cf.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/blog_verenda_pouliguen_chiffrage.d4b518cf.webp</image:loc>
       <image:caption> Une inspection minutieuse de l'état actuel de la toiture de la véranda est indispensable. Cela permet de repérer tout problème structurel et d'estimer le montant exact des travaux à réaliser.</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_verenda_pouliguen_chiffrage.d4b518cf.webp&w=3840&q=60<//_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_verenda_pouliguen_lattage.de7abc08.webp&w=3840&q=60<image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/blog_verenda_pouliguen_lattage.de7abc08.webp</image:loc>
       <image:caption>Une fois l'ancienne couverture enlevée, examinez la charpente puis pose pour le lattage et la nouvelle couverture.</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_verenda_pouligen_ardoise.c8ddaf06.webp&w=3840&q=60<//_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fblog_verenda_pouliguen_lattage.de7abc08.webp&w=3840&q=60<image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/blog_verenda_pouligen_ardoise.c8ddaf06.webp</image:loc>
       <image:caption>Les ardoises doivent être chevauchées de manière uniforme pour éviter toute infiltration d'eau.</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/connexion</loc>
@@ -97,11 +96,11 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-connexion.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fconnexion.ee5d4c20.webp&w=3840&q=60<image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/connexion.ee5d4c20.webp</image:loc>
       <image:caption>Clients voulant se connecter sur leur compte de Ha-Couverture</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/inscription</loc>
@@ -110,11 +109,11 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-connexion.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fconnexion.ee5d4c20.webp&w=3840&q=60<image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/connexion.ee5d4c20.webp</image:loc>
       <image:caption>Inscrption des clients voulant s'inscrire</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/couverture</loc>
@@ -123,24 +122,23 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-couverture.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcouverture.341d6556.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/couverture.341d6556.webp</image:loc>
       <image:caption>Vue d'un toit en tuile traditionnelle dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-couverture.a63224f0.webp&w=3840&q=60</image:loc>
-
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-couverture.a63224f0.webp</image:loc>
       <image:caption>Vue du projet global d'habitation</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-femme.d6b0ebf5.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-femme.d6b0ebf5.webp</image:loc>
       <image:caption>Appel d'une femme souriante</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/zinguerie</loc>
@@ -149,23 +147,23 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-zinguerie.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fzinguerie.91fea70a.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/zinguerie.91fea70a.webp</image:loc>
       <image:caption>Vue d'une goutière en zinc dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-goutiere.9eea0fda.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-goutiere.9eea0fda.webp</image:loc>
       <image:caption>Vue du desous d'un toit avec une goutière en zinc</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-femme-1.cc612889.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-femme-1.cc612889.webp</image:loc>
       <image:caption>Appel d'une femme concentrée</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/nettoyage</loc>
@@ -174,48 +172,44 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-nettoyage.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-nettoyage.ef97cfca.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-nettoyage.ef97cfca.webp</image:loc>
       <image:caption>Nettoyage d'une toiture avant et après en Loire-Atlantique</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-goutiere.9eea0fda.webp&w=3840&q=60</image:loc>
-      <image:caption>Vue d'une toiture avant et après nettoyage</image:caption>
-    <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-homme.63a6c5b8.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-homme.63a6c5b8.webp</image:loc>
       <image:caption>Appel d'un homme souriant</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/isolation</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7/priority>
+    <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-isolation.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fisolation.3b341555.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/isolation.3b341555.webp</image:loc>
       <image:caption>Isolation d'un toit par l'intérieur dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-isolation.0823e921.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-isolation.0823e921.webp</image:loc>
       <image:caption>Vue d'une maison de l'exterieur avec sur une maquette symbolisant la norme RT2020</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-femme.d6b0ebf5.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-femme.d6b0ebf5.webp</image:loc>
       <image:caption>Appel d'une femme souriante</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/charpente</loc>
@@ -224,23 +218,23 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-charpente.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcharpente.a8bfa5a9.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/charpente.a8bfa5a9.webp</image:loc>
       <image:caption>Charpente d'une toiture dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-charpente.8afc65af.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-charpente.8afc65af.webp</image:loc>
       <image:caption>Maquette en 3D du design d'une charpente traditionnelle en bois</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-femme-1.cc612889.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-femme-1.cc612889.webp</image:loc>
       <image:caption>Appel d'une femme concentrée</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/travaux-divers</loc>
@@ -249,23 +243,23 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-travaux-divers.webp</image:loc>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftravaux-divers.65271a16.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/travaux-divers.65271a16.webp</image:loc>
       <image:caption>Petits travaux de réparation de toiture dans le sud loire de Nantes</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprojet-travaux-divers.2a8decf8.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/projet-travaux-divers.2a8decf8.webp</image:loc>
       <image:caption>Vue en pleine infiltration d'eau dans le salon</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-rencontre.2bb5e926.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-rencontre.2bb5e926.webp</image:loc>
       <image:caption>Accord entre les partenaires symbolisés par une poignée de main</image:caption>
+    </image:image>
     <image:image>
-    <image:image>
-      <image:loc>https://www.buzz-ready.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmanagement-homme.63a6c5b8.webp&w=3840&q=60</image:loc>
+      <image:loc>https://www.buzz-ready.com/_next/static/media/management-homme.63a6c5b8.webp</image:loc>
       <image:caption>Appel d'un homme souriant</image:caption>
-    <image:image>
+    </image:image>
   </url>
   <url>
     <loc>https://www.buzz-ready.com/politique-confidentialite</loc>
