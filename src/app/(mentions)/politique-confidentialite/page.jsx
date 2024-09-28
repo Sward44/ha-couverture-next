@@ -6,7 +6,7 @@ import Footer from "@/components/footer/Footer";
 export default async function MentionLegales() {
   return (
     <>
-      <Conditions itemData={itemDataPolitiqueConfidentialite}/>
+      <Conditions itemData={itemDataPolitiqueConfidentialite} />
       <Footer />
     </>
   );

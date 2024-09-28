@@ -13,18 +13,25 @@ export default function CardAvisUseClients({ itemData, count }) {
   }
 
   return (
-    <div className="relative lg:mx-20 sm:mx-8 mx-4">
-      <div className="bg-neutral-100 mb-4 py-4 px-6 md:w-[720px] min-h-[330px] md:min-h-[252px] w-full rounded-lg shadow-ha overflow-hidden">
-        <div className="absolute top-0 left-0 bg-supernova-500" style={{ width: `${count}%`, height: "1px" }} />
+    <div className="relative mx-4 sm:mx-8 lg:mx-20">
+      <div className="mb-4 min-h-[330px] w-full overflow-hidden rounded-lg bg-neutral-100 px-6 py-4 shadow-ha md:min-h-[252px] md:w-[720px]">
+        <div
+          className="absolute left-0 top-0 bg-supernova-500"
+          style={{ width: `${count}%`, height: "1px" }}
+        />
         <div className="flex justify-between">
-          <div className="font-bold text-lg mb-4 mr-4">{itemData.title}</div>
-          <div className="flex mb-4">
+          <div className="mb-4 mr-4 text-lg font-bold">{itemData.title}</div>
+          <div className="mb-4 flex">
             {[...Array(5)].map((_, i) => {
               const starType = getStarType(itemData.note, i);
               return (
                 <span
                   key={i}
-                  className={`size-4 mr-1 ${starType === "full" ? "fill-supernova-500" : "fill-neutral-500"}`}
+                  className={`mr-1 size-4 ${
+                    starType === "full"
+                      ? "fill-supernova-500"
+                      : "fill-neutral-500"
+                  }`}
                 >
                   {starType === "full" && <Star />}
                   {starType === "half" && <StarUnDemi />}
@@ -53,5 +60,3 @@ export default function CardAvisUseClients({ itemData, count }) {
     </div>
   );
 }
-
-{/* <div className="bg-neutral-100 mb-4 py-4 px-6 md:w-[720px] min-h-[330px] md:min-h-[252px] w-full rounded-lg shadow-ha overflow-hidden"></div> */}

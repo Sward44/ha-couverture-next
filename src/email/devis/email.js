@@ -44,7 +44,8 @@ class Email {
       const template = pug.renderFile(
         path.join(
           process.cwd(),
-          `src/email/devis/template/${templateName}.pug`),
+          `src/email/devis/template/${templateName}.pug`
+        ),
         options.metadata
       );
       let data;
@@ -63,7 +64,6 @@ class Email {
           html: template,
         });
       }
-
     } catch (e) {
       throw new Error(e);
     }

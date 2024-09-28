@@ -10,7 +10,12 @@ export const itemDataPolitiqueConfidentialite = [
         description: [
           "Nous collectons les informations personnelles suivantes lorsque vous utilisez nos services :",
         ],
-        intitule: ["Nom ;", "Adresse ;", "Numéro de téléphone ;", "Adresse e-mail."],
+        intitule: [
+          "Nom ;",
+          "Adresse ;",
+          "Numéro de téléphone ;",
+          "Adresse e-mail.",
+        ],
       },
       {
         title: "2. Utilisation des Informations",
@@ -51,7 +56,20 @@ export const itemDataPolitiqueConfidentialite = [
       {
         title: "6. Contactez-nous",
         description: [
-          <span key={1}>Si vous avez des questions concernant notre Politique de Confidentialit&#233; ou si vous souhaitez exercer vos droits en mati&#232;re de protection des donn&#233;es, veuillez nous contacter &#224; l&#39;adresse suivante : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300 ">ha.couverture44@gmail.com</a></span>,
+          <span key={1}>
+            Si vous avez des questions concernant notre Politique de
+            Confidentialit&#233; ou si vous souhaitez exercer vos droits en
+            mati&#232;re de protection des donn&#233;es, veuillez nous contacter
+            &#224; l&#39;adresse suivante :{" "}
+            <a
+              href="mailto:ha.couverture44@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 sm:hover:text-mahogany-950 "
+            >
+              ha.couverture44@gmail.com
+            </a>
+          </span>,
           "Nous nous engageons à traiter toutes les demandes dans les meilleurs délais et dans le respect de la réglementation applicable en matière de protection des données.",
           "En utilisant nos services, vous consentez à la collecte et à l'utilisation de vos informations personnelles conformément à cette Politique de Confidentialité. Cette politique est sujette à modification, veuillez donc la consulter régulièrement pour vous tenir informé des mises à jour.",
         ],
@@ -74,9 +92,28 @@ export const itemDataConditionGenerales = [
           "Le propriétaire du du site buzz-ready.com est à Abraham Hognon, domicilié 4 Impasse de Pontrigné 44860 Saint-Aignan-de-Grandlieu.",
         ],
         intitule: [
-          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' className="underline md:hover:text-mahogany-950 transition-colors duration-300">06 34 26 64 00</a></span>,
-          <span key={2}>Adresse e-mail : <a href='mailto:ha.couverture44@gmail.com' target='_blank' className="underline md:hover:text-mahogany-950 transition-colors duration-300">ha.couverture44@gmail.com</a></span>,
-          <span key={3}>N° de Siret : 53366955200036</span>
+          <span key={1}>
+            Numéro de t&#233;l&#233;phone :{" "}
+            <a
+              href="tel:+33634266400"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 md:hover:text-mahogany-950"
+            >
+              06 34 26 64 00
+            </a>
+          </span>,
+          <span key={2}>
+            Adresse e-mail :{" "}
+            <a
+              href="mailto:ha.couverture44@gmail.com"
+              target="_blank"
+              className="underline transition-colors duration-300 md:hover:text-mahogany-950"
+            >
+              ha.couverture44@gmail.com
+            </a>
+          </span>,
+          <span key={3}>N° de Siret : 53366955200036</span>,
         ],
       },
       {
@@ -85,8 +122,27 @@ export const itemDataConditionGenerales = [
           "L’édition et la direction de la publication du site buzz-ready.com est assurée par David LAUNAY, domicilié 2 impasse de la tonnelle 44640 Le Pellerin.",
         ],
         intitule: [
-          <span key={1}>Numéro de t&#233;l&#233;phone : <a href='tel:+33636946970' target='_blank' rel='noopener noreferrer' className="underline md:hover:text-mahogany-950 transition-colors duration-300">06 36 94 69 70</a></span>,
-          <span key={2}>Adresse e-mail : <a href='mailto:davidlaunay567@gmail.com' target='_blank' className="underline md:hover:text-mahogany-950 transition-colors duration-300">davidlaunay567@gmail.com</a></span>,
+          <span key={1}>
+            Numéro de t&#233;l&#233;phone :{" "}
+            <a
+              href="tel:+33636946970"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 md:hover:text-mahogany-950"
+            >
+              06 36 94 69 70
+            </a>
+          </span>,
+          <span key={2}>
+            Adresse e-mail :{" "}
+            <a
+              href="mailto:davidlaunay567@gmail.com"
+              target="_blank"
+              className="underline transition-colors duration-300 md:hover:text-mahogany-950"
+            >
+              davidlaunay567@gmail.com
+            </a>
+          </span>,
         ],
       },
       {
@@ -95,8 +151,45 @@ export const itemDataConditionGenerales = [
           "L'hébergeur du site buzz-ready.com est la société Vercel, dont le siège social est situé au 440 N Barranca #4133 Covina, CA91723",
         ],
         intitule: [
-          <span key={1}>Adresse e-mail : <a href='mailto:privacy@vercel.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">privacy@vercel.com</a></span>,
-          <span key={2}>Pour les utilisateurs de l’EEE, notez que Vercel peut collecter vos données personnelles en tant que « contrôleur de données » lorsque Vercel détermine les moyens et le but du traitement, par exemple lorsque Vercel traite les données personnelles des visiteurs de notre site, des participants à des événements et/ou des clients, ou en tant que « processeur de données » lorsque Vercel collecte et traite des données personnelles pour le compte de nos clients qui utilisent nos services et hébergent leurs propres sites Web avec Vercel ou des clients qui utilisent nos outils d’analyse. De même, pour les utilisateurs en Californie, Vercel agit actuellement en tant que « fournisseur de services » pour les « entreprises » qui sont soumises au California Consumer Privacy Act lorsque Vercel collecte et traite des données ou des informations personnelles au nom de nos Clients qui utilisent nos Services et hébergent leurs propres sites Web avec Vercel ou des Clients qui utilisent nos outils d’analyse. Visitez <a href='https://vercel.com/legal/privacy-policy' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300"> https://vercel.com/legal/privacy-policy</a> pour plus d’informations.</span>
+          <span key={1}>
+            Adresse e-mail :{" "}
+            <a
+              href="mailto:privacy@vercel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 sm:hover:text-mahogany-950"
+            >
+              privacy@vercel.com
+            </a>
+          </span>,
+          <span key={2}>
+            Pour les utilisateurs de l’EEE, notez que Vercel peut collecter vos
+            données personnelles en tant que « contrôleur de données » lorsque
+            Vercel détermine les moyens et le but du traitement, par exemple
+            lorsque Vercel traite les données personnelles des visiteurs de
+            notre site, des participants à des événements et/ou des clients, ou
+            en tant que « processeur de données » lorsque Vercel collecte et
+            traite des données personnelles pour le compte de nos clients qui
+            utilisent nos services et hébergent leurs propres sites Web avec
+            Vercel ou des clients qui utilisent nos outils d’analyse. De même,
+            pour les utilisateurs en Californie, Vercel agit actuellement en
+            tant que « fournisseur de services » pour les « entreprises » qui
+            sont soumises au California Consumer Privacy Act lorsque Vercel
+            collecte et traite des données ou des informations personnelles au
+            nom de nos Clients qui utilisent nos Services et hébergent leurs
+            propres sites Web avec Vercel ou des Clients qui utilisent nos
+            outils d’analyse. Visitez{" "}
+            <a
+              href="https://vercel.com/legal/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 sm:hover:text-mahogany-950"
+            >
+              {" "}
+              https://vercel.com/legal/privacy-policy
+            </a>{" "}
+            pour plus d’informations.
+          </span>,
         ],
       },
       {
@@ -116,9 +209,29 @@ export const itemDataConditionGenerales = [
           "En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur exerce ce droit :",
         ],
         intitule: [
-          <span key={1}>par e-mail a cette adresse : <a href='mailto:ha.couverture44@gmail.com' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">ha.couverture44@gmail.com</a></span>,
+          <span key={1}>
+            par e-mail a cette adresse :{" "}
+            <a
+              href="mailto:ha.couverture44@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 sm:hover:text-mahogany-950"
+            >
+              ha.couverture44@gmail.com
+            </a>
+          </span>,
           "par voie postale à cette adresse : Impasse de Pontrigne 44860 Saint-Aignan-de-Grandlieu",
-          <span key={3}>par t&#233;l&#233;phone au : <a href='tel:+33634266400' target='_blank' rel='noopener noreferrer' className="underline sm:hover:text-mahogany-950 transition-colors duration-300">06 34 26 64 00</a></span>,
+          <span key={3}>
+            par t&#233;l&#233;phone au :{" "}
+            <a
+              href="tel:+33634266400"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline transition-colors duration-300 sm:hover:text-mahogany-950"
+            >
+              06 34 26 64 00
+            </a>
+          </span>,
         ],
       },
       {

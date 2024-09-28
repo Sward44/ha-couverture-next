@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { AngleRight, Loading } from "../logo/Logo";
 import { toast } from "react-toastify";
 
-
 export function FormDevisOne({ isActive, nextStep, devis }) {
   const [defaultValues, setDefaultValues] = React.useState({});
   const router = useRouter();
@@ -23,9 +22,12 @@ export function FormDevisOne({ isActive, nextStep, devis }) {
   }, [devis]);
 
   const schema = yup.object().shape({
-    comments: yup.string().required("Le sujet de votre email est demandé...").min(10, "Votre message doit contenir au moins 10 caractères"),
+    comments: yup
+      .string()
+      .required("Le sujet de votre email est demandé...")
+      .min(10, "Votre message doit contenir au moins 10 caractères"),
   });
-  
+
   const {
     register,
     handleSubmit,
@@ -42,7 +44,6 @@ export function FormDevisOne({ isActive, nextStep, devis }) {
   }, [defaultValues, reset]);
 
   async function onSubmit(data) {
-
     try {
       clearErrors();
       const newEmail = data;
@@ -71,19 +72,31 @@ export function FormDevisOne({ isActive, nextStep, devis }) {
     } finally {
       nextStep();
     }
-  };
+  }
 
   if (!isActive) return null;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full mt-8">
-      <div className="relative flex grow flex-col mb-8">
-        <label htmlFor="comments" className={`labelForm ${errors?.comments ? "to-red-50": "to-neutral-50"}`} >Votre demande</label>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mt-8 flex h-full flex-col"
+    >
+      <div className="relative mb-8 flex grow flex-col">
+        <label
+          htmlFor="comments"
+          className={`labelForm ${
+            errors?.comments ? "to-red-50" : "to-neutral-50"
+          }`}
+        >
+          Votre demande
+        </label>
         <textarea
           id="comments"
           type="text"
           {...register("comments")}
-          className={`h-full inputFormBase resize-none ${errors?.comments && "bg-red-50"}`}
+          className={`inputFormBase h-full resize-none ${
+            errors?.comments && "bg-red-50"
+          }`}
           placeholder="Notez tous ce que vous voulez..."
         />
         {errors?.comments && (
@@ -91,18 +104,21 @@ export function FormDevisOne({ isActive, nextStep, devis }) {
         )}
       </div>
       <div className="flex w-full items-end justify-end">
-        <button type="submit" className="bg-neutral-300 py-2 px-4 rounded-xl md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:bg-supernova-500 transition-all duration-300 md:hover:scale-101 md:hover:shadow-ha">
+        <button
+          type="submit"
+          className="rounded-xl bg-neutral-300 px-4 py-2 transition-all duration-300 md:hover:scale-101 md:hover:bg-supernova-500 md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:shadow-ha"
+        >
           <div className="flex items-center">
             <h3 className="font-bold">Suivante</h3>
-            {isSubmitting ? 
-              <div className="size-4 ml-2 animate-spin">
-                <Loading/>
+            {isSubmitting ? (
+              <div className="ml-2 size-4 animate-spin">
+                <Loading />
               </div>
-              :  
-              <div className="size-4 ml-2">
+            ) : (
+              <div className="ml-2 size-4">
                 <AngleRight />
               </div>
-            } 
+            )}
           </div>
         </button>
       </div>

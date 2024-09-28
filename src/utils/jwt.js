@@ -1,19 +1,25 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export function signJwtOneHours(payload) {
- const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "1h" });
+  const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {
+    expiresIn: "1h",
+  });
   return token;
 }
 
 export function signJwtOneDay(payload) {
- const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "1d" });
+  const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {
+    expiresIn: "1d",
+  });
   return token;
 }
 
 export function signJwtThreeDay(payload) {
-  const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {expiresIn: "3d" });
-   return token;
- }
+  const token = jwt.sign(payload, process.env.NEXTAUTH_SECRET, {
+    expiresIn: "3d",
+  });
+  return token;
+}
 
 export function verifyJwt(token) {
   try {

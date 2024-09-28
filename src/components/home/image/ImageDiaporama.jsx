@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-const ImageDiaporama = ({ itemData, index }) => {
+export default function ImageDiaporama({ itemData, index }) {
   return (
-    <div className="relative h-[calc(100vh-72px)] md:h-[calc(100vh-81px)] w-full min-h-[600px] flex flex-nowrap shrink-0 snap-center">
+    <div className="relative flex h-[calc(100vh-72px)] min-h-[600px] w-full shrink-0 snap-center flex-nowrap md:h-[calc(100vh-81px)]">
       <Image
         index={index}
         src={require(`@/components/${itemData[index].urlWebp}`).default}
@@ -14,11 +14,9 @@ const ImageDiaporama = ({ itemData, index }) => {
         }}
         priority
         quality={60}
-        className="brightness-[0.5] h-screen w-full min-h-[600px]"
-        title={''}
+        className="h-screen min-h-[600px] w-full brightness-[0.5]"
+        title={""}
       />
     </div>
   );
-};
-
-export default ImageDiaporama;
+}

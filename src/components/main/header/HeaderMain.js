@@ -1,14 +1,14 @@
-"use server"
+"use server";
 import Image from "next/image";
-import SvgMap from "@/components/logo/MappageLogo"
+import SvgMap from "@/components/logo/MappageLogo";
 
 export default async function HeaderMain({ itemDataCouverture }) {
-  const svgName = itemDataCouverture.urlSvg
-  const SvgComponent = SvgMap[svgName]
+  const svgName = itemDataCouverture.urlSvg;
+  const SvgComponent = SvgMap[svgName];
   return (
     <>
-      <div className="relative w-full h-[80px] md:h-[150px]">
-          <Image
+      <div className="relative h-[80px] w-full md:h-[150px]">
+        <Image
           src={require(`@/components/${itemDataCouverture.urlWebp}`).default}
           alt={itemDataCouverture.altWebp}
           fill={itemDataCouverture.position}
@@ -20,11 +20,13 @@ export default async function HeaderMain({ itemDataCouverture }) {
           quality={60}
         />
       </div>
-      <div className="flex absolute h-[80px] md:h-[150px] w-full justify-center items-center text-neutral-100 font-bold z-10">
-        <div className="size-12 md:size-16 fill-neutral-100 mr-2">
+      <div className="absolute z-10 flex h-[80px] w-full items-center justify-center font-bold text-neutral-100 md:h-[150px]">
+        <div className="mr-2 size-12 fill-neutral-100 md:size-16">
           <SvgComponent />
         </div>
-        <h1 className="text-[32px] md:text-[42px]">{itemDataCouverture.title}</h1>
+        <h1 className="text-[32px] md:text-[42px]">
+          {itemDataCouverture.title}
+        </h1>
       </div>
     </>
   );

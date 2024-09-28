@@ -2,7 +2,6 @@
 import { Star, StarUnDemi } from "@/components/logo/Logo";
 
 export default async function CardAvisClients({ itemData }) {
-
   function getStarType(item, index) {
     if (index < item - 0.5) {
       return "full";
@@ -10,29 +9,32 @@ export default async function CardAvisClients({ itemData }) {
       return "half";
     } else {
       return "empty";
-    };
+    }
   }
 
-
-  return  (
+  return (
     <>
       {itemData.map((item) => (
-        <div key={item.id} className="w-full md:w-auto my-4">
-          <div className="bg-neutral-100 py-4 px-6 w-full  md:w-[720px] rounded-lg shadow-ha">
-            <div className="flex justify-between items-center">
-              <div className="font-bold text-lg mb-4 mr-4">{item.title}</div>
-              <div className="flex mb-4">
+        <div key={item.id} className="my-4 w-full md:w-auto">
+          <div className="w-full rounded-lg bg-neutral-100 px-6  py-4 shadow-ha md:w-[720px]">
+            <div className="flex items-center justify-between">
+              <div className="mb-4 mr-4 text-lg font-bold">{item.title}</div>
+              <div className="mb-4 flex">
                 {[...Array(5)].map((_, index) => {
-                const starType =  getStarType(item.note, index);
-                return (
-                  <span
-                    key={index}
-                    className={`size-4 mr-1 ${starType === "full" ? "fill-supernova-500" : "fill-neutral-500"}`}
-                  >
-                    {starType === "full" && <Star />}
-                    {starType === "half" && <StarUnDemi />}
-                    {starType === "empty" && <Star />}
-                  </span>
+                  const starType = getStarType(item.note, index);
+                  return (
+                    <span
+                      key={index}
+                      className={`mr-1 size-4 ${
+                        starType === "full"
+                          ? "fill-supernova-500"
+                          : "fill-neutral-500"
+                      }`}
+                    >
+                      {starType === "full" && <Star />}
+                      {starType === "half" && <StarUnDemi />}
+                      {starType === "empty" && <Star />}
+                    </span>
                   );
                 })}
               </div>
@@ -56,5 +58,5 @@ export default async function CardAvisClients({ itemData }) {
         </div>
       ))}
     </>
-  )
+  );
 }

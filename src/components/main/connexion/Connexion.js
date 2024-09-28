@@ -7,7 +7,6 @@ import { Login } from "@/components/logo/Logo";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-
 export default function Connexion() {
   const { status } = useSession();
   const router = useRouter();
@@ -16,35 +15,38 @@ export default function Connexion() {
     if (status === "authenticated") {
       router.push("/");
     }
-  },[status, router])
-  
+  }, [status, router]);
+
   return (
     <>
-      <div className="flex flex-col-reverse sm:flex-col sm:m-auto w-full justify-center items-center">
-        <div className="flex flex-col mt-4 mx-8 md:mx-auto shadow-ha rounded-xl md:max-w-[800px]">
-          <div className="flex flex-col justify-center items-center  bg-neutral-100 ">
+      <div className="flex w-full flex-col-reverse items-center justify-center sm:m-auto sm:flex-col">
+        <div className="mx-8 mt-4 flex flex-col rounded-xl shadow-ha md:mx-auto md:max-w-[800px]">
+          <div className="flex flex-col items-center justify-center  bg-neutral-100 ">
             <EmailLogin />
           </div>
-          <div
-            className="flex items-center bg-neutral-100 "
-          >
-            <hr className="w-full mx-4" />
+          <div className="flex items-center bg-neutral-100 ">
+            <hr className="mx-4 w-full" />
             <h3>OU</h3>
-            <hr className="w-full mx-4" />
+            <hr className="mx-4 w-full" />
           </div>
-          <div className="flex flex-col  justify-center items-center bg-neutral-100 md:max-w-[800px]">
+          <div className="flex flex-col  items-center justify-center bg-neutral-100 md:max-w-[800px]">
             <GoogleLogin />
           </div>
         </div>
-        <Link href="/inscription" aria-label="Lien vers la page d'inscription des utilisateurs">
-          <span className="group flex mx-8 mt-4 mb-2 md:mb-8 text-center items-center">
-            <span className="size-6 mr-2 md:mr-4 group-hover:fill-mahogany-950 md:group-hover:scale-105 transition duration-300">
+        <Link
+          href="/inscription"
+          aria-label="Lien vers la page d'inscription des utilisateurs"
+        >
+          <span className="group mx-8 mb-2 mt-4 flex items-center text-center md:mb-8">
+            <span className="mr-2 size-6 transition duration-300 group-hover:fill-mahogany-950 md:mr-4 md:group-hover:scale-105">
               <Login />
             </span>
-            <p className="underline md:group-hover:text-mahogany-950  md:group-hover:scale-101 transition duration-300">Vous n&#39;avez pas de compte ? Inscrivez-vous</p>
+            <p className="underline transition  duration-300 md:group-hover:scale-101 md:group-hover:text-mahogany-950">
+              Vous n&#39;avez pas de compte ? Inscrivez-vous
+            </p>
           </span>
         </Link>
       </div>
     </>
-  )
+  );
 }

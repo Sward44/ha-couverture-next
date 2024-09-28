@@ -3,10 +3,10 @@
 export default async function EnteteAvisClient() {
   return (
     <>
-      <h2 className="font-bold text-2xl text-center mt-6 mb-2">
+      <h2 className="mb-2 mt-6 text-center text-2xl font-bold">
         Avis de nos clients
       </h2>
-      <hr className="w-32 border-neutral-300 mb-6 sm:mb-8" />
+      <hr className="mb-6 w-32 border-neutral-300 sm:mb-8" />
     </>
   );
 }

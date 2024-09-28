@@ -1,11 +1,11 @@
 "use client";
-import React from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import CardAvisUseClients from "@/components/main/avis-clients/CardAvisUseClients";
-import { Circle } from '@/components/logo/Logo';
+import { Circle } from "@/components/logo/Logo";
 
 export function Transition({ item }) {
-  const [direction, setDirection] = React.useState('cardGauche');
+  const [direction, setDirection] = React.useState("cardGauche");
   const [index, setIndex] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const intervalRef = React.useRef(null);
@@ -31,7 +31,7 @@ export function Transition({ item }) {
     if (count >= 100) {
       const newIndex = (index + 1) % item.length;
       setIndex(newIndex);
-      setDirection('cardDroite');
+      setDirection("cardDroite");
       setCount(0);
     }
 
@@ -42,10 +42,10 @@ export function Transition({ item }) {
   const handleEveryCart = (a) => {
     if (a > index) {
       setIndex(a);
-      setDirection('cardDroite');
+      setDirection("cardDroite");
     } else if (a < index) {
       setIndex(a);
-      setDirection('cardGauche');
+      setDirection("cardGauche");
     }
     setCount(0);
   };
@@ -53,25 +53,34 @@ export function Transition({ item }) {
   return (
     <>
       <div
-        className="relative flex md:w-[768px] lg:w-[880px] w-full items-center overflow-hidden mx-4 sm:mx-8 lg:mx-20"
+        className="relative mx-4 flex w-full items-center overflow-hidden sm:mx-8 md:w-[768px] lg:mx-20 lg:w-[880px]"
         onMouseEnter={handleHoverEnter}
         onMouseLeave={handleHoverLeave}
         onTouchStart={handleHoverEnter}
         onTouchEnd={handleHoverLeave}
       >
-        <TransitionGroup childFactory={childFactory(direction)} component={null}>
+        <TransitionGroup
+          childFactory={childFactory(direction)}
+          component={null}
+        >
           <CSSTransition key={index} timeout={800} classNames={direction}>
-            <CardAvisUseClients itemData={item[index]} count={count}/>
+            <CardAvisUseClients itemData={item[index]} count={count} />
           </CSSTransition>
         </TransitionGroup>
       </div>
-      <div className="flex justify-center items-center mt-2 mb-6">
+      <div className="mb-6 mt-2 flex items-center justify-center">
         {item.map((itemPoint, i) => {
           return (
-            <span key={itemPoint.id} onClick={() => handleEveryCart(i)} className={`size-4 ${i === index ? "fill-supernova-500" : "fill-neutral-500" } mr-3`}>
+            <span
+              key={itemPoint.id}
+              onClick={() => handleEveryCart(i)}
+              className={`size-4 ${
+                i === index ? "fill-supernova-500" : "fill-neutral-500"
+              } mr-3`}
+            >
               <Circle />
             </span>
-          )
+          );
         })}
       </div>
     </>

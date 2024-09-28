@@ -24,6 +24,7 @@ export async function getEnvVarForActivity(activity, type) {
       meta: process.env.META_ID_CHAR,
       page: process.env.PAGE_ID_CHAR,
     },
+
     travaux: {
       meta: process.env.META_ID_TRAV,
       page: process.env.PAGE_ID_TRAV,
@@ -51,10 +52,10 @@ export async function getEnvVarForActivity(activity, type) {
     blog: {
       meta: process.env.META_ID_BLOG,
       page: process.env.PAGE_ID_BLOG,
-    }
+    },
   };
 
-  if (!mapping[activity] ) {
+  if (!mapping[activity]) {
     notFound();
   }
 
@@ -63,25 +64,24 @@ export async function getEnvVarForActivity(activity, type) {
 
 export async function getEnvVarForBlog(blog, type) {
   const mapping = {
-    renovationverendapouliguen:{
+    renovationverendapouliguen: {
       meta: process.env.META_ID_BLOG_POUL,
       page: process.env.BLOG_ID_POUL,
-    }
-  }
+    },
+  };
 
-  if (!mapping[blog] ) {
+  if (!mapping[blog]) {
     notFound();
   }
 
   return mapping[blog][type];
 }
 
-
 export default async function ActivitesLayout({ children }) {
   return (
     <>
-    {children}
-    <Footer />
+      {children}
+      <Footer />
     </>
-  )
+  );
 }

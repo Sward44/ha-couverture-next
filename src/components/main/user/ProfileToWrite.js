@@ -1,10 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export function ProfileToWrite() {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div></div>;
 }
-
