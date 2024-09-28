@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { Suspense, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ImageDiaporama from "@/components/home/image/ImageDiaporama";
@@ -80,53 +80,7 @@ export default function ComponentsHomePage({ itemData }) {
   if (!SvgComponent) return null;
 
   return (
-    <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                name: "Couverture",
-                position: 1,
-                url: `${process.env.NEXT_PUBLIC_HOST}/couverture`,
-              },
-              {
-                "@type": "ListItem",
-                name: "Zinguerie",
-                position: 2,
-                url: `${process.env.NEXT_PUBLIC_HOST}/zinguerie`,
-              },
-              {
-                "@type": "ListItem",
-                name: "Nettoyage",
-                position: 3,
-                url: `${process.env.NEXT_PUBLIC_HOST}/nettoyage`,
-              },
-              {
-                "@type": "ListItem",
-                name: "Isolation",
-                position: 4,
-                url: `${process.env.NEXT_PUBLIC_HOST}/isolation`,
-              },
-              {
-                "@type": "ListItem",
-                name: "Charpente",
-                position: 5,
-                url: `${process.env.NEXT_PUBLIC_HOST}/charpente`,
-              },
-              {
-                "@type": "ListItem",
-                name: "Réparations diverses",
-                position: 6,
-                url: `${process.env.NEXT_PUBLIC_HOST}/travaux-divers`,
-              },
-            ],
-          })}
-        </script>
-      </Helmet>
+    <Suspense fallback={<div>Loading...</div>}>
       <ImageButton
         itemData={itemData}
         index={index}
@@ -158,6 +112,6 @@ export default function ComponentsHomePage({ itemData }) {
           </TransitionGroup>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 }

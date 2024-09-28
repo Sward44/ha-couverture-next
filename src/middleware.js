@@ -11,6 +11,9 @@ export async function middleware(req) {
   if (pathname.startsWith("/dashboard") && token?.user?.role !== "admin") {
     return NextResponse.redirect(`${process.env.HOST}/connexion`);
   }
+  const headers = new Headers(req.headers);
+  headers.set("x-current-path", req.nextUrl.pathname);
+  return NextResponse.next({ headers });
 }
 
 export const config = {

@@ -122,11 +122,7 @@ export default async function Home() {
   return (
     <>
       <div className="relative top-[72px] flex min-h-[calc(100vh-72px)] min-w-full flex-col md:top-[81px]  md:min-h-[calc(100vh-81px)]">
-        <ComponentsHomePage
-          itemData={itemData}
-          devis={devis}
-          imagesDevis={imagesDevis}
-        />
+        <ComponentsHomePage itemData={itemData} />
       </div>
 
       <div

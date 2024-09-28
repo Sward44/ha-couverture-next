@@ -5,6 +5,7 @@ import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/authOptions";
+import { headers } from "next/headers";
 // import PathNameNow from "@/utils/PathNameNow";
 import "@/app/globals.scss";
 import Header from "@/components/header/Header";
@@ -68,7 +69,7 @@ export async function generateMetadata() {
         "Maine-et-Loire",
         "Pays de la loire",
       ],
-      emil: "ha.couverture44@gmail.com",
+      email: "ha.couverture44@gmail.com",
       phone_number: "+33634266400",
       latitude: "47.12633139433206",
       longitude: "-1.645738623465296",
@@ -85,10 +86,59 @@ export default async function RootLayout({ children }) {
   const gaMesurementId = process.env.NEXT_PUBLIC_GA_MESUREMENT_ID;
   const gtmMesurementId = process.env.NEXT_PUBLIC_GTM_MESUREMENT_ID;
   const session = await getServerSession(authOptions);
+  const urlBase = headers().get("x-current-path");
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        name: "Couverture",
+        position: 1,
+        url: `${process.env.NEXT_PUBLIC_HOST}/couverture`,
+      },
+      {
+        "@type": "ListItem",
+        name: "Zinguerie",
+        position: 2,
+        url: `${process.env.NEXT_PUBLIC_HOST}/zinguerie`,
+      },
+      {
+        "@type": "ListItem",
+        name: "Nettoyage",
+        position: 3,
+        url: `${process.env.NEXT_PUBLIC_HOST}/nettoyage`,
+      },
+      {
+        "@type": "ListItem",
+        name: "Isolation",
+        position: 4,
+        url: `${process.env.NEXT_PUBLIC_HOST}/isolation`,
+      },
+      {
+        "@type": "ListItem",
+        name: "Charpente",
+        position: 5,
+        url: `${process.env.NEXT_PUBLIC_HOST}/charpente`,
+      },
+      {
+        "@type": "ListItem",
+        name: "Réparations diverses",
+        position: 6,
+        url: `${process.env.NEXT_PUBLIC_HOST}/travaux-divers`,
+      },
+    ],
+  };
 
   return (
     <html lang="FR_fr">
       <head>
+        {urlBase === "/" && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
         <GoogleTagManager gtmId={gtmMesurementId} />
       </head>
       <body>
