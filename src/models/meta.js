@@ -1,9 +1,12 @@
 import mongoose, { Schema, models } from "mongoose";
 
+// delete mongoose.connection.models["meta"];
+
 const metaSchema = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
+    keywords: { type: String },
     icons: {
       icon: { type: String },
       shortcut: { type: String },
@@ -23,6 +26,9 @@ const metaSchema = new Schema(
       },
     },
     manifest: { type: String },
+    other: {
+      subject: { type: String },
+    },
   },
   { timestamps: true }
 );

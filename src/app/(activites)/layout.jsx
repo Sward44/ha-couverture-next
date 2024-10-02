@@ -1,6 +1,7 @@
 "use server";
 import Footer from "@/components/footer/Footer";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
 export async function getEnvVarForActivity(activity, type) {
   const mapping = {
@@ -53,6 +54,10 @@ export async function getEnvVarForActivity(activity, type) {
       meta: process.env.META_ID_BLOG,
       page: process.env.PAGE_ID_BLOG,
     },
+    dashboard: {
+      meta: process.env.META_ID_HOME,
+      page: process.env.PAGE_ID_BLOG,
+    },
   };
 
   if (!mapping[activity]) {
@@ -68,6 +73,43 @@ export async function getEnvVarForBlog(blog, type) {
       meta: process.env.META_ID_BLOG_POUL,
       page: process.env.BLOG_ID_POUL,
     },
+    couverture: {
+      meta: process.env.META_ID_COUV,
+      page: process.env.PAGE_ID_COUV,
+    },
+    zinguerie: {
+      meta: process.env.META_ID_ZING,
+      page: process.env.PAGE_ID_ZING,
+    },
+    nettoyage: {
+      meta: process.env.META_ID_NETT,
+      page: process.env.PAGE_ID_NETT,
+    },
+    isolation: {
+      meta: process.env.META_ID_ISOL,
+      page: process.env.PAGE_ID_ISOL,
+    },
+    charpente: {
+      meta: process.env.META_ID_CHAR,
+      page: process.env.PAGE_ID_CHAR,
+    },
+
+    travauxdivers: {
+      meta: process.env.META_ID_TRAV,
+      page: process.env.PAGE_ID_TRAV,
+    },
+    avisclients: {
+      meta: process.env.META_ID_AVIS,
+      page: process.env.PAGE_ID_AVIS,
+    },
+    connexion: {
+      meta: process.env.META_ID_CONN,
+      page: process.env.PAGE_ID_CONN,
+    },
+    inscription: {
+      meta: process.env.META_ID_INSC,
+      page: process.env.PAGE_ID_INSC,
+    },
   };
 
   if (!mapping[blog]) {
@@ -78,10 +120,11 @@ export async function getEnvVarForBlog(blog, type) {
 }
 
 export default async function ActivitesLayout({ children }) {
+  const urlBase = headers().get("x-current-path");
   return (
     <>
       {children}
-      <Footer />
+      {!urlBase.includes("dashboard") && <Footer />}
     </>
   );
 }

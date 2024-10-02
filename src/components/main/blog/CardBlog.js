@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function CardBlogPage({ itemsData }) {
-  console.log(itemsData);
   return (
     <div className="mx-auto grid max-w-[1400px] grid-cols-1 grid-rows-2 sm:mx-auto sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3">
       <div className="m-4 size-[320px] rounded-lg bg-neutral-100 shadow-ha transition duration-300 sm:m-8 sm:size-[240px] lg:hover:scale-105">

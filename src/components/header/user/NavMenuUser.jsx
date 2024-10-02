@@ -79,14 +79,17 @@ export default function NavMenuUser({ session }) {
                   </span>
                 </Link>
               </li>
-              <li className="group mx-2 mb-1 mt-2 rounded-lg bg-neutral-100 px-2 py-1 transition duration-300 hover:scale-105 hover:bg-neutral-300 hover:text-mahogany-950">
-                <Link href="/couverture" className="flex items-center">
-                  <span className="mr-2 size-4 fill-neutral-950 group-hover:fill-mahogany-950">
-                    <Parametre />
-                  </span>
-                  <h2>Paramètres</h2>
-                </Link>
-              </li>
+              {session?.user?.role === "admin" && (
+                <li className="group mx-2 mb-1 mt-2 rounded-lg bg-neutral-100 px-2 py-1 transition duration-300 hover:scale-105 hover:bg-neutral-300 hover:text-mahogany-950">
+                  <Link href="/dashboard" className="flex items-center">
+                    <span className="mr-2 size-4 fill-neutral-950 group-hover:fill-mahogany-950">
+                      <Parametre />
+                    </span>
+                    <h2>Paramètres</h2>
+                  </Link>
+                </li>
+              )}
+
               <li
                 onClick={() => signOut()}
                 className="group mx-2 my-2 flex items-center rounded-lg bg-neutral-100 px-2 py-1 transition duration-300 hover:scale-105 hover:bg-neutral-300 hover:text-mahogany-950"

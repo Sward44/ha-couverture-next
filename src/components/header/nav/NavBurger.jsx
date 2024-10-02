@@ -17,6 +17,7 @@ import {
   User,
   Inscription,
   Logout,
+  Parametre,
 } from "@/components/logo/Logo";
 import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
@@ -237,6 +238,17 @@ export default function NavBurger({ handleBurger, burger, session }) {
                     <h3>{session.user.name}</h3>
                   </span>
                 </Link>
+                {session?.user?.role === "admin" && (
+                  <Link
+                    href="/dashboard"
+                    className="flex min-w-48 items-center pb-4"
+                  >
+                    <span className="mr-3 flex size-6 justify-center fill-neutral-100">
+                      <Parametre />
+                    </span>
+                    <h3>Paramètres</h3>
+                  </Link>
+                )}
                 <div
                   onClick={() => signOut()}
                   className="min-w-48 pb-4 text-neutral-100"
