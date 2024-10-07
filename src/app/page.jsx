@@ -35,7 +35,7 @@ export default async function Home() {
   // console.log(googleReviews);
 
   await connectMongoose();
-  const itemsData = await HomePageModel.find().lean().exec();
+  const itemsData = await HomePageModel.find().sort({ _id: 1 }).lean().exec();
   const itemData = JSON.parse(JSON.stringify(itemsData));
 
   const data = await AvisClientModel.find()

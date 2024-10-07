@@ -59,7 +59,7 @@ export async function generateMetadata() {
       other: {
         subject:
           "Professionnel du BTP, spécialisé dans les travaux de couverture, zinguerie, isolation, charpente, nettoyage, travaux divers et pose de fenêtre de toit.",
-        language: "fr_FR",
+        language: "fr-FR",
         author: "David Launay",
         owner: ["Abraham Hognon", "David Santiago"],
         copyright: "Ha Couverture",
@@ -133,7 +133,7 @@ export default async function RootLayout({ children }) {
   };
 
   return (
-    <html lang="FR_fr">
+    <html lang="fr-FR">
       <head>
         {urlBase === "/" && (
           <script

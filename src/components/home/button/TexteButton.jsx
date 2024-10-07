@@ -14,7 +14,13 @@ export default function TexteButton({ itemData, index }) {
           </span>
 
           <p className="text-neutral-100 transition duration-300 md:group-hover:scale-101 md:group-hover:text-supernova-500">
-            En savoir plus...
+            Plus de détails sur{" "}
+            {itemData[index].title === "Réparation diverses"
+              ? `les ${itemData[index].title.toLowerCase()}`
+              : itemData[index].title === "Isolation"
+              ? `l'${itemData[index].title.toLowerCase()}`
+              : `la ${itemData[index].title.toLowerCase()}`}
+            ...
           </p>
         </span>
       </Link>
