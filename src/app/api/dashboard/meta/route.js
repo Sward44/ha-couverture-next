@@ -13,11 +13,9 @@ export async function POST(request) {
       },
     });
   }
-
+  await connectMongoose();
   const body = await request.json();
-
   try {
-    await connectMongoose();
     const metas = await MetaModel.findOne({ _id: body._id }).exec();
 
     const {
