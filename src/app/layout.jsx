@@ -6,7 +6,6 @@ import { MetaModel } from "@/models";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/authOptions";
 import { headers } from "next/headers";
-// import PathNameNow from "@/utils/PathNameNow";
 import "@/app/globals.scss";
 import AuthProvider from "@/utils/SessionProvider";
 import CookieBanner from "@/components/banner/CookieBanner";
@@ -18,17 +17,16 @@ import { DynamicUrl } from "@/hooks/DynamicUrl";
 
 export async function generateMetadata() {
   const urlBase = headers().get("x-current-path");
-  if (!urlBase?.includes("dashboard")) {
-    await connectMongoose();
-    const data = await MetaModel.findOne({
-      _id: process.env.META_ID_HOME,
-    }).exec();
+  await connectMongoose();
+  const data = await MetaModel.findOne({
+    _id: process.env.META_ID_HOME,
+  }).exec();
 
+  if (!urlBase?.includes("dashboard")) {
     return {
       title: data.title,
       description: data.description,
-      keywords:
-        "travaux de couverture, rénovation de toiture, fenêtre de toit, qualibat, faites appel, goutières, isolation thermique, équipe de professionels, eco artisan, installeur, qualifiée, demande de devis, Nantes, Saint-Nazaire, Cholet, la Roche-sur-Yon, Loire-Atlantique, Vendée",
+      keywords: data.keywords,
       icons: {
         icon: data.icons.icon,
         shortcut: data.icons.shortcut,
@@ -79,6 +77,18 @@ export async function generateMetadata() {
         locality: "Saint-Aignan-Grandlieu",
         region: "Pays de la Loire",
         country: "France",
+      },
+    };
+  } else {
+    return {
+      manifest: data.manifest,
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+        },
       },
     };
   }

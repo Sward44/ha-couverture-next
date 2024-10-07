@@ -24,9 +24,11 @@ import { ProfileUser } from "@/components/main/user/ProfileUser";
 import { CardBlogPage } from "@/components/main/blog/CardBlog";
 import { formatDate } from "@/app/api/devis/route";
 import { DashBoardPageHome } from "@/components/dashboard/DashBoardPage";
-import HeaderDashBoard from "@/components/dashboard/header/HeaderDashBoard";
+
+import { Header } from "@/components/dashboard/header/Header";
 
 export async function generateMetadata({ params }) {
+  await connectMongoose();
   let { activities } = params;
   if (activities !== "dashboard") {
     if (
@@ -37,7 +39,6 @@ export async function generateMetadata({ params }) {
       activities = activities.slice(0, activities.indexOf("-"));
     const metaId = await getEnvVarForActivity(activities, "meta");
 
-    await connectMongoose();
     const data = await MetaModel.findOne({
       _id: metaId,
     })
@@ -62,6 +63,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function activitesPage({ params }) {
+  await connectMongoose();
   let { activities } = params;
   if (
     activities === "travaux-divers" ||
@@ -70,8 +72,6 @@ export default async function activitesPage({ params }) {
   )
     activities = activities.slice(0, activities.indexOf("-"));
   const pageId = await getEnvVarForActivity(activities, "page");
-
-  await connectMongoose();
 
   const Data = await PageModel.findOne({
     _id: pageId,
@@ -242,6 +242,7 @@ export default async function activitesPage({ params }) {
     };
 
     const metaSearchData = JSON.parse(JSON.stringify(metaDataId));
+    const url = metaData.openGraph.url;
 
     const Data = await HomePageModel.find().lean().exec();
 
@@ -260,6 +261,7 @@ export default async function activitesPage({ params }) {
     return (
       <>
         <div className="relative top-[72px] flex h-full min-h-[calc(100vh-72px)] w-full flex-col px-4 md:top-[81px] md:min-h-[calc(100vh-81px)] lg:px-0">
+          <Header url={url} />
           <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha sm:w-full lg:mx-auto lg:max-w-[960px]  xl:max-w-[1240px] 2xl:max-w-[1500px]">
             <h2 className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl">
               Balises metadonnées pour Google, Bing, etc...{" "}

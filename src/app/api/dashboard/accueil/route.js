@@ -3,6 +3,7 @@ import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel, HomePageModel } from "@/models";
 
 export async function POST(request) {
+  await connectMongoose();
   if (request.method === "OPTIONS") {
     return new NextResponse(null, {
       status: 200,
@@ -17,7 +18,6 @@ export async function POST(request) {
   const body = await request.json();
 
   try {
-    await connectMongoose();
     const homePage = await HomePageModel.findOne({ _id: body._id }).exec();
 
     const {

@@ -3,6 +3,7 @@ import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
 
 export async function POST(request) {
+  await connectMongoose();
   if (request.method === "OPTIONS") {
     return new NextResponse(null, {
       status: 200,
@@ -13,7 +14,6 @@ export async function POST(request) {
       },
     });
   }
-  await connectMongoose();
   const body = await request.json();
   try {
     const metas = await MetaModel.findOne({ _id: body._id }).exec();

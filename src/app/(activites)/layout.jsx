@@ -2,6 +2,7 @@
 import Footer from "@/components/footer/Footer";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
+import "react-toastify/dist/ReactToastify.css";
 
 export async function getEnvVarForActivity(activity, type) {
   const mapping = {

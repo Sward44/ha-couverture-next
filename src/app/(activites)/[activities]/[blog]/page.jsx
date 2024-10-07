@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { DashBoardMeta } from "@/components/dashboard/DashBoardMeta";
 import { DashBoardPageMain } from "@/components/dashboard/DashBoardPage";
+import { Header } from "@/components/dashboard/header/Header";
 
 const activityEachPageMap = {
   blog: ["renovation-verenda-pouliguen"],
@@ -201,6 +202,7 @@ export default async function blogPage({ params }) {
     };
 
     const metaSearchData = JSON.parse(JSON.stringify(metaDataId));
+    const url = metaData.openGraph.url;
 
     const pageId = await getEnvVarForBlog(formattedBlog, "page");
     const titleData = await PageModel.findOne({ _id: pageId }).lean().exec();
@@ -226,6 +228,7 @@ export default async function blogPage({ params }) {
     return (
       <>
         <div className="relative top-[72px] flex h-full min-h-[calc(100vh-72px)] w-full flex-col px-4 md:top-[81px] md:min-h-[calc(100vh-81px)] lg:px-0">
+          <Header url={url} />
           <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha sm:w-full lg:mx-auto lg:max-w-[960px]  xl:max-w-[1240px] 2xl:max-w-[1500px]">
             <h2 className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl">
               Balises metadonnées pour Google, Bing, etc...{" "}
