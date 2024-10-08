@@ -274,7 +274,9 @@ export function DashBoardMeta({ meta }) {
             errors?.descriptionRS ? "to-red-50" : "to-neutral-50"
           }`}
         >
-          Description Reseau Sociaux
+          Description{" "}
+          <span className="hidden sm:inline-block">Reseau Sociaux</span>
+          <span className="inline-block sm:hidden">R.S.</span>
         </label>
         <span className="labelFormRight">
           <span className={descriptionRSLength < 160 && "text-red-500"}>

@@ -235,24 +235,26 @@ export default async function blogPage({ params }) {
             </h2>
             <DashBoardMeta meta={metaSearchData} />
           </div>
-          <Header url={url} />
           {view && (
-            <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha lg:mx-auto lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1500px]">
-              <h2
-                key={titleData._id}
-                className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl"
-              >
-                Page {titleData.title}
-              </h2>
-              {pageSearchData.map((item) => (
-                <div
-                  key={item._id}
-                  className="mt-8 flex h-full w-full flex-col px-4 lg:min-w-[860px] lg:px-12 xl:min-w-[1160px] 2xl:min-w-[1400px]"
+            <>
+              <Header url={url} />
+              <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha lg:mx-auto lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1500px]">
+                <h2
+                  key={titleData._id}
+                  className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl"
                 >
-                  <DashBoardPageMain page={item} />
-                </div>
-              ))}
-            </div>
+                  Page {titleData.title}
+                </h2>
+                {pageSearchData.map((item) => (
+                  <div
+                    key={item._id}
+                    className="mt-8 flex h-full w-full flex-col px-4 lg:min-w-[860px] lg:px-12 xl:min-w-[1160px] 2xl:min-w-[1400px]"
+                  >
+                    <DashBoardPageMain page={item} />
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </>

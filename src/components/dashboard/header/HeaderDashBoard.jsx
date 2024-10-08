@@ -115,10 +115,10 @@ export default function HeaderDashBoard({ session }) {
                       onClick={() => setBurger(false)}
                       aria-label="Lien vers la page de présentation de l'activité de couverture"
                     >
-                      <span className="flex pb-2 pl-[72px]">
-                        {/* <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                          <Couverture />
-                        </span> */}
+                      <span className="flex pb-2">
+                        <span className="ml-4 mr-3 flex size-8 self-center fill-neutral-100 md:size-12">
+                          <LogoMobile />
+                        </span>
                         <h3 className="text-xl md:text-3xl">/</h3>
                       </span>
                     </Link>
