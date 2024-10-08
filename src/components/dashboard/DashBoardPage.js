@@ -46,6 +46,14 @@ export function DashBoardPageHome({ page }) {
       .max(320, "Longueur maximum 320 caractères"),
   });
 
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+  const minAlt = descriptionAll.fields.alt.tests[1].params.min;
+  const maxAlt = descriptionAll.fields.alt.tests[2].params.max;
+
   const {
     register,
     handleSubmit,
@@ -129,10 +137,12 @@ export function DashBoardPageHome({ page }) {
               Titre
             </label>
             <span className="labelFormRight">
-              <span className={titleLength < 8 && "text-red-500"}>8&#62;</span>
+              <span className={titleLength < minTitle && "text-red-500"}>
+                {minTitle}&#62;
+              </span>
               {titleLength}
-              <span className={titleLength > 20 && "text-red-500"}>
-                &#62;20
+              <span className={titleLength > maxTitle && "text-red-500"}>
+                &#62;{maxTitle}
               </span>
             </span>
 
@@ -161,12 +171,16 @@ export function DashBoardPageHome({ page }) {
               Description
             </label>
             <span className="labelFormRight">
-              <span className={descriptionLength < 140 && "text-red-500"}>
-                140&#62;
+              <span
+                className={descriptionLength < minDescription && "text-red-500"}
+              >
+                {minDescription}&#62;
               </span>
               {descriptionLength}
-              <span className={descriptionLength > 380 && "text-red-500"}>
-                &#62;380
+              <span
+                className={descriptionLength > maxDescription && "text-red-500"}
+              >
+                &#62;{maxDescription}
               </span>
             </span>
             <textarea
@@ -198,12 +212,12 @@ export function DashBoardPageHome({ page }) {
                 Alt d&#39;image
               </label>
               <span className="labelFormRight">
-                <span className={altLength < 20 && "text-red-500"}>
-                  20&#62;
+                <span className={altLength < minAlt && "text-red-500"}>
+                  {minAlt}&#62;
                 </span>
                 {altLength}
-                <span className={altLength > 320 && "text-red-500"}>
-                  &#62;320
+                <span className={altLength > maxAlt && "text-red-500"}>
+                  &#62;{maxAlt}
                 </span>
               </span>
               <input
@@ -276,19 +290,27 @@ export function DashBoardPageMain({ page }) {
     title: yup
       .string()
       .required("Le titre est obligatoire...")
-      .min(10, "Longueur mimnimum 10 caractères")
+      .min(8, "Longueur mimnimum 8 caractères")
       .max(30, "Longueur maximum 30 caractères"),
     description: yup
       .string()
       .required("Description obligatoire...")
       .min(260, "Longueur mimnimum 260 caractères")
-      .max(700, "Longueur maximum 700 caractères"),
+      .max(800, "Longueur maximum 800 caractères"),
     alt: yup
       .string()
       .required("Keyword obligatoire dans notre cas...")
       .min(20, "Longueur mimnimum 20 caractères")
       .max(320, "Longueur maximum 320 caractères"),
   });
+
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+  const minAlt = descriptionAll.fields.alt.tests[1].params.min;
+  const maxAlt = descriptionAll.fields.alt.tests[2].params.max;
 
   const {
     register,
@@ -376,12 +398,12 @@ export function DashBoardPageMain({ page }) {
               Titre
             </label>
             <span className="labelFormRight">
-              <span className={titleLength < 10 && "text-red-500"}>
-                10&#62;
+              <span className={titleLength < minTitle && "text-red-500"}>
+                {minTitle}&#62;
               </span>
               {titleLength}
-              <span className={titleLength > 30 && "text-red-500"}>
-                &#62;30
+              <span className={titleLength > maxTitle && "text-red-500"}>
+                &#62;{maxTitle}
               </span>
             </span>
             <input
@@ -409,12 +431,16 @@ export function DashBoardPageMain({ page }) {
               Description
             </label>
             <span className="labelFormRight">
-              <span className={descriptionLength < 260 && "text-red-500"}>
-                260&#62;
+              <span
+                className={descriptionLength < minDescription && "text-red-500"}
+              >
+                {minDescription}&#62;
               </span>
               {descriptionLength}
-              <span className={descriptionLength > 700 && "text-red-500"}>
-                &#62;700
+              <span
+                className={descriptionLength > maxDescription && "text-red-500"}
+              >
+                &#62;{maxDescription}
               </span>
             </span>
             <textarea

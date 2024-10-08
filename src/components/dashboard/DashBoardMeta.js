@@ -66,6 +66,22 @@ export function DashBoardMeta({ meta }) {
       .max(320, "Longueur maximum 320 caractères"),
   });
 
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+  const minKeyword = descriptionAll.fields.keyword.tests[0].params.min;
+  const maxKeyword = descriptionAll.fields.keyword.tests[1].params.max;
+  const minTitleRs = descriptionAll.fields.titleRS.tests[1].params.min;
+  const maxTitleRs = descriptionAll.fields.titleRS.tests[2].params.max;
+  const minDescriptionRs =
+    descriptionAll.fields.descriptionRS.tests[1].params.min;
+  const maxDescriptionRs =
+    descriptionAll.fields.descriptionRS.tests[2].params.max;
+  const minAlt = descriptionAll.fields.alt.tests[1].params.min;
+  const maxAlt = descriptionAll.fields.alt.tests[2].params.max;
+
   const {
     register,
     handleSubmit,
@@ -124,7 +140,6 @@ export function DashBoardMeta({ meta }) {
       }
     }
   }
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -140,9 +155,13 @@ export function DashBoardMeta({ meta }) {
           Titre
         </label>
         <span className="labelFormRight">
-          <span className={titleLength < 20 && "text-red-500"}>20&#62;</span>
+          <span className={titleLength < minTitle && "text-red-500"}>
+            {minTitle}&#62;
+          </span>
           {titleLength}
-          <span className={titleLength > 60 && "text-red-500"}>&#62;60</span>
+          <span className={titleLength > maxTitle && "text-red-500"}>
+            &#62;{maxTitle}
+          </span>
         </span>
         <input
           id="title"
@@ -168,12 +187,16 @@ export function DashBoardMeta({ meta }) {
           Description
         </label>
         <span className="labelFormRight">
-          <span className={descriptionLength < 160 && "text-red-500"}>
-            160&#62;
+          <span
+            className={descriptionLength < minDescription && "text-red-500"}
+          >
+            {minDescription}&#62;
           </span>
           {descriptionLength}
-          <span className={descriptionLength > 220 && "text-red-500"}>
-            &#62;220
+          <span
+            className={descriptionLength > maxDescription && "text-red-500"}
+          >
+            &#62;{maxDescription}
           </span>
         </span>
 
@@ -205,10 +228,12 @@ export function DashBoardMeta({ meta }) {
           Keyword
         </label>
         <span className="labelFormRight">
-          <span className={keywordLength < 40 && "text-red-500"}>40&#62;</span>
+          <span className={keywordLength < minKeyword && "text-red-500"}>
+            {minKeyword}&#62;
+          </span>
           {keywordLength}
-          <span className={keywordLength > 320 && "text-red-500"}>
-            &#62;320
+          <span className={keywordLength > maxKeyword && "text-red-500"}>
+            &#62;{maxKeyword}
           </span>
         </span>
 
@@ -247,9 +272,13 @@ export function DashBoardMeta({ meta }) {
           Titre Reseaux Sociaux
         </label>
         <span className="labelFormRight">
-          <span className={titleRSLength < 20 && "text-red-500"}>20&#62;</span>
+          <span className={titleRSLength < minTitleRs && "text-red-500"}>
+            {minTitleRs}&#62;
+          </span>
           {titleRSLength}
-          <span className={titleRSLength > 60 && "text-red-500"}>&#62;60</span>
+          <span className={titleRSLength > maxTitleRs && "text-red-500"}>
+            &#62;{maxTitleRs}
+          </span>
         </span>
         <input
           id="titleRS"
@@ -279,12 +308,16 @@ export function DashBoardMeta({ meta }) {
           <span className="inline-block sm:hidden">R.S.</span>
         </label>
         <span className="labelFormRight">
-          <span className={descriptionRSLength < 160 && "text-red-500"}>
-            160&#62;
+          <span
+            className={descriptionRSLength < minDescriptionRs && "text-red-500"}
+          >
+            {minDescriptionRs}&#62;
           </span>
           {descriptionRSLength}
-          <span className={descriptionRSLength > 220 && "text-red-500"}>
-            &#62;220
+          <span
+            className={descriptionRSLength > maxDescriptionRs && "text-red-500"}
+          >
+            &#62;{maxDescriptionRs}
           </span>
         </span>
         <textarea
@@ -316,9 +349,13 @@ export function DashBoardMeta({ meta }) {
             Alt d&#39;image
           </label>
           <span className="labelFormRight">
-            <span className={altLength < 20 && "text-red-500"}>20&#62;</span>
+            <span className={altLength < minAlt && "text-red-500"}>
+              {minAlt}&#62;
+            </span>
             {altLength}
-            <span className={altLength > 320 && "text-red-500"}>&#62;320</span>
+            <span className={altLength > maxAlt && "text-red-500"}>
+              &#62;{maxAlt}
+            </span>
           </span>
           <input
             id="alt"

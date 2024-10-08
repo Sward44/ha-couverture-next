@@ -214,7 +214,10 @@ export default async function blogPage({ params }) {
       view = false;
     }
 
-    const Data = await SousPageModel.find({ _pageId: pageId }).lean().exec();
+    const Data = await SousPageModel.find({ _pageId: pageId })
+      .sort({ index: 1 })
+      .lean()
+      .exec();
     const pageData = Data.map((item) => ({
       _id: item._id,
       metaId: metaData._id,
