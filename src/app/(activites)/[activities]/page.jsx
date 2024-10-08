@@ -24,7 +24,6 @@ import { ProfileUser } from "@/components/main/user/ProfileUser";
 import { CardBlogPage } from "@/components/main/blog/CardBlog";
 import { formatDate } from "@/app/api/devis/route";
 import { DashBoardPageHome } from "@/components/dashboard/DashBoardPage";
-
 import { Header } from "@/components/dashboard/header/Header";
 
 export async function generateMetadata({ params }) {

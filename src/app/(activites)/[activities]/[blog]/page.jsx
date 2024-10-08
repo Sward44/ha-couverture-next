@@ -235,6 +235,7 @@ export default async function blogPage({ params }) {
             </h2>
             <DashBoardMeta meta={metaSearchData} />
           </div>
+          <Header url={url} />
           {view && (
             <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha lg:mx-auto lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1500px]">
               <h2

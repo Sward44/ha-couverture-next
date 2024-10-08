@@ -110,16 +110,15 @@ export function FormDevisThree({
           newEmailResponse.message || "Message envoyé avec succès !"
         );
       } else {
-        setError("generic", {
-          type: "generic",
-          message: "Problèmes serveurs else",
-        });
+        const errorData = await response.json();
+        toast.error(errorData.error || response.statusText);
       }
     } catch (e) {
-      setError("generic", {
-        type: "generic",
-        message: "Problèmes serveurs catch",
-      });
+      if (e) {
+        toast.error(e.message || "Une erreur s'est produite");
+      } else {
+        toast.error("Une erreur inconnue s'est produite");
+      }
     } finally {
       initialStep();
     }

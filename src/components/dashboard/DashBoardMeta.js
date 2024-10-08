@@ -6,9 +6,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Loading } from "@/components/logo/Logo";
 import DashBoardImages from "./DashBoardImages";
+import { useRouter } from "next/navigation";
 
 export function DashBoardMeta({ meta }) {
+  const router = useRouter();
   const [defaultValues, setDefaultValues] = React.useState({});
+  const [titleLength, setTitleLength] = React.useState(0);
+  const [descriptionLength, setDescriptionLength] = React.useState(0);
+  const [keywordLength, setKeywordLength] = React.useState(0);
+  const [titleRSLength, setTitleRSLength] = React.useState(0);
+  const [descriptionRSLength, setDescriptionRSLength] = React.useState(0);
+  const [altLength, setAltLength] = React.useState(0);
 
   React.useEffect(() => {
     const fetchDefaultValuesSession = async () => {
@@ -71,11 +79,20 @@ export function DashBoardMeta({ meta }) {
   });
 
   React.useEffect(() => {
-    reset(defaultValues);
+    if (Object.keys(defaultValues).length > 0) {
+      reset(defaultValues);
+      setTitleLength(defaultValues.title.length);
+      setDescriptionLength(defaultValues.description.length);
+      setKeywordLength(defaultValues.keyword.length);
+      setTitleRSLength(defaultValues.titleRS.length);
+      setDescriptionRSLength(defaultValues.descriptionRS.length);
+      setAltLength(defaultValues.alt.length);
+    }
   }, [defaultValues, reset]);
 
   async function onSubmit(values) {
     try {
+      console.log("Keywords:", values.keyword.length);
       clearErrors();
       const newMeta = { ...values, _id: meta._id };
       const response = await fetch(
@@ -96,16 +113,15 @@ export function DashBoardMeta({ meta }) {
           newEmailResponse.message || "Message envoyé avec succès !"
         );
       } else {
-        setError("generic", {
-          type: "generic",
-          message: "Problèmes serveurs else",
-        });
+        const errorData = await response.json();
+        toast.error(errorData.error || response.statusText);
       }
     } catch (e) {
-      setError("generic", {
-        type: "generic",
-        message: "Problèmes serveurs catch",
-      });
+      if (e) {
+        toast.error(e.message || "Une erreur s'est produite");
+      } else {
+        toast.error("Une erreur inconnue s'est produite");
+      }
     }
   }
 
@@ -123,11 +139,21 @@ export function DashBoardMeta({ meta }) {
         >
           Titre
         </label>
+        <span className="labelFormRight">
+          <span className={titleLength < 20 && "text-red-500"}>20&#62;</span>
+          {titleLength}
+          <span className={titleLength > 60 && "text-red-500"}>&#62;60</span>
+        </span>
         <input
           id="title"
           type="text"
-          {...register("title")}
+          {...register("title", {})}
           className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+          onChange={(e) => {
+            const title = e.target.value.length;
+            setTitleLength(title);
+            register("title").onChange(e);
+          }}
         />
         {errors?.title && <p className="errorsForm">{errors.title.message}</p>}
       </div>
@@ -141,6 +167,16 @@ export function DashBoardMeta({ meta }) {
         >
           Description
         </label>
+        <span className="labelFormRight">
+          <span className={descriptionLength < 160 && "text-red-500"}>
+            160&#62;
+          </span>
+          {descriptionLength}
+          <span className={descriptionLength > 220 && "text-red-500"}>
+            &#62;220
+          </span>
+        </span>
+
         <textarea
           id="description"
           type="text"
@@ -148,6 +184,11 @@ export function DashBoardMeta({ meta }) {
           className={`inputFormBase ${
             errors?.description && "bg-red-50"
           } min-h-44 resize-none sm:min-h-28 lg:min-h-24 xl:h-auto`}
+          onChange={(e) => {
+            const description = e.target.value.length;
+            setDescriptionLength(description);
+            register("title").onChange(e);
+          }}
         />
         {errors?.description && (
           <p className="errorsFormBottom">{errors.description.message}</p>
@@ -163,6 +204,14 @@ export function DashBoardMeta({ meta }) {
         >
           Keyword
         </label>
+        <span className="labelFormRight">
+          <span className={keywordLength < 40 && "text-red-500"}>40&#62;</span>
+          {keywordLength}
+          <span className={keywordLength > 320 && "text-red-500"}>
+            &#62;320
+          </span>
+        </span>
+
         <textarea
           id="keyword"
           type="keyword"
@@ -170,6 +219,11 @@ export function DashBoardMeta({ meta }) {
           className={`inputFormBase ${
             errors?.keyword && "bg-red-50"
           } min-h-48 resize-none sm:min-h-32 lg:min-h-24 xl:h-auto`}
+          onChange={(e) => {
+            const keyword = e.target.value.length;
+            setKeywordLength(keyword);
+            register("keyword").onChange(e);
+          }}
         />
         {errors?.keyword && (
           <p className="errorsFormBottom">{errors.keyword.message}</p>
@@ -192,11 +246,21 @@ export function DashBoardMeta({ meta }) {
         >
           Titre Reseaux Sociaux
         </label>
+        <span className="labelFormRight">
+          <span className={titleRSLength < 20 && "text-red-500"}>20&#62;</span>
+          {titleRSLength}
+          <span className={titleRSLength > 60 && "text-red-500"}>&#62;60</span>
+        </span>
         <input
           id="titleRS"
           type="text"
           {...register("titleRS")}
           className={`inputFormBase ${errors?.titleRS && "bg-red-50"}`}
+          onChange={(e) => {
+            const titleRS = e.target.value.length;
+            setTitleRSLength(titleRS);
+            register("titleRS").onChange(e);
+          }}
         />
         {errors?.titleRS && (
           <p className="errorsFormBottom">{errors.titleRS.message}</p>
@@ -212,6 +276,15 @@ export function DashBoardMeta({ meta }) {
         >
           Description Reseau Sociaux
         </label>
+        <span className="labelFormRight">
+          <span className={descriptionRSLength < 160 && "text-red-500"}>
+            160&#62;
+          </span>
+          {descriptionRSLength}
+          <span className={descriptionRSLength > 220 && "text-red-500"}>
+            &#62;220
+          </span>
+        </span>
         <textarea
           id="descriptionRS"
           type="text"
@@ -219,6 +292,11 @@ export function DashBoardMeta({ meta }) {
           className={`inputFormBase ${
             errors?.descriptionRS && "bg-red-50"
           } min-h-44 resize-none sm:min-h-32 lg:min-h-24 xl:h-auto`}
+          onChange={(e) => {
+            const descriptionRS = e.target.value.length;
+            setDescriptionRSLength(descriptionRS);
+            register("descriptionRS").onChange(e);
+          }}
         />
         {errors?.descriptionRS && (
           <p className="errorsFormBottom">{errors.descriptionRS.message}</p>
@@ -235,6 +313,11 @@ export function DashBoardMeta({ meta }) {
           >
             Alt d&#39;image
           </label>
+          <span className="labelFormRight">
+            <span className={altLength < 20 && "text-red-500"}>20&#62;</span>
+            {altLength}
+            <span className={altLength > 320 && "text-red-500"}>&#62;320</span>
+          </span>
           <input
             id="alt"
             type="alt"
@@ -242,6 +325,11 @@ export function DashBoardMeta({ meta }) {
             className={`inputFormBase ${
               errors?.alt && "bg-red-50"
             } w-full resize-none`}
+            onChange={(e) => {
+              const alt = e.target.value.length;
+              setAltLength(alt);
+              register("alt").onChange(e);
+            }}
           />
           {errors?.alt && <p className="errorsForm">{errors.alt.message}</p>}
         </div>

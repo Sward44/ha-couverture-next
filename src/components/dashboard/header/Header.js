@@ -4,7 +4,7 @@ import Link from "next/link";
 export async function Header({ url }) {
   console.log(url);
   return (
-    <div className="mt-8 flex justify-center">
+    <div className="mt-4 flex justify-center">
       <h1 className="text-xl md:text-3xl">
         Page de{" "}
         <Link href={url}>

@@ -6,9 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Loading } from "@/components/logo/Logo";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function DashBoardPageHome({ page }) {
+  const router = useRouter();
   const [defaultValues, setDefaultValues] = React.useState({});
+  const [titleLength, setTitleLength] = React.useState(0);
+  const [descriptionLength, setDescriptionLength] = React.useState(0);
+  const [altLength, setAltLength] = React.useState(0);
 
   React.useEffect(() => {
     const fetchDefaultValuesSession = async () => {
@@ -27,7 +32,7 @@ export function DashBoardPageHome({ page }) {
     title: yup
       .string()
       .required("Le titre est obligatoire...")
-      .min(10, "Longueur mimnimum 10 caractères")
+      .min(8, "Longueur mimnimum 8 caractères")
       .max(20, "Longueur maximum 20 caractères"),
     description: yup
       .string()
@@ -38,7 +43,7 @@ export function DashBoardPageHome({ page }) {
       .string()
       .required("Keyword obligatoire dans notre cas...")
       .min(20, "Longueur mimnimum 20 caractères")
-      .max(200, "Longueur maximum 200 caractères"),
+      .max(320, "Longueur maximum 320 caractères"),
   });
 
   const {
@@ -54,7 +59,12 @@ export function DashBoardPageHome({ page }) {
   });
 
   React.useEffect(() => {
-    reset(defaultValues);
+    if (Object.keys(defaultValues).length > 0) {
+      reset(defaultValues);
+      setTitleLength(defaultValues.title.length);
+      setDescriptionLength(defaultValues.description.length);
+      setAltLength(defaultValues.alt.length);
+    }
   }, [defaultValues, reset]);
 
   async function onSubmit(values) {
@@ -80,16 +90,15 @@ export function DashBoardPageHome({ page }) {
           newEmailResponse.message || "Message envoyé avec succès !"
         );
       } else {
-        setError("generic", {
-          type: "generic",
-          message: "Problèmes serveurs else",
-        });
+        const errorData = await response.json();
+        toast.error(errorData.error || response.statusText);
       }
     } catch (e) {
-      setError("generic", {
-        type: "generic",
-        message: "Problèmes serveurs catch",
-      });
+      if (e) {
+        toast.error(e.message || "Une erreur s'est produite");
+      } else {
+        toast.error("Une erreur inconnue s'est produite");
+      }
     }
   }
 
@@ -119,11 +128,24 @@ export function DashBoardPageHome({ page }) {
             >
               Titre
             </label>
+            <span className="labelFormRight">
+              <span className={titleLength < 8 && "text-red-500"}>8&#62;</span>
+              {titleLength}
+              <span className={titleLength > 20 && "text-red-500"}>
+                &#62;20
+              </span>
+            </span>
+
             <input
               id="title"
               type="text"
               {...register("title")}
               className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+              onChange={(e) => {
+                const title = e.target.value.length;
+                setTitleLength(title);
+                register("title").onChange(e);
+              }}
             />
             {errors?.title && (
               <p className="errorsFormBottom">{errors.title.message}</p>
@@ -138,6 +160,15 @@ export function DashBoardPageHome({ page }) {
             >
               Description
             </label>
+            <span className="labelFormRight">
+              <span className={descriptionLength < 140 && "text-red-500"}>
+                140&#62;
+              </span>
+              {descriptionLength}
+              <span className={descriptionLength > 380 && "text-red-500"}>
+                &#62;380
+              </span>
+            </span>
             <textarea
               id="description"
               type="text"
@@ -145,6 +176,11 @@ export function DashBoardPageHome({ page }) {
               className={`inputFormBase ${
                 errors?.description && "bg-red-50"
               } min-h-60 resize-none sm:min-h-44 md:min-h-32 lg:min-h-44 xl:min-h-32`}
+              onChange={(e) => {
+                const description = e.target.value.length;
+                setDescriptionLength(description);
+                register("title").onChange(e);
+              }}
             />
             {errors?.description && (
               <p className="errorsFormBottom">{errors.description.message}</p>
@@ -161,6 +197,15 @@ export function DashBoardPageHome({ page }) {
               >
                 Alt d&#39;image
               </label>
+              <span className="labelFormRight">
+                <span className={altLength < 20 && "text-red-500"}>
+                  20&#62;
+                </span>
+                {altLength}
+                <span className={altLength > 320 && "text-red-500"}>
+                  &#62;320
+                </span>
+              </span>
               <input
                 id="alt"
                 type="alt"
@@ -168,6 +213,11 @@ export function DashBoardPageHome({ page }) {
                 className={`inputFormBase ${
                   errors?.alt && "bg-red-50"
                 } w-full resize-none`}
+                onChange={(e) => {
+                  const alt = e.target.value.length;
+                  setTitleLength(alt);
+                  register("alt").onChange(e);
+                }}
               />
               {errors?.alt && (
                 <p className="errorsFormBottom">{errors.alt.message}</p>
