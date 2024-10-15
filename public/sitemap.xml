@@ -5,7 +5,7 @@
     <loc>https://www.buzz-ready.com</loc>
     <lastmod>2024-09-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1</priority>
+    <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-global.webp</image:loc>
     </image:image>
@@ -38,7 +38,7 @@
     <loc>https://www.buzz-ready.com/avis-clients</loc>
     <lastmod>2024-07-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-avis-clients.webp</image:loc>
     </image:image>
@@ -51,7 +51,7 @@
     <loc>https://www.buzz-ready.com/blog</loc>
     <lastmod>2024-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-blog.webp</image:loc>
     </image:image>
@@ -68,7 +68,7 @@
     <loc>https://www.buzz-ready.com/blog/renovation-verenda-pouliguen</loc>
     <lastmod>2024-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/blog/ha-couverture-blog-verenda-pouliguen.webp</image:loc>
     </image:image>
@@ -93,7 +93,7 @@
     <loc>https://www.buzz-ready.com/connexion</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-connexion.webp</image:loc>
     </image:image>
@@ -106,7 +106,7 @@
     <loc>https://www.buzz-ready.com/inscription</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-connexion.webp</image:loc>
     </image:image>
@@ -119,7 +119,7 @@
     <loc>https://www.buzz-ready.com/couverture</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-couverture.webp</image:loc>
     </image:image>
@@ -144,7 +144,7 @@
     <loc>https://www.buzz-ready.com/zinguerie</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-zinguerie.webp</image:loc>
     </image:image>
@@ -169,7 +169,7 @@
     <loc>https://www.buzz-ready.com/nettoyage</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-nettoyage.webp</image:loc>
     </image:image>
@@ -190,7 +190,7 @@
     <loc>https://www.buzz-ready.com/isolation</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-isolation.webp</image:loc>
     </image:image>
@@ -215,7 +215,7 @@
     <loc>https://www.buzz-ready.com/charpente</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-charpente.webp</image:loc>
     </image:image>
@@ -240,7 +240,7 @@
     <loc>https://www.buzz-ready.com/travaux-divers</loc>
     <lastmod>2024-07-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.buzz-ready.com/ha-couverture-travaux-divers.webp</image:loc>
     </image:image>

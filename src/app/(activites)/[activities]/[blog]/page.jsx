@@ -218,6 +218,7 @@ export default async function blogPage({ params }) {
       .sort({ index: 1 })
       .lean()
       .exec();
+
     const pageData = Data.map((item) => ({
       _id: item._id,
       metaId: metaData._id,
@@ -227,7 +228,9 @@ export default async function blogPage({ params }) {
       position: item.position,
       altWebp: item.altWebp,
     }));
+
     const pageSearchData = JSON.parse(JSON.stringify(pageData));
+
     return (
       <>
         <div className="relative top-[72px] flex h-full min-h-[calc(100vh-72px)] w-full flex-col px-4 md:top-[81px] md:min-h-[calc(100vh-81px)] lg:px-0">
