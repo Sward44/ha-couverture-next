@@ -24,7 +24,7 @@ export default async function HeaderMain({ itemDataCouverture }) {
         <div className="mr-2 size-12 fill-neutral-100 md:size-16">
           <SvgComponent />
         </div>
-        <h1 className="text-[32px] md:text-[42px]">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif">
           {itemDataCouverture.title}
         </h1>
       </div>

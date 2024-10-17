@@ -21,7 +21,7 @@ export default async function Footer() {
             <p>Notre histoire de Ha-couverture...</p>
           </div>
           <div className="max-w-80 sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:m-2 lg:max-w-none ">
-            <h3 className="mb-3 text-center text-lg font-bold sm:text-left">
+            <h3 className="mb-3 text-center text-lg font-serif sm:text-left">
               Mentions légales
             </h3>
             <p className="mb-1  transition-all duration-300 md:hover:text-supernova-500">
@@ -42,7 +42,7 @@ export default async function Footer() {
             </p>
           </div>
           <div className="row-start-2 max-w-80 sm:col-start-2 sm:row-start-1 sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:col-start-3 lg:m-2 lg:max-w-none">
-            <h3 className="mb-3 text-center text-lg font-bold sm:text-left">
+            <h3 className="mb-3 text-center text-lg font-serif sm:text-left">
               Inscrivez-vous
             </h3>
             <p className="mb-2">
@@ -61,7 +61,7 @@ export default async function Footer() {
             </div>
           </div>
           <div className="max-w-80  sm:max-w-[230px] md:max-w-[300px] md:pl-8 lg:m-2 lg:max-w-none">
-            <h3 className="mb-3 text-center text-lg font-bold sm:text-left">
+            <h3 className="mb-3 text-center text-lg font-serif sm:text-left">
               Rejoignez-nous
             </h3>
             <div className="flex justify-center sm:justify-start">

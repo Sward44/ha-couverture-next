@@ -526,3 +526,718 @@ export function DashBoardPageMain({ page }) {
     </form>
   );
 }
+
+export function DashBoardBlogEntete({ page }) {
+  const [defaultValues, setDefaultValues] = React.useState({});
+  const [titleLength, setTitleLength] = React.useState(0);
+  const [descriptionLength, setDescriptionLength] = React.useState(0);
+  const [altLength, setAltLength] = React.useState(0);
+
+  React.useEffect(() => {
+    const fetchDefaultValuesSession = async () => {
+      const values = {
+        title: page.title,
+        description: page.description,
+        alt: page.altWebp,
+      };
+      setDefaultValues(values);
+    };
+    fetchDefaultValuesSession();
+  }, [page]);
+
+  const schema = yup.object({
+    title: yup
+      .string()
+      .required("Le titre est obligatoire...")
+      .min(30, "Longueur mimnimum 8 caractères")
+      .max(70, "Longueur maximum 30 caractères"),
+    description: yup
+      .string()
+      .required("Description obligatoire...")
+      .min(180, "Longueur mimnimum 260 caractères")
+      .max(250, "Longueur maximum 800 caractères"),
+    alt: yup
+      .string()
+      .required("Keyword obligatoire dans notre cas...")
+      .min(20, "Longueur mimnimum 20 caractères")
+      .max(320, "Longueur maximum 320 caractères"),
+  });
+
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+  const minAlt = descriptionAll.fields.alt.tests[1].params.min;
+  const maxAlt = descriptionAll.fields.alt.tests[2].params.max;
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  React.useEffect(() => {
+    if (Object.keys(defaultValues).length > 0) {
+      reset(defaultValues);
+      setTitleLength(defaultValues.title.length);
+      setDescriptionLength(defaultValues.description.length);
+      setAltLength(defaultValues.alt.length);
+    }
+  }, [defaultValues, reset]);
+
+  async function onSubmit(values) {
+    try {
+      clearErrors();
+      const newActivities = { ...values, _id: page._id, metaId: page.metaId, blogId: page.blogId };
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}/api/dashboard/blog`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newActivities),
+        }
+      );
+      if (response.ok) {
+        const newEmailResponse = await response.json();
+        reset();
+        router.refresh();
+        toast.success(
+          newEmailResponse.message || "Message envoyé avec succès !"
+        );
+      } else {
+        setError("generic", {
+          type: "generic",
+          message: "Problèmes serveurs else",
+        });
+      }
+    } catch (e) {
+      setError("generic", {
+        type: "generic",
+        message: "Problèmes serveurs catch",
+      });
+    }
+  }
+
+  return (
+    <form key={page._id} onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex w-full flex-col xl:flex-row">
+        <div
+          className="relative mb-8 h-[220px] sm:h-[360px] sm:min-w-full lg:mr-8 lg:w-[400px] xl:mb-0 xl:h-80 xl:min-w-[350px]
+        "
+        >
+          <Image
+            src={require(`@/components/${page.urlWebp}`).default}
+            alt={page.altWebp}
+            fill
+            style={{
+              objectFit: "cover",
+              objectPosition: `${page.position}`,
+            }}
+            className="absolute shadow-ha"
+          />
+        </div>
+        <div className="flex h-full w-full flex-col">
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="title"
+              className={`labelForm ${
+                errors?.title ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Titre
+            </label>
+            <span className="labelFormRight">
+              <span className={titleLength < minTitle && "text-red-500"}>
+                {minTitle}&#62;
+              </span>
+              {titleLength}
+              <span className={titleLength > maxTitle && "text-red-500"}>
+                &#62;{maxTitle}
+              </span>
+            </span>
+            <input
+              id="title"
+              type="text"
+              {...register("title")}
+              className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+              onChange={(e) => {
+                const title = e.target.value.length;
+                setTitleLength(title);
+                register("title").onChange(e);
+              }}
+            />
+            {errors?.title && (
+              <p className="errorsFormBottom">{errors.title.message}</p>
+            )}
+          </div>
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="description"
+              className={`labelForm ${
+                errors?.description ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Description
+            </label>
+            <span className="labelFormRight">
+              <span
+                className={descriptionLength < minDescription && "text-red-500"}
+              >
+                {minDescription}&#62;
+              </span>
+              {descriptionLength}
+              <span
+                className={descriptionLength > maxDescription && "text-red-500"}
+              >
+                &#62;{maxDescription}
+              </span>
+            </span>
+            <textarea
+              id="description"
+              type="text"
+              {...register("description")}
+              className={`inputFormBase ${
+                errors?.description && "bg-red-50"
+              } min-h-96 resize-none sm:min-h-60 md:min-h-48 lg:min-h-44 xl:min-h-44`}
+              onChange={(e) => {
+                const description = e.target.value.length;
+                setDescriptionLength(description);
+                register("description").onChange(e);
+              }}
+            />
+            {errors?.description && (
+              <p className="errorsFormBottom">{errors.description.message}</p>
+            )}
+          </div>
+          <div className=" mb-8 flex">
+            <div className="relative  mr-2 w-full">
+              <label
+                htmlFor="alt"
+                className={`labelForm ${
+                  errors?.alt ? "to-red-50" : "to-neutral-50"
+                }`}
+              >
+                Alt d&#39;image
+              </label>
+              <span className="labelFormRight">
+                <span className={altLength < 20 && "text-red-500"}>
+                  20&#62;
+                </span>
+                {altLength}
+                <span className={altLength > 320 && "text-red-500"}>
+                  &#62;320
+                </span>
+              </span>
+              <input
+                id="alt"
+                type="alt"
+                {...register("alt")}
+                className={`inputFormBase ${
+                  errors?.alt && "bg-red-50"
+                } w-full resize-none`}
+                onChange={(e) => {
+                  const alt = e.target.value.length;
+                  setTitleLength(alt);
+                  register("alt").onChange(e);
+                }}
+              />
+              {errors?.alt && (
+                <p className="errorsFormBottom">{errors.alt.message}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="item-end flex w-full flex-1 justify-start">
+        <div className="flex w-full flex-1 items-end justify-end">
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className="mb-8 rounded-xl bg-neutral-300 px-4 py-2 transition-all duration-300 md:hover:scale-101 md:hover:bg-supernova-500 md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:shadow-ha"
+          >
+            <div className="flex flex-1 items-center">
+              {isSubmitting ? (
+                <>
+                  <h3 className="font-bold">En cours...</h3>
+                  <div className="ml-2">
+                    <div className="size-4 animate-spin">
+                      <Loading />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <h3 className="font-bold">Sauvegarder</h3>
+              )}
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+export function DashBoardBlogWithImage({ page }) {
+  const [defaultValues, setDefaultValues] = React.useState({});
+  const [titleLength, setTitleLength] = React.useState(0);
+  const [descriptionLength, setDescriptionLength] = React.useState(0);
+  const [altLength, setAltLength] = React.useState(0);
+
+  React.useEffect(() => {
+    const fetchDefaultValuesSession = async () => {
+      const values = {
+        title: page.title,
+        description: page.description,
+        alt: page.altWebp,
+      };
+      setDefaultValues(values);
+    };
+    fetchDefaultValuesSession();
+  }, [page]);
+
+  const schema = yup.object({
+    title: yup
+      .string()
+      .required("Le titre est obligatoire...")
+      .min(8, "Longueur mimnimum 8 caractères")
+      .max(40, "Longueur maximum 30 caractères"),
+    description: yup
+      .string()
+      .required("Description obligatoire...")
+      .min(450, "Longueur mimnimum 260 caractères")
+      .max(950, "Longueur maximum 800 caractères"),
+    alt: yup
+      .string()
+      .required("Keyword obligatoire dans notre cas...")
+      .min(20, "Longueur mimnimum 20 caractères")
+      .max(320, "Longueur maximum 320 caractères"),
+  });
+
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+  const minAlt = descriptionAll.fields.alt.tests[1].params.min;
+  const maxAlt = descriptionAll.fields.alt.tests[2].params.max;
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  React.useEffect(() => {
+    if (Object.keys(defaultValues).length > 0) {
+      reset(defaultValues);
+      setTitleLength(defaultValues.title.length);
+      setDescriptionLength(defaultValues.description.length);
+      setAltLength(defaultValues.alt.length);
+    }
+  }, [defaultValues, reset]);
+
+  async function onSubmit(values) {
+    try {
+      clearErrors();
+      const newActivities = { ...values, _id: page._id, metaId: page.metaId, blogId : page.blogId };
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}/api/dashboard/blog`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newActivities),
+        }
+      );
+      if (response.ok) {
+        const newEmailResponse = await response.json();
+        reset();
+        router.refresh();
+        toast.success(
+          newEmailResponse.message || "Message envoyé avec succès !"
+        );
+      } else {
+        setError("generic", {
+          type: "generic",
+          message: "Problèmes serveurs else",
+        });
+      }
+    } catch (e) {
+      setError("generic", {
+        type: "generic",
+        message: "Problèmes serveurs catch",
+      });
+    }
+  }
+
+  return (
+    <form key={page._id} onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex w-full flex-col xl:flex-row">
+        <div
+          className="relative mb-8 h-[220px] sm:h-[360px] sm:min-w-full lg:mr-8 lg:w-[400px] xl:mb-0 xl:h-80 xl:min-w-[350px]
+        "
+        >
+          <Image
+            src={require(`@/components/${page.urlWebp}`).default}
+            alt={page.altWebp}
+            fill
+            style={{
+              objectFit: "cover",
+              objectPosition: `${page.position}`,
+            }}
+            className="absolute shadow-ha"
+          />
+        </div>
+        <div className="flex h-full w-full flex-col">
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="title"
+              className={`labelForm ${
+                errors?.title ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Titre
+            </label>
+            <span className="labelFormRight">
+              <span className={titleLength < minTitle && "text-red-500"}>
+                {minTitle}&#62;
+              </span>
+              {titleLength}
+              <span className={titleLength > maxTitle && "text-red-500"}>
+                &#62;{maxTitle}
+              </span>
+            </span>
+            <input
+              id="title"
+              type="text"
+              {...register("title")}
+              className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+              onChange={(e) => {
+                const title = e.target.value.length;
+                setTitleLength(title);
+                register("title").onChange(e);
+              }}
+            />
+            {errors?.title && (
+              <p className="errorsFormBottom">{errors.title.message}</p>
+            )}
+          </div>
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="description"
+              className={`labelForm ${
+                errors?.description ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Description
+            </label>
+            <span className="labelFormRight">
+              <span
+                className={descriptionLength < minDescription && "text-red-500"}
+              >
+                {minDescription}&#62;
+              </span>
+              {descriptionLength}
+              <span
+                className={descriptionLength > maxDescription && "text-red-500"}
+              >
+                &#62;{maxDescription}
+              </span>
+            </span>
+            <textarea
+              id="description"
+              type="text"
+              {...register("description")}
+              className={`inputFormBase ${
+                errors?.description && "bg-red-50"
+              } min-h-96 resize-none sm:min-h-60 md:min-h-48 lg:min-h-44 xl:min-h-44`}
+              onChange={(e) => {
+                const description = e.target.value.length;
+                setDescriptionLength(description);
+                register("description").onChange(e);
+              }}
+            />
+            {errors?.description && (
+              <p className="errorsFormBottom">{errors.description.message}</p>
+            )}
+          </div>
+          <div className=" mb-8 flex">
+            <div className="relative  mr-2 w-full">
+              <label
+                htmlFor="alt"
+                className={`labelForm ${
+                  errors?.alt ? "to-red-50" : "to-neutral-50"
+                }`}
+              >
+                Alt d&#39;image
+              </label>
+              <span className="labelFormRight">
+                <span className={altLength < 20 && "text-red-500"}>
+                  20&#62;
+                </span>
+                {altLength}
+                <span className={altLength > 320 && "text-red-500"}>
+                  &#62;320
+                </span>
+              </span>
+              <input
+                id="alt"
+                type="alt"
+                {...register("alt")}
+                className={`inputFormBase ${
+                  errors?.alt && "bg-red-50"
+                } w-full resize-none`}
+                onChange={(e) => {
+                  const alt = e.target.value.length;
+                  setTitleLength(alt);
+                  register("alt").onChange(e);
+                }}
+              />
+              {errors?.alt && (
+                <p className="errorsFormBottom">{errors.alt.message}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="item-end flex w-full flex-1 justify-start">
+        <div className="flex w-full flex-1 items-end justify-end">
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className="mb-8 rounded-xl bg-neutral-300 px-4 py-2 transition-all duration-300 md:hover:scale-101 md:hover:bg-supernova-500 md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:shadow-ha"
+          >
+            <div className="flex flex-1 items-center">
+              {isSubmitting ? (
+                <>
+                  <h3 className="font-bold">En cours...</h3>
+                  <div className="ml-2">
+                    <div className="size-4 animate-spin">
+                      <Loading />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <h3 className="font-bold">Sauvegarder</h3>
+              )}
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+export function DashBoardBlogWithoutImage({ page }) {
+  const [defaultValues, setDefaultValues] = React.useState({});
+  const [titleLength, setTitleLength] = React.useState(0);
+  const [descriptionLength, setDescriptionLength] = React.useState(0);;
+
+  React.useEffect(() => {
+    const fetchDefaultValuesSession = async () => {
+      const values = {
+        title: page.title,
+        description: page.description,
+      };
+      setDefaultValues(values);
+    };
+    fetchDefaultValuesSession();
+  }, [page]);
+
+  const schema = yup.object({
+    title: yup
+      .string()
+      .required("Le titre est obligatoire...")
+      .min(8, "Longueur mimnimum 8 caractères")
+      .max(40, "Longueur maximum 30 caractères"),
+    description: yup
+      .string()
+      .required("Description obligatoire...")
+      .min(320, "Longueur mimnimum 260 caractères")
+      .max(500, "Longueur maximum 800 caractères"),
+  });
+
+  const descriptionAll = schema.describe();
+  const minTitle = descriptionAll.fields.title.tests[1].params.min;
+  const maxTitle = descriptionAll.fields.title.tests[2].params.max;
+  const minDescription = descriptionAll.fields.description.tests[1].params.min;
+  const maxDescription = descriptionAll.fields.description.tests[2].params.max;
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  React.useEffect(() => {
+    if (Object.keys(defaultValues).length > 0) {
+      reset(defaultValues);
+      setTitleLength(defaultValues.title.length);
+      setDescriptionLength(defaultValues.description.length);
+    }
+  }, [defaultValues, reset]);
+
+  async function onSubmit(values) {
+    try {
+      clearErrors();
+      const newActivities = { ...values, _id: page._id, metaId: page.metaId, blogId : page.blogId };
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}/api/dashboard/blog`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newActivities),
+        }
+      );
+      if (response.ok) {
+        const newEmailResponse = await response.json();
+        reset();
+        router.refresh();
+        toast.success(
+          newEmailResponse.message || "Message envoyé avec succès !"
+        );
+      } else {
+        setError("generic", {
+          type: "generic",
+          message: "Problèmes serveurs else",
+        });
+      }
+    } catch (e) {
+      setError("generic", {
+        type: "generic",
+        message: "Problèmes serveurs catch",
+      });
+    }
+  }
+
+  return (
+    <form key={page._id} onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex w-full flex-col xl:flex-row">
+        <div className="flex h-full w-full flex-col">
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="title"
+              className={`labelForm ${
+                errors?.title ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Titre
+            </label>
+            <span className="labelFormRight">
+              <span className={titleLength < minTitle && "text-red-500"}>
+                {minTitle}&#62;
+              </span>
+              {titleLength}
+              <span className={titleLength > maxTitle && "text-red-500"}>
+                &#62;{maxTitle}
+              </span>
+            </span>
+            <input
+              id="title"
+              type="text"
+              {...register("title")}
+              className={`inputFormBase ${errors?.title && "bg-red-50"}`}
+              onChange={(e) => {
+                const title = e.target.value.length;
+                setTitleLength(title);
+                register("title").onChange(e);
+              }}
+            />
+            {errors?.title && (
+              <p className="errorsFormBottom">{errors.title.message}</p>
+            )}
+          </div>
+          <div className="relative mb-8 flex flex-col">
+            <label
+              htmlFor="description"
+              className={`labelForm ${
+                errors?.description ? "to-red-50" : "to-neutral-50"
+              }`}
+            >
+              Description
+            </label>
+            <span className="labelFormRight">
+              <span
+                className={descriptionLength < minDescription && "text-red-500"}
+              >
+                {minDescription}&#62;
+              </span>
+              {descriptionLength}
+              <span
+                className={descriptionLength > maxDescription && "text-red-500"}
+              >
+                &#62;{maxDescription}
+              </span>
+            </span>
+            <textarea
+              id="description"
+              type="text"
+              {...register("description")}
+              className={`inputFormBase ${
+                errors?.description && "bg-red-50"
+              } min-h-96 resize-none sm:min-h-60 md:min-h-48 lg:min-h-44 xl:min-h-44`}
+              onChange={(e) => {
+                const description = e.target.value.length;
+                setDescriptionLength(description);
+                register("description").onChange(e);
+              }}
+            />
+            {errors?.description && (
+              <p className="errorsFormBottom">{errors.description.message}</p>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="item-end flex w-full flex-1 justify-start">
+        <div className="flex w-full flex-1 items-end justify-end">
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className="mb-8 rounded-xl bg-neutral-300 px-4 py-2 transition-all duration-300 md:hover:scale-101 md:hover:bg-supernova-500 md:hover:fill-mahogany-950 md:hover:text-mahogany-950 md:hover:shadow-ha"
+          >
+            <div className="flex flex-1 items-center">
+              {isSubmitting ? (
+                <>
+                  <h3 className="font-bold">En cours...</h3>
+                  <div className="ml-2">
+                    <div className="size-4 animate-spin">
+                      <Loading />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <h3 className="font-bold">Sauvegarder</h3>
+              )}
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}

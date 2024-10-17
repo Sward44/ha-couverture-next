@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   AvisClients,
+  Blog,
+  Blogger,
   Charpente,
   Connexion,
   Couverture,
@@ -195,6 +197,31 @@ export default function HeaderDashBoard({ session }) {
                       </span>
                     </Link>
                     <Link
+                      href="/dashboard/blog"
+                      onClick={() => setBurger(false)}
+                      aria-label="Lien vers la page blog global"
+                    >
+                      <span className="flex pb-2">
+                        <span className="ml-4 mr-3 flex size-8 self-center fill-neutral-100 md:size-12">
+                          <Blogger />
+                        </span>
+                        <h3 className="text-xl md:text-3xl">/blog</h3>
+                      </span>
+                    </Link>                    
+                    <Link
+                      href="/dashboard/renovation-verenda-pouliguen"
+                      onClick={() => setBurger(false)}
+                      aria-label="Lien vers la page blog global"
+                    >
+                      <span className="flex pb-2">
+                        <span className="ml-4 mr-3 flex size-8 self-center fill-neutral-100 md:size-12">
+                          <Blog />
+                        </span>
+                        <h3 className="text-xl md:text-3xl">/renovation-verenda-pouliguen</h3>
+                      </span>
+                    </Link>       
+                    
+                    <Link
                       href="/dashboard/avis-clients"
                       onClick={() => setBurger(false)}
                       aria-label="Lien vers la page de présentation de l'activité de couverture"
@@ -206,6 +233,7 @@ export default function HeaderDashBoard({ session }) {
                         <h3 className="text-xl md:text-3xl">/avis-clients</h3>
                       </span>
                     </Link>
+
                     <Link
                       href="/dashboard/connexion"
                       onClick={() => setBurger(false)}

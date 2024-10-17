@@ -1,6 +1,5 @@
 "use client";
 import React, { Suspense, useState, useRef } from "react";
-import { Helmet } from "react-helmet";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ImageDiaporama from "@/components/home/image/ImageDiaporama";
 import Texte from "@/components/home/texte/Texte";

@@ -6,7 +6,7 @@ import { getEnvVarForBlog } from "@/app/(activites)/layout";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { DashBoardMeta } from "@/components/dashboard/DashBoardMeta";
-import { DashBoardPageMain } from "@/components/dashboard/DashBoardPage";
+import { DashBoardPageMain, DashBoardBlogWithImage, DashBoardBlogWithoutImage, DashBoardBlogEntete } from "@/components/dashboard/DashBoardPage";
 import { Header } from "@/components/dashboard/header/Header";
 
 const activityEachPageMap = {
@@ -21,6 +21,8 @@ const activityEachPageMap = {
     "connexion",
     "inscription",
     "avis-clients",
+    "blog",
+    "renovation-verenda-pouliguen",
   ],
 };
 
@@ -146,7 +148,7 @@ export default async function blogPage({ params }) {
                     `auto-rows-min lg:col-start-1 lg:col-end-3`
                   }`}
                 >
-                  <h2 className="pt-4 text-2xl font-bold md:text-3xl">
+                  <h2 className="pt-4 text-xl sm:text-2xl font-serif">
                     {item.title}
                   </h2>
                   <p className="mx-4 pb-8 pt-4 sm:mx-0 sm:pb-4 lg:mx-10 lg:my-4">
@@ -183,7 +185,7 @@ export default async function blogPage({ params }) {
     );
   } else if (activity.includes("dashboard")) {
     let formattedBlog = blog;
-    if (blog === "travaux-divers" || blog === "avis-clients")
+    if (blog === "travaux-divers" || blog === "avis-clients" || blog === "renovation-verenda-pouliguen")
       formattedBlog = blog.replaceAll("-", "");
     const metaId = await getEnvVarForBlog(formattedBlog, "meta");
     await connectMongoose();
@@ -205,16 +207,17 @@ export default async function blogPage({ params }) {
     const url = metaData.openGraph.url;
 
     const pageId = await getEnvVarForBlog(formattedBlog, "page");
-    const titleData = await PageModel.findOne({ _id: pageId }).lean().exec();
-    let view = true;
-    if (
-      titleData._id.toString() === process.env.PAGE_ID_CONN ||
-      titleData._id.toString() === process.env.PAGE_ID_INSC
-    ) {
-      view = false;
-    }
-
-    const Data = await SousPageModel.find({ _pageId: pageId })
+    if(formattedBlog !== "renovationverendapouliguen"){ 
+      const titleData = await PageModel.findOne({ _id: pageId }).lean().exec();
+      let view = true;
+      if (
+        titleData._id.toString() === process.env.PAGE_ID_CONN ||
+        titleData._id.toString() === process.env.PAGE_ID_INSC ||
+        titleData._id.toString() === process.env.PAGE_ID_BLOG 
+      ) {
+        view = false;
+      }      
+      const Data = await SousPageModel.find({ _pageId: pageId })
       .sort({ index: 1 })
       .lean()
       .exec();
@@ -230,7 +233,6 @@ export default async function blogPage({ params }) {
     }));
 
     const pageSearchData = JSON.parse(JSON.stringify(pageData));
-
     return (
       <>
         <div className="relative top-[72px] flex h-full min-h-[calc(100vh-72px)] w-full flex-col px-4 md:top-[81px] md:min-h-[calc(100vh-81px)] lg:px-0">
@@ -265,5 +267,79 @@ export default async function blogPage({ params }) {
         </div>
       </>
     );
+
+    } else {
+      const titleData = await BlogModel.findOne({ _id : pageId}).lean().exec();
+
+      const pageEntete = {
+        _id : titleData._id,
+        metaId: metaData._id,
+        blogId: true,
+        title : titleData.title,
+        description : titleData.description,
+        urlWebp : titleData.urlWebp,
+        altWebp: titleData.altWebp,
+        position: titleData?.position ? titleData.position : 'center',
+      }
+
+      const PageDataEntete = JSON.parse(JSON.stringify(pageEntete))
+
+      const Data = await SousPageModel.find({ blogId: pageId })
+        .sort({ index: 1 })
+        .lean()
+        .exec();
+
+      const pageData = Data.map((item) => ({
+        _id: item._id,
+        metaId: metaData._id,
+        blogId: false,
+        title: item.title,
+        description: item.description,
+        urlWebp: item?.urlWebp || null,
+        position: item?.position || null,
+        altWebp: item?.altWebp || null,
+        image: item?.urlWebp ? true : false,
+      }));
+
+      const pageSearchData = JSON.parse(JSON.stringify(pageData));
+      console.log(pageSearchData);
+    return (
+      <>
+        <div className="relative top-[72px] flex h-full min-h-[calc(100vh-72px)] w-full flex-col px-4 md:top-[81px] md:min-h-[calc(100vh-81px)] lg:px-0">
+          <Header url={url} />
+          <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha sm:w-full lg:mx-auto lg:max-w-[960px]  xl:max-w-[1240px] 2xl:max-w-[1500px]">
+            <h2 className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl">
+              Balises metadonnées pour Google, Bing, etc...{" "}
+            </h2>
+            <DashBoardMeta meta={metaSearchData} />
+          </div>
+            <Header url={url} />
+            <div className="my-10 flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100 shadow-ha lg:mx-auto lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1500px]">
+              <h2
+                key={titleData._id}
+                className="my-4 px-6 text-xl font-bold sm:px-2 sm:text-2xl"
+              >
+                Page {titleData.title}
+              </h2>
+              <div
+                  className="mt-8 flex h-full w-full flex-col px-4 lg:min-w-[860px] lg:px-12 xl:min-w-[1160px] 2xl:min-w-[1400px]"
+                >
+                <DashBoardBlogEntete page={PageDataEntete}/>
+              </div>
+              {pageSearchData.map((item) => (
+                <div
+                  key={item._id}
+                  className="mt-8 flex h-full w-full flex-col px-4 lg:min-w-[860px] lg:px-12 xl:min-w-[1160px] 2xl:min-w-[1400px]"
+                >
+                  {item.image ?
+                  <DashBoardBlogWithImage page={item} />: <DashBoardBlogWithoutImage page={item} />}
+                </div>
+              ))}
+            </div>
+        </div>
+      </>
+    );
   }
+    }
+    
 }

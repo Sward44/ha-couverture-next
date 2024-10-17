@@ -110,6 +110,10 @@ export async function getEnvVarForBlog(blog, type) {
       meta: process.env.META_ID_INSC,
       page: process.env.PAGE_ID_INSC,
     },
+    blog: {
+      meta: process.env.META_ID_BLOG,
+      page: process.env.PAGE_ID_BLOG,
+    },
   };
 
   if (!mapping[blog]) {

@@ -18,6 +18,7 @@ import {
   Inscription,
   Logout,
   Parametre,
+  Blogger,
 } from "@/components/logo/Logo";
 import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
@@ -194,7 +195,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
             >
               <span className="flex  items-center">
                 <span className="mr-3 flex size-6 justify-center fill-neutral-100">
-                  <Blog />
+                  <Blogger />
                 </span>
                 <h3 className="">Blogs</h3>
               </span>

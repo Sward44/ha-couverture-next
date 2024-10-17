@@ -38,7 +38,7 @@ export default function AvisGlobal({
     <>
       <div className="mb-2 mt-6 w-full md:mb-6 md:mt-12 md:w-auto">
         <div className="w-full rounded-lg bg-neutral-100 px-6 py-4 shadow-ha md:w-[720px]">
-          <h2 className="text-center text-lg font-bold sm:text-xl md:text-2xl">
+          <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-serif">
             Note moyenne de Ha Couverture
           </h2>
           <p className="mb-6 text-center text-sm">

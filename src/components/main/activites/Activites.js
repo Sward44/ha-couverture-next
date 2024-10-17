@@ -11,7 +11,7 @@ export default async function Activites({ itemDataCouverture }) {
             key={item._id}
             className="flex flex-col items-center justify-center"
           >
-            <h2 className="my-6 text-2xl font-bold sm:my-10 md:text-3xl lg:my-[3%]">
+            <h2 className="my-6 text-xl font-serif sm:my-10 sm:text-2xl md:text-3xl lg:my-[3%]">
               {item.title}
             </h2>
             <p className="mx-4 mb-12 sm:mx-0 sm:mb-16 lg:mx-[13%] lg:my-[3%]">
