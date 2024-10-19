@@ -16,8 +16,6 @@ import {
 import * as React from "react";
 
 const baseUrl = "https://www.buzz-ready.com";
-// process.env.HOST ? `${process.env.HOST}` : "";
-console.log(baseUrl);
 
 export const Welcome = ({ metadata }) => (
   <Html>

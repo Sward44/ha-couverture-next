@@ -69,10 +69,6 @@ export async function getEnvVarForActivity(activity, type) {
 
 export async function getEnvVarForBlog(blog, type) {
   const mapping = {
-    renovationverendapouliguen: {
-      meta: process.env.META_ID_BLOG_POUL,
-      page: process.env.BLOG_ID_POUL,
-    },
     couverture: {
       meta: process.env.META_ID_COUV,
       page: process.env.PAGE_ID_COUV,
@@ -93,7 +89,6 @@ export async function getEnvVarForBlog(blog, type) {
       meta: process.env.META_ID_CHAR,
       page: process.env.PAGE_ID_CHAR,
     },
-
     travauxdivers: {
       meta: process.env.META_ID_TRAV,
       page: process.env.PAGE_ID_TRAV,
@@ -113,6 +108,14 @@ export async function getEnvVarForBlog(blog, type) {
     blog: {
       meta: process.env.META_ID_BLOG,
       page: process.env.PAGE_ID_BLOG,
+    },
+    renovationverendapouliguen: {
+      meta: process.env.META_ID_BLOG_POUL,
+      page: process.env.BLOG_ID_POUL,
+    },
+    reparationtoitsautron: {
+      meta: process.env.META_ID_BLOG_SAUT,
+      page: process.env.BLOG_ID_SAUT,
     },
   };
 

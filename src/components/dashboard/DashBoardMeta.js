@@ -108,7 +108,6 @@ export function DashBoardMeta({ meta }) {
 
   async function onSubmit(values) {
     try {
-      console.log("Keywords:", values.keyword.length);
       clearErrors();
       const newMeta = { ...values, _id: meta._id };
       const response = await fetch(

@@ -207,20 +207,35 @@ export default function HeaderDashBoard({ session }) {
                         </span>
                         <h3 className="text-xl md:text-3xl">/blog</h3>
                       </span>
-                    </Link>                    
+                    </Link>
                     <Link
                       href="/dashboard/renovation-verenda-pouliguen"
                       onClick={() => setBurger(false)}
-                      aria-label="Lien vers la page blog global"
+                      aria-label="Lien vers la page de renovation de verenda au Pouliguen"
                     >
                       <span className="flex pb-2">
                         <span className="ml-4 mr-3 flex size-8 self-center fill-neutral-100 md:size-12">
                           <Blog />
                         </span>
-                        <h3 className="text-xl md:text-3xl">/renovation-verenda-pouliguen</h3>
+                        <h3 className="text-xl md:text-3xl">
+                          /renovation-verenda-pouliguen
+                        </h3>
                       </span>
-                    </Link>       
-                    
+                    </Link>
+                    <Link
+                      href="/dashboard/reparation-toit-sautron"
+                      onClick={() => setBurger(false)}
+                      aria-label="Lien vers la page de reparation de toit ardoise à Sautron"
+                    >
+                      <span className="flex pb-2">
+                        <span className="ml-4 mr-3 flex size-8 self-center fill-neutral-100 md:size-12">
+                          <Blog />
+                        </span>
+                        <h3 className="text-xl md:text-3xl">
+                          /reparation-toit-sautron
+                        </h3>
+                      </span>
+                    </Link>
                     <Link
                       href="/dashboard/avis-clients"
                       onClick={() => setBurger(false)}
